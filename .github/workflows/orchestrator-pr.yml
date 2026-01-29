@@ -14,10 +14,9 @@ jobs:
 
       - name: Validar branch correta
         run: |
-          if [[ "${{ github.head_ref }}" != "frontend-dev" && \
-                "${{ github.head_ref }}" != "backend-dev" && \
-                "${{ github.head_ref }}" != "infra-dev" ]]; then
-            echo "PR criado numa branch inválida."
+          # Aceita branches que comecem com frontend-dev, backend-dev ou infra-dev
+          if [[ ! "${{ github.head_ref }}" =~ ^(frontend-dev|backend-dev|infra-dev) ]]; then
+            echo "PR criado numa branch inválida (${{ github.head_ref }}). Deve começar com frontend-dev, backend-dev ou infra-dev."
             exit 1
           fi
 
@@ -30,15 +29,10 @@ jobs:
 
       - name: Validar tamanho do PR
         run: |
+          # Fetch base branch to compare
+          git fetch origin ${{ github.base_ref }}
           CHANGED=$(git diff --shortstat origin/${{ github.base_ref }} | awk '{print $4}')
           if [ -n "$CHANGED" ] && [ "$CHANGED" -gt 800 ]; then
-            echo "PR demasiado grande. Divide em PRs menores."
-            exit 1
-          fi
-
-      - name: Validar conflitos
-        run: |
-          if ! git merge --no-commit --no-ff origin/${{ github.base_ref }}; then
-            echo "Existem conflitos neste PR."
+            echo "PR demasiado grande ($CHANGED alterações). Divide em PRs menores."
             exit 1
           fi

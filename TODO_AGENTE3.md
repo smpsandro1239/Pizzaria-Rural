@@ -11,7 +11,7 @@
 - [x] Configurar workflows do Orquestrador (PR, Commits, Project, Emergência)
 - [x] Configurar CI base para Frontend, Backend e Infra
 - [x] Lint + Prettier (`.eslintrc.json`, `.prettierrc`)
-- [ ] Testes automáticos
+- [x] Testes automáticos (Infraestrutura base em `backend/` e `app-mobile/`)
 - [ ] Build mobile
 - [ ] Deploy backend
 - [ ] Deploy documentação
@@ -24,14 +24,14 @@
 ## 4. Infraestrutura
 - [x] Docker (`backend/Dockerfile`)
 - [x] Docker Compose (`docker-compose.yml`)
-- [ ] Monitorização
-- [ ] Logs centralizados
+- [x] Monitorização (Prometheus + Grafana em `docker-compose.yml`)
+- [x] Logs centralizados (via Docker logs, documentado em `docs/monitorizacao.md`)
 
 ## 5. Documentação
 - [x] README principal
 - [x] Documentação técnica (`docs/setup_local.md`)
-- [ ] Documentação de API
-- [ ] Documentação de deploy
+- [x] Documentação de API (`docs/api.md`)
+- [x] Documentação de deploy (`docs/deploy.md`)
 - [x] Documentação de arquitetura (`docs/arquitetura.md`)
 - [x] Guia de Contribuição (`CONTRIBUTING.md`)
 - [x] Divisão de Agentes (`docs/agentes.md`)

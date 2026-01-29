@@ -1,0 +1,17 @@
+{
+  "name": "pizzaria-rural-app",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint .",
+    "start": "expo start"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "jest": "^29.5.0",
+    "jest-expo": "^50.0.0",
+    "prettier": "^3.0.0"
+  }
+}

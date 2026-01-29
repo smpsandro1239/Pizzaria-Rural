@@ -15,17 +15,27 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Validar convenção de commits
+      - name: Validar todos os commits do push
         run: |
-          COMMITS=$(git log -1 --pretty=%s)
-          if ! echo "$COMMITS" | grep -qiE "^(feat|fix|docs|chore|refactor|test|ci):"; then
-            echo "Commit inválido. Deve começar com feat:, fix:, docs:, etc."
-            exit 1
+          # Fetch enough history to see the commits in this push
+          git fetch --depth=100
+
+          # Se for o primeiro push da branch, github.event.before é 000000...
+          if [ "${{ github.event.before }}" = "0000000000000000000000000000000000000000" ]; then
+            RANGE="HEAD^..HEAD"
+          else
+            RANGE="${{ github.event.before }}..${{ github.event.after }}"
           fi
 
-      - name: Validar PT-PT no commit (Aviso)
-        run: |
-          if ! echo "$COMMITS" | grep -qiE "á|é|í|ó|ú|ç|ã|õ|â|ê|ô|à"; then
-            echo "Aviso: O commit pode não estar em PT-PT (não foram detetados acentos ou cedilhas)."
-            # Não falha o build para permitir termos técnicos em inglês
-          fi
+          echo "A validar commits no intervalo: $RANGE"
+
+          git log --pretty=format:"%s" "$RANGE" | while read -r line; do
+            echo "A validar: $line"
+            if ! echo "$line" | grep -qiE "^(feat|fix|docs|chore|refactor|test|ci):"; then
+              echo "Erro: Commit inválido ('$line'). Deve começar com feat:, fix:, docs:, etc."
+              exit 1
+            fi
+            if ! echo "$line" | grep -qiE "á|é|í|ó|ú|ç|ã|õ|â|ê|ô|à"; then
+              echo "Aviso: O commit pode não estar em PT-PT (não foram detetados acentos ou cedilhas)."
+            fi
+          done
