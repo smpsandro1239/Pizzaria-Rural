@@ -41,3 +41,11 @@
 - [ ] Testes de navegação (Ambiente configurado, pendente resolução de conflitos de runtime)
 - [x] Testes de integração com API (Store de carrinho testada)
 - [x] Verificação de tipos (tsc --noEmit passando)
+
+## 🚀 Próximos Passos & Melhorias (V2)
+- [x] **Persistência Local:** Manter o carrinho guardado mesmo após fechar a app (Zustand Persist).
+- [x] **Skeleton Loaders:** Melhorar a percepção de performance com placeholders durante o loading.
+- [x] **Animações de Entrada:** Adicionar efeitos de "fade-in" e "slide-up" na lista de pizzas.
+- [ ] **Sistema de Favoritos:** Permitir ao utilizador marcar pizzas preferidas.
+- [ ] **Internacionalização (i18n):** Preparar a app para outros idiomas (embora PT-PT seja a prioridade).
+- [ ] **PWA/Web Optimizations:** Refinar a experiência em browser para dispositivos móveis.

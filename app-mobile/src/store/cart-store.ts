@@ -1,4 +1,6 @@
 import { create } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export type CartItem = {
   id: string;
@@ -19,29 +21,38 @@ type CartState = {
   hideToast: () => void;
 };
 
-export const useCartStore = create<CartState>((set, get) => ({
-  items: [],
-  addItem: (item) => {
-    set((state) => {
-      const existing = state.items.find((i) => i.id === item.id);
-      if (existing) {
-        return {
-          items: state.items.map((i) =>
-            i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
-          ),
-        };
-      }
-      return { items: [...state.items, { ...item, quantity: 1 }] };
-    });
-    get().showToast(`${item.name} adicionada!`);
-  },
-  removeItem: (id) =>
-    set((state) => ({
-      items: state.items.filter((i) => i.id !== id),
-    })),
-  clear: () => set({ items: [] }),
-  total: () => get().items.reduce((sum, i) => sum + i.price * i.quantity, 0),
-  toast: { visible: false, message: "", type: "success" },
-  showToast: (message, type = "success") => set({ toast: { visible: true, message, type } }),
-  hideToast: () => set((state) => ({ toast: { ...state.toast, visible: false } })),
-}));
+export const useCartStore = create<CartState>()(
+  persist(
+    (set, get) => ({
+      items: [],
+      addItem: (item) => {
+        set((state) => {
+          const existing = state.items.find((i) => i.id === item.id);
+          if (existing) {
+            return {
+              items: state.items.map((i) =>
+                i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
+              ),
+            };
+          }
+          return { items: [...state.items, { ...item, quantity: 1 }] };
+        });
+        get().showToast(`${item.name} adicionada!`);
+      },
+      removeItem: (id) =>
+        set((state) => ({
+          items: state.items.filter((i) => i.id !== id),
+        })),
+      clear: () => set({ items: [] }),
+      total: () => get().items.reduce((sum, i) => sum + i.price * i.quantity, 0),
+      toast: { visible: false, message: "", type: "success" },
+      showToast: (message, type = "success") => set({ toast: { visible: true, message, type } }),
+      hideToast: () => set((state) => ({ toast: { ...state.toast, visible: false } })),
+    }),
+    {
+      name: "cart-storage",
+      storage: createJSONStorage(() => AsyncStorage),
+      partialize: (state) => ({ items: state.items }), // Apenas persistir os itens, não o estado do toast
+    }
+  )
+);

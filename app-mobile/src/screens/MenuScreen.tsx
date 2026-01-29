@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity, ActivityIndicator } from "react-native";
+import { MotiView } from "moti";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { theme } from "../theme";
 import { Card } from "../components/Card";
 import { Badge } from "../components/Badge";
-import { AnimatedLoader } from "../components/AnimatedLoader";
+import { SkeletonCard } from "../components/SkeletonCard";
 import { Button } from "../components/Button";
 import { useCartStore } from "../store/cart-store";
 import { FloatingCart } from "../components/FloatingCart";
@@ -47,33 +48,46 @@ export const MenuScreen = () => {
     fetchPizzas();
   }, []);
 
-  const renderItem = ({ item }: { item: Pizza }) => (
-    <Card style={styles.card} onPress={() => navigation.navigate("PizzaDetail", { id: item.id })}>
-      <Image source={{ uri: item.image }} style={styles.image} />
-      <View style={styles.info}>
-        <View style={styles.header}>
-          <Text style={styles.name}>{item.name}</Text>
-          <Badge label={item.tag} />
+  const renderItem = ({ item, index }: { item: Pizza; index: number }) => (
+    <MotiView
+      from={{ opacity: 0, translateY: 20 }}
+      animate={{ opacity: 1, translateY: 0 }}
+      transition={{ delay: index * 100 }}
+    >
+      <Card style={styles.card} onPress={() => navigation.navigate("PizzaDetail", { id: item.id })}>
+        <Image source={{ uri: item.image }} style={styles.image} />
+        <View style={styles.info}>
+          <View style={styles.header}>
+            <Text style={styles.name}>{item.name}</Text>
+            <Badge label={item.tag} />
+          </View>
+          <Text style={styles.description}>{item.description}</Text>
+          <View style={styles.footer}>
+            <Text style={styles.price}>{item.price.toFixed(2)} €</Text>
+            <TouchableOpacity
+              style={styles.addButton}
+              onPress={() => addItem({ id: item.id, name: item.name, price: item.price })}
+            >
+              <Text style={styles.addButtonText}>Adicionar</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-        <Text style={styles.description}>{item.description}</Text>
-        <View style={styles.footer}>
-          <Text style={styles.price}>{item.price.toFixed(2)} €</Text>
-          <TouchableOpacity
-            style={styles.addButton}
-            onPress={() => addItem({ id: item.id, name: item.name, price: item.price })}
-          >
-            <Text style={styles.addButtonText}>Adicionar</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </Card>
+      </Card>
+    </MotiView>
   );
 
   if (loading) {
     return (
-      <View style={styles.centered}>
-        <AnimatedLoader />
-        <Text style={styles.loadingText}>A carregar sabores...</Text>
+      <View style={styles.container}>
+        <FlatList
+          data={[1, 2, 3]}
+          keyExtractor={(item) => item.toString()}
+          renderItem={() => <SkeletonCard />}
+          contentContainerStyle={styles.list}
+          ListHeaderComponent={
+            <Text style={styles.title}>As Nossas Pizzas</Text>
+          }
+        />
       </View>
     );
   }
