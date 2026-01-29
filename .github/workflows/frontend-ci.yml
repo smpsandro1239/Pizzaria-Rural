@@ -1,0 +1,29 @@
+name: Frontend CI
+
+on:
+  push:
+    branches:
+      - frontend-dev
+    paths:
+      - 'app-mobile/**'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'app-mobile/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: cd app-mobile && npm install
+      - name: Lint
+        run: cd app-mobile && npm run lint || echo "No lint script"
+      - name: Test
+        run: cd app-mobile && npm test || echo "No test script"

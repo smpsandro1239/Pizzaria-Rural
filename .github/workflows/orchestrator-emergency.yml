@@ -1,0 +1,25 @@
+name: Orquestrador — Modo Emergência
+
+on:
+  workflow_run:
+    workflows: ["Orquestrador — Validar Pull Requests", "Orquestrador — Validar Commits"]
+    types:
+      - completed
+
+jobs:
+  emergency:
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Criar issue de emergência
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: "🚨 Modo Emergência — Falha Detetada",
+              body: "O Orquestrador detetou uma falha crítica. É necessário intervenção imediata.",
+              labels: ["bloqueado", "alta-prioridade"]
+            })
