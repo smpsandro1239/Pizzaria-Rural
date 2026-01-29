@@ -1,0 +1,63 @@
+AGENTE 2 — BACKEND (API + BD)
+Objetivo: Criar API completa, segura, escalável, com documentação e testes.
+📌 TODOLIST — Agente 2
+1. Setup inicial
+[ ] Criar projeto NestJS
+
+[ ] Configurar Prisma
+
+[ ] Criar base de dados PostgreSQL
+
+[ ] Criar estrutura modular
+
+2. Modelos
+[ ] Utilizador
+
+[ ] Pizza
+
+[ ] Ingredientes
+
+[ ] Encomenda
+
+[ ] Estado da encomenda
+
+[ ] Pagamentos
+
+3. Endpoints
+[ ] Autenticação
+
+[ ] Listar pizzas
+
+[ ] Criar encomenda
+
+[ ] Atualizar estado
+
+[ ] Tracking
+
+[ ] Histórico
+
+4. Notificações
+[ ] WhatsApp
+
+[ ] Email fallback
+
+5. Documentação
+[ ] Swagger/OpenAPI
+
+[ ] Contratos para o frontend
+
+6. Testes
+[ ] Unitários
+
+[ ] Integração
+
+[ ] Carga
+
+7. Commits
+Sempre em PT‑PT
+
+Exemplo:
+
+feat: criar endpoint de encomendas
+
+chore: atualizar schema do prisma
