@@ -1,0 +1,69 @@
+AGENTE 1 — FRONTEND (APP MOBILE)
+Objetivo: Criar a app completa em PT‑PT com UI Kit, Motion System e integração com API.
+📌 TODOLIST — Agente 1
+1. Setup inicial
+[ ] Criar projeto Expo em PT‑PT
+
+[ ] Configurar Reanimated + Moti
+
+[ ] Configurar estrutura de pastas
+
+[ ] Criar tema (cores, tipografia, spacing, radius)
+
+2. Design System
+[ ] Implementar tokens
+
+[ ] Criar UI Kit completo
+
+[ ] Criar componentes avançados
+
+[ ] Criar Motion System
+
+3. Navegação
+[ ] Stack Navigator
+
+[ ] Bottom Tabs
+
+[ ] Transições animadas
+
+4. Ecrãs
+[ ] Menu
+
+[ ] Detalhe da Pizza
+
+[ ] Carrinho
+
+[ ] Checkout
+
+[ ] Tracking
+
+[ ] Perfil
+
+[ ] Histórico
+
+5. Integração com API
+[ ] Criar cliente API
+
+[ ] Consumir endpoints
+
+[ ] Validar erros
+
+[ ] Loading states
+
+[ ] Toasts e feedback
+
+6. Testes
+[ ] Testes de UI
+
+[ ] Testes de navegação
+
+[ ] Testes de integração com API
+
+7. Commits
+Sempre em PT‑PT
+
+Exemplo:
+
+feat: adicionar ecrã de menu
+
+fix: corrigir animação do carrinho
