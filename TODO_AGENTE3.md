@@ -10,7 +10,7 @@
 ## 2. CI/CD
 - [x] Configurar workflows do Orquestrador (PR, Commits, Project, Emergência)
 - [x] Configurar CI base para Frontend, Backend e Infra
-- [ ] Lint + Prettier
+- [x] Lint + Prettier (`.eslintrc.json`, `.prettierrc`)
 - [ ] Testes automáticos
 - [ ] Build mobile
 - [ ] Deploy backend
@@ -22,17 +22,17 @@
 - [ ] Testes de performance
 
 ## 4. Infraestrutura
-- [ ] Docker
-- [ ] Docker Compose
+- [x] Docker (`backend/Dockerfile`)
+- [x] Docker Compose (`docker-compose.yml`)
 - [ ] Monitorização
 - [ ] Logs centralizados
 
 ## 5. Documentação
 - [x] README principal
-- [ ] Documentação técnica
+- [x] Documentação técnica (`docs/setup_local.md`)
 - [ ] Documentação de API
 - [ ] Documentação de deploy
-- [ ] Documentação de arquitetura
+- [x] Documentação de arquitetura (`docs/arquitetura.md`)
 - [x] Guia de Contribuição (`CONTRIBUTING.md`)
 - [x] Divisão de Agentes (`docs/agentes.md`)
 - [x] Orquestrador (`docs/orchestrator.md`)
