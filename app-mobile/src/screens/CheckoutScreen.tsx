@@ -13,15 +13,27 @@ type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 export const CheckoutScreen = () => {
   const navigation = useNavigation<NavigationProp>();
-  const { items, total, clear } = useCartStore();
+  const { items, total, clear, showToast } = useCartStore();
   const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({ name: "", phone: "", address: "" });
 
   const handleOrder = () => {
+    if (!formData.name || !formData.phone || !formData.address) {
+      showToast("Por favor, preencha todos os campos.", "error");
+      return;
+    }
+
+    if (items.length === 0) {
+      showToast("O seu carrinho está vazio.", "error");
+      return;
+    }
+
     setLoading(true);
     // Simular pedido
     setTimeout(() => {
       setLoading(false);
       clear();
+      showToast("Pedido realizado com sucesso!");
       navigation.replace("Tracking", { orderId: "12345" });
     }, 2000);
   };
@@ -32,9 +44,25 @@ export const CheckoutScreen = () => {
 
       <Card style={styles.section}>
         <Text style={styles.sectionTitle}>Dados de Entrega</Text>
-        <Input label="Nome Completo" placeholder="Como o devemos chamar?" />
-        <Input label="Telemóvel" placeholder="Para qualquer imprevisto" keyboardType="phone-pad" />
-        <Input label="Morada de Entrega" placeholder="Onde a pizza deve bater à porta?" />
+        <Input
+          label="Nome Completo"
+          placeholder="Como o devemos chamar?"
+          value={formData.name}
+          onChangeText={(text) => setFormData({ ...formData, name: text })}
+        />
+        <Input
+          label="Telemóvel"
+          placeholder="Para qualquer imprevisto"
+          keyboardType="phone-pad"
+          value={formData.phone}
+          onChangeText={(text) => setFormData({ ...formData, phone: text })}
+        />
+        <Input
+          label="Morada de Entrega"
+          placeholder="Onde a pizza deve bater à porta?"
+          value={formData.address}
+          onChangeText={(text) => setFormData({ ...formData, address: text })}
+        />
       </Card>
 
       <Card style={styles.section}>

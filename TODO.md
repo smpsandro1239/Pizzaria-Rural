@@ -32,12 +32,12 @@
 - [x] Consumir endpoints (Pizzas e Encomendas configurados)
 - [x] Implementar Estado Global (Zustand - src/store/cart-store.ts)
 - [x] Integrar Carrinho (Menu e Checkout)
-- [ ] Validar erros
-- [ ] Loading states
-- [ ] Toasts e feedback
+- [x] Validar erros (Implementado nos ecrãs principais)
+- [x] Loading states (Adicionados Loaders e ActivityIndicators)
+- [x] Toasts e feedback (Componente Toast animado implementado)
 
 ## 6. Testes
-- [x] Testes de UI (Configurados, componente Button testado)
-- [ ] Testes de navegação
+- [x] Testes de UI (Configurados, componentes base testados)
+- [ ] Testes de navegação (Ambiente configurado, pendente resolução de conflitos de runtime)
 - [x] Testes de integração com API (Store de carrinho testada)
 - [x] Verificação de tipos (tsc --noEmit passando)

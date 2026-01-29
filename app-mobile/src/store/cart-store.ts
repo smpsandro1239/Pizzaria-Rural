@@ -13,11 +13,15 @@ type CartState = {
   removeItem: (id: string) => void;
   clear: () => void;
   total: () => number;
+  // Feedback
+  toast: { visible: boolean; message: string; type: "success" | "error" };
+  showToast: (message: string, type?: "success" | "error") => void;
+  hideToast: () => void;
 };
 
 export const useCartStore = create<CartState>((set, get) => ({
   items: [],
-  addItem: (item) =>
+  addItem: (item) => {
     set((state) => {
       const existing = state.items.find((i) => i.id === item.id);
       if (existing) {
@@ -28,11 +32,16 @@ export const useCartStore = create<CartState>((set, get) => ({
         };
       }
       return { items: [...state.items, { ...item, quantity: 1 }] };
-    }),
+    });
+    get().showToast(`${item.name} adicionada!`);
+  },
   removeItem: (id) =>
     set((state) => ({
       items: state.items.filter((i) => i.id !== id),
     })),
   clear: () => set({ items: [] }),
   total: () => get().items.reduce((sum, i) => sum + i.price * i.quantity, 0),
+  toast: { visible: false, message: "", type: "success" },
+  showToast: (message, type = "success") => set({ toast: { visible: true, message, type } }),
+  hideToast: () => set((state) => ({ toast: { ...state.toast, visible: false } })),
 }));

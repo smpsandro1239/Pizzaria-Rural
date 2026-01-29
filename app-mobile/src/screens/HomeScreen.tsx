@@ -1,16 +1,33 @@
-import React from "react";
-import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, ActivityIndicator } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { theme } from "../theme";
 import { Button } from "../components/Button";
 import { Card } from "../components/Card";
 import { RootStackParamList } from "../navigation/types";
+import { pizzasApi } from "../api/pizzas";
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 export const HomeScreen = () => {
   const navigation = useNavigation<NavigationProp>();
+  const [favorites, setFavorites] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchFavorites = async () => {
+      try {
+        const data = await pizzasApi.getPizzas();
+        setFavorites(data.slice(0, 2)); // Pegar apenas as duas primeiras como favoritas
+      } catch (err) {
+        console.error("Erro ao carregar favoritos", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchFavorites();
+  }, []);
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
@@ -25,25 +42,23 @@ export const HomeScreen = () => {
 
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>As Nossas Favoritas</Text>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalList}>
-          <Card style={styles.pizzaCard} onPress={() => {}}>
-            <Image
-              source={{ uri: "https://images.unsplash.com/photo-1574071318508-1cdbad80ad38?auto=format&fit=crop&w=300&q=80" }}
-              style={styles.pizzaImage}
-            />
-            <Text style={styles.pizzaName}>Margherita Rural</Text>
-            <Text style={styles.pizzaPrice}>8,50 €</Text>
-          </Card>
-
-          <Card style={styles.pizzaCard} onPress={() => {}}>
-            <Image
-              source={{ uri: "https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=300&q=80" }}
-              style={styles.pizzaImage}
-            />
-            <Text style={styles.pizzaName}>Pepperoni da Serra</Text>
-            <Text style={styles.pizzaPrice}>9,50 €</Text>
-          </Card>
-        </ScrollView>
+        {loading ? (
+          <ActivityIndicator color={theme.colors.ruralRed} size="large" />
+        ) : (
+          <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalList}>
+            {favorites.map((pizza) => (
+              <Card
+                key={pizza.id}
+                style={styles.pizzaCard}
+                onPress={() => navigation.navigate("PizzaDetail", { id: pizza.id })}
+              >
+                <Image source={{ uri: pizza.image }} style={styles.pizzaImage} />
+                <Text style={styles.pizzaName}>{pizza.name}</Text>
+                <Text style={styles.pizzaPrice}>{pizza.price.toFixed(2)} €</Text>
+              </Card>
+            ))}
+          </ScrollView>
+        )}
       </View>
 
       <View style={styles.whyUs}>

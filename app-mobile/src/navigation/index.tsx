@@ -10,6 +10,8 @@ import { AccountScreen } from "../screens/AccountScreen";
 import { CheckoutScreen } from "../screens/CheckoutScreen";
 import { TrackingScreen } from "../screens/TrackingScreen";
 import { PizzaDetailScreen } from "../screens/PizzaDetailScreen";
+import { Toast } from "../components/Toast";
+import { useCartStore } from "../store/cart-store";
 
 import { MainTabsParamList, RootStackParamList } from "./types";
 
@@ -73,7 +75,10 @@ const MainTabs = () => {
 };
 
 export const Navigation = () => {
+  const { toast, hideToast } = useCartStore();
+
   return (
+    <>
     <Stack.Navigator
       screenOptions={{
         headerStyle: {
@@ -107,5 +112,12 @@ export const Navigation = () => {
         options={{ title: "Seguir Pedido" }}
       />
     </Stack.Navigator>
+    <Toast
+      visible={toast.visible}
+      message={toast.message}
+      type={toast.type}
+      onHide={hideToast}
+    />
+    </>
   );
 };

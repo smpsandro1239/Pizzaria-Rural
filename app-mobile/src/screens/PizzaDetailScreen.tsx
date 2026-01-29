@@ -1,21 +1,57 @@
-import React from "react";
-import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, Text, StyleSheet, Image, ScrollView, ActivityIndicator } from "react-native";
 import { theme } from "../theme";
 import { Button } from "../components/Button";
 import { Badge } from "../components/Badge";
+import { AnimatedLoader } from "../components/AnimatedLoader";
 import { useCartStore } from "../store/cart-store";
+import { pizzasApi } from "../api/pizzas";
 
 export const PizzaDetailScreen = ({ route }: any) => {
   const { addItem } = useCartStore();
-  // Em produção, buscaríamos os dados pelo ID
-  const pizza = {
-    id: route.params?.id || "1",
-    name: "Margherita Rural",
-    description: "Massa fina, molho de tomate caseiro, mozzarella fresca e manjericão. Uma receita tradicional que nunca falha.",
-    price: 8.5,
-    image: "https://images.unsplash.com/photo-1574071318508-1cdbad80ad38?auto=format&fit=crop&w=600&q=80",
-    tag: "Clássica",
-  };
+  const pizzaId = route.params?.id;
+  const [pizza, setPizza] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchPizza = async () => {
+      try {
+        setLoading(true);
+        const data = await pizzasApi.getPizzas();
+        const found = data.find((p: any) => p.id === pizzaId);
+        if (found) {
+          setPizza(found);
+        } else {
+          setError("Pizza não encontrada.");
+        }
+      } catch (err) {
+        setError("Erro ao carregar detalhes.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (pizzaId) {
+      fetchPizza();
+    }
+  }, [pizzaId]);
+
+  if (loading) {
+    return (
+      <View style={styles.centered}>
+        <AnimatedLoader />
+      </View>
+    );
+  }
+
+  if (error || !pizza) {
+    return (
+      <View style={styles.centered}>
+        <Text style={styles.errorText}>{error || "Algo correu mal."}</Text>
+      </View>
+    );
+  }
 
   return (
     <ScrollView style={styles.container}>
@@ -42,6 +78,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.colors.white,
+  },
+  centered: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: theme.colors.white,
+  },
+  errorText: {
+    ...theme.typography.body,
+    color: theme.colors.ruralRed,
   },
   image: {
     width: "100%",
