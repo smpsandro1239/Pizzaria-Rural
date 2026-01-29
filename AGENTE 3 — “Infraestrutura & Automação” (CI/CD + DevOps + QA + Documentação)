@@ -1,0 +1,78 @@
+AGENTE 3 — INFRA & AUTOMAÇÃO
+Objetivo: Garantir qualidade, deploy, CI/CD, documentação e estabilidade.
+📌 TODOLIST — Agente 3
+1. Setup GitHub
+[ ] Criar branches isoladas
+
+[ ] Criar proteções de branch
+
+[ ] Criar templates de PR
+
+[ ] Criar templates de issues
+
+2. CI/CD
+[ ] Lint + Prettier
+
+[ ] Testes automáticos
+
+[ ] Build mobile
+
+[ ] Deploy backend
+
+[ ] Deploy documentação
+
+3. QA
+[ ] Testes end‑to‑end
+
+[ ] Testes de regressão
+
+[ ] Testes de performance
+
+4. Infraestrutura
+[ ] Docker
+
+[ ] Docker Compose
+
+[ ] Monitorização
+
+[ ] Logs centralizados
+
+5. Documentação
+[ ] README principal
+
+[ ] Documentação técnica
+
+[ ] Documentação de API
+
+[ ] Documentação de deploy
+
+[ ] Documentação de arquitetura
+
+6. Commits
+Sempre em PT‑PT
+
+Exemplo:
+
+ci: adicionar pipeline de testes
+
+docs: criar documentação de deploy
+
+🧩 ESTRATÉGIA DE COORDENAÇÃO ENTRE AGENTES
+1. Comunicação via contratos
+Backend gera OpenAPI
+
+Frontend consome
+
+Infra valida
+
+2. Zero conflitos
+Cada agente só mexe na sua pasta
+
+Cada agente só mexe na sua branch
+
+PRs só quando módulo estiver fechado
+
+3. Revisão cruzada
+Agente 3 revisa PRs de todos
+
+Agente 1 e 2 só revisam contratos e integrações
