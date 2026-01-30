@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, Image, ScrollView, ActivityIndicator, TouchableOpacity } from "react-native";
-import { theme } from "../theme";
+import { useAppTheme } from "../theme";
 import { Button } from "../components/Button";
 import { Badge } from "../components/Badge";
 import { AnimatedLoader } from "../components/AnimatedLoader";
+import { IngredientSource } from "../components/IngredientSource";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useCartStore } from "../store/cart-store";
 import { pizzasApi } from "../api/pizzas";
 
 export const PizzaDetailScreen = ({ route }: any) => {
+  const { colors, spacing, typography, radius } = useAppTheme();
   const { addItem, favorites, toggleFavorite } = useCartStore();
   const pizzaId = route.params?.id;
   const [pizza, setPizza] = useState<any>(null);
@@ -40,7 +42,7 @@ export const PizzaDetailScreen = ({ route }: any) => {
 
   if (loading) {
     return (
-      <View style={styles.centered}>
+      <View style={[styles.centered, { backgroundColor: colors.background }]}>
         <AnimatedLoader />
       </View>
     );
@@ -48,8 +50,10 @@ export const PizzaDetailScreen = ({ route }: any) => {
 
   if (error || !pizza) {
     return (
-      <View style={styles.centered}>
-        <Text style={styles.errorText}>{error || "Algo correu mal."}</Text>
+      <View style={[styles.centered, { backgroundColor: colors.background }]}>
+        <Text style={[styles.errorText, { ...typography.body, color: colors.error }]}>
+          {error || "Algo correu mal."}
+        </Text>
       </View>
     );
   }
@@ -57,28 +61,38 @@ export const PizzaDetailScreen = ({ route }: any) => {
   const isFav = pizza && favorites.includes(pizza.id);
 
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.imageContainer}>
+    <ScrollView style={[styles.container, { backgroundColor: colors.background }]}>
+      <View style={[styles.imageContainer, { height: 300 }]}>
         <Image source={{ uri: pizza.image }} style={styles.image} />
         <TouchableOpacity
-          style={styles.favoriteButton}
+          style={[styles.favoriteButton, { top: spacing.xl, right: spacing.xl, padding: spacing.sm, borderRadius: radius.pill }]}
           onPress={() => toggleFavorite(pizza.id)}
         >
           <MaterialCommunityIcons
             name={isFav ? "heart" : "heart-outline"}
             size={32}
-            color={isFav ? theme.colors.ruralRed : theme.colors.white}
+            color={isFav ? colors.ruralRed : "white"}
           />
         </TouchableOpacity>
       </View>
-      <View style={styles.content}>
-        <View style={styles.header}>
-          <Text style={styles.name}>{pizza.name}</Text>
+      <View style={[styles.content, { padding: spacing.xl, backgroundColor: colors.surface, borderTopLeftRadius: radius.lg, borderTopRightRadius: radius.lg, marginTop: -spacing.xl }]}>
+        <View style={[styles.header, { marginBottom: spacing.md }]}>
+          <Text style={[styles.name, { ...typography.h1, color: colors.text }]}>{pizza.name}</Text>
           <Badge label={pizza.tag} />
         </View>
-        <Text style={styles.description}>{pizza.description}</Text>
-        <View style={styles.footer}>
-          <Text style={styles.price}>{pizza.price.toFixed(2)} €</Text>
+        <Text style={[styles.description, { ...typography.body, color: colors.textSecondary, marginBottom: spacing.xxl }]}>
+          {pizza.description}
+        </Text>
+
+        <Text style={[styles.sectionTitle, { ...typography.h3, color: colors.text, marginBottom: spacing.md }]}>
+          Origem dos Ingredientes 🌿
+        </Text>
+        <IngredientSource ingredient="Farinha" source="Moinho da Aldeia (Grão Biológico)" icon="corn" />
+        <IngredientSource ingredient="Tomate" source="Horta do Ti Manel" icon="food-apple" />
+        <IngredientSource ingredient="Queijo" source="Queijaria da Serra" icon="cheese" />
+
+        <View style={[styles.footer, { marginTop: spacing.xxl }]}>
+          <Text style={[styles.price, { ...typography.h2, color: colors.ruralRed }]}>{pizza.price.toFixed(2)} €</Text>
           <Button
             label="Adicionar ao Carrinho"
             onPress={() => addItem({ id: pizza.id, name: pizza.name, price: pizza.price })}
@@ -92,22 +106,16 @@ export const PizzaDetailScreen = ({ route }: any) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: theme.colors.white,
   },
   centered: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: theme.colors.white,
   },
-  errorText: {
-    ...theme.typography.body,
-    color: theme.colors.ruralRed,
-  },
+  errorText: {},
   imageContainer: {
     position: "relative",
     width: "100%",
-    height: 300,
   },
   image: {
     width: "100%",
@@ -115,42 +123,23 @@ const styles = StyleSheet.create({
   },
   favoriteButton: {
     position: "absolute",
-    top: theme.spacing.xl,
-    right: theme.spacing.xl,
     backgroundColor: "rgba(0,0,0,0.3)",
-    padding: theme.spacing.sm,
-    borderRadius: theme.radius.pill,
   },
-  content: {
-    padding: theme.spacing.xl,
-    backgroundColor: theme.colors.white,
-    borderTopLeftRadius: theme.radius.lg,
-    borderTopRightRadius: theme.radius.lg,
-    marginTop: -theme.spacing.xl,
-  },
+  content: {},
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: theme.spacing.md,
   },
-  name: {
-    ...theme.typography.h1,
-    color: theme.colors.ruralDark,
-  },
+  name: {},
   description: {
-    ...theme.typography.body,
-    color: "#666",
     lineHeight: 24,
-    marginBottom: theme.spacing.xxl,
   },
+  sectionTitle: {},
   footer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
   },
-  price: {
-    ...theme.typography.h2,
-    color: theme.colors.ruralRed,
-  },
+  price: {},
 });

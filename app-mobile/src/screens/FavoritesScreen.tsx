@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity } from "react
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { theme } from "../theme";
+import { useAppTheme } from "../theme";
 import { Card } from "../components/Card";
 import { Badge } from "../components/Badge";
 import { Button } from "../components/Button";
@@ -15,6 +15,7 @@ type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 export const FavoritesScreen = () => {
   const navigation = useNavigation<NavigationProp>();
+  const { colors, spacing, typography, radius } = useAppTheme();
   const { addItem, favorites, toggleFavorite } = useCartStore();
   const [favoritePizzas, setFavoritePizzas] = useState<Pizza[]>([]);
   const [loading, setLoading] = useState(true);
@@ -41,21 +42,21 @@ export const FavoritesScreen = () => {
       <View style={styles.imageContainer}>
         <Image source={{ uri: item.image }} style={styles.image} />
         <TouchableOpacity
-          style={styles.favoriteButton}
+          style={[styles.favoriteButton, { top: spacing.md, right: spacing.md, padding: spacing.xs, borderRadius: radius.pill }]}
           onPress={() => toggleFavorite(item.id)}
         >
-          <MaterialCommunityIcons name="heart" size={24} color={theme.colors.ruralRed} />
+          <MaterialCommunityIcons name="heart" size={24} color={colors.ruralRed} />
         </TouchableOpacity>
       </View>
-      <View style={styles.info}>
-        <View style={styles.header}>
-          <Text style={styles.name}>{item.name}</Text>
+      <View style={[styles.info, { padding: spacing.lg }]}>
+        <View style={[styles.header, { marginBottom: spacing.sm }]}>
+          <Text style={[styles.name, { ...typography.h3, color: colors.text }]}>{item.name}</Text>
           <Badge label={item.tag} />
         </View>
         <View style={styles.footer}>
-          <Text style={styles.price}>{item.price.toFixed(2)} €</Text>
+          <Text style={[styles.price, { ...typography.h3, color: colors.ruralRed }]}>{item.price.toFixed(2)} €</Text>
           <TouchableOpacity
-            style={styles.addButton}
+            style={[styles.addButton, { backgroundColor: colors.ruralRed, borderRadius: radius.pill, paddingHorizontal: spacing.lg, paddingVertical: spacing.sm }]}
             onPress={() => addItem({ id: item.id, name: item.name, price: item.price })}
           >
             <Text style={styles.addButtonText}>Adicionar</Text>
@@ -67,10 +68,10 @@ export const FavoritesScreen = () => {
 
   if (favoritePizzas.length === 0 && !loading) {
     return (
-      <View style={styles.emptyContainer}>
-        <MaterialCommunityIcons name="heart-outline" size={80} color={theme.colors.graySoft} />
-        <Text style={styles.emptyTitle}>Ainda não tens favoritos</Text>
-        <Text style={styles.emptySubtitle}>Explora o nosso menu e guarda as pizzas que mais gostas!</Text>
+      <View style={[styles.emptyContainer, { backgroundColor: colors.background, padding: spacing.xl }]}>
+        <MaterialCommunityIcons name="heart-outline" size={80} color={colors.border} />
+        <Text style={[styles.emptyTitle, { ...typography.h2, color: colors.text, marginTop: spacing.lg }]}>Ainda não tens favoritos</Text>
+        <Text style={[styles.emptySubtitle, { ...typography.body, color: colors.textSecondary, marginTop: spacing.sm, marginBottom: spacing.xl }]}>Explora o nosso menu e guarda as pizzas que mais gostas!</Text>
         <Button
           label="Ver Menu"
           onPress={() => navigation.navigate("MainTabs", { screen: "Menu" } as any)}
@@ -80,13 +81,13 @@ export const FavoritesScreen = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
       <FlatList
         data={favoritePizzas}
         keyExtractor={(item) => item.id}
         renderItem={renderItem}
-        contentContainerStyle={styles.list}
-        ListHeaderComponent={<Text style={styles.title}>Os Teus Favoritos</Text>}
+        contentContainerStyle={[styles.list, { padding: spacing.lg }]}
+        ListHeaderComponent={<Text style={[styles.title, { ...typography.h2, color: colors.text, marginBottom: spacing.lg }]}>Os Teus Favoritos</Text>}
       />
     </View>
   );
@@ -95,37 +96,20 @@ export const FavoritesScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: theme.colors.ruralCream,
   },
-  list: {
-    padding: theme.spacing.lg,
-  },
-  title: {
-    ...theme.typography.h2,
-    marginBottom: theme.spacing.lg,
-    color: theme.colors.ruralDark,
-  },
+  list: {},
+  title: {},
   emptyContainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    padding: theme.spacing.xl,
-    backgroundColor: theme.colors.ruralCream,
   },
-  emptyTitle: {
-    ...theme.typography.h2,
-    marginTop: theme.spacing.lg,
-    color: theme.colors.ruralDark,
-  },
+  emptyTitle: {},
   emptySubtitle: {
-    ...theme.typography.body,
     textAlign: "center",
-    color: "#666",
-    marginTop: theme.spacing.sm,
-    marginBottom: theme.spacing.xl,
   },
   card: {
-    marginBottom: theme.spacing.lg,
+    marginBottom: 16,
     padding: 0,
     overflow: "hidden",
   },
@@ -140,42 +124,24 @@ const styles = StyleSheet.create({
   },
   favoriteButton: {
     position: "absolute",
-    top: theme.spacing.md,
-    right: theme.spacing.md,
     backgroundColor: "rgba(0,0,0,0.3)",
-    padding: theme.spacing.xs,
-    borderRadius: theme.radius.pill,
   },
-  info: {
-    padding: theme.spacing.lg,
-  },
+  info: {},
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: theme.spacing.sm,
   },
-  name: {
-    ...theme.typography.h3,
-    color: theme.colors.ruralDark,
-  },
+  name: {},
   footer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
   },
-  price: {
-    ...theme.typography.h3,
-    color: theme.colors.ruralRed,
-  },
-  addButton: {
-    backgroundColor: theme.colors.ruralRed,
-    paddingHorizontal: theme.spacing.lg,
-    paddingVertical: theme.spacing.sm,
-    borderRadius: theme.radius.pill,
-  },
+  price: {},
+  addButton: {},
   addButtonText: {
-    color: theme.colors.white,
+    color: "white",
     fontWeight: "700",
   },
 });

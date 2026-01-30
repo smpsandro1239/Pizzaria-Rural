@@ -47,7 +47,9 @@
 - [x] **Skeleton Loaders:** Melhorar a percepção de performance com placeholders durante o loading.
 - [x] **Animações de Entrada:** Adicionar efeitos de "fade-in" e "slide-up" na lista de pizzas.
 - [x] **Sistema de Favoritos:** Permitir ao utilizador marcar pizzas preferidas (com ecrã dedicado).
-- [ ] **Modo Escuro (Dark Mode):** Suporte para tema escuro automático.
+ - [x] **Modo Escuro (Dark Mode):** Suporte para tema escuro automático em toda a app.
+ - [x] **Origem dos Ingredientes (Rural Premium):** Exibir proveniência dos ingredientes nos detalhes.
 - [ ] **Integração com Mapas:** Visualizar a entrega em tempo real no ecrã de Tracking.
-- [ ] **Internacionalização (i18n):** Preparar a app para outros idiomas (embora PT-PT seja a prioridade).
+ - [ ] **Promoções e Notificações:** Sistema de alertas para ofertas do dia.
+ - [ ] **Internacionalização (i18n):** Preparar a app para outros idiomas.
 - [ ] **PWA/Web Optimizations:** Refinar a experiência em browser para dispositivos móveis.

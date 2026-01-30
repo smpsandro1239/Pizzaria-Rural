@@ -20,3 +20,9 @@ export const motionEasing = {
   accelerate: [0.3, 0.0, 1, 1] as [number, number, number, number],
   spring: { damping: 14, stiffness: 180 },
 };
+
+export const motion = {
+  duration: motionDuration,
+  delay: motionDelay,
+  easing: motionEasing,
+};

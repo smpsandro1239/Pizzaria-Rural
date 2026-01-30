@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
-import { theme } from "../theme";
+import { useAppTheme } from "../theme";
 import { Card } from "../components/Card";
 import { Badge } from "../components/Badge";
 
@@ -10,42 +10,44 @@ const HISTORY = [
 ];
 
 export const AccountScreen = () => {
+  const { colors, spacing, typography, radius } = useAppTheme();
+
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      <View style={styles.header}>
-        <View style={styles.avatar}>
-          <Text style={styles.avatarText}>S</Text>
+    <ScrollView style={[styles.container, { backgroundColor: colors.background }]} contentContainerStyle={[styles.content, { padding: spacing.lg }]}>
+      <View style={[styles.header, { marginBottom: spacing.xl }]}>
+        <View style={[styles.avatar, { backgroundColor: colors.ruralRed, borderRadius: 40 }]}>
+          <Text style={[styles.avatarText, { ...typography.h1, color: "white" }]}>S</Text>
         </View>
-        <Text style={styles.name}>Sandro</Text>
-        <Text style={styles.email}>sandro@email.com</Text>
+        <Text style={[styles.name, { ...typography.h2, color: colors.text }]}>Sandro</Text>
+        <Text style={[styles.email, { ...typography.body, color: colors.textSecondary }]}>sandro@email.com</Text>
       </View>
 
-      <Card style={styles.pointsCard}>
-        <View style={styles.pointsInfo}>
-          <Text style={styles.pointsTitle}>Pontos Rural</Text>
-          <Text style={styles.pointsValue}>120 pts</Text>
+      <Card style={{ ...styles.pointsCard, backgroundColor: colors.ruralRed, marginBottom: spacing.xl }}>
+        <View style={[styles.pointsInfo, { marginBottom: spacing.sm }]}>
+          <Text style={[styles.pointsTitle, { ...typography.h3, color: "white" }]}>Pontos Rural</Text>
+          <Text style={[styles.pointsValue, { ...typography.h2, color: "white" }]}>120 pts</Text>
         </View>
-        <Text style={styles.pointsDesc}>Faltam 80 pontos para ganhar uma Margherita grátis!</Text>
+        <Text style={[styles.pointsDesc, { ...typography.caption, color: "white", opacity: 0.9 }]}>Faltam 80 pontos para ganhar uma Margherita grátis!</Text>
       </Card>
 
-      <Text style={styles.sectionTitle}>Histórico de Pedidos</Text>
+      <Text style={[styles.sectionTitle, { ...typography.h3, color: colors.text, marginBottom: spacing.md }]}>Histórico de Pedidos</Text>
       {HISTORY.map((item) => (
-        <Card key={item.id} style={styles.historyCard}>
-          <View style={styles.historyHeader}>
-            <Text style={styles.historyDate}>{item.date}</Text>
+        <Card key={item.id} style={{ ...styles.historyCard, marginBottom: spacing.md }}>
+          <View style={[styles.historyHeader, { marginBottom: spacing.sm }]}>
+            <Text style={[styles.historyDate, { ...typography.body, fontWeight: "700", color: colors.text }]}>{item.date}</Text>
             <Badge label={item.status} variant="success" />
           </View>
-          <View style={styles.historyFooter}>
-            <Text style={theme.typography.body}>Total: {item.total.toFixed(2)} €</Text>
+          <View style={[styles.historyFooter, { borderTopColor: colors.border, paddingTop: spacing.sm }]}>
+            <Text style={[typography.body, { color: colors.text }]}>Total: {item.total.toFixed(2)} €</Text>
             <TouchableOpacity>
-              <Text style={styles.repeatText}>Repetir Pedido</Text>
+              <Text style={[styles.repeatText, { ...typography.body, color: colors.ruralRed, fontWeight: "700" }]}>Repetir Pedido</Text>
             </TouchableOpacity>
           </View>
         </Card>
       ))}
 
-      <TouchableOpacity style={styles.logoutButton}>
-        <Text style={styles.logoutText}>Sair da Conta</Text>
+      <TouchableOpacity style={[styles.logoutButton, { marginTop: spacing.xl }]}>
+        <Text style={[styles.logoutText, { ...typography.body, color: colors.error, fontWeight: "600" }]}>Sair da Conta</Text>
       </TouchableOpacity>
     </ScrollView>
   );
@@ -54,97 +56,47 @@ export const AccountScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: theme.colors.ruralCream,
   },
-  content: {
-    padding: theme.spacing.lg,
-  },
+  content: {},
   header: {
     alignItems: "center",
-    marginBottom: theme.spacing.xl,
   },
   avatar: {
     width: 80,
     height: 80,
-    borderRadius: 40,
-    backgroundColor: theme.colors.ruralRed,
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: theme.spacing.md,
+    marginBottom: 12,
   },
-  avatarText: {
-    ...theme.typography.h1,
-    color: theme.colors.white,
-  },
-  name: {
-    ...theme.typography.h2,
-    color: theme.colors.ruralDark,
-  },
-  email: {
-    ...theme.typography.body,
-    color: "#666",
-  },
-  pointsCard: {
-    backgroundColor: theme.colors.ruralRed,
-    marginBottom: theme.spacing.xl,
-  },
+  avatarText: {},
+  name: {},
+  email: {},
+  pointsCard: {},
   pointsInfo: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: theme.spacing.sm,
   },
-  pointsTitle: {
-    ...theme.typography.h3,
-    color: theme.colors.white,
-  },
-  pointsValue: {
-    ...theme.typography.h2,
-    color: theme.colors.white,
-  },
-  pointsDesc: {
-    ...theme.typography.caption,
-    color: theme.colors.white,
-    opacity: 0.9,
-  },
-  sectionTitle: {
-    ...theme.typography.h3,
-    marginBottom: theme.spacing.md,
-    color: theme.colors.ruralDark,
-  },
-  historyCard: {
-    marginBottom: theme.spacing.md,
-  },
+  pointsTitle: {},
+  pointsValue: {},
+  pointsDesc: {},
+  sectionTitle: {},
+  historyCard: {},
   historyHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: theme.spacing.sm,
   },
-  historyDate: {
-    ...theme.typography.body,
-    fontWeight: "700",
-  },
+  historyDate: {},
   historyFooter: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     borderTopWidth: 1,
-    borderTopColor: theme.colors.graySoft,
-    paddingTop: theme.spacing.sm,
   },
-  repeatText: {
-    ...theme.typography.body,
-    color: theme.colors.ruralRed,
-    fontWeight: "700",
-  },
+  repeatText: {},
   logoutButton: {
-    marginTop: theme.spacing.xl,
     alignItems: "center",
   },
-  logoutText: {
-    ...theme.typography.body,
-    color: "#dc2626",
-    fontWeight: "600",
-  },
+  logoutText: {},
 });

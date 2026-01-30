@@ -2,7 +2,7 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { theme } from "../theme";
+import { useAppTheme } from "../theme";
 
 import { HomeScreen } from "../screens/HomeScreen";
 import { MenuScreen } from "../screens/MenuScreen";
@@ -20,19 +20,21 @@ const Tab = createBottomTabNavigator<MainTabsParamList>();
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const MainTabs = () => {
+  const { colors } = useAppTheme();
+
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveTintColor: theme.colors.ruralRed,
-        tabBarInactiveTintColor: "#999",
+        tabBarActiveTintColor: colors.ruralRed,
+        tabBarInactiveTintColor: colors.textSecondary,
         tabBarStyle: {
-          backgroundColor: theme.colors.white,
-          borderTopColor: theme.colors.graySoft,
+          backgroundColor: colors.surface,
+          borderTopColor: colors.border,
         },
         headerStyle: {
-          backgroundColor: theme.colors.ruralRed,
+          backgroundColor: colors.ruralRed,
         },
-        headerTintColor: theme.colors.white,
+        headerTintColor: "white",
         headerTitleStyle: {
           fontWeight: "700",
         },
@@ -88,19 +90,23 @@ const MainTabs = () => {
 
 export const Navigation = () => {
   const { toast, hideToast } = useCartStore();
+  const { colors } = useAppTheme();
 
   return (
     <>
     <Stack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: theme.colors.ruralRed,
+          backgroundColor: colors.ruralRed,
         },
-        headerTintColor: theme.colors.white,
+        headerTintColor: "white",
         headerTitleStyle: {
           fontWeight: "700",
         },
         animation: "slide_from_right",
+        contentStyle: {
+          backgroundColor: colors.background,
+        },
       }}
     >
       <Stack.Screen
