@@ -47,7 +47,13 @@
 - [x] Configurar geração automática de Changelog (`infra/generate_changelog.sh`)
 - [x] Implementar análise estática de código (SAST via CodeQL)
 - [x] Configurar Husky para hooks de git (pre-commit lint/test)
-- [ ] Implementar relatórios de cobertura de testes (Code Coverage)
-- [ ] Configurar Dependabot para atualizações automáticas de segurança
+- [x] Implementar relatórios de cobertura de testes (Code Coverage via Jest + Codecov)
+- [x] Configurar Dependabot para atualizações automáticas de segurança (`.github/dependabot.yml`)
 - [ ] Implementar testes de carga (Stress Testing) para a API
 - [ ] Configurar Semantic Release para gestão de versões automática
+
+## 8. Novas Oportunidades de Impacto
+- [x] Criar estratégia e automação de Backup da Base de Dados (`docs/backup_restauro.md`)
+- [ ] Implementar Monitorização de Uptime (Heartbeat)
+- [ ] Configurar notificações de falha de CI para Slack/Discord
+- [ ] Criar ambiente de Sandbox/Preview para Pull Requests

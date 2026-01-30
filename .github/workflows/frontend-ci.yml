@@ -26,4 +26,9 @@ jobs:
       - name: Lint
         run: cd app-mobile && npm run lint || echo "No lint script"
       - name: Test
-        run: cd app-mobile && npm test || echo "No test script"
+        run: cd app-mobile && npm run test:cov || echo "No test script"
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          directory: ./app-mobile/coverage
+          flags: frontend
