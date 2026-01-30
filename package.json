@@ -1,0 +1,22 @@
+{
+  "name": "pizzaria-rural-root",
+  "private": true,
+  "description": "Repositório raiz para o projeto Pizzaria Rural",
+  "scripts": {
+    "lint:all": "npm run lint -w backend && npm run lint -w app-mobile",
+    "test:all": "npm run test -w backend && npm run test -w app-mobile",
+    "prepare": "husky install"
+  },
+  "workspaces": [
+    "backend",
+    "app-mobile"
+  ],
+  "devDependencies": {
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0"
+  },
+  "lint-staged": {
+    "backend/**/*.{ts,tsx}": "npm run lint -w backend",
+    "app-mobile/**/*.{js,jsx,ts,tsx}": "npm run lint -w app-mobile"
+  }
+}

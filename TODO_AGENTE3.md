@@ -45,5 +45,9 @@
 ## 7. Melhorias e Segurança
 - [x] Implementar verificação de segurança de dependências (Audit via GitHub Actions)
 - [x] Configurar geração automática de Changelog (`infra/generate_changelog.sh`)
-- [ ] Implementar análise estática de código (SAST)
-- [ ] Configurar Husky para hooks de git (pre-commit lint/test)
+- [x] Implementar análise estática de código (SAST via CodeQL)
+- [x] Configurar Husky para hooks de git (pre-commit lint/test)
+- [ ] Implementar relatórios de cobertura de testes (Code Coverage)
+- [ ] Configurar Dependabot para atualizações automáticas de segurança
+- [ ] Implementar testes de carga (Stress Testing) para a API
+- [ ] Configurar Semantic Release para gestão de versões automática

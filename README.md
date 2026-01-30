@@ -1,5 +1,10 @@
 # 🍕 Pizzaria Rural — Sistema Completo
 
+![Backend CI](https://github.com/smpsandro1239/Pizzaria-Rural/actions/workflows/backend-ci.yml/badge.svg)
+![Frontend CI](https://github.com/smpsandro1239/Pizzaria-Rural/actions/workflows/frontend-ci.yml/badge.svg)
+![Segurança - Audit](https://github.com/smpsandro1239/Pizzaria-Rural/actions/workflows/security-audit.yml/badge.svg)
+![SAST - CodeQL](https://github.com/smpsandro1239/Pizzaria-Rural/actions/workflows/codeql-analysis.yml/badge.svg)
+
 Este repositório contém toda a aplicação da Pizzaria Rural, dividida em 3 módulos independentes:
 
 - **app-mobile/** — Aplicação móvel (Agente 1)
