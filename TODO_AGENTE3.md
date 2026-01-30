@@ -41,3 +41,9 @@
 ## 6. Outros
 - [x] Commits sempre em PT‑PT
 - [x] Atualizar o GitHub sempre que realizar nova tarefa
+
+## 7. Melhorias e Segurança
+- [x] Implementar verificação de segurança de dependências (Audit via GitHub Actions)
+- [x] Configurar geração automática de Changelog (`infra/generate_changelog.sh`)
+- [ ] Implementar análise estática de código (SAST)
+- [ ] Configurar Husky para hooks de git (pre-commit lint/test)

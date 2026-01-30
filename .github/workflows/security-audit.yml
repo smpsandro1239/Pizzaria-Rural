@@ -1,0 +1,32 @@
+name: Segurança — Audit de Dependências
+
+on:
+  push:
+    branches: [main, frontend-dev, backend-dev, infra-dev]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '0 0 * * 1' # Executa todas as segundas-feiras à meia-noite
+
+jobs:
+  audit-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Backend Audit
+        run: cd backend && npm audit || echo "Vulnerabilidades encontradas no backend. Rever."
+
+  audit-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Frontend Audit
+        run: cd app-mobile && npm audit || echo "Vulnerabilidades encontradas no frontend. Rever."
