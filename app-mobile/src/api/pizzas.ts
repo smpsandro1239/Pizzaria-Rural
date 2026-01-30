@@ -1,5 +1,7 @@
 import { api } from "./client";
 
+export type PizzaCategory = "Todas" | "Carne" | "Vegetariana" | "Clássica" | "Picante";
+
 export type Pizza = {
   id: string;
   name: string;
@@ -7,6 +9,7 @@ export type Pizza = {
   price: number;
   image: string;
   tag: string;
+  category: PizzaCategory;
 };
 
 const MOCK_PIZZAS: Pizza[] = [
@@ -17,6 +20,7 @@ const MOCK_PIZZAS: Pizza[] = [
     price: 8.5,
     image: "https://images.unsplash.com/photo-1574071318508-1cdbad80ad38?auto=format&fit=crop&w=300&q=80",
     tag: "Clássica",
+    category: "Clássica",
   },
   {
     id: "2",
@@ -25,6 +29,7 @@ const MOCK_PIZZAS: Pizza[] = [
     price: 9.5,
     image: "https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=300&q=80",
     tag: "Popular",
+    category: "Carne",
   },
   {
     id: "3",
@@ -33,6 +38,16 @@ const MOCK_PIZZAS: Pizza[] = [
     price: 9.0,
     image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=300&q=80",
     tag: "Vegetariana",
+    category: "Vegetariana",
+  },
+  {
+    id: "4",
+    name: "Explosão Picante",
+    description: "Chouriço regional, malagueta e mozzarella.",
+    price: 10.5,
+    image: "https://images.unsplash.com/photo-1593504049359-7b7d92c7185c?auto=format&fit=crop&w=300&q=80",
+    tag: "Nova",
+    category: "Picante",
   },
 ];
 

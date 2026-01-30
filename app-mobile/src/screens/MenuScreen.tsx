@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity, ActivityIndicator } from "react-native";
+import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity, ActivityIndicator, ScrollView } from "react-native";
 import { MotiView } from "moti";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -12,24 +12,19 @@ import { Button } from "../components/Button";
 import { useCartStore } from "../store/cart-store";
 import { FloatingCart } from "../components/FloatingCart";
 import { RootStackParamList } from "../navigation/types";
-import { pizzasApi } from "../api/pizzas";
+import { pizzasApi, Pizza, PizzaCategory } from "../api/pizzas";
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
-interface Pizza {
-  id: string;
-  name: string;
-  description: string;
-  price: number;
-  image: string;
-  tag: string;
-}
+const CATEGORIES: PizzaCategory[] = ["Todas", "Clássica", "Carne", "Vegetariana", "Picante"];
 
 export const MenuScreen = () => {
   const navigation = useNavigation<NavigationProp>();
   const { colors, spacing, typography, radius } = useAppTheme();
   const { addItem, items, total, favorites, toggleFavorite } = useCartStore();
   const [pizzas, setPizzas] = useState<Pizza[]>([]);
+  const [filteredPizzas, setFilteredPizzas] = useState<Pizza[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<PizzaCategory>("Todas");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -39,6 +34,7 @@ export const MenuScreen = () => {
       setError(null);
       const data = await pizzasApi.getPizzas();
       setPizzas(data);
+      setFilteredPizzas(data);
     } catch (err) {
       setError("Não foi possível carregar o menu. Tente novamente.");
     } finally {
@@ -49,6 +45,14 @@ export const MenuScreen = () => {
   useEffect(() => {
     fetchPizzas();
   }, []);
+
+  useEffect(() => {
+    if (selectedCategory === "Todas") {
+      setFilteredPizzas(pizzas);
+    } else {
+      setFilteredPizzas(pizzas.filter((p) => p.category === selectedCategory));
+    }
+  }, [selectedCategory, pizzas]);
 
   const renderItem = ({ item, index }: { item: Pizza; index: number }) => {
     const isFav = favorites.includes(item.id);
@@ -128,14 +132,48 @@ export const MenuScreen = () => {
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
       <FlatList
-        data={pizzas}
+        data={filteredPizzas}
         keyExtractor={(item) => item.id}
         renderItem={renderItem}
         contentContainerStyle={{ ...styles.list, padding: spacing.lg }}
         ListHeaderComponent={
-          <Text style={{ ...styles.title, ...typography.h2, color: colors.text, marginBottom: spacing.lg }}>
-            As Nossas Pizzas
-          </Text>
+          <View>
+            <Text style={{ ...styles.title, ...typography.h2, color: colors.text, marginBottom: spacing.lg }}>
+              As Nossas Pizzas
+            </Text>
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              style={{ marginBottom: spacing.lg }}
+            >
+              {CATEGORIES.map((cat) => (
+                <TouchableOpacity
+                  key={cat}
+                  onPress={() => setSelectedCategory(cat)}
+                  style={[
+                    styles.categoryItem,
+                    {
+                      backgroundColor: selectedCategory === cat ? colors.ruralRed : colors.surface,
+                      marginRight: spacing.sm,
+                      borderRadius: radius.pill,
+                      paddingHorizontal: spacing.md,
+                      paddingVertical: spacing.xs,
+                    },
+                  ]}
+                >
+                  <Text
+                    style={{
+                      ...typography.caption,
+                      color: selectedCategory === cat ? "white" : colors.text,
+                      fontWeight: selectedCategory === cat ? "700" : "400",
+                    }}
+                  >
+                    {cat}
+                  </Text>
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
+          </View>
         }
       />
       <FloatingCart
@@ -162,6 +200,15 @@ const styles = StyleSheet.create({
   },
   list: {},
   title: {},
+  categoryItem: {
+    borderWidth: 1,
+    borderColor: "rgba(0,0,0,0.05)",
+    elevation: 2,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+  },
   card: {
     marginBottom: 16,
     padding: 0,

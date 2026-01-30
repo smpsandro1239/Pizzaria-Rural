@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
+import { MotiView } from "moti";
 import { useAppTheme } from "../theme";
 import { Card } from "../components/Card";
 import { Badge } from "../components/Badge";
@@ -24,10 +25,20 @@ export const AccountScreen = () => {
 
       <Card style={{ ...styles.pointsCard, backgroundColor: colors.ruralRed, marginBottom: spacing.xl }}>
         <View style={[styles.pointsInfo, { marginBottom: spacing.sm }]}>
-          <Text style={[styles.pointsTitle, { ...typography.h3, color: "white" }]}>Pontos Rural</Text>
-          <Text style={[styles.pointsValue, { ...typography.h2, color: "white" }]}>120 pts</Text>
+          <Text style={[styles.pointsTitle, { ...typography.h3, color: "white" }]}>Programa de Fidelidade</Text>
+          <Text style={[styles.pointsValue, { ...typography.h2, color: "white" }]}>120 / 200 pts</Text>
         </View>
-        <Text style={[styles.pointsDesc, { ...typography.caption, color: "white", opacity: 0.9 }]}>Faltam 80 pontos para ganhar uma Margherita grátis!</Text>
+        <View style={styles.progressBarContainer}>
+          <MotiView
+            from={{ width: 0 }}
+            animate={{ width: "60%" }}
+            transition={{ type: "timing", duration: 1000 }}
+            style={styles.progressBar}
+          />
+        </View>
+        <Text style={[styles.pointsDesc, { ...typography.caption, color: "white", opacity: 0.9, marginTop: spacing.md }]}>
+          Faltam 80 pontos para a tua próxima Margherita grátis! 🍕
+        </Text>
       </Card>
 
       <Text style={[styles.sectionTitle, { ...typography.h3, color: colors.text, marginBottom: spacing.md }]}>Histórico de Pedidos</Text>
@@ -79,6 +90,16 @@ const styles = StyleSheet.create({
   },
   pointsTitle: {},
   pointsValue: {},
+  progressBarContainer: {
+    height: 8,
+    backgroundColor: "rgba(255, 255, 255, 0.2)",
+    borderRadius: 4,
+    overflow: "hidden",
+  },
+  progressBar: {
+    height: "100%",
+    backgroundColor: "#FFD700", // Gold color for progress
+  },
   pointsDesc: {},
   sectionTitle: {},
   historyCard: {},

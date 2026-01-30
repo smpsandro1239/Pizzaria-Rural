@@ -14,3 +14,6 @@ Logs for your project will appear below.
 Web ./index.ts ░░░░░░░░░░░░░░░░  0.0% (0/1)
 Web ./index.ts ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░ 99.9% (1340/1341)
 Web Bundled 3809ms index.ts (1341 modules)
+Web ./index.ts ░░░░░░░░░░░░░░░░  0.0% (0/1)
+Web Bundled 4201ms index.ts (1 module)
+Web ./index.ts ░░░░░░░░░░░░░░░░  0.0% (0/1)
