@@ -46,6 +46,8 @@
 - [x] **Persistência Local:** Manter o carrinho guardado mesmo após fechar a app (Zustand Persist).
 - [x] **Skeleton Loaders:** Melhorar a percepção de performance com placeholders durante o loading.
 - [x] **Animações de Entrada:** Adicionar efeitos de "fade-in" e "slide-up" na lista de pizzas.
-- [ ] **Sistema de Favoritos:** Permitir ao utilizador marcar pizzas preferidas.
+- [x] **Sistema de Favoritos:** Permitir ao utilizador marcar pizzas preferidas (com ecrã dedicado).
+- [ ] **Modo Escuro (Dark Mode):** Suporte para tema escuro automático.
+- [ ] **Integração com Mapas:** Visualizar a entrega em tempo real no ecrã de Tracking.
 - [ ] **Internacionalização (i18n):** Preparar a app para outros idiomas (embora PT-PT seja a prioridade).
 - [ ] **PWA/Web Optimizations:** Refinar a experiência em browser para dispositivos móveis.

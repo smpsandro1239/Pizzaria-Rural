@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, Image, ScrollView, ActivityIndicator } from "react-native";
+import { View, Text, StyleSheet, Image, ScrollView, ActivityIndicator, TouchableOpacity } from "react-native";
 import { theme } from "../theme";
 import { Button } from "../components/Button";
 import { Badge } from "../components/Badge";
 import { AnimatedLoader } from "../components/AnimatedLoader";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useCartStore } from "../store/cart-store";
 import { pizzasApi } from "../api/pizzas";
 
 export const PizzaDetailScreen = ({ route }: any) => {
-  const { addItem } = useCartStore();
+  const { addItem, favorites, toggleFavorite } = useCartStore();
   const pizzaId = route.params?.id;
   const [pizza, setPizza] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -53,9 +54,23 @@ export const PizzaDetailScreen = ({ route }: any) => {
     );
   }
 
+  const isFav = pizza && favorites.includes(pizza.id);
+
   return (
     <ScrollView style={styles.container}>
-      <Image source={{ uri: pizza.image }} style={styles.image} />
+      <View style={styles.imageContainer}>
+        <Image source={{ uri: pizza.image }} style={styles.image} />
+        <TouchableOpacity
+          style={styles.favoriteButton}
+          onPress={() => toggleFavorite(pizza.id)}
+        >
+          <MaterialCommunityIcons
+            name={isFav ? "heart" : "heart-outline"}
+            size={32}
+            color={isFav ? theme.colors.ruralRed : theme.colors.white}
+          />
+        </TouchableOpacity>
+      </View>
       <View style={styles.content}>
         <View style={styles.header}>
           <Text style={styles.name}>{pizza.name}</Text>
@@ -89,9 +104,22 @@ const styles = StyleSheet.create({
     ...theme.typography.body,
     color: theme.colors.ruralRed,
   },
-  image: {
+  imageContainer: {
+    position: "relative",
     width: "100%",
     height: 300,
+  },
+  image: {
+    width: "100%",
+    height: "100%",
+  },
+  favoriteButton: {
+    position: "absolute",
+    top: theme.spacing.xl,
+    right: theme.spacing.xl,
+    backgroundColor: "rgba(0,0,0,0.3)",
+    padding: theme.spacing.sm,
+    borderRadius: theme.radius.pill,
   },
   content: {
     padding: theme.spacing.xl,

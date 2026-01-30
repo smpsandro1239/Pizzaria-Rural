@@ -6,6 +6,7 @@ import { theme } from "../theme";
 
 import { HomeScreen } from "../screens/HomeScreen";
 import { MenuScreen } from "../screens/MenuScreen";
+import { FavoritesScreen } from "../screens/FavoritesScreen";
 import { AccountScreen } from "../screens/AccountScreen";
 import { CheckoutScreen } from "../screens/CheckoutScreen";
 import { TrackingScreen } from "../screens/TrackingScreen";
@@ -57,6 +58,17 @@ const MainTabs = () => {
             <MaterialCommunityIcons name="pizza" color={color} size={size} />
           ),
           headerTitle: "Nosso Menu",
+        }}
+      />
+      <Tab.Screen
+        name="Favorites"
+        component={FavoritesScreen}
+        options={{
+          tabBarLabel: "Favoritos",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="heart" color={color} size={size} />
+          ),
+          headerTitle: "Os Meus Favoritos",
         }}
       />
       <Tab.Screen

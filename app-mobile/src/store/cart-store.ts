@@ -15,6 +15,10 @@ type CartState = {
   removeItem: (id: string) => void;
   clear: () => void;
   total: () => number;
+  // Favoritos
+  favorites: string[]; // IDs das pizzas favoritas
+  toggleFavorite: (id: string) => void;
+  isFavorite: (id: string) => boolean;
   // Feedback
   toast: { visible: boolean; message: string; type: "success" | "error" };
   showToast: (message: string, type?: "success" | "error") => void;
@@ -25,6 +29,17 @@ export const useCartStore = create<CartState>()(
   persist(
     (set, get) => ({
       items: [],
+      favorites: [],
+      toggleFavorite: (id) =>
+        set((state) => {
+          const isFav = state.favorites.includes(id);
+          const newFavorites = isFav
+            ? state.favorites.filter((favId) => favId !== id)
+            : [...state.favorites, id];
+
+          return { favorites: newFavorites };
+        }),
+      isFavorite: (id) => get().favorites.includes(id),
       addItem: (item) => {
         set((state) => {
           const existing = state.items.find((i) => i.id === item.id);
@@ -52,7 +67,7 @@ export const useCartStore = create<CartState>()(
     {
       name: "cart-storage",
       storage: createJSONStorage(() => AsyncStorage),
-      partialize: (state) => ({ items: state.items }), // Apenas persistir os itens, não o estado do toast
+      partialize: (state) => ({ items: state.items, favorites: state.favorites }), // Persistir itens e favoritos
     }
   )
 );

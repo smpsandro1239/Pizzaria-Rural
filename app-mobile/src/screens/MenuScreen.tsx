@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity, ActivityIndi
 import { MotiView } from "moti";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { theme } from "../theme";
 import { Card } from "../components/Card";
 import { Badge } from "../components/Badge";
@@ -26,7 +27,7 @@ interface Pizza {
 
 export const MenuScreen = () => {
   const navigation = useNavigation<NavigationProp>();
-  const { addItem, items, total } = useCartStore();
+  const { addItem, items, total, favorites, toggleFavorite } = useCartStore();
   const [pizzas, setPizzas] = useState<Pizza[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -48,33 +49,49 @@ export const MenuScreen = () => {
     fetchPizzas();
   }, []);
 
-  const renderItem = ({ item, index }: { item: Pizza; index: number }) => (
-    <MotiView
-      from={{ opacity: 0, translateY: 20 }}
-      animate={{ opacity: 1, translateY: 0 }}
-      transition={{ delay: index * 100 }}
-    >
-      <Card style={styles.card} onPress={() => navigation.navigate("PizzaDetail", { id: item.id })}>
-        <Image source={{ uri: item.image }} style={styles.image} />
-        <View style={styles.info}>
-          <View style={styles.header}>
-            <Text style={styles.name}>{item.name}</Text>
-            <Badge label={item.tag} />
-          </View>
-          <Text style={styles.description}>{item.description}</Text>
-          <View style={styles.footer}>
-            <Text style={styles.price}>{item.price.toFixed(2)} €</Text>
+  const renderItem = ({ item, index }: { item: Pizza; index: number }) => {
+    const isFav = favorites.includes(item.id);
+
+    return (
+      <MotiView
+        from={{ opacity: 0, translateY: 20 }}
+        animate={{ opacity: 1, translateY: 0 }}
+        transition={{ delay: index * 100 }}
+      >
+        <Card style={styles.card} onPress={() => navigation.navigate("PizzaDetail", { id: item.id })}>
+          <View style={styles.imageContainer}>
+            <Image source={{ uri: item.image }} style={styles.image} />
             <TouchableOpacity
-              style={styles.addButton}
-              onPress={() => addItem({ id: item.id, name: item.name, price: item.price })}
+              style={styles.favoriteButton}
+              onPress={() => toggleFavorite(item.id)}
             >
-              <Text style={styles.addButtonText}>Adicionar</Text>
+              <MaterialCommunityIcons
+                name={isFav ? "heart" : "heart-outline"}
+                size={24}
+                color={isFav ? theme.colors.ruralRed : theme.colors.white}
+              />
             </TouchableOpacity>
           </View>
-        </View>
-      </Card>
-    </MotiView>
-  );
+          <View style={styles.info}>
+            <View style={styles.header}>
+              <Text style={styles.name}>{item.name}</Text>
+              <Badge label={item.tag} />
+            </View>
+            <Text style={styles.description}>{item.description}</Text>
+            <View style={styles.footer}>
+              <Text style={styles.price}>{item.price.toFixed(2)} €</Text>
+              <TouchableOpacity
+                style={styles.addButton}
+                onPress={() => addItem({ id: item.id, name: item.name, price: item.price })}
+              >
+                <Text style={styles.addButtonText}>Adicionar</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Card>
+      </MotiView>
+    );
+  };
 
   if (loading) {
     return (
@@ -157,9 +174,22 @@ const styles = StyleSheet.create({
     padding: 0,
     overflow: "hidden",
   },
-  image: {
+  imageContainer: {
+    position: "relative",
     width: "100%",
     height: 180,
+  },
+  image: {
+    width: "100%",
+    height: "100%",
+  },
+  favoriteButton: {
+    position: "absolute",
+    top: theme.spacing.md,
+    right: theme.spacing.md,
+    backgroundColor: "rgba(0,0,0,0.3)",
+    padding: theme.spacing.xs,
+    borderRadius: theme.radius.pill,
   },
   info: {
     padding: theme.spacing.lg,
