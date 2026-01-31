@@ -5,6 +5,7 @@
   "scripts": {
     "lint:all": "npm run lint -w backend && npm run lint -w app-mobile",
     "test:all": "npm run test -w backend && npm run test -w app-mobile",
+    "test:e2e": "npx playwright test",
     "prepare": "husky install"
   },
   "workspaces": [
@@ -12,6 +13,7 @@
     "app-mobile"
   ],
   "devDependencies": {
+    "@playwright/test": "^1.40.0",
     "husky": "^8.0.3",
     "lint-staged": "^15.2.0"
   },

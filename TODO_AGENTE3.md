@@ -17,7 +17,7 @@
 - [ ] Deploy documentação
 
 ## 3. QA
-- [ ] Testes end‑to‑end
+- [x] Testes end‑to‑end (Infraestrutura Playwright configurada em `e2e/`)
 - [ ] Testes de regressão
 - [ ] Testes de performance
 
@@ -54,6 +54,9 @@
 
 ## 8. Novas Oportunidades de Impacto
 - [x] Criar estratégia e automação de Backup da Base de Dados (`docs/backup_restauro.md`)
-- [ ] Implementar Monitorização de Uptime (Heartbeat)
+- [x] Implementar Monitorização de Uptime (Heartbeat via `.github/workflows/uptime-heartbeat.yml`)
 - [ ] Configurar notificações de falha de CI para Slack/Discord
 - [ ] Criar ambiente de Sandbox/Preview para Pull Requests
+- [x] Implementar Testes End-to-End (E2E) com Playwright (`e2e/`)
+- [ ] Configurar Deploy Automático para Render (Backend + DB)
+- [ ] Criar Dashboard de Infraestrutura no Grafana
