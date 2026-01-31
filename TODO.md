@@ -58,3 +58,8 @@
  - [ ] **Promoções e Notificações:** Sistema de alertas para ofertas do dia.
  - [ ] **Internacionalização (i18n):** Preparar a app para outros idiomas.
 - [ ] **PWA/Web Optimizations:** Refinar a experiência em browser para dispositivos móveis.
+- [ ] **Autenticação Biométrica:** Acesso rápido e seguro à conta e pagamentos.
+- [ ] **Integração com Apple/Google Pay:** Pagamentos nativos simplificados.
+- [ ] **Modo Offline:** Consulta do menu e favoritos sem ligação à internet.
+- [ ] **Social Sharing:** Partilha de pizzas e conquistas de fidelidade nas redes sociais.
+- [ ] **Real-time Chat:** Apoio ao cliente integrado para resolver dúvidas sobre pedidos.
