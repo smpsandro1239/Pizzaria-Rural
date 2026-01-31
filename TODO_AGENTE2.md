@@ -17,21 +17,30 @@
 3. **Endpoints**
    - [x] Autenticação (JWT)
    - [x] Listar pizzas
-   - [x] Criar encomenda (com suporte opcional a utilizador autenticado, tamanhos, extras e cupões)
+   - [x] Criar encomenda (com suporte a tamanhos, extras e cupões)
    - [x] Atualizar estado
    - [x] Tracking
    - [x] Histórico
    - [x] **Validação de Cupões** (Melhoria)
-   - [ ] **Dashboard Estatístico para Admin** (Melhoria)
+   - [ ] **Dashboard de Administração** (Futuro)
+     - [ ] Métricas de vendas (diário/mensal)
+     - [ ] Ranking de pizzas mais vendidas
+     - [ ] Gestão de stock de ingredientes
 4. **Notificações**
    - [/] WhatsApp (Simulado/Mock)
    - [/] Email fallback (Simulado/Mock)
-   - [ ] **Integração Real com Resend/Nodemailer** (Melhoria)
-5. **Documentação**
-   - [x] Swagger/OpenAPI
-   - [x] Contratos para o frontend (via Swagger)
-6. **Testes**
-   - [x] Unitários (Estrutura base e build)
-   - [ ] Integração
-   - [ ] Carga
-   - [ ] **Testes de Segurança (Penetration Testing básico)** (Melhoria)
+   - [ ] **Integração Real com WhatsApp Business API** (Melhoria de impacto)
+   - [ ] **Integração Real com Resend para Transacionais** (Melhoria de impacto)
+5. **Fidelização e Experiência**
+   - [x] Atribuição de pontos por compra
+   - [ ] **Redenção de Pontos** (Melhoria): Usar pontos acumulados para descontos diretos.
+   - [ ] **Sistema de Reviews** (Melhoria): Avaliação de pizzas e serviço após entrega.
+6. **Pagamentos Reais**
+   - [ ] **Integração com Stripe** (Cartão de Crédito)
+   - [ ] **Integração com IfThenPay/Localsend** (MBWAY)
+7. **Documentação e Qualidade**
+   - [x] Swagger/OpenAPI (PT-PT)
+   - [x] Segurança de tipos estrita
+   - [x] Testes Unitários
+   - [ ] **Testes de Integração (E2E API)**
+   - [ ] **Carga e Performance**
