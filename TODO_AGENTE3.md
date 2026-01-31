@@ -44,7 +44,7 @@
 
 ## 7. Melhorias e Segurança
 - [x] Implementar verificação de segurança de dependências (Audit via GitHub Actions)
-- [x] Configurar geração automática de Changelog (`infra/generate_changelog.sh`)
+- [x] Configurar geração automática de Changelog (`infra/generate_changelog.sh` + Workflow CI)
 - [x] Implementar análise estática de código (SAST via CodeQL)
 - [x] Configurar Husky para hooks de git (pre-commit lint/test)
 - [x] Implementar relatórios de cobertura de testes (Code Coverage via Jest + Codecov)
@@ -55,8 +55,9 @@
 ## 8. Novas Oportunidades de Impacto
 - [x] Criar estratégia e automação de Backup da Base de Dados (`docs/backup_restauro.md`)
 - [x] Implementar Monitorização de Uptime (Heartbeat via `.github/workflows/uptime-heartbeat.yml`)
-- [ ] Configurar notificações de falha de CI para Slack/Discord
+- [x] Configurar notificações de falha de CI para Slack/Discord (Workflow + `infra/notify_failure.sh`)
 - [ ] Criar ambiente de Sandbox/Preview para Pull Requests
 - [x] Implementar Testes End-to-End (E2E) com Playwright (`e2e/`)
-- [ ] Configurar Deploy Automático para Render (Backend + DB)
-- [ ] Criar Dashboard de Infraestrutura no Grafana
+- [x] Configurar Deploy Automático para Render (via `render.yaml` Blueprints)
+- [ ] Criar Dashboard de Infraestrutura no Grafana (Template JSON)
+- [ ] Implementar "Lighthouse" Check para performance do Frontend

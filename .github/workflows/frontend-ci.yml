@@ -32,3 +32,10 @@ jobs:
         with:
           directory: ./app-mobile/coverage
           flags: frontend
+
+      - name: Notificar Falha (Slack/Discord)
+        if: failure()
+        run: bash infra/notify_failure.sh "Frontend" "Falha" "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
