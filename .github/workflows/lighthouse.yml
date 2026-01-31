@@ -1,0 +1,21 @@
+name: Performance — Lighthouse Check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Lighthouse Check
+        uses: treosh/lighthouse-ci-action@v11
+        with:
+          # Nota: Ativar quando existir um URL público para a landing page ou web app
+          # urls: 'https://pizzaria-rural.com'
+          temporaryPublicStorage: true
+          uploadArtifacts: true

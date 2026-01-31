@@ -12,9 +12,9 @@
 - [x] Configurar CI base para Frontend, Backend e Infra
 - [x] Lint + Prettier (`.eslintrc.json`, `.prettierrc`)
 - [x] Testes automáticos (Infraestrutura base em `backend/` e `app-mobile/`)
-- [ ] Build mobile
-- [ ] Deploy backend
-- [ ] Deploy documentação
+- [ ] Build mobile (Configurar EAS)
+- [x] Deploy backend (Configurado `render.yaml`)
+- [x] Deploy documentação (GitHub Pages via `.github/workflows/deploy-docs.yml`)
 
 ## 3. QA
 - [x] Testes end‑to‑end (Infraestrutura Playwright configurada em `e2e/`)
@@ -60,4 +60,5 @@
 - [x] Implementar Testes End-to-End (E2E) com Playwright (`e2e/`)
 - [x] Configurar Deploy Automático para Render (via `render.yaml` Blueprints)
 - [ ] Criar Dashboard de Infraestrutura no Grafana (Template JSON)
-- [ ] Implementar "Lighthouse" Check para performance do Frontend
+- [x] Implementar "Lighthouse" Check para performance do Frontend (Workflow skeleton)
+- [x] Implementar análise de segurança de contentores (Docker Scan via Trivy)
