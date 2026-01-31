@@ -33,7 +33,8 @@
 ## 6. Testes
 - [ ] Unitários
 - [ ] Integração
-- [ ] Carga
+- [ ] Carga (Testes de stress integrados via k6)
+- [ ] Otimizar tempo de resposta dos endpoints críticos (Menu e Checkout)
 
 ## 💡 Melhorias Infra (Agente 3)
 - [ ] Implementar endpoint `GET /health` para o Heartbeat de Uptime

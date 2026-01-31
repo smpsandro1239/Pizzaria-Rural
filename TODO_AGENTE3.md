@@ -49,8 +49,8 @@
 - [x] Configurar Husky para hooks de git (pre-commit lint/test)
 - [x] Implementar relatórios de cobertura de testes (Code Coverage via Jest + Codecov)
 - [x] Configurar Dependabot para atualizações automáticas de segurança (`.github/dependabot.yml`)
-- [ ] Implementar testes de carga (Stress Testing) para a API
-- [ ] Configurar Semantic Release para gestão de versões automática
+- [x] Implementar testes de carga (Stress Testing) para a API (`infra/stress_test.js`)
+- [x] Configurar Semantic Release para gestão de versões automática (`.releaserc.json`)
 
 ## 8. Novas Oportunidades de Impacto
 - [x] Criar estratégia e automação de Backup da Base de Dados (`docs/backup_restauro.md`)
@@ -59,6 +59,6 @@
 - [ ] Criar ambiente de Sandbox/Preview para Pull Requests
 - [x] Implementar Testes End-to-End (E2E) com Playwright (`e2e/`)
 - [x] Configurar Deploy Automático para Render (via `render.yaml` Blueprints)
-- [ ] Criar Dashboard de Infraestrutura no Grafana (Template JSON)
+- [x] Criar Dashboard de Infraestrutura no Grafana (`infra/grafana_dashboard.json`)
 - [x] Implementar "Lighthouse" Check para performance do Frontend (Workflow skeleton)
 - [x] Implementar análise de segurança de contentores (Docker Scan via Trivy)

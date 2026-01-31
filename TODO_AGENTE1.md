@@ -37,6 +37,7 @@
 - [ ] Testes de UI
 - [ ] Testes de navegação
 - [ ] Testes de integração com API
+- [ ] Implementar testes de acessibilidade (A11y) usando `@axe-core/react` ou similar
 
 ## 💡 Melhorias Infra (Agente 3)
 - [ ] Configurar `EXPO_PUBLIC_API_URL` para apontar para o Backend (Local/Render)
