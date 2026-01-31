@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, ActivityIndicator, StyleSheet, Pressable } from "react-native";
-import { MotiView, MotiText } from "moti";
-import { theme } from "../theme";
+import { MotiView } from "moti";
+import { useAppTheme } from "../theme";
 
 interface ButtonProps {
   label: string;
@@ -18,30 +18,32 @@ export const Button: React.FC<ButtonProps> = ({
   loading = false,
   disabled = false,
 }) => {
+  const { colors, spacing, radius, typography, motion } = useAppTheme();
+
   const getVariantStyle = () => {
     switch (variant) {
       case "secondary":
-        return { backgroundColor: theme.colors.ruralGreen };
+        return { backgroundColor: colors.ruralGreen };
       case "outline":
         return {
           backgroundColor: "transparent",
           borderWidth: 2,
-          borderColor: theme.colors.ruralRed,
+          borderColor: colors.ruralRed,
         };
       case "ghost":
         return { backgroundColor: "transparent" };
       case "destructive":
         return { backgroundColor: "#dc2626" };
       default:
-        return { backgroundColor: theme.colors.ruralRed };
+        return { backgroundColor: colors.ruralRed };
     }
   };
 
   const getTextColor = () => {
     if (variant === "outline" || variant === "ghost") {
-      return theme.colors.ruralRed;
+      return colors.ruralRed;
     }
-    return theme.colors.white;
+    return colors.white;
   };
 
   return (
@@ -51,7 +53,12 @@ export const Button: React.FC<ButtonProps> = ({
       style={({ pressed }) => [
         styles.container,
         getVariantStyle(),
-        { opacity: disabled || pressed ? 0.7 : 1 },
+        {
+          opacity: disabled || pressed ? 0.7 : 1,
+          paddingVertical: spacing.lg,
+          paddingHorizontal: spacing.xl,
+          borderRadius: radius.pill,
+        },
       ]}
     >
       <MotiView
@@ -60,14 +67,24 @@ export const Button: React.FC<ButtonProps> = ({
         }}
         transition={{
           type: "timing",
-          duration: theme.motion.duration.fast,
+          duration: motion.duration.fast,
         }}
         style={styles.inner}
       >
         {loading ? (
           <ActivityIndicator color={getTextColor()} testID="button-loader" />
         ) : (
-          <Text style={[styles.text, { color: getTextColor() }]}>{label}</Text>
+          <Text
+            style={[
+              styles.text,
+              {
+                ...typography.body,
+                color: getTextColor(),
+              },
+            ]}
+          >
+            {label}
+          </Text>
         )}
       </MotiView>
     </Pressable>
@@ -76,9 +93,6 @@ export const Button: React.FC<ButtonProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: theme.spacing.lg,
-    paddingHorizontal: theme.spacing.xl,
-    borderRadius: theme.radius.pill,
     alignItems: "center",
     justifyContent: "center",
     minHeight: 56,
@@ -89,7 +103,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   text: {
-    ...theme.typography.body,
     fontWeight: "600",
   },
 });

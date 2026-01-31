@@ -2,14 +2,17 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { theme } from "../theme";
+import { useAppTheme } from "../theme";
 
 import { HomeScreen } from "../screens/HomeScreen";
 import { MenuScreen } from "../screens/MenuScreen";
+import { FavoritesScreen } from "../screens/FavoritesScreen";
 import { AccountScreen } from "../screens/AccountScreen";
 import { CheckoutScreen } from "../screens/CheckoutScreen";
 import { TrackingScreen } from "../screens/TrackingScreen";
 import { PizzaDetailScreen } from "../screens/PizzaDetailScreen";
+import { Toast } from "../components/Toast";
+import { useCartStore } from "../store/cart-store";
 
 import { MainTabsParamList, RootStackParamList } from "./types";
 
@@ -17,19 +20,21 @@ const Tab = createBottomTabNavigator<MainTabsParamList>();
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const MainTabs = () => {
+  const { colors } = useAppTheme();
+
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveTintColor: theme.colors.ruralRed,
-        tabBarInactiveTintColor: "#999",
+        tabBarActiveTintColor: colors.ruralRed,
+        tabBarInactiveTintColor: colors.textSecondary,
         tabBarStyle: {
-          backgroundColor: theme.colors.white,
-          borderTopColor: theme.colors.graySoft,
+          backgroundColor: colors.surface,
+          borderTopColor: colors.border,
         },
         headerStyle: {
-          backgroundColor: theme.colors.ruralRed,
+          backgroundColor: colors.ruralRed,
         },
-        headerTintColor: theme.colors.white,
+        headerTintColor: "white",
         headerTitleStyle: {
           fontWeight: "700",
         },
@@ -58,6 +63,17 @@ const MainTabs = () => {
         }}
       />
       <Tab.Screen
+        name="Favorites"
+        component={FavoritesScreen}
+        options={{
+          tabBarLabel: "Favoritos",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="heart" color={color} size={size} />
+          ),
+          headerTitle: "Os Meus Favoritos",
+        }}
+      />
+      <Tab.Screen
         name="Account"
         component={AccountScreen}
         options={{
@@ -73,17 +89,24 @@ const MainTabs = () => {
 };
 
 export const Navigation = () => {
+  const { toast, hideToast } = useCartStore();
+  const { colors } = useAppTheme();
+
   return (
+    <>
     <Stack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: theme.colors.ruralRed,
+          backgroundColor: colors.ruralRed,
         },
-        headerTintColor: theme.colors.white,
+        headerTintColor: "white",
         headerTitleStyle: {
           fontWeight: "700",
         },
         animation: "slide_from_right",
+        contentStyle: {
+          backgroundColor: colors.background,
+        },
       }}
     >
       <Stack.Screen
@@ -107,5 +130,12 @@ export const Navigation = () => {
         options={{ title: "Seguir Pedido" }}
       />
     </Stack.Navigator>
+    <Toast
+      visible={toast.visible}
+      message={toast.message}
+      type={toast.type}
+      onHide={hideToast}
+    />
+    </>
   );
 };

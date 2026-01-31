@@ -1,33 +1,102 @@
-import React from "react";
-import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
-import { theme } from "../theme";
+import React, { useEffect, useState } from "react";
+import { View, Text, StyleSheet, Image, ScrollView, ActivityIndicator, TouchableOpacity } from "react-native";
+import { useAppTheme } from "../theme";
 import { Button } from "../components/Button";
 import { Badge } from "../components/Badge";
+import { AnimatedLoader } from "../components/AnimatedLoader";
+import { IngredientSource } from "../components/IngredientSource";
+import { StarRating } from "../components/StarRating";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useCartStore } from "../store/cart-store";
+import { pizzasApi } from "../api/pizzas";
 
 export const PizzaDetailScreen = ({ route }: any) => {
-  const { addItem } = useCartStore();
-  // Em produção, buscaríamos os dados pelo ID
-  const pizza = {
-    id: route.params?.id || "1",
-    name: "Margherita Rural",
-    description: "Massa fina, molho de tomate caseiro, mozzarella fresca e manjericão. Uma receita tradicional que nunca falha.",
-    price: 8.5,
-    image: "https://images.unsplash.com/photo-1574071318508-1cdbad80ad38?auto=format&fit=crop&w=600&q=80",
-    tag: "Clássica",
-  };
+  const { colors, spacing, typography, radius } = useAppTheme();
+  const { addItem, favorites, toggleFavorite } = useCartStore();
+  const pizzaId = route.params?.id;
+  const [pizza, setPizza] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchPizza = async () => {
+      try {
+        setLoading(true);
+        const data = await pizzasApi.getPizzas();
+        const found = data.find((p: any) => p.id === pizzaId);
+        if (found) {
+          setPizza(found);
+        } else {
+          setError("Pizza não encontrada.");
+        }
+      } catch (err) {
+        setError("Erro ao carregar detalhes.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (pizzaId) {
+      fetchPizza();
+    }
+  }, [pizzaId]);
+
+  if (loading) {
+    return (
+      <View style={[styles.centered, { backgroundColor: colors.background }]}>
+        <AnimatedLoader />
+      </View>
+    );
+  }
+
+  if (error || !pizza) {
+    return (
+      <View style={[styles.centered, { backgroundColor: colors.background }]}>
+        <Text style={[styles.errorText, { ...typography.body, color: colors.error }]}>
+          {error || "Algo correu mal."}
+        </Text>
+      </View>
+    );
+  }
+
+  const isFav = pizza && favorites.includes(pizza.id);
 
   return (
-    <ScrollView style={styles.container}>
-      <Image source={{ uri: pizza.image }} style={styles.image} />
-      <View style={styles.content}>
-        <View style={styles.header}>
-          <Text style={styles.name}>{pizza.name}</Text>
+    <ScrollView style={[styles.container, { backgroundColor: colors.background }]}>
+      <View style={[styles.imageContainer, { height: 300 }]}>
+        <Image source={{ uri: pizza.image }} style={styles.image} />
+        <TouchableOpacity
+          style={[styles.favoriteButton, { top: spacing.xl, right: spacing.xl, padding: spacing.sm, borderRadius: radius.pill }]}
+          onPress={() => toggleFavorite(pizza.id)}
+        >
+          <MaterialCommunityIcons
+            name={isFav ? "heart" : "heart-outline"}
+            size={32}
+            color={isFav ? colors.ruralRed : "white"}
+          />
+        </TouchableOpacity>
+      </View>
+      <View style={[styles.content, { padding: spacing.xl, backgroundColor: colors.surface, borderTopLeftRadius: radius.lg, borderTopRightRadius: radius.lg, marginTop: -spacing.xl }]}>
+        <View style={[styles.header, { marginBottom: spacing.sm }]}>
+          <Text style={[styles.name, { ...typography.h1, color: colors.text }]}>{pizza.name}</Text>
           <Badge label={pizza.tag} />
         </View>
-        <Text style={styles.description}>{pizza.description}</Text>
-        <View style={styles.footer}>
-          <Text style={styles.price}>{pizza.price.toFixed(2)} €</Text>
+        <View style={{ marginBottom: spacing.md }}>
+          <StarRating rating={pizza.rating} count={pizza.reviewsCount} size={20} />
+        </View>
+        <Text style={[styles.description, { ...typography.body, color: colors.textSecondary, marginBottom: spacing.xxl }]}>
+          {pizza.description}
+        </Text>
+
+        <Text style={[styles.sectionTitle, { ...typography.h3, color: colors.text, marginBottom: spacing.md }]}>
+          Origem dos Ingredientes 🌿
+        </Text>
+        <IngredientSource ingredient="Farinha" source="Moinho da Aldeia (Grão Biológico)" icon="corn" />
+        <IngredientSource ingredient="Tomate" source="Horta do Ti Manel" icon="food-apple" />
+        <IngredientSource ingredient="Queijo" source="Queijaria da Serra" icon="cheese" />
+
+        <View style={[styles.footer, { marginTop: spacing.xxl }]}>
+          <Text style={[styles.price, { ...typography.h2, color: colors.ruralRed }]}>{pizza.price.toFixed(2)} €</Text>
           <Button
             label="Adicionar ao Carrinho"
             onPress={() => addItem({ id: pizza.id, name: pizza.name, price: pizza.price })}
@@ -41,42 +110,40 @@ export const PizzaDetailScreen = ({ route }: any) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: theme.colors.white,
+  },
+  centered: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  errorText: {},
+  imageContainer: {
+    position: "relative",
+    width: "100%",
   },
   image: {
     width: "100%",
-    height: 300,
+    height: "100%",
   },
-  content: {
-    padding: theme.spacing.xl,
-    backgroundColor: theme.colors.white,
-    borderTopLeftRadius: theme.radius.lg,
-    borderTopRightRadius: theme.radius.lg,
-    marginTop: -theme.spacing.xl,
+  favoriteButton: {
+    position: "absolute",
+    backgroundColor: "rgba(0,0,0,0.3)",
   },
+  content: {},
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: theme.spacing.md,
   },
-  name: {
-    ...theme.typography.h1,
-    color: theme.colors.ruralDark,
-  },
+  name: {},
   description: {
-    ...theme.typography.body,
-    color: "#666",
     lineHeight: 24,
-    marginBottom: theme.spacing.xxl,
   },
+  sectionTitle: {},
   footer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
   },
-  price: {
-    ...theme.typography.h2,
-    color: theme.colors.ruralRed,
-  },
+  price: {},
 });

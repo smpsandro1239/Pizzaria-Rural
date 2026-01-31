@@ -1,19 +1,29 @@
-import { colors } from "./colors";
+import { useColorScheme } from "react-native";
+import { lightTheme, darkTheme } from "./colors";
 import { spacing } from "./spacing";
-import { radius } from "./radius";
 import { typography } from "./typography";
-import { motionDuration, motionDelay, motionEasing } from "./motion";
+import { radius } from "./radius";
+import { motion } from "./motion";
 
-export const theme = {
-  colors,
-  spacing,
-  radius,
-  typography,
-  motion: {
-    duration: motionDuration,
-    delay: motionDelay,
-    easing: motionEasing,
-  },
+export const useAppTheme = () => {
+  const colorScheme = useColorScheme();
+  const isDark = colorScheme === "dark";
+  const colors = isDark ? darkTheme : lightTheme;
+
+  return {
+    colors,
+    spacing,
+    typography,
+    radius,
+    motion,
+    isDark,
+  };
 };
 
-export type Theme = typeof theme;
+export const theme = {
+  colors: lightTheme,
+  spacing,
+  typography,
+  radius,
+  motion,
+};
