@@ -12,16 +12,16 @@
    - [x] Encomenda
    - [x] Estado da encomenda
    - [x] Pagamentos
-   - [ ] **Cupões de Desconto** (Melhoria)
-   - [ ] **Tamanhos e Extras** (Melhoria)
+   - [x] **Cupões de Desconto** (Melhoria)
+   - [x] **Tamanhos e Extras** (Melhoria)
 3. **Endpoints**
    - [x] Autenticação (JWT)
    - [x] Listar pizzas
-   - [x] Criar encomenda (com suporte opcional a utilizador autenticado)
+   - [x] Criar encomenda (com suporte opcional a utilizador autenticado, tamanhos, extras e cupões)
    - [x] Atualizar estado
    - [x] Tracking
    - [x] Histórico
-   - [ ] **Gestão de Cupões** (Melhoria)
+   - [x] **Validação de Cupões** (Melhoria)
    - [ ] **Dashboard Estatístico para Admin** (Melhoria)
 4. **Notificações**
    - [/] WhatsApp (Simulado/Mock)

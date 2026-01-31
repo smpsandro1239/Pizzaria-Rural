@@ -38,4 +38,10 @@ export class OrdersController {
   updateStatus(@Param('id') id: string, @Body('status') status: string) {
     return this.ordersService.updateStatus(id, status);
   }
+
+  @Post('validate-coupon')
+  @ApiOperation({ summary: 'Validar um cupão de desconto' })
+  validateCoupon(@Body('code') code: string, @Body('subtotal') subtotal: number) {
+    return this.ordersService.validateCoupon(code, subtotal);
+  }
 }

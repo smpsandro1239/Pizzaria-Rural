@@ -13,6 +13,12 @@ export class PizzasController {
     return this.pizzasService.findAll();
   }
 
+  @Get('extras')
+  @ApiOperation({ summary: 'Listar todos os extras disponíveis' })
+  findAllExtras() {
+    return this.pizzasService.findAllExtras();
+  }
+
   @Get(':id')
   @ApiOperation({ summary: 'Obter detalhes de uma pizza' })
   findOne(@Param('id') id: string) {

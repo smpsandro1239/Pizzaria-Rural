@@ -13,6 +13,7 @@ export class PizzasService {
             ingredient: true,
           },
         },
+        sizes: true,
       },
     });
   }
@@ -26,7 +27,12 @@ export class PizzasService {
             ingredient: true,
           },
         },
+        sizes: true,
       },
     });
+  }
+
+  async findAllExtras() {
+    return this.prisma.extra.findMany();
   }
 }

@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { NotificationsService } from '../notifications/notifications.service';
 
@@ -10,26 +10,90 @@ export class OrdersService {
   ) {}
 
   async create(userId: string | null, data: any) {
-    const { items, address, phone, delivery } = data;
+    const { items, address, phone, delivery, couponCode } = data;
 
     // Calcular total e validar preços da base de dados
-    let total = 0;
+    let subtotal = 0;
     const orderItemsData = [];
 
     for (const item of items) {
-      const pizza = await this.prisma.pizza.findUnique({ where: { id: item.pizzaId } });
+      const pizza = await this.prisma.pizza.findUnique({
+        where: { id: item.pizzaId },
+        include: { sizes: true },
+      });
       if (!pizza) {
         throw new NotFoundException(`Pizza com ID ${item.pizzaId} não encontrada`);
       }
 
-      const itemTotal = pizza.price * item.quantity;
-      total += itemTotal;
+      let itemPrice = pizza.basePrice;
+      let sizeName = 'Média'; // Padrão
+
+      if (item.sizeId) {
+        const size = pizza.sizes.find((s) => s.id === item.sizeId);
+        if (!size) {
+          throw new NotFoundException(`Tamanho com ID ${item.sizeId} não encontrado para esta pizza`);
+        }
+        itemPrice = size.price;
+        sizeName = size.name;
+      }
+
+      let itemExtrasTotal = 0;
+      const itemExtrasData = [];
+
+      if (item.extras && Array.isArray(item.extras)) {
+        for (const extraId of item.extras) {
+          const extra = await this.prisma.extra.findUnique({ where: { id: extraId } });
+          if (!extra) {
+            throw new NotFoundException(`Extra com ID ${extraId} não encontrado`);
+          }
+          itemExtrasTotal += extra.price;
+          itemExtrasData.push({
+            extraId: extra.id,
+            unitPrice: extra.price,
+          });
+        }
+      }
+
+      const unitPrice = itemPrice + itemExtrasTotal;
+      subtotal += unitPrice * item.quantity;
 
       orderItemsData.push({
         pizzaId: pizza.id,
         quantity: item.quantity,
-        unitPrice: pizza.price, // Preço oficial da base de dados
+        unitPrice: itemPrice, // Preço base do tamanho
+        sizeName: sizeName,
+        extras: {
+          create: itemExtrasData,
+        },
       });
+    }
+
+    let total = subtotal;
+    let couponId = null;
+
+    if (couponCode) {
+      const coupon = await this.prisma.coupon.findUnique({
+        where: { code: couponCode },
+      });
+
+      if (!coupon || !coupon.active) {
+        throw new BadRequestException('Cupão inválido ou inativo');
+      }
+
+      if (coupon.validUntil && coupon.validUntil < new Date()) {
+        throw new BadRequestException('Cupão expirado');
+      }
+
+      if (coupon.minOrder && subtotal < coupon.minOrder) {
+        throw new BadRequestException(`Valor mínimo de encomenda para este cupão é ${(coupon.minOrder / 100).toFixed(2)}€`);
+      }
+
+      couponId = coupon.id;
+      if (coupon.discountType === 'PERCENT') {
+        total = subtotal - (subtotal * coupon.value) / 100;
+      } else if (coupon.discountType === 'FIXED') {
+        total = Math.max(0, subtotal - coupon.value);
+      }
     }
 
     // Criar encomenda
@@ -41,12 +105,28 @@ export class OrdersService {
         phone,
         delivery,
         status: 'PENDING',
+        couponId,
         items: {
-          create: orderItemsData,
+          create: orderItemsData.map((item) => ({
+            pizzaId: item.pizzaId,
+            quantity: item.quantity,
+            unitPrice: item.unitPrice,
+            sizeName: item.sizeName,
+            extras: item.extras,
+          })),
         },
       },
       include: {
-        items: true,
+        items: {
+          include: {
+            extras: {
+              include: {
+                extra: true,
+              },
+            },
+          },
+        },
+        coupon: true,
       },
     });
 
@@ -70,6 +150,38 @@ export class OrdersService {
     return order;
   }
 
+  async validateCoupon(code: string, subtotal: number) {
+    const coupon = await this.prisma.coupon.findUnique({
+      where: { code },
+    });
+
+    if (!coupon || !coupon.active) {
+      throw new BadRequestException('Cupão inválido ou inativo');
+    }
+
+    if (coupon.validUntil && coupon.validUntil < new Date()) {
+      throw new BadRequestException('Cupão expirado');
+    }
+
+    if (coupon.minOrder && subtotal < coupon.minOrder) {
+      throw new BadRequestException(`Valor mínimo de encomenda para este cupão é ${(coupon.minOrder / 100).toFixed(2)}€`);
+    }
+
+    let discount = 0;
+    if (coupon.discountType === 'PERCENT') {
+      discount = (subtotal * coupon.value) / 100;
+    } else if (coupon.discountType === 'FIXED') {
+      discount = coupon.value;
+    }
+
+    return {
+      valid: true,
+      discount,
+      total: Math.max(0, subtotal - discount),
+      coupon,
+    };
+  }
+
   async findAllByUser(userId: string) {
     return this.prisma.order.findMany({
       where: { userId },
@@ -77,8 +189,14 @@ export class OrdersService {
         items: {
           include: {
             pizza: true,
+            extras: {
+              include: {
+                extra: true,
+              },
+            },
           },
         },
+        coupon: true,
       },
       orderBy: {
         createdAt: 'desc',
@@ -93,8 +211,14 @@ export class OrdersService {
         items: {
           include: {
             pizza: true,
+            extras: {
+              include: {
+                extra: true,
+              },
+            },
           },
         },
+        coupon: true,
       },
     });
 
