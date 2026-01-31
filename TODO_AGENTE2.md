@@ -14,6 +14,7 @@
    - [x] Pagamentos
    - [x] **Cupões de Desconto** (Melhoria)
    - [x] **Tamanhos e Extras** (Melhoria)
+   - [x] **Avaliações (Reviews)** (Melhoria)
 3. **Endpoints**
    - [x] Autenticação (JWT)
    - [x] Listar pizzas
@@ -23,10 +24,11 @@
    - [x] Histórico
    - [x] **Validação de Cupões** (Melhoria)
    - [x] **Simulação de Redenção de Pontos** (Melhoria)
-   - [ ] **Dashboard de Administração** (Futuro)
-     - [ ] Métricas de vendas (diário/mensal)
-     - [ ] Ranking de pizzas mais vendidas
+   - [x] **Dashboard de Administração** (Futuro -> Agora Realizado Base)
+     - [x] Métricas de vendas (diário/mensal)
+     - [x] Ranking de pizzas mais vendidas
      - [ ] Gestão de stock de ingredientes
+   - [x] **Sistema de Reviews** (Melhoria)
 4. **Notificações**
    - [/] WhatsApp (Simulado/Mock)
    - [/] Email fallback (Simulado/Mock)
@@ -34,14 +36,13 @@
    - [ ] **Integração Real com Resend para Transacionais** (Melhoria de impacto)
 5. **Fidelização e Experiência**
    - [x] Atribuição de pontos por compra
-   - [x] **Redenção de Pontos** (Melhoria): Usar pontos acumulados para descontos diretos.
-   - [ ] **Sistema de Reviews** (Melhoria): Avaliação de pizzas e serviço após entrega.
+   - [x] **Redenção de Pontos** (Melhoria)
 6. **Pagamentos Reais**
    - [ ] **Integração com Stripe** (Cartão de Crédito)
    - [ ] **Integração com IfThenPay/Localsend** (MBWAY)
 7. **Documentação e Qualidade**
    - [x] Swagger/OpenAPI (PT-PT)
-   - [x] Segurança de tipos estrita
+   - [x] Segurança de tipos estrita (DTOs implementados)
    - [x] Testes Unitários
    - [ ] **Testes de Integração (E2E API)**
    - [ ] **Carga e Performance**
