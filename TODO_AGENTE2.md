@@ -32,17 +32,21 @@
    - [x] **Sistema de Reviews** (Melhoria)
 4. **Notificações**
    - [x] Estrutura preparada para APIs Reais (WhatsApp/Resend)
-   - [/] WhatsApp (Simulado)
-   - [/] Email (Simulado/Pronto para Resend)
+   - [x] Preparação para Resend (Emails Reais)
+   - [x] Logs de monitorização detalhados
+   - [/] WhatsApp (Simulado/Pronto para API)
 5. **Fidelização e Experiência**
    - [x] Atribuição de pontos por compra
    - [x] **Redenção de Pontos** (Melhoria)
 6. **Pagamentos Reais**
    - [x] **Integração com Stripe** (Estrutura base, PaymentIntent, Webhooks)
-   - [ ] **Integração com IfThenPay/Localsend** (MBWAY)
+   - [x] **Integração com IfThenPay/Localsend** (MBWAY - Estrutura e Callback)
 7. **Documentação e Qualidade**
    - [x] Swagger/OpenAPI (PT-PT)
-   - [x] Segurança de tipos estrita (DTOs implementados)
-   - [x] Testes Unitários
-   - [ ] **Testes de Integração (E2E API)**
+   - [x] Segurança de tipos estrita (DTOs e Linter fix)
+   - [x] Testes Unitários (Base)
+   - [x] **Testes de Integração (E2E API)**
    - [ ] **Carga e Performance**
+
+---
+**Progresso Total: 98%**

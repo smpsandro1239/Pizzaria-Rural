@@ -30,8 +30,9 @@
   - [ ] `DATABASE_URL`
   - [ ] `RESEND_API_KEY` (Emails Reais)
   - [ ] `WHATSAPP_API_KEY` (WhatsApp Real)
-  - [ ] `STRIPE_SECRET_KEY` (Novo: Pagamentos Reais)
-  - [ ] `STRIPE_WEBHOOK_SECRET` (Novo: Webhooks Pagamentos)
+  - [ ] `STRIPE_SECRET_KEY` (Pagamentos Reais)
+  - [ ] `STRIPE_WEBHOOK_SECRET` (Webhooks Pagamentos)
+  - [ ] `IFTHENPAY_MBWAY_KEY` (Novo: Para MBWAY Real)
 - [ ] Monitorização
 - [ ] Logs centralizados
 

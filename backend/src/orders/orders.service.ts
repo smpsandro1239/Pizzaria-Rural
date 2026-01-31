@@ -6,6 +6,7 @@ import {
 import { PrismaService } from '../prisma/prisma.service';
 import { NotificationsService } from '../notifications/notifications.service';
 import { PaymentsService } from '../payments/payments.service';
+import { MbwayService } from '../payments/mbway.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 
 @Injectable()
@@ -14,6 +15,7 @@ export class OrdersService {
     private prisma: PrismaService,
     private notificationsService: NotificationsService,
     private paymentsService: PaymentsService,
+    private mbwayService: MbwayService,
   ) {}
 
   async create(userId: string | null, data: CreateOrderDto) {
@@ -209,6 +211,11 @@ export class OrdersService {
         total,
       );
       stripeClientSecret = result.clientSecret;
+    }
+
+    // Se for MBWAY, disparar pedido
+    if (paymentMethod === 'MBWAY') {
+      await this.mbwayService.createPayment(order.id, total, phone);
     }
 
     // Atualizar saldo de pontos do utilizador

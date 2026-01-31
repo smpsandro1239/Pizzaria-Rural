@@ -22,8 +22,9 @@
 - [ ] **Detalhe da Pizza**: Escolha de **Tamanhos** e **Extras**
 - [ ] **Carrinho**: Gestão de itens e cálculo em tempo real
 - [ ] **Checkout**: Fluxo multi-passo com aplicação de **Cupões de Desconto**
-- [ ] **Checkout**: Opção de usar **Pontos de Fidelização** para desconto
-- [ ] **Checkout**: Integração com **Pagamento por Cartão (Stripe)** (Novo)
+- [ ] **Checkout**: Opção de usar **Pontos de Fidelização** para desconto (API Pronta)
+- [ ] **Checkout**: Integração com **Pagamento por Cartão (Stripe)**
+- [ ] **Checkout**: Integração com **Pagamento MBWAY** (API Pronta - Callback: `/payments/mbway/callback`) (Novo)
 - [ ] **Tracking**: Acompanhamento do estado da encomenda em tempo real
 - [ ] **Perfil**: Histórico de encomendas e consulta de **Pontos de Fidelização**
 - [ ] **Avaliações**: Ecrã para avaliar pizzas e serviço após entrega
@@ -37,7 +38,7 @@
 - [ ] Integração com Endpoint de Simulação de Redenção de Pontos
 - [ ] Integração com Endpoint de Avaliações
 - [ ] Integração com Endpoints de Dashboard e Stock
-- [ ] Integração com **Endpoints de Pagamento e Webhooks** (Novo)
+- [ ] Integração com **Endpoints de Pagamento (Stripe e MBWAY)** (Novo)
 - [ ] Fluxo de criação de encomenda
 - [ ] Loading states e Toasts de feedback
 
