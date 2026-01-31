@@ -24,12 +24,37 @@ export class OrdersService {
     for (const item of items) {
       const pizza = await this.prisma.pizza.findUnique({
         where: { id: item.pizzaId },
-        include: { sizes: true },
+        include: {
+          sizes: true,
+          ingredients: {
+            include: {
+              ingredient: true,
+            },
+          },
+        },
       });
       if (!pizza) {
         throw new NotFoundException(
           `Pizza com ID ${item.pizzaId} não encontrada`,
         );
+      }
+
+      // Validar e descontar stock de ingredientes
+      for (const pi of pizza.ingredients) {
+        if (pi.ingredient.stock < item.quantity) {
+          throw new BadRequestException(
+            `Stock insuficiente para o ingrediente ${pi.ingredient.name}`,
+          );
+        }
+
+        await this.prisma.ingredient.update({
+          where: { id: pi.ingredientId },
+          data: {
+            stock: {
+              decrement: item.quantity,
+            },
+          },
+        });
       }
 
       let itemPrice = pizza.basePrice;

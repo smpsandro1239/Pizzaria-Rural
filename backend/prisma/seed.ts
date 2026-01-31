@@ -15,6 +15,25 @@ async function main() {
     create: { name: 'Bacon', price: 100 },
   });
 
+  // Ingredientes
+  const tomate = await prisma.ingredient.upsert({
+    where: { name: 'Tomate' },
+    update: {},
+    create: { name: 'Tomate', stock: 500 },
+  });
+
+  const mozzarella = await prisma.ingredient.upsert({
+    where: { name: 'Mozzarella' },
+    update: {},
+    create: { name: 'Mozzarella', stock: 500 },
+  });
+
+  const pepperoniIng = await prisma.ingredient.upsert({
+    where: { name: 'Pepperoni' },
+    update: {},
+    create: { name: 'Pepperoni', stock: 500 },
+  });
+
   const margherita = await prisma.pizza.upsert({
     where: { id: 'margherita' },
     update: {},
@@ -31,6 +50,12 @@ async function main() {
           { name: 'Família', price: 1200 },
         ],
       },
+      ingredients: {
+        create: [
+          { ingredientId: tomate.id },
+          { ingredientId: mozzarella.id },
+        ]
+      }
     },
   });
 
@@ -50,6 +75,13 @@ async function main() {
           { name: 'Família', price: 1350 },
         ],
       },
+      ingredients: {
+        create: [
+          { ingredientId: tomate.id },
+          { ingredientId: mozzarella.id },
+          { ingredientId: pepperoniIng.id },
+        ]
+      }
     },
   });
 
@@ -81,6 +113,12 @@ async function main() {
           { name: 'Família', price: 1250 },
         ],
       },
+      ingredients: {
+        create: [
+          { ingredientId: tomate.id },
+          { ingredientId: mozzarella.id },
+        ]
+      }
     },
   });
 

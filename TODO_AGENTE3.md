@@ -25,7 +25,11 @@
 - [x] Docker (`backend/Dockerfile`)
 - [x] Docker Compose (`docker-compose.yml`)
 - [ ] Configurar base de dados PostgreSQL em produção (Render/Supabase)
-- [ ] Configurar segredos e variáveis de ambiente (JWT_SECRET, DATABASE_URL)
+- [ ] Configurar segredos e variáveis de ambiente:
+  - [ ] `JWT_SECRET`
+  - [ ] `DATABASE_URL`
+  - [ ] `RESEND_API_KEY` (Novo: Para Emails Reais)
+  - [ ] `WHATSAPP_API_KEY` (Novo: Para WhatsApp Real)
 - [ ] Monitorização
 - [ ] Logs centralizados
 

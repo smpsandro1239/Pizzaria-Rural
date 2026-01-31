@@ -52,6 +52,7 @@ model Extra {
 model Ingredient {
   id      String @id @default(cuid())
   name    String @unique
+  stock   Int    @default(100) // Quantidade em stock (ex: gramas ou unidades)
   pizzas  PizzaIngredient[]
 }
 

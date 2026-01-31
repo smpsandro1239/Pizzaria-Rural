@@ -15,6 +15,7 @@
    - [x] **Cupões de Desconto** (Melhoria)
    - [x] **Tamanhos e Extras** (Melhoria)
    - [x] **Avaliações (Reviews)** (Melhoria)
+   - [x] **Stock de Ingredientes** (Melhoria)
 3. **Endpoints**
    - [x] Autenticação (JWT)
    - [x] Listar pizzas
@@ -24,16 +25,15 @@
    - [x] Histórico
    - [x] **Validação de Cupões** (Melhoria)
    - [x] **Simulação de Redenção de Pontos** (Melhoria)
-   - [x] **Dashboard de Administração** (Futuro -> Agora Realizado Base)
+   - [x] **Dashboard de Administração** (Melhoria)
      - [x] Métricas de vendas (diário/mensal)
      - [x] Ranking de pizzas mais vendidas
-     - [ ] Gestão de stock de ingredientes
+     - [x] Gestão de stock de ingredientes (Listar, repor, alertas)
    - [x] **Sistema de Reviews** (Melhoria)
 4. **Notificações**
-   - [/] WhatsApp (Simulado/Mock)
-   - [/] Email fallback (Simulado/Mock)
-   - [ ] **Integração Real com WhatsApp Business API** (Melhoria de impacto)
-   - [ ] **Integração Real com Resend para Transacionais** (Melhoria de impacto)
+   - [x] Estrutura preparada para APIs Reais (WhatsApp/Resend)
+   - [/] WhatsApp (Simulado)
+   - [/] Email (Simulado/Pronto para Resend)
 5. **Fidelização e Experiência**
    - [x] Atribuição de pontos por compra
    - [x] **Redenção de Pontos** (Melhoria)

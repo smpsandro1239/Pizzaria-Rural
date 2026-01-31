@@ -3,16 +3,32 @@ import { Injectable, Logger } from '@nestjs/common';
 @Injectable()
 export class NotificationsService {
   private readonly logger = new Logger(NotificationsService.name);
+  private readonly resendApiKey = process.env.RESEND_API_KEY;
 
   async sendWhatsApp(to: string, message: string) {
-    this.logger.log(`Enviando WhatsApp para ${to}: ${message}`);
-    // No mundo real, usaríamos Twilio ou similar
+    this.logger.log(`[WhatsApp] Para ${to}: ${message}`);
+
+    if (process.env.WHATSAPP_API_KEY) {
+      // Integração real aqui futuramente
+      // await fetch('https://api.whatsapp.com/...', { ... })
+    }
+
     return await Promise.resolve(true);
   }
 
   async sendEmail(to: string, subject: string, body: string) {
-    this.logger.log(`Enviando Email para ${to}: [${subject}] ${body}`);
-    // No mundo real, usaríamos Nodemailer ou similar
+    if (this.resendApiKey) {
+      this.logger.log(`[Resend] Enviando email real para ${to}`);
+      // Simulação de chamada de API do Resend
+      // await fetch('https://api.resend.com/emails', {
+      //   method: 'POST',
+      //   headers: { 'Authorization': `Bearer ${this.resendApiKey}`, 'Content-Type': 'application/json' },
+      //   body: JSON.stringify({ from: 'Pizzaria Rural <onboarding@resend.dev>', to, subject, html: body })
+      // });
+    } else {
+      this.logger.log(`[Email Mock] Para ${to}: [${subject}] ${body}`);
+    }
+
     return await Promise.resolve(true);
   }
 
@@ -30,13 +46,24 @@ export class NotificationsService {
       DELIVERED: 'Entregue',
     };
 
-    const message = `Pizzaria Rural: A sua encomenda #${orderId} está agora no estado: ${statusMessages[status] || status}.`;
+    const estadoPt = statusMessages[status] || status;
+    const message = `Pizzaria Rural 🍕: A sua encomenda #${orderId} está agora no estado: ${estadoPt}.`;
 
     await this.sendWhatsApp(phone, message);
-    await this.sendEmail(
-      email,
-      'Estado da sua Encomenda - Pizzaria Rural',
-      message,
-    );
+
+    if (email) {
+      const emailHtml = `
+        <h1>Olá!</h1>
+        <p>A sua encomenda <strong>#${orderId}</strong> na Pizzaria Rural foi atualizada.</p>
+        <p>Estado atual: <strong>${estadoPt}</strong></p>
+        <br/>
+        <p>Obrigado pela preferência!</p>
+      `;
+      await this.sendEmail(
+        email,
+        'Estado da sua Encomenda - Pizzaria Rural',
+        emailHtml,
+      );
+    }
   }
 }

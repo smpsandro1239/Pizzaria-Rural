@@ -10,6 +10,7 @@ import { NotificationsService } from './notifications/notifications.service';
 import { NotificationsModule } from './notifications/notifications.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { ReviewsModule } from './reviews/reviews.module';
+import { IngredientsModule } from './ingredients/ingredients.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { ReviewsModule } from './reviews/reviews.module';
     NotificationsModule,
     DashboardModule,
     ReviewsModule,
+    IngredientsModule,
   ],
   controllers: [AppController],
   providers: [AppService, NotificationsService],

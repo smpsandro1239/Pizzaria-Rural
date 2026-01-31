@@ -27,6 +27,7 @@
 - [ ] **Perfil**: Histórico de encomendas e consulta de **Pontos de Fidelização** (Novo)
 - [ ] **Avaliações**: Ecrã para avaliar pizzas e serviço após entrega (Novo)
 - [ ] **Dashboard Admin**: Interface para métricas e gestão (Opcional/Admin) (Novo)
+- [ ] **Gestão de Stock**: Ecrã para Admin listar e repor ingredientes (Novo)
 
 ## 5. Integração com API
 - [ ] Criar cliente API (Base URL dinâmica)
@@ -34,6 +35,7 @@
 - [ ] Integração com Endpoints de Pizzas, Extras e Cupões
 - [ ] Integração com Endpoint de Simulação de Redenção de Pontos (Novo)
 - [ ] Integração com Endpoint de Avaliações (Novo)
+- [ ] Integração com Endpoints de Dashboard e Stock (Novo)
 - [ ] Fluxo de criação de encomenda
 - [ ] Loading states e Toasts de feedback
 
