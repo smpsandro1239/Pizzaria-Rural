@@ -56,6 +56,8 @@
 - [ ] **Social Sharing:** Partilha de conquistas de fidelidade.
 - [ ] **Chat de Suporte:** Interface para ajuda em tempo real.
 - [ ] **Internacionalização (i18n):** Preparar suporte para outros idiomas além de PT-PT.
+- [ ] **Otimização de Imagens:** Implementar `expo-image` para caching agressivo e performance superior.
+- [ ] **Integração Google Reviews:** Exibir feedback real de clientes na Home/Menu.
 
 ---
 
@@ -83,6 +85,20 @@
 - [ ] **Notificações:** WhatsApp API (UltraMsg/Twilio), Push Notifications (Expo).
 - [ ] **Pagamentos:** Stripe / IfThenPay (MBWay).
 - [ ] **Real-time:** Socket.io para tracking e chat de suporte.
+
+---
+
+# 📌 TODOLIST — Agente 3 (Infra & QA)
+
+## 1. CI/CD & Automação
+- [ ] Configurar GitHub Actions para Lint e Testes.
+- [ ] Configurar Pipeline de Build para Android/iOS (EAS).
+- [ ] Automatizar deploy do Backend em Staging/Produção.
+
+## 2. Qualidade & Monitorização
+- [ ] Implementar Testes End-to-End (E2E) com Detox ou Maestro.
+- [ ] Configurar monitorização de erros (Sentry).
+- [ ] Auditoria de Performance e Segurança.
 
 ---
 
