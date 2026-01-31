@@ -7,16 +7,21 @@ export class NotificationsService {
   async sendWhatsApp(to: string, message: string) {
     this.logger.log(`Enviando WhatsApp para ${to}: ${message}`);
     // No mundo real, usaríamos Twilio ou similar
-    return true;
+    return await Promise.resolve(true);
   }
 
   async sendEmail(to: string, subject: string, body: string) {
     this.logger.log(`Enviando Email para ${to}: [${subject}] ${body}`);
     // No mundo real, usaríamos Nodemailer ou similar
-    return true;
+    return await Promise.resolve(true);
   }
 
-  async notifyOrderStatus(phone: string, email: string, orderId: string, status: string) {
+  async notifyOrderStatus(
+    phone: string,
+    email: string,
+    orderId: string,
+    status: string,
+  ) {
     const statusMessages: Record<string, string> = {
       PENDING: 'Recebida',
       PREPARING: 'A preparar',
@@ -28,6 +33,10 @@ export class NotificationsService {
     const message = `Pizzaria Rural: A sua encomenda #${orderId} está agora no estado: ${statusMessages[status] || status}.`;
 
     await this.sendWhatsApp(phone, message);
-    await this.sendEmail(email, 'Estado da sua Encomenda - Pizzaria Rural', message);
+    await this.sendEmail(
+      email,
+      'Estado da sua Encomenda - Pizzaria Rural',
+      message,
+    );
   }
 }

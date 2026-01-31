@@ -1,6 +1,8 @@
 import { Body, Controller, Post, HttpCode, HttpStatus } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { ApiTags, ApiOperation, ApiBody } from '@nestjs/swagger';
+import { ApiTags, ApiOperation } from '@nestjs/swagger';
+import { LoginDto } from './dto/login.dto';
+import { RegisterDto } from './dto/register.dto';
 
 @ApiTags('auth')
 @Controller('auth')
@@ -10,32 +12,17 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   @Post('login')
   @ApiOperation({ summary: 'Login de utilizador' })
-  @ApiBody({
-    schema: {
-      type: 'object',
-      properties: {
-        email: { type: 'string' },
-        password: { type: 'string' },
-      },
-    },
-  })
-  signIn(@Body() signInDto: Record<string, any>) {
-    return this.authService.signIn(signInDto.email, signInDto.password);
+  signIn(@Body() loginDto: LoginDto) {
+    return this.authService.signIn(loginDto.email, loginDto.password);
   }
 
   @Post('register')
   @ApiOperation({ summary: 'Registo de novo utilizador' })
-  @ApiBody({
-    schema: {
-      type: 'object',
-      properties: {
-        email: { type: 'string' },
-        password: { type: 'string' },
-        name: { type: 'string' },
-      },
-    },
-  })
-  signUp(@Body() signUpDto: Record<string, any>) {
-    return this.authService.signUp(signUpDto.email, signUpDto.password, signUpDto.name);
+  signUp(@Body() registerDto: RegisterDto) {
+    return this.authService.signUp(
+      registerDto.email,
+      registerDto.password,
+      registerDto.name,
+    );
   }
 }

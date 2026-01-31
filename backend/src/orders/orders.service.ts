@@ -1,6 +1,11 @@
-import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { NotificationsService } from '../notifications/notifications.service';
+import { CreateOrderDto } from './dto/create-order.dto';
 
 @Injectable()
 export class OrdersService {
@@ -9,10 +14,10 @@ export class OrdersService {
     private notificationsService: NotificationsService,
   ) {}
 
-  async create(userId: string | null, data: any) {
-    const { items, address, phone, delivery, couponCode } = data;
+  async create(userId: string | null, data: CreateOrderDto) {
+    const { items, address, phone, delivery, couponCode, usePoints } = data;
 
-    // Calcular total e validar preços da base de dados
+    // Calcular subtotal e validar preços da base de dados
     let subtotal = 0;
     const orderItemsData = [];
 
@@ -22,7 +27,9 @@ export class OrdersService {
         include: { sizes: true },
       });
       if (!pizza) {
-        throw new NotFoundException(`Pizza com ID ${item.pizzaId} não encontrada`);
+        throw new NotFoundException(
+          `Pizza com ID ${item.pizzaId} não encontrada`,
+        );
       }
 
       let itemPrice = pizza.basePrice;
@@ -31,7 +38,9 @@ export class OrdersService {
       if (item.sizeId) {
         const size = pizza.sizes.find((s) => s.id === item.sizeId);
         if (!size) {
-          throw new NotFoundException(`Tamanho com ID ${item.sizeId} não encontrado para esta pizza`);
+          throw new NotFoundException(
+            `Tamanho com ID ${item.sizeId} não encontrado para esta pizza`,
+          );
         }
         itemPrice = size.price;
         sizeName = size.name;
@@ -42,9 +51,13 @@ export class OrdersService {
 
       if (item.extras && Array.isArray(item.extras)) {
         for (const extraId of item.extras) {
-          const extra = await this.prisma.extra.findUnique({ where: { id: extraId } });
+          const extra = await this.prisma.extra.findUnique({
+            where: { id: extraId },
+          });
           if (!extra) {
-            throw new NotFoundException(`Extra com ID ${extraId} não encontrado`);
+            throw new NotFoundException(
+              `Extra com ID ${extraId} não encontrado`,
+            );
           }
           itemExtrasTotal += extra.price;
           itemExtrasData.push({
@@ -69,8 +82,9 @@ export class OrdersService {
     }
 
     let total = subtotal;
-    let couponId = null;
+    let couponId: string | null = null;
 
+    // 1. Aplicar Cupão
     if (couponCode) {
       const coupon = await this.prisma.coupon.findUnique({
         where: { code: couponCode },
@@ -85,7 +99,9 @@ export class OrdersService {
       }
 
       if (coupon.minOrder && subtotal < coupon.minOrder) {
-        throw new BadRequestException(`Valor mínimo de encomenda para este cupão é ${(coupon.minOrder / 100).toFixed(2)}€`);
+        throw new BadRequestException(
+          `Valor mínimo de encomenda para este cupão é ${(coupon.minOrder / 100).toFixed(2)}€`,
+        );
       }
 
       couponId = coupon.id;
@@ -94,6 +110,23 @@ export class OrdersService {
       } else if (coupon.discountType === 'FIXED') {
         total = Math.max(0, subtotal - coupon.value);
       }
+    }
+
+    // 2. Aplicar Pontos de Fidelização
+    let pointsToUse = 0;
+    if (usePoints && userId) {
+      const user = await this.prisma.user.findUnique({ where: { id: userId } });
+      if (!user) throw new NotFoundException('Utilizador não encontrado');
+
+      if (usePoints > user.points) {
+        throw new BadRequestException(
+          `Não tens pontos suficientes. Saldo: ${user.points}`,
+        );
+      }
+
+      pointsToUse = usePoints;
+      const pointDiscount = pointsToUse; // 1 ponto = 1 cêntimo
+      total = Math.max(0, total - pointDiscount);
     }
 
     // Criar encomenda
@@ -106,14 +139,9 @@ export class OrdersService {
         delivery,
         status: 'PENDING',
         couponId,
+        usedPoints: pointsToUse,
         items: {
-          create: orderItemsData.map((item) => ({
-            pizzaId: item.pizzaId,
-            quantity: item.quantity,
-            unitPrice: item.unitPrice,
-            sizeName: item.sizeName,
-            extras: item.extras,
-          })),
+          create: orderItemsData,
         },
       },
       include: {
@@ -130,14 +158,16 @@ export class OrdersService {
       },
     });
 
-    // Atribuir pontos se o utilizador estiver autenticado
+    // Atualizar saldo de pontos do utilizador
     let userEmail = '';
     if (userId) {
+      // Remover pontos usados e adicionar novos (1€ faturado = 1 ponto)
+      const pointsGained = Math.floor(total / 100);
       const user = await this.prisma.user.update({
         where: { id: userId },
         data: {
           points: {
-            increment: Math.floor(total / 100), // 1€ = 1 ponto (preços em cêntimos)
+            increment: pointsGained - pointsToUse,
           },
         },
       });
@@ -145,7 +175,12 @@ export class OrdersService {
     }
 
     // Notificar criação
-    await this.notificationsService.notifyOrderStatus(phone, userEmail, order.id, 'PENDING');
+    await this.notificationsService.notifyOrderStatus(
+      phone,
+      userEmail,
+      order.id,
+      'PENDING',
+    );
 
     return order;
   }
@@ -164,7 +199,9 @@ export class OrdersService {
     }
 
     if (coupon.minOrder && subtotal < coupon.minOrder) {
-      throw new BadRequestException(`Valor mínimo de encomenda para este cupão é ${(coupon.minOrder / 100).toFixed(2)}€`);
+      throw new BadRequestException(
+        `Valor mínimo de encomenda para este cupão é ${(coupon.minOrder / 100).toFixed(2)}€`,
+      );
     }
 
     let discount = 0;

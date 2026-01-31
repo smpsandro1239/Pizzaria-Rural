@@ -3,9 +3,18 @@ import { AuthGuard } from '@nestjs/passport';
 
 @Injectable()
 export class OptionalJwtGuard extends AuthGuard('jwt') {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  handleRequest(err: any, user: any, info: any, context: any) {
+  handleRequest<TUser = any>(
+    err: any,
+    user: any,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    info: any,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    context: any,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    status?: any,
+  ): TUser {
     // Retorna o utilizador se autenticado, caso contrário null
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return user || null;
   }
 }

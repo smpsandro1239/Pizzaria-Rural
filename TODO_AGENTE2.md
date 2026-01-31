@@ -17,11 +17,12 @@
 3. **Endpoints**
    - [x] Autenticação (JWT)
    - [x] Listar pizzas
-   - [x] Criar encomenda (com suporte a tamanhos, extras e cupões)
+   - [x] Criar encomenda (com suporte a tamanhos, extras, cupões e pontos)
    - [x] Atualizar estado
    - [x] Tracking
    - [x] Histórico
    - [x] **Validação de Cupões** (Melhoria)
+   - [x] **Simulação de Redenção de Pontos** (Melhoria)
    - [ ] **Dashboard de Administração** (Futuro)
      - [ ] Métricas de vendas (diário/mensal)
      - [ ] Ranking de pizzas mais vendidas
@@ -33,7 +34,7 @@
    - [ ] **Integração Real com Resend para Transacionais** (Melhoria de impacto)
 5. **Fidelização e Experiência**
    - [x] Atribuição de pontos por compra
-   - [ ] **Redenção de Pontos** (Melhoria): Usar pontos acumulados para descontos diretos.
+   - [x] **Redenção de Pontos** (Melhoria): Usar pontos acumulados para descontos diretos.
    - [ ] **Sistema de Reviews** (Melhoria): Avaliação de pizzas e serviço após entrega.
 6. **Pagamentos Reais**
    - [ ] **Integração com Stripe** (Cartão de Crédito)

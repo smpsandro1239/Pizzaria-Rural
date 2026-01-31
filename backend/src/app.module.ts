@@ -10,7 +10,14 @@ import { NotificationsService } from './notifications/notifications.service';
 import { NotificationsModule } from './notifications/notifications.module';
 
 @Module({
-  imports: [PrismaModule, AuthModule, UsersModule, PizzasModule, OrdersModule, NotificationsModule],
+  imports: [
+    PrismaModule,
+    AuthModule,
+    UsersModule,
+    PizzasModule,
+    OrdersModule,
+    NotificationsModule,
+  ],
   controllers: [AppController],
   providers: [AppService, NotificationsService],
 })

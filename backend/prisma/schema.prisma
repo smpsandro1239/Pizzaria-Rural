@@ -69,6 +69,7 @@ model Order {
   status      String       @default("PENDING") // PENDING, PREPARING, BAKING, ON_THE_WAY, DELIVERED
   coupon      Coupon?      @relation(fields: [couponId], references: [id])
   couponId    String?
+  usedPoints  Int          @default(0)
   total       Int
   address     String
   phone       String

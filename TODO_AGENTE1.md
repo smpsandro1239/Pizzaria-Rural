@@ -22,6 +22,7 @@
 - [ ] **Detalhe da Pizza**: Escolha de **Tamanhos** e **Extras** (Novo)
 - [ ] **Carrinho**: Gestão de itens e cálculo em tempo real
 - [ ] **Checkout**: Fluxo multi-passo com aplicação de **Cupões de Desconto** (Novo)
+- [ ] **Checkout**: Opção de usar **Pontos de Fidelização** para desconto (Novo)
 - [ ] **Tracking**: Acompanhamento do estado da encomenda em tempo real
 - [ ] **Perfil**: Histórico de encomendas e consulta de **Pontos de Fidelização** (Novo)
 
@@ -29,6 +30,7 @@
 - [ ] Criar cliente API (Base URL dinâmica)
 - [ ] Autenticação (Login/Registo JWT)
 - [ ] Integração com Endpoints de Pizzas, Extras e Cupões
+- [ ] Integração com Endpoint de Simulação de Redenção de Pontos (Novo)
 - [ ] Fluxo de criação de encomenda
 - [ ] Loading states e Toasts de feedback
 

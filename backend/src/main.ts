@@ -17,15 +17,19 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
 
   // Validação global
-  app.useGlobalPipes(new ValidationPipe({
-    whitelist: true,
-    forbidNonWhitelisted: true,
-    transform: true,
-  }));
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+    }),
+  );
 
   // CORS para permitir acesso do frontend
   app.enableCors();
 
   await app.listen(process.env.PORT || 3000);
 }
-bootstrap();
+bootstrap().catch((err) => {
+  console.error(err);
+});

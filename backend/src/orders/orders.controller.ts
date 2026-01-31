@@ -1,8 +1,25 @@
-import { Controller, Get, Post, Body, Param, Patch, UseGuards, Request } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Patch,
+  UseGuards,
+  Request,
+} from '@nestjs/common';
 import { OrdersService } from './orders.service';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { OptionalJwtGuard } from '../auth/optional-jwt.guard';
+import { CreateOrderDto } from './dto/create-order.dto';
+
+interface RequestWithUser extends Request {
+  user: {
+    userId: string;
+    email: string;
+  };
+}
 
 @ApiTags('orders')
 @Controller('orders')
@@ -13,7 +30,10 @@ export class OrdersController {
   @UseGuards(OptionalJwtGuard)
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Criar uma nova encomenda' })
-  create(@Body() createOrderDto: any, @Request() req: any) {
+  create(
+    @Body() createOrderDto: CreateOrderDto,
+    @Request() req: RequestWithUser,
+  ) {
     // Se houver um token JWT, o userId estará em req.user.userId via OptionalJwtGuard
     const userId = req.user ? req.user.userId : null;
     return this.ordersService.create(userId, createOrderDto);
@@ -23,7 +43,7 @@ export class OrdersController {
   @ApiBearerAuth()
   @Get('my-orders')
   @ApiOperation({ summary: 'Listar encomendas do utilizador autenticado' })
-  findAllByUser(@Request() req: any) {
+  findAllByUser(@Request() req: RequestWithUser) {
     return this.ordersService.findAllByUser(req.user.userId);
   }
 
@@ -41,7 +61,21 @@ export class OrdersController {
 
   @Post('validate-coupon')
   @ApiOperation({ summary: 'Validar um cupão de desconto' })
-  validateCoupon(@Body('code') code: string, @Body('subtotal') subtotal: number) {
+  validateCoupon(
+    @Body('code') code: string,
+    @Body('subtotal') subtotal: number,
+  ) {
     return this.ordersService.validateCoupon(code, subtotal);
+  }
+
+  @Post('simulate-redemption')
+  @ApiOperation({ summary: 'Simular o desconto de pontos de fidelização' })
+  simulateRedemption(@Body('points') points: number) {
+    // 1 ponto = 1 cêntimo
+    return {
+      points,
+      discount: points,
+      formattedDiscount: `${(points / 100).toFixed(2)}€`,
+    };
   }
 }
