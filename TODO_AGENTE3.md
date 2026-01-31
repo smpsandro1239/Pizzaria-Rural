@@ -24,6 +24,8 @@
 ## 4. Infraestrutura
 - [x] Docker (`backend/Dockerfile`)
 - [x] Docker Compose (`docker-compose.yml`)
+- [ ] Configurar base de dados PostgreSQL em produção (Render/Supabase)
+- [ ] Configurar segredos e variáveis de ambiente (JWT_SECRET, DATABASE_URL)
 - [ ] Monitorização
 - [ ] Logs centralizados
 
