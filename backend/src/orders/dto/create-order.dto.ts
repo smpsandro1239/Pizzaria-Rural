@@ -5,6 +5,7 @@ import {
   IsOptional,
   IsNumber,
   ValidateNested,
+  IsIn,
 } from 'class-validator';
 import { Type } from 'class-transformer';
 
@@ -47,4 +48,9 @@ export class CreateOrderDto {
   @IsOptional()
   @IsNumber()
   usePoints?: number;
+
+  @IsOptional()
+  @IsString()
+  @IsIn(['CARD', 'MBWAY', 'CASH'])
+  paymentMethod?: string;
 }

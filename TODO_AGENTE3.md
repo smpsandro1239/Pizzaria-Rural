@@ -28,8 +28,10 @@
 - [ ] Configurar segredos e variáveis de ambiente:
   - [ ] `JWT_SECRET`
   - [ ] `DATABASE_URL`
-  - [ ] `RESEND_API_KEY` (Novo: Para Emails Reais)
-  - [ ] `WHATSAPP_API_KEY` (Novo: Para WhatsApp Real)
+  - [ ] `RESEND_API_KEY` (Emails Reais)
+  - [ ] `WHATSAPP_API_KEY` (WhatsApp Real)
+  - [ ] `STRIPE_SECRET_KEY` (Novo: Pagamentos Reais)
+  - [ ] `STRIPE_WEBHOOK_SECRET` (Novo: Webhooks Pagamentos)
 - [ ] Monitorização
 - [ ] Logs centralizados
 

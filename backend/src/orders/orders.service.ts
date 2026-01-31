@@ -5,6 +5,7 @@ import {
 } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { NotificationsService } from '../notifications/notifications.service';
+import { PaymentsService } from '../payments/payments.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 
 @Injectable()
@@ -12,10 +13,19 @@ export class OrdersService {
   constructor(
     private prisma: PrismaService,
     private notificationsService: NotificationsService,
+    private paymentsService: PaymentsService,
   ) {}
 
   async create(userId: string | null, data: CreateOrderDto) {
-    const { items, address, phone, delivery, couponCode, usePoints } = data;
+    const {
+      items,
+      address,
+      phone,
+      delivery,
+      couponCode,
+      usePoints,
+      paymentMethod,
+    } = data;
 
     // Calcular subtotal e validar preços da base de dados
     let subtotal = 0;
@@ -168,6 +178,13 @@ export class OrdersService {
         items: {
           create: orderItemsData,
         },
+        payment: {
+          create: {
+            method: paymentMethod || 'CASH',
+            amount: total,
+            status: 'PENDING',
+          },
+        },
       },
       include: {
         items: {
@@ -180,8 +197,19 @@ export class OrdersService {
           },
         },
         coupon: true,
+        payment: true,
       },
     });
+
+    // Se for cartão, gerar clientSecret para o Stripe
+    let stripeClientSecret: string | null = null;
+    if (paymentMethod === 'CARD') {
+      const result = await this.paymentsService.createPaymentIntent(
+        order.id,
+        total,
+      );
+      stripeClientSecret = result.clientSecret;
+    }
 
     // Atualizar saldo de pontos do utilizador
     let userEmail = '';
@@ -207,7 +235,10 @@ export class OrdersService {
       'PENDING',
     );
 
-    return order;
+    return {
+      ...order,
+      stripeClientSecret,
+    };
   }
 
   async validateCoupon(code: string, subtotal: number) {
@@ -259,6 +290,7 @@ export class OrdersService {
           },
         },
         coupon: true,
+        payment: true,
       },
       orderBy: {
         createdAt: 'desc',
@@ -281,6 +313,7 @@ export class OrdersService {
           },
         },
         coupon: true,
+        payment: true,
       },
     });
 

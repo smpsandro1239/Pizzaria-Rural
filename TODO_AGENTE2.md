@@ -19,7 +19,7 @@
 3. **Endpoints**
    - [x] Autenticação (JWT)
    - [x] Listar pizzas
-   - [x] Criar encomenda (com suporte a tamanhos, extras, cupões e pontos)
+   - [x] Criar encomenda (com suporte a tamanhos, extras, cupões, pontos e pagamentos)
    - [x] Atualizar estado
    - [x] Tracking
    - [x] Histórico
@@ -38,7 +38,7 @@
    - [x] Atribuição de pontos por compra
    - [x] **Redenção de Pontos** (Melhoria)
 6. **Pagamentos Reais**
-   - [ ] **Integração com Stripe** (Cartão de Crédito)
+   - [x] **Integração com Stripe** (Estrutura base, PaymentIntent, Webhooks)
    - [ ] **Integração com IfThenPay/Localsend** (MBWAY)
 7. **Documentação e Qualidade**
    - [x] Swagger/OpenAPI (PT-PT)
