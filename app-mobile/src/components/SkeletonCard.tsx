@@ -1,86 +1,67 @@
 import React from "react";
-import { View, StyleSheet, Dimensions } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { MotiView } from "moti";
-import { theme } from "../theme";
-
-const { width } = Dimensions.get("window");
+import { useAppTheme } from "../theme";
 
 export const SkeletonCard = () => {
+  const { colors, spacing, radius, isDark } = useAppTheme();
+  const skeletonBg = isDark ? "#2C2C2E" : colors.graySoft;
+
+  const skeletonProps = {
+    from: { opacity: 0.5 },
+    animate: { opacity: 1 },
+    transition: {
+      type: "timing" as const,
+      duration: 1000,
+      loop: true,
+    },
+  };
+
   return (
-    <View style={styles.container}>
-      <MotiView
-        from={{ opacity: 0.5 }}
-        animate={{ opacity: 1 }}
-        transition={{
-          type: "timing",
-          duration: 1000,
-          loop: true,
-        }}
-        style={styles.image}
-      />
-      <View style={styles.content}>
-        <View style={styles.header}>
+    <View
+      style={[
+        styles.container,
+        {
+          backgroundColor: colors.card,
+          borderRadius: radius.lg,
+          marginBottom: spacing.lg,
+        },
+      ]}
+    >
+      <MotiView {...skeletonProps} style={[styles.image, { backgroundColor: skeletonBg }]} />
+      <View style={[styles.content, { padding: spacing.lg }]}>
+        <View style={[styles.header, { marginBottom: spacing.md }]}>
           <MotiView
-            from={{ opacity: 0.5 }}
-            animate={{ opacity: 1 }}
-            transition={{
-              type: "timing",
-              duration: 1000,
-              loop: true,
-            }}
-            style={styles.title}
+            {...skeletonProps}
+            style={[styles.title, { backgroundColor: skeletonBg, borderRadius: radius.sm }]}
           />
           <MotiView
-            from={{ opacity: 0.5 }}
-            animate={{ opacity: 1 }}
-            transition={{
-              type: "timing",
-              duration: 1000,
-              loop: true,
-            }}
-            style={styles.badge}
+            {...skeletonProps}
+            style={[styles.badge, { backgroundColor: skeletonBg, borderRadius: radius.pill }]}
           />
         </View>
         <MotiView
-          from={{ opacity: 0.5 }}
-          animate={{ opacity: 1 }}
-          transition={{
-            type: "timing",
-            duration: 1000,
-            loop: true,
-          }}
-          style={styles.description}
+          {...skeletonProps}
+          style={[
+            styles.description,
+            { backgroundColor: skeletonBg, borderRadius: radius.sm, marginBottom: spacing.xs },
+          ]}
         />
         <MotiView
-          from={{ opacity: 0.5 }}
-          animate={{ opacity: 1 }}
-          transition={{
-            type: "timing",
-            duration: 1000,
-            loop: true,
-          }}
-          style={styles.descriptionShort}
+          {...skeletonProps}
+          style={[
+            styles.descriptionShort,
+            { backgroundColor: skeletonBg, borderRadius: radius.sm, marginBottom: spacing.lg },
+          ]}
         />
         <View style={styles.footer}>
           <MotiView
-            from={{ opacity: 0.5 }}
-            animate={{ opacity: 1 }}
-            transition={{
-              type: "timing",
-              duration: 1000,
-              loop: true,
-            }}
-            style={styles.price}
+            {...skeletonProps}
+            style={[styles.price, { backgroundColor: skeletonBg, borderRadius: radius.sm }]}
           />
           <MotiView
-            from={{ opacity: 0.5 }}
-            animate={{ opacity: 1 }}
-            transition={{
-              type: "timing",
-              duration: 1000,
-              loop: true,
-            }}
-            style={styles.button}
+            {...skeletonProps}
+            style={[styles.button, { backgroundColor: skeletonBg, borderRadius: radius.pill }]}
           />
         </View>
       </View>
@@ -90,9 +71,6 @@ export const SkeletonCard = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: theme.colors.white,
-    borderRadius: theme.radius.lg,
-    marginBottom: theme.spacing.lg,
     overflow: "hidden",
     elevation: 2,
     shadowColor: "#000",
@@ -103,42 +81,28 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: 180,
-    backgroundColor: theme.colors.graySoft,
   },
-  content: {
-    padding: theme.spacing.lg,
-  },
+  content: {},
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: theme.spacing.md,
   },
   title: {
     width: "60%",
     height: 24,
-    backgroundColor: theme.colors.graySoft,
-    borderRadius: theme.radius.sm,
   },
   badge: {
     width: 80,
     height: 24,
-    backgroundColor: theme.colors.graySoft,
-    borderRadius: theme.radius.pill,
   },
   description: {
     width: "100%",
     height: 14,
-    backgroundColor: theme.colors.graySoft,
-    borderRadius: theme.radius.sm,
-    marginBottom: theme.spacing.xs,
   },
   descriptionShort: {
     width: "80%",
     height: 14,
-    backgroundColor: theme.colors.graySoft,
-    borderRadius: theme.radius.sm,
-    marginBottom: theme.spacing.lg,
   },
   footer: {
     flexDirection: "row",
@@ -148,13 +112,9 @@ const styles = StyleSheet.create({
   price: {
     width: 60,
     height: 24,
-    backgroundColor: theme.colors.graySoft,
-    borderRadius: theme.radius.sm,
   },
   button: {
     width: 100,
     height: 36,
-    backgroundColor: theme.colors.graySoft,
-    borderRadius: theme.radius.pill,
   },
 });

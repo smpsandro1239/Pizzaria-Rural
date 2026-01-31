@@ -6,6 +6,7 @@ import { useAppTheme } from "../theme";
 import { Input } from "../components/Input";
 import { Button } from "../components/Button";
 import { Card } from "../components/Card";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useCartStore } from "../store/cart-store";
 import { RootStackParamList } from "../navigation/types";
 
@@ -13,8 +14,8 @@ type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 export const CheckoutScreen = () => {
   const navigation = useNavigation<NavigationProp>();
-  const { colors, spacing, typography } = useAppTheme();
-  const { items, total, clear, showToast } = useCartStore();
+  const { colors, spacing, typography, radius } = useAppTheme();
+  const { items, total, clear, showToast, addItem } = useCartStore();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({ name: "", phone: "", address: "" });
 
@@ -66,6 +67,34 @@ export const CheckoutScreen = () => {
         />
       </Card>
 
+      <View style={{ marginBottom: spacing.lg }}>
+        <Text style={{ ...typography.h3, color: colors.text, marginBottom: spacing.sm }}>Acompanhamentos?</Text>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          {SUGGESTIONS.map((s) => (
+            <TouchableOpacity
+              key={s.id}
+              onPress={() => addItem({ id: s.id, name: s.name, price: s.price })}
+              style={{
+                backgroundColor: colors.surface,
+                padding: spacing.md,
+                borderRadius: radius.md,
+                marginRight: spacing.sm,
+                borderWidth: 1,
+                borderColor: colors.border,
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              <MaterialCommunityIcons name={s.icon as any} size={20} color={colors.ruralRed} style={{ marginRight: spacing.xs }} />
+              <View>
+                <Text style={{ ...typography.caption, color: colors.text, fontWeight: "700" }}>{s.name}</Text>
+                <Text style={{ ...typography.caption, color: colors.ruralRed }}>+ {s.price.toFixed(2)} €</Text>
+              </View>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
+      </View>
+
       <Card style={{ ...styles.section, marginBottom: spacing.lg }}>
         <Text style={{ ...typography.h3, color: colors.text, marginBottom: spacing.md }}>Resumo</Text>
         {items.map((item) => (
@@ -88,6 +117,11 @@ export const CheckoutScreen = () => {
     </ScrollView>
   );
 };
+
+const SUGGESTIONS = [
+  { id: "s1", name: "Sumo Natural", price: 2.5, icon: "cup" },
+  { id: "s2", name: "Mousse de Chocolate", price: 3.5, icon: "food-variant" },
+];
 
 const styles = StyleSheet.create({
   container: {

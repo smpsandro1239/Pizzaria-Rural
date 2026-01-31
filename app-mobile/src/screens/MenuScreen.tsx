@@ -8,6 +8,7 @@ import { useAppTheme } from "../theme";
 import { Card } from "../components/Card";
 import { Badge } from "../components/Badge";
 import { SkeletonCard } from "../components/SkeletonCard";
+import { StarRating } from "../components/StarRating";
 import { Button } from "../components/Button";
 import { useCartStore } from "../store/cart-store";
 import { FloatingCart } from "../components/FloatingCart";
@@ -81,6 +82,9 @@ export const MenuScreen = () => {
             <View style={[styles.header, { marginBottom: spacing.xs }]}>
               <Text style={[styles.name, { ...typography.h3, color: colors.text }]}>{item.name}</Text>
               <Badge label={item.tag} />
+            </View>
+            <View style={{ marginBottom: spacing.sm }}>
+              <StarRating rating={item.rating} count={item.reviewsCount} />
             </View>
             <Text style={[styles.description, { ...typography.caption, color: colors.textSecondary, marginBottom: spacing.md }]}>
               {item.description}

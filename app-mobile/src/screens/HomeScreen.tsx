@@ -5,6 +5,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useAppTheme } from "../theme";
 import { Button } from "../components/Button";
 import { Card } from "../components/Card";
+import { StarRating } from "../components/StarRating";
 import { RootStackParamList } from "../navigation/types";
 import { pizzasApi } from "../api/pizzas";
 
@@ -66,6 +67,9 @@ export const HomeScreen = () => {
                 <Text style={[styles.pizzaName, { ...typography.h3, fontSize: 16, color: colors.text }]}>
                   {pizza.name}
                 </Text>
+                <View style={{ marginBottom: spacing.xs }}>
+                  <StarRating rating={pizza.rating} showCount={false} size={12} />
+                </View>
                 <Text style={[styles.pizzaPrice, { ...typography.body, color: colors.ruralRed }]}>
                   {pizza.price.toFixed(2)} €
                 </Text>

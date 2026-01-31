@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text } from "react-native";
 import { MotiView } from "moti";
-import { theme } from "../theme";
+import { useAppTheme } from "../theme";
 
 interface BadgeProps {
   label: string;
@@ -9,16 +9,18 @@ interface BadgeProps {
 }
 
 export const Badge: React.FC<BadgeProps> = ({ label, variant = "info" }) => {
+  const { colors, spacing, radius, typography } = useAppTheme();
+
   const getBackgroundColor = () => {
     switch (variant) {
       case "success":
-        return theme.colors.ruralGreen;
+        return colors.ruralGreen;
       case "warning":
         return "#f59e0b";
       case "error":
         return "#dc2626";
       default:
-        return theme.colors.ruralRed;
+        return colors.ruralRed;
     }
   };
 
@@ -30,23 +32,36 @@ export const Badge: React.FC<BadgeProps> = ({ label, variant = "info" }) => {
         type: "spring",
         damping: 14,
       }}
-      style={[styles.container, { backgroundColor: getBackgroundColor() }]}
+      style={[
+        styles.container,
+        {
+          backgroundColor: getBackgroundColor(),
+          paddingHorizontal: spacing.md,
+          paddingVertical: spacing.xs,
+          borderRadius: radius.pill,
+        },
+      ]}
     >
-      <Text style={styles.text}>{label}</Text>
+      <Text
+        style={[
+          styles.text,
+          {
+            ...typography.caption,
+            color: colors.white,
+          },
+        ]}
+      >
+        {label}
+      </Text>
     </MotiView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: theme.spacing.md,
-    paddingVertical: theme.spacing.xs,
-    borderRadius: theme.radius.pill,
     alignSelf: "flex-start",
   },
   text: {
-    ...theme.typography.caption,
-    color: theme.colors.white,
     fontWeight: "700",
   },
 });

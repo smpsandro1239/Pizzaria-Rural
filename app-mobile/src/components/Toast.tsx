@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { StyleSheet, Text } from "react-native";
 import { MotiView, AnimatePresence } from "moti";
-import { theme } from "../theme";
+import { useAppTheme } from "../theme";
 
 interface ToastProps {
   visible: boolean;
@@ -11,6 +11,8 @@ interface ToastProps {
 }
 
 export const Toast = ({ visible, message, type = "success", onHide }: ToastProps) => {
+  const { colors, spacing, radius, typography } = useAppTheme();
+
   useEffect(() => {
     if (visible) {
       const timer = setTimeout(() => {
@@ -29,10 +31,24 @@ export const Toast = ({ visible, message, type = "success", onHide }: ToastProps
           exit={{ opacity: 0, translateY: -50 }}
           style={[
             styles.container,
-            { backgroundColor: type === "success" ? "#4CAF50" : theme.colors.ruralRed },
+            {
+              backgroundColor: type === "success" ? "#4CAF50" : colors.ruralRed,
+              padding: spacing.md,
+              borderRadius: radius.md,
+            },
           ]}
         >
-          <Text style={styles.text}>{message}</Text>
+          <Text
+            style={[
+              styles.text,
+              {
+                ...typography.body,
+                color: colors.white,
+              },
+            ]}
+          >
+            {message}
+          </Text>
         </MotiView>
       )}
     </AnimatePresence>
@@ -45,8 +61,6 @@ const styles = StyleSheet.create({
     top: 50,
     left: 20,
     right: 20,
-    padding: theme.spacing.md,
-    borderRadius: theme.radius.md,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
@@ -58,8 +72,6 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
   },
   text: {
-    ...theme.typography.body,
-    color: theme.colors.white,
     fontWeight: "700",
     textAlign: "center",
   },

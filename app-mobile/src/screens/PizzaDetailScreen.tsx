@@ -5,6 +5,7 @@ import { Button } from "../components/Button";
 import { Badge } from "../components/Badge";
 import { AnimatedLoader } from "../components/AnimatedLoader";
 import { IngredientSource } from "../components/IngredientSource";
+import { StarRating } from "../components/StarRating";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useCartStore } from "../store/cart-store";
 import { pizzasApi } from "../api/pizzas";
@@ -76,9 +77,12 @@ export const PizzaDetailScreen = ({ route }: any) => {
         </TouchableOpacity>
       </View>
       <View style={[styles.content, { padding: spacing.xl, backgroundColor: colors.surface, borderTopLeftRadius: radius.lg, borderTopRightRadius: radius.lg, marginTop: -spacing.xl }]}>
-        <View style={[styles.header, { marginBottom: spacing.md }]}>
+        <View style={[styles.header, { marginBottom: spacing.sm }]}>
           <Text style={[styles.name, { ...typography.h1, color: colors.text }]}>{pizza.name}</Text>
           <Badge label={pizza.tag} />
+        </View>
+        <View style={{ marginBottom: spacing.md }}>
+          <StarRating rating={pizza.rating} count={pizza.reviewsCount} size={20} />
         </View>
         <Text style={[styles.description, { ...typography.body, color: colors.textSecondary, marginBottom: spacing.xxl }]}>
           {pizza.description}

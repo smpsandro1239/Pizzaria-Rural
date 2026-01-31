@@ -49,9 +49,11 @@
 - [x] **Sistema de Favoritos:** Permitir ao utilizador marcar pizzas preferidas (com ecrã dedicado).
  - [x] **Modo Escuro (Dark Mode):** Suporte para tema escuro automático em toda a app.
  - [x] **Origem dos Ingredientes (Rural Premium):** Exibir proveniência dos ingredientes nos detalhes.
- - [ ] **Filtros e Categorias:** Melhorar a navegação no menu com filtros por tipo de pizza.
- - [ ] **Sistema de Avaliações:** Permitir dar feedback e ver a nota média das pizzas.
- - [ ] **Progresso de Fidelidade:** Visualizar melhor o caminho até à oferta grátis.
+ - [x] **Filtros e Categorias:** Melhorar a navegação no menu com filtros por tipo de pizza.
+ - [x] **Progresso de Fidelidade:** Visualizar melhor o caminho até à oferta grátis (barra animada).
+ - [x] **Sistema de Avaliações (Rating):** Exibir a nota média em todos os ecrãs (Menu, Detalhes, Home).
+ - [x] **Venda Cruzada (Up-selling):** Sugerir acompanhamentos no checkout para aumentar o ticket médio.
+ - [ ] **Gestão de Moradas:** Guardar moradas favoritas para checkout num clique.
 - [ ] **Integração com Mapas:** Visualizar a entrega em tempo real no ecrã de Tracking.
  - [ ] **Promoções e Notificações:** Sistema de alertas para ofertas do dia.
  - [ ] **Internacionalização (i18n):** Preparar a app para outros idiomas.

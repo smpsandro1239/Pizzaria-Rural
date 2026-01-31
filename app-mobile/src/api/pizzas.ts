@@ -10,6 +10,8 @@ export type Pizza = {
   image: string;
   tag: string;
   category: PizzaCategory;
+  rating: number;
+  reviewsCount: number;
 };
 
 const MOCK_PIZZAS: Pizza[] = [
@@ -21,6 +23,8 @@ const MOCK_PIZZAS: Pizza[] = [
     image: "https://images.unsplash.com/photo-1574071318508-1cdbad80ad38?auto=format&fit=crop&w=300&q=80",
     tag: "Clássica",
     category: "Clássica",
+    rating: 4.8,
+    reviewsCount: 124,
   },
   {
     id: "2",
@@ -30,6 +34,8 @@ const MOCK_PIZZAS: Pizza[] = [
     image: "https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=300&q=80",
     tag: "Popular",
     category: "Carne",
+    rating: 4.9,
+    reviewsCount: 89,
   },
   {
     id: "3",
@@ -39,6 +45,8 @@ const MOCK_PIZZAS: Pizza[] = [
     image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=300&q=80",
     tag: "Vegetariana",
     category: "Vegetariana",
+    rating: 4.7,
+    reviewsCount: 56,
   },
   {
     id: "4",
@@ -48,6 +56,8 @@ const MOCK_PIZZAS: Pizza[] = [
     image: "https://images.unsplash.com/photo-1593504049359-7b7d92c7185c?auto=format&fit=crop&w=300&q=80",
     tag: "Nova",
     category: "Picante",
+    rating: 4.5,
+    reviewsCount: 32,
   },
 ];
 
