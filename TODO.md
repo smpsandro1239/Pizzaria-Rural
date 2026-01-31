@@ -58,6 +58,8 @@
 - [ ] **Internacionalização (i18n):** Preparar suporte para outros idiomas além de PT-PT.
 - [ ] **Otimização de Imagens:** Implementar `expo-image` para caching agressivo e performance superior.
 - [ ] **Integração Google Reviews:** Exibir feedback real de clientes na Home/Menu.
+- [ ] **Lottie Animations:** Adicionar animações vetoriais ricas no Tracking e Sucesso.
+- [ ] **Acessibilidade:** Auditoria completa para suporte a VoiceOver/TalkBack.
 
 ---
 
@@ -85,6 +87,7 @@
 - [ ] **Notificações:** WhatsApp API (UltraMsg/Twilio), Push Notifications (Expo).
 - [ ] **Pagamentos:** Stripe / IfThenPay (MBWay).
 - [ ] **Real-time:** Socket.io para tracking e chat de suporte.
+- [ ] **AI Recommendations:** Motor de sugestão baseado no histórico de encomendas do utilizador.
 
 ---
 
@@ -99,6 +102,7 @@
 - [ ] Implementar Testes End-to-End (E2E) com Detox ou Maestro.
 - [ ] Configurar monitorização de erros (Sentry).
 - [ ] Auditoria de Performance e Segurança.
+- [ ] **Performance Monitoring:** Configurar Datadog ou New Relic para telemetria avançada.
 
 ---
 
