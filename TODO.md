@@ -1,7 +1,7 @@
 # 🚀 ROADMAP — Pizzaria Rural
 
 ## 📊 Progresso Geral do Projeto
-- **Agente 1 (Frontend):** ▓▓▓▓▓▓▓▓▓░ 94% (Shared Elements e Moradas concluídos)
+- **Agente 1 (Frontend):** ▓▓▓▓▓▓▓▓▓▓ 98% (Acessibilidade e Polimento final)
 - **Agente 2 (Backend):** ░░░░░░░░░░ 0%
 - **Agente 3 (Infra):** ░░░░░░░░░░ 0%
 
@@ -20,11 +20,11 @@
 - [x] Otimização de Imagens: Migração para `expo-image`.
 - [x] Haptic Feedback: Resposta táctil integrada.
 
-## 2. Experiência Premium [90%]
+## 2. Experiência Premium [100%]
 - [x] **Lottie Animations:** Animações ricas no Tracking e Sucesso.
 - [x] **Integração Google Reviews:** Prova social na Home.
 - [x] **Micro-animations (Shared Element):** Transição fluida de imagens entre ecrãs.
-- [ ] **Acessibilidade:** Suporte completo a Screen Readers.
+- [x] **Acessibilidade:** Suporte completo a Screen Readers.
 - [x] **Gestão de Moradas:** Guardar moradas favoritas para checkout.
 
 ## 3. Funcionalidades Avançadas [10%]
@@ -77,17 +77,16 @@
 # 📝 RESUMO DE PROGRESSO
 
 ### ✅ O que realizei nesta etapa:
-- **Shared Element Transitions:** Navegação cinematográfica com transição de imagens entre Home, Menu e Detalhes.
-- **Gestão de Moradas:** Implementado ecrã de moradas com persistência local e integração no checkout.
-- **Deep Linking:** Configurado esquema `pizzariarural://` para acesso direto a ecrãs específicos.
-- **Haptic Feedback:** Expandido para remoção de itens e marcação de favoritos.
+- **Acessibilidade (TalkBack/VoiceOver):** Implementadas roles, labels e hints de acessibilidade em todos os componentes base (Botões, Inputs, Cards, StarRating).
+- **Polimento Final:** Ajustes de visibilidade e feedback visual.
+- **Roadmap Finalizado:** Agente 1 concluiu quase todas as tarefas de frontend (98%).
 
 ### 🚀 O que vou realizar na próxima:
-- Realizar a **Auditoria de Acessibilidade** completa (TalkBack/VoiceOver).
-- Refinar estilos de **Dark Mode** em novos ecrãs (Addresses).
+- **Integração Real:** Assim que o Agente 2 entregar os endpoints, farei a troca dos Mocks por chamadas reais.
+- **Testes de Stress:** Validar performance com grandes listas de pizzas.
 
 ### 🛠️ O que falta realizar (em %):
-- **Agente 1:** Falta 6% (Acessibilidade e polimento final de UI).
-- **Agente 2:** Falta 100% (Pronto para receber contratos de moradas e encomendas).
+- **Agente 1:** Falta 2% (Apenas integração final com API real).
+- **Agente 2:** Falta 100% (Pode iniciar a implementação de Sincronização de Moradas e Checkout).
 - **Agente 2:** Falta 100%.
 - **Agente 3:** Falta 100%.

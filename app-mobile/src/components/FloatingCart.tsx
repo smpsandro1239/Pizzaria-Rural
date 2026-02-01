@@ -21,7 +21,13 @@ export const FloatingCart: React.FC<FloatingCartProps> = ({ count, total, onPres
       exit={{ opacity: 0, translateY: 50 }}
       style={[styles.container, { bottom: spacing.xl, left: spacing.lg, right: spacing.lg }]}
     >
-      <TouchableOpacity style={[styles.button, { backgroundColor: colors.ruralGreen, padding: spacing.lg, borderRadius: radius.lg }]} onPress={onPress}>
+      <TouchableOpacity
+        style={[styles.button, { backgroundColor: colors.ruralGreen, padding: spacing.lg, borderRadius: radius.lg }]}
+        onPress={onPress}
+        accessibilityRole="button"
+        accessibilityLabel={`Carrinho com ${count} itens, total de ${total.toFixed(2)} euros`}
+        accessibilityHint="Ver carrinho e finalizar pedido"
+      >
         <View style={styles.left}>
           <View style={[styles.badge, { backgroundColor: colors.ruralRed }]}>
             <Text style={styles.badgeText}>{count}</Text>
