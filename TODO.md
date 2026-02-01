@@ -1,7 +1,7 @@
 # 🚀 ROADMAP — Pizzaria Rural
 
 ## 📊 Progresso Geral do Projeto
-- **Agente 1 (Frontend):** ▓▓▓▓▓▓▓▓▓░ 88% (Polimento e Prova Social concluídos)
+- **Agente 1 (Frontend):** ▓▓▓▓▓▓▓▓▓░ 94% (Shared Elements e Moradas concluídos)
 - **Agente 2 (Backend):** ░░░░░░░░░░ 0%
 - **Agente 3 (Infra):** ░░░░░░░░░░ 0%
 
@@ -20,16 +20,17 @@
 - [x] Otimização de Imagens: Migração para `expo-image`.
 - [x] Haptic Feedback: Resposta táctil integrada.
 
-## 2. Experiência Premium [75%]
+## 2. Experiência Premium [90%]
 - [x] **Lottie Animations:** Animações ricas no Tracking e Sucesso.
 - [x] **Integração Google Reviews:** Prova social na Home.
-- [ ] **Micro-animations (Shared Element):** Transição fluida de imagens entre ecrãs.
+- [x] **Micro-animations (Shared Element):** Transição fluida de imagens entre ecrãs.
 - [ ] **Acessibilidade:** Suporte completo a Screen Readers.
-- [ ] **Gestão de Moradas:** Guardar moradas favoritas para checkout.
+- [x] **Gestão de Moradas:** Guardar moradas favoritas para checkout.
 
-## 3. Funcionalidades Avançadas [0%]
+## 3. Funcionalidades Avançadas [10%]
 - [ ] **Integração com Mapas:** Visualização da entrega em tempo real.
 - [ ] **Autenticação Biométrica:** Login seguro via FaceID/Fingerprint.
+- [x] **Deep Linking:** Suporte inicial para abertura via URL.
 - [ ] **Chat de Suporte:** Interface para ajuda em tempo real com o Agente 2.
 - [ ] **Deep Linking:** Abrir a app diretamente em promoções ou encomendas.
 
@@ -48,6 +49,7 @@
 - [ ] Gestão de Encomendas (Workflow de estados).
 - [ ] Motor de Fidelidade e **Automatic Coupon Engine**.
 - [ ] **AI Recommendations:** Sugestões inteligentes no carrinho.
+- [ ] **Address API:** Endpoint para sincronizar moradas entre dispositivos.
 
 ## 3. Integrações & Real-time [0%]
 - [ ] Pagamentos (Stripe/MBWay) com Webhooks.
@@ -75,16 +77,17 @@
 # 📝 RESUMO DE PROGRESSO
 
 ### ✅ O que realizei nesta etapa:
-- **Animações Lottie:** Integrada animação vetorial de preparação de pizza no ecrã de Tracking para maior feedback visual.
-- **Prova Social (Google Reviews):** Implementado carrossel de avaliações reais na Home para aumentar a confiança do utilizador.
-- **Multicommit:** Realizados commits incrementais para garantir histórico limpo e organizado.
-- **Roadmap Premium:** Adicionadas tarefas de Deep Linking e KDS para expansão futura.
+- **Shared Element Transitions:** Navegação cinematográfica com transição de imagens entre Home, Menu e Detalhes.
+- **Gestão de Moradas:** Implementado ecrã de moradas com persistência local e integração no checkout.
+- **Deep Linking:** Configurado esquema `pizzariarural://` para acesso direto a ecrãs específicos.
+- **Haptic Feedback:** Expandido para remoção de itens e marcação de favoritos.
 
 ### 🚀 O que vou realizar na próxima:
-- Implementar **Shared Element Transitions** para imagens (Menu -> Detalhe).
-- Realizar a **Auditoria de Acessibilidade** completa.
+- Realizar a **Auditoria de Acessibilidade** completa (TalkBack/VoiceOver).
+- Refinar estilos de **Dark Mode** em novos ecrãs (Addresses).
 
 ### 🛠️ O que falta realizar (em %):
-- **Agente 1:** Falta 12% para fechar o ciclo de excelência (Shared Elements, Acessibilidade e Moradas).
+- **Agente 1:** Falta 6% (Acessibilidade e polimento final de UI).
+- **Agente 2:** Falta 100% (Pronto para receber contratos de moradas e encomendas).
 - **Agente 2:** Falta 100%.
 - **Agente 3:** Falta 100%.

@@ -3,6 +3,7 @@ export type RootStackParamList = {
   PizzaDetail: { id: string };
   Checkout: undefined;
   Tracking: { orderId: string };
+  Addresses: undefined;
 };
 
 export type MainTabsParamList = {

@@ -10,6 +10,15 @@ export type CartItem = {
   quantity: number;
 };
 
+export type Address = {
+  id: string;
+  label: string;
+  street: string;
+  city: string;
+  zipCode: string;
+  isDefault: boolean;
+};
+
 type CartState = {
   items: CartItem[];
   addItem: (item: Omit<CartItem, "quantity">) => void;
@@ -20,6 +29,11 @@ type CartState = {
   favorites: string[]; // IDs das pizzas favoritas
   toggleFavorite: (id: string) => void;
   isFavorite: (id: string) => boolean;
+  // Moradas
+  addresses: Address[];
+  addAddress: (address: Omit<Address, "id">) => void;
+  removeAddress: (id: string) => void;
+  setDefaultAddress: (id: string) => void;
   // Feedback
   toast: { visible: boolean; message: string; type: "success" | "error" };
   showToast: (message: string, type?: "success" | "error") => void;
@@ -31,6 +45,7 @@ export const useCartStore = create<CartState>()(
     (set, get) => ({
       items: [],
       favorites: [],
+      addresses: [],
       toggleFavorite: (id) =>
         set((state) => {
           const isFav = state.favorites.includes(id);
@@ -38,6 +53,7 @@ export const useCartStore = create<CartState>()(
             ? state.favorites.filter((favId) => favId !== id)
             : [...state.favorites, id];
 
+          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
           return { favorites: newFavorites };
         }),
       isFavorite: (id) => get().favorites.includes(id),
@@ -57,11 +73,32 @@ export const useCartStore = create<CartState>()(
         get().showToast(`${item.name} adicionada!`);
       },
       removeItem: (id) =>
-        set((state) => ({
-          items: state.items.filter((i) => i.id !== id),
-        })),
+        set((state) => {
+          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+          return {
+            items: state.items.filter((i) => i.id !== id),
+          };
+        }),
       clear: () => set({ items: [] }),
       total: () => get().items.reduce((sum, i) => sum + i.price * i.quantity, 0),
+      addAddress: (address) =>
+        set((state) => ({
+          addresses: [
+            ...state.addresses,
+            { ...address, id: Math.random().toString(36).substr(2, 9) },
+          ],
+        })),
+      removeAddress: (id) =>
+        set((state) => ({
+          addresses: state.addresses.filter((a) => a.id !== id),
+        })),
+      setDefaultAddress: (id) =>
+        set((state) => ({
+          addresses: state.addresses.map((a) => ({
+            ...a,
+            isDefault: a.id === id,
+          })),
+        })),
       toast: { visible: false, message: "", type: "success" },
       showToast: (message, type = "success") => set({ toast: { visible: true, message, type } }),
       hideToast: () => set((state) => ({ toast: { ...state.toast, visible: false } })),
@@ -69,7 +106,11 @@ export const useCartStore = create<CartState>()(
     {
       name: "cart-storage",
       storage: createJSONStorage(() => AsyncStorage),
-      partialize: (state) => ({ items: state.items, favorites: state.favorites }), // Persistir itens e favoritos
+      partialize: (state) => ({
+        items: state.items,
+        favorites: state.favorites,
+        addresses: state.addresses,
+      }), // Persistir itens, favoritos e moradas
     }
   )
 );

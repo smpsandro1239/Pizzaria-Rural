@@ -15,9 +15,13 @@ type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 export const CheckoutScreen = () => {
   const navigation = useNavigation<NavigationProp>();
   const { colors, spacing, typography, radius } = useAppTheme();
-  const { items, total, clear, showToast, addItem } = useCartStore();
+  const { items, total, clear, showToast, addItem, addresses } = useCartStore();
   const [loading, setLoading] = useState(false);
-  const [formData, setFormData] = useState({ name: "", phone: "", address: "" });
+  const [formData, setFormData] = useState({
+    name: "Sandro",
+    phone: "912345678",
+    address: addresses.find(a => a.isDefault)?.street || ""
+  });
 
   const handleOrder = () => {
     if (!formData.name || !formData.phone || !formData.address) {
@@ -65,6 +69,29 @@ export const CheckoutScreen = () => {
           value={formData.address}
           onChangeText={(text) => setFormData({ ...formData, address: text })}
         />
+        {addresses.length > 0 && (
+          <View style={{ marginTop: spacing.md }}>
+            <Text style={{ ...typography.caption, color: colors.textSecondary, marginBottom: spacing.sm }}>Ou escolhe uma morada guardada:</Text>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+              {addresses.map((a) => (
+                <TouchableOpacity
+                  key={a.id}
+                  onPress={() => setFormData({ ...formData, address: a.street })}
+                  style={{
+                    padding: spacing.sm,
+                    backgroundColor: formData.address === a.street ? colors.ruralRed + "20" : colors.background,
+                    borderRadius: radius.sm,
+                    marginRight: spacing.sm,
+                    borderWidth: 1,
+                    borderColor: formData.address === a.street ? colors.ruralRed : colors.border,
+                  }}
+                >
+                  <Text style={{ ...typography.caption, color: formData.address === a.street ? colors.ruralRed : colors.text }}>{a.label}</Text>
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
+          </View>
+        )}
       </Card>
 
       <View style={{ marginBottom: spacing.lg }}>

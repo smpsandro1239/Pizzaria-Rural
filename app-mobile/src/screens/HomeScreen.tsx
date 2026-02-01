@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ActivityIndicator } from "react-native";
 import { Image } from "expo-image";
+import Animated from "react-native-reanimated";
 import { useTranslation } from "react-i18next";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -67,12 +68,14 @@ export const HomeScreen = () => {
                 style={{ ...styles.pizzaCard, width: 200, marginRight: spacing.lg }}
                 onPress={() => navigation.navigate("PizzaDetail", { id: pizza.id })}
               >
-                <Image
-                  source={{ uri: pizza.image }}
-                  style={[styles.pizzaImage, { borderRadius: radius.md, marginBottom: spacing.sm }]}
-                  contentFit="cover"
-                  transition={200}
-                />
+                <Animated.View sharedTransitionTag={`pizza-image-${pizza.id}`}>
+                  <Image
+                    source={{ uri: pizza.image }}
+                    style={[styles.pizzaImage, { borderRadius: radius.md, marginBottom: spacing.sm }]}
+                    contentFit="cover"
+                    transition={200}
+                  />
+                </Animated.View>
                 <Text style={[styles.pizzaName, { ...typography.h3, fontSize: 16, color: colors.text }]}>
                   {pizza.name}
                 </Text>

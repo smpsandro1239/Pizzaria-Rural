@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, ActivityIndicator, ScrollView } from "react-native";
 import { Image } from "expo-image";
 import { MotiView } from "moti";
+import Animated from "react-native-reanimated";
 import { useTranslation } from "react-i18next";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -69,12 +70,14 @@ export const MenuScreen = () => {
       >
         <Card style={styles.card} onPress={() => navigation.navigate("PizzaDetail", { id: item.id })}>
           <View style={styles.imageContainer}>
-            <Image
-              source={{ uri: item.image }}
-              style={styles.image}
-              contentFit="cover"
-              transition={300}
-            />
+            <Animated.View sharedTransitionTag={`pizza-image-${item.id}`}>
+              <Image
+                source={{ uri: item.image }}
+                style={styles.image}
+                contentFit="cover"
+                transition={300}
+              />
+            </Animated.View>
             <TouchableOpacity
               style={styles.favoriteButton}
               onPress={() => toggleFavorite(item.id)}

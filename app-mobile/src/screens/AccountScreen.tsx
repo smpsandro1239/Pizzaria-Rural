@@ -1,9 +1,14 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
 import { MotiView } from "moti";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useAppTheme } from "../theme";
 import { Card } from "../components/Card";
 import { Badge } from "../components/Badge";
+import { RootStackParamList } from "../navigation/types";
+
+type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 const HISTORY = [
   { id: "1", date: "25 Jan 2024", total: 15.5, status: "Entregue" },
@@ -11,6 +16,7 @@ const HISTORY = [
 ];
 
 export const AccountScreen = () => {
+  const navigation = useNavigation<NavigationProp>();
   const { colors, spacing, typography, radius } = useAppTheme();
 
   return (
@@ -56,6 +62,22 @@ export const AccountScreen = () => {
           </View>
         </Card>
       ))}
+
+      <Card style={{ ...styles.settingsCard, marginTop: spacing.lg }}>
+        <Text style={[styles.cardTitle, { ...typography.h3, color: colors.text, marginBottom: spacing.md }]}>Configurações</Text>
+        <TouchableOpacity
+          style={[styles.settingRow, { marginBottom: spacing.md }]}
+          onPress={() => navigation.navigate("Addresses")}
+        >
+          <Text style={[styles.settingLabel, { ...typography.body, color: colors.text }]}>📍 Minhas Moradas</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={[styles.settingRow, { marginBottom: spacing.md }]}>
+          <Text style={[styles.settingLabel, { ...typography.body, color: colors.text }]}>🔔 Notificações</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.settingRow}>
+          <Text style={[styles.settingLabel, { ...typography.body, color: colors.text }]}>🌓 Modo Escuro</Text>
+        </TouchableOpacity>
+      </Card>
 
       <TouchableOpacity style={[styles.logoutButton, { marginTop: spacing.xl }]}>
         <Text style={[styles.logoutText, { ...typography.body, color: colors.error, fontWeight: "600" }]}>Sair da Conta</Text>
@@ -116,6 +138,10 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
   },
   repeatText: {},
+  settingsCard: {},
+  cardTitle: {},
+  settingRow: {},
+  settingLabel: {},
   logoutButton: {
     alignItems: "center",
   },

@@ -11,6 +11,7 @@ import { AccountScreen } from "../screens/AccountScreen";
 import { CheckoutScreen } from "../screens/CheckoutScreen";
 import { TrackingScreen } from "../screens/TrackingScreen";
 import { PizzaDetailScreen } from "../screens/PizzaDetailScreen";
+import { AddressesScreen } from "../screens/AddressesScreen";
 import { Toast } from "../components/Toast";
 import { useCartStore } from "../store/cart-store";
 
@@ -128,6 +129,11 @@ export const Navigation = () => {
         name="Tracking"
         component={TrackingScreen}
         options={{ title: "Seguir Pedido" }}
+      />
+      <Stack.Screen
+        name="Addresses"
+        component={AddressesScreen}
+        options={{ title: "Minhas Moradas" }}
       />
     </Stack.Navigator>
     <Toast
