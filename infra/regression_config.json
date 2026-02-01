@@ -1,0 +1,19 @@
+{
+  "project": "Pizzaria Rural",
+  "regression_suites": [
+    {
+      "name": "API Snapshot",
+      "endpoints": [
+        "/api/pizzas",
+        "/api/ingredients"
+      ],
+      "compare_schema": true
+    },
+    {
+      "name": "Frontend Visual",
+      "tool": "Playwright",
+      "threshold": 0.05
+    }
+  ],
+  "auto_run_on_pr": true
+}

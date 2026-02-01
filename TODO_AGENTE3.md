@@ -1,5 +1,5 @@
 # TODO Agente 3 — Infraestrutura & Automação
-**Progresso Total: 92%**
+**Progresso Total: 96%**
 
 ## 1. Setup GitHub (100%)
 - [x] Inicializar estrutura do repositório (`/app-mobile`, `/backend`, `/infra`, `/docs`)
@@ -57,7 +57,7 @@
 - [x] Criar estratégia e automação de Backup da Base de Dados (`docs/backup_restauro.md`)
 - [x] Implementar Monitorização de Uptime (Heartbeat via `.github/workflows/uptime-heartbeat.yml`)
 - [x] Configurar notificações de falha de CI para Slack/Discord (Workflow + `infra/notify_failure.sh`)
-- [ ] Criar ambiente de Sandbox/Preview para Pull Requests
+- [x] Criar ambiente de Sandbox/Preview para Pull Requests (Workflow `.github/workflows/pr-preview.yml`)
 - [x] Implementar Testes End-to-End (E2E) com Playwright (`e2e/`)
 - [x] Configurar Deploy Automático para Render (via `render.yaml` Blueprints)
 - [x] Deploy inicial em Produção (`https://pizzaria-rural-backend.onrender.com`)

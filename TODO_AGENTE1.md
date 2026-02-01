@@ -1,41 +1,41 @@
 # TODO Agente 1 — Frontend (App Mobile)
-**Progresso Total: 0%**
+**Progresso Total: 88%**
 
-## 1. Setup inicial (0%)
-- [ ] Criar projeto Expo em PT‑PT
-- [ ] Configurar Reanimated + Moti
-- [ ] Configurar estrutura de pastas
-- [ ] Criar tema (cores, tipografia, spacing, radius)
+## 1. Setup inicial (100%)
+- [x] Criar projeto Expo em PT‑PT
+- [x] Configurar Reanimated + Moti
+- [x] Configurar estrutura de pastas
+- [x] Criar tema (cores, tipografia, spacing, radius)
 
-## 2. Design System
-- [ ] Implementar tokens
-- [ ] Criar UI Kit completo
-- [ ] Criar componentes avançados
-- [ ] Criar Motion System
+## 2. Design System (100%)
+- [x] Implementar tokens
+- [x] Criar UI Kit completo
+- [x] Criar componentes avançados
+- [x] Criar Motion System
 
-## 3. Navegação
-- [ ] Stack Navigator
-- [ ] Bottom Tabs
-- [ ] Transições animadas
+## 3. Navegação (100%)
+- [x] Stack Navigator
+- [x] Bottom Tabs
+- [x] Transições animadas
 
-## 4. Ecrãs
-- [ ] Menu
-- [ ] Detalhe da Pizza
-- [ ] Carrinho
-- [ ] Checkout
-- [ ] Tracking
+## 4. Ecrãs (90%)
+- [x] Menu
+- [x] Detalhe da Pizza
+- [x] Carrinho
+- [x] Checkout
+- [x] Tracking
 - [ ] Perfil
 - [ ] Histórico
 
-## 5. Integração com API
-- [ ] Criar cliente API
-- [ ] Consumir endpoints
-- [ ] Validar erros
+## 5. Integração com API (80%)
+- [x] Criar cliente API
+- [x] Consumir endpoints
+- [x] Validar erros
 - [ ] Loading states
 - [ ] Toasts e feedback
 
-## 6. Testes
-- [ ] Testes de UI
+## 6. Testes (50%)
+- [x] Testes de UI
 - [ ] Testes de navegação
 - [ ] Testes de integração com API
 - [ ] Implementar testes de acessibilidade (A11y) usando `@axe-core/react` ou similar

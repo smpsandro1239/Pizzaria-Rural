@@ -1,41 +1,41 @@
 # TODO Agente 2 — Backend (API + BD)
-**Progresso Total: 0%**
+**Progresso Total: 100%**
 
-## 1. Setup inicial (0%)
-- [ ] Criar projeto NestJS
-- [ ] Configurar Prisma
-- [ ] Criar base de dados PostgreSQL
-- [ ] Criar estrutura modular
+## 1. Setup inicial (100%)
+- [x] Criar projeto NestJS
+- [x] Configurar Prisma
+- [x] Criar base de dados PostgreSQL
+- [x] Criar estrutura modular
 
-## 2. Modelos
-- [ ] Utilizador
-- [ ] Pizza
-- [ ] Ingredientes
-- [ ] Encomenda
-- [ ] Estado da encomenda
-- [ ] Pagamentos
+## 2. Modelos (100%)
+- [x] Utilizador
+- [x] Pizza
+- [x] Ingredientes
+- [x] Encomenda
+- [x] Estado da encomenda
+- [x] Pagamentos
 
-## 3. Endpoints
-- [ ] Autenticação
-- [ ] Listar pizzas
-- [ ] Criar encomenda
-- [ ] Atualizar estado
-- [ ] Tracking
-- [ ] Histórico
+## 3. Endpoints (100%)
+- [x] Autenticação
+- [x] Listar pizzas
+- [x] Criar encomenda
+- [x] Atualizar estado
+- [x] Tracking
+- [x] Histórico
 
-## 4. Notificações
-- [ ] WhatsApp
-- [ ] Email fallback
+## 4. Notificações (100%)
+- [x] WhatsApp
+- [x] Email fallback
 
-## 5. Documentação
-- [ ] Swagger/OpenAPI
-- [ ] Contratos para o frontend
+## 5. Documentação (100%)
+- [x] Swagger/OpenAPI
+- [x] Contratos para o frontend
 
-## 6. Testes
-- [ ] Unitários
-- [ ] Integração
-- [ ] Carga (Testes de stress integrados via k6)
-- [ ] Otimizar tempo de resposta dos endpoints críticos (Menu e Checkout)
+## 6. Testes (100%)
+- [x] Unitários
+- [x] Integração
+- [x] Carga (Testes de stress integrados via k6)
+- [x] Otimizar tempo de resposta dos endpoints críticos (Menu e Checkout)
 
 ## 💡 Melhorias Infra (Agente 3)
 - [ ] Implementar endpoint `GET /health` para o Heartbeat de Uptime

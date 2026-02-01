@@ -1,0 +1,19 @@
+name: Orquestrador — PR Preview
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Simular Deploy de Preview
+        run: |
+          echo "A criar ambiente temporário para o PR #${{ github.event.number }}..."
+          # Aqui poderíamos usar o Render Preview Groups ou um ambiente efêmero em Docker
+          echo "Ambiente pronto: https://preview-pr-${{ github.event.number }}.pizzaria-rural.com"
+          echo "Nota: Agente 3 configurou o esqueleto, integração real depende de tokens de infra de produção."
