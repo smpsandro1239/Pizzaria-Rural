@@ -5,8 +5,38 @@ import { PrismaService } from '../prisma/prisma.service';
 export class PizzasService {
   constructor(private prisma: PrismaService) {}
 
-  async findAll() {
+  async findAll(query?: {
+    minPrice?: number;
+    maxPrice?: number;
+    search?: string;
+    ingredientId?: string;
+  }) {
+    const { minPrice, maxPrice, search, ingredientId } = query || {};
+
     return this.prisma.pizza.findMany({
+      where: {
+        AND: [
+          search
+            ? {
+                OR: [
+                  { name: { contains: search } },
+                  { description: { contains: search } },
+                ],
+              }
+            : {},
+          minPrice ? { basePrice: { gte: minPrice } } : {},
+          maxPrice ? { basePrice: { lte: maxPrice } } : {},
+          ingredientId
+            ? {
+                ingredients: {
+                  some: {
+                    ingredientId: ingredientId,
+                  },
+                },
+              }
+            : {},
+        ],
+      },
       include: {
         ingredients: {
           include: {
@@ -28,6 +58,11 @@ export class PizzasService {
           },
         },
         sizes: true,
+        reviews: {
+          take: 5,
+          orderBy: { createdAt: 'desc' },
+          include: { user: { select: { name: true } } },
+        },
       },
     });
   }

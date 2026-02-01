@@ -18,15 +18,15 @@
 - [ ] Transições animadas entre ecrãs
 
 ## 4. Ecrãs & Funcionalidades
-- [ ] **Menu**: Listagem de pizzas com animações
+- [ ] **Menu**: Listagem de pizzas com animações e **Filtros Avançados** (Preço, Ingredientes) (Novo)
 - [ ] **Detalhe da Pizza**: Escolha de **Tamanhos** e **Extras**
 - [ ] **Carrinho**: Gestão de itens e cálculo em tempo real
 - [ ] **Checkout**: Fluxo multi-passo com aplicação de **Cupões de Desconto**
-- [ ] **Checkout**: Opção de usar **Pontos de Fidelização** para desconto (API Pronta)
+- [ ] **Checkout**: Opção de usar **Pontos de Fidelização** para desconto
 - [ ] **Checkout**: Integração com **Pagamento por Cartão (Stripe)**
-- [ ] **Checkout**: Integração com **Pagamento MBWAY** (API Pronta)
-- [ ] **Tracking**: Acompanhamento do estado da encomenda em **Tempo Real (WebSockets)** (Novo: Integrar Socket.io)
-- [ ] **Perfil**: Histórico de encomendas e consulta de **Pontos de Fidelização**
+- [ ] **Checkout**: Integração com **Pagamento MBWAY**
+- [ ] **Tracking**: Acompanhamento do estado da encomenda em **Tempo Real (WebSockets)**
+- [ ] **Perfil**: Histórico de encomendas, consulta de **Pontos** e **Alteração de Password** (Novo)
 - [ ] **Avaliações**: Ecrã para avaliar pizzas e serviço após entrega
 - [ ] **Dashboard Admin**: Interface para métricas e gestão (Opcional/Admin)
 - [ ] **Gestão de Stock**: Ecrã para Admin listar e repor ingredientes
@@ -39,7 +39,8 @@
 - [ ] Integração com Endpoint de Avaliações
 - [ ] Integração com Endpoints de Dashboard e Stock
 - [ ] Integração com Endpoints de Pagamento (Stripe e MBWAY)
-- [ ] **Conexão WebSocket (Socket.io-client)** para eventos 'orderStatusUpdated' (Novo)
+- [ ] Integração com **Filtros de Pesquisa** (Query Params) (Novo)
+- [ ] **Conexão WebSocket (Socket.io-client)** para eventos 'orderStatusUpdated'
 - [ ] Fluxo de criação de encomenda
 - [ ] Loading states e Toasts de feedback
 
