@@ -1,0 +1,31 @@
+{
+  "common": {
+    "welcome": "Welcome",
+    "order_now": "Order Now",
+    "menu": "Menu",
+    "cart": "Cart",
+    "favorites": "Favorites",
+    "account": "Account",
+    "total": "Total",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Retry"
+  },
+  "home": {
+    "hero_title": "Traditional pizza with village flavor",
+    "hero_subtitle": "Made fresh, delivered hot to your door.",
+    "favorites_title": "Our Favorites",
+    "why_us_title": "Why Pizzaria Rural?",
+    "fast_delivery": "Fast Delivery",
+    "fast_delivery_desc": "Hunger doesn't wait, and neither do we.",
+    "fresh_ingredients": "Fresh Ingredients",
+    "fresh_ingredients_desc": "Straight from the garden to your plate."
+  },
+  "menu": {
+    "all": "All",
+    "meat": "Meat",
+    "veggie": "Veggie",
+    "premium": "Premium",
+    "add_to_cart": "Add"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "common": {
+    "welcome": "Bem-vindo",
+    "order_now": "Pedir Agora",
+    "menu": "Menu",
+    "cart": "Carrinho",
+    "favorites": "Favoritos",
+    "account": "Conta",
+    "total": "Total",
+    "loading": "A carregar...",
+    "error": "Ocorreu um erro",
+    "retry": "Tentar novamente"
+  },
+  "home": {
+    "hero_title": "Pizza tradicional com sabor de aldeia",
+    "hero_subtitle": "Feita no momento, entregue quentinha à sua porta.",
+    "favorites_title": "As Nossas Favoritas",
+    "why_us_title": "Porquê a Pizzaria Rural?",
+    "fast_delivery": "Entrega Rápida",
+    "fast_delivery_desc": "Fome não espera, nós também não.",
+    "fresh_ingredients": "Ingredientes Frescos",
+    "fresh_ingredients_desc": "Diretamente da horta para o seu prato."
+  },
+  "menu": {
+    "all": "Todas",
+    "meat": "Carne",
+    "veggie": "Vegetariana",
+    "premium": "Premium",
+    "add_to_cart": "Adicionar"
+  }
+}

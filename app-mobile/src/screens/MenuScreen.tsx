@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity, ActivityIndicator, ScrollView } from "react-native";
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, ActivityIndicator, ScrollView } from "react-native";
+import { Image } from "expo-image";
 import { MotiView } from "moti";
+import { useTranslation } from "react-i18next";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -20,6 +22,7 @@ type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 const CATEGORIES: PizzaCategory[] = ["Todas", "Clássica", "Carne", "Vegetariana", "Picante"];
 
 export const MenuScreen = () => {
+  const { t } = useTranslation();
   const navigation = useNavigation<NavigationProp>();
   const { colors, spacing, typography, radius } = useAppTheme();
   const { addItem, items, total, favorites, toggleFavorite } = useCartStore();
@@ -37,7 +40,7 @@ export const MenuScreen = () => {
       setPizzas(data);
       setFilteredPizzas(data);
     } catch (err) {
-      setError("Não foi possível carregar o menu. Tente novamente.");
+      setError(t("common.error"));
     } finally {
       setLoading(false);
     }
@@ -66,7 +69,12 @@ export const MenuScreen = () => {
       >
         <Card style={styles.card} onPress={() => navigation.navigate("PizzaDetail", { id: item.id })}>
           <View style={styles.imageContainer}>
-            <Image source={{ uri: item.image }} style={styles.image} />
+            <Image
+              source={{ uri: item.image }}
+              style={styles.image}
+              contentFit="cover"
+              transition={300}
+            />
             <TouchableOpacity
               style={styles.favoriteButton}
               onPress={() => toggleFavorite(item.id)}
@@ -128,7 +136,7 @@ export const MenuScreen = () => {
         <Text style={[styles.errorText, { ...typography.body, color: colors.error, marginBottom: spacing.lg }]}>
           {error}
         </Text>
-        <Button label="Tentar Novamente" onPress={fetchPizzas} />
+        <Button label={t("common.retry")} onPress={fetchPizzas} />
       </View>
     );
   }

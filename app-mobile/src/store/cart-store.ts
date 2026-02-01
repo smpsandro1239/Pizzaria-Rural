@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as Haptics from "expo-haptics";
 
 export type CartItem = {
   id: string;
@@ -52,6 +53,7 @@ export const useCartStore = create<CartState>()(
           }
           return { items: [...state.items, { ...item, quantity: 1 }] };
         });
+        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
         get().showToast(`${item.name} adicionada!`);
       },
       removeItem: (id) =>
