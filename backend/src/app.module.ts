@@ -12,6 +12,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { ReviewsModule } from './reviews/reviews.module';
 import { IngredientsModule } from './ingredients/ingredients.module';
 import { PaymentsModule } from './payments/payments.module';
+import { HealthModule } from './health/health.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { PaymentsModule } from './payments/payments.module';
     ReviewsModule,
     IngredientsModule,
     PaymentsModule,
+    HealthModule,
   ],
   controllers: [AppController],
   providers: [AppService, NotificationsService],

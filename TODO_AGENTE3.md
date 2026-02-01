@@ -15,11 +15,12 @@
 - [ ] Build mobile
 - [ ] Deploy backend
 - [ ] Deploy documentação
+- [ ] **Automatizar Testes de Carga em CI** (Novo: usando `backend/test/load-test.js`)
 
 ## 3. QA
 - [ ] Testes end‑to‑end
 - [ ] Testes de regressão
-- [ ] Testes de performance
+- [ ] **Monitorização de Performance** (Novo: k6 + Grafana)
 
 ## 4. Infraestrutura
 - [x] Docker (`backend/Dockerfile`)
@@ -32,7 +33,7 @@
   - [ ] `WHATSAPP_API_KEY` (WhatsApp Real)
   - [ ] `STRIPE_SECRET_KEY` (Pagamentos Reais)
   - [ ] `STRIPE_WEBHOOK_SECRET` (Webhooks Pagamentos)
-  - [ ] `IFTHENPAY_MBWAY_KEY` (Novo: Para MBWAY Real)
+  - [ ] `IFTHENPAY_MBWAY_KEY` (MBWAY Real)
 - [ ] Monitorização
 - [ ] Logs centralizados
 
