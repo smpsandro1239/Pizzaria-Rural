@@ -6,6 +6,7 @@ import { useAppTheme } from "../theme";
 import { Input } from "../components/Input";
 import { Button } from "../components/Button";
 import { Card } from "../components/Card";
+import { SwipeableRow } from "../components/SwipeableRow";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useCartStore } from "../store/cart-store";
 import { RootStackParamList } from "../navigation/types";
@@ -15,7 +16,7 @@ type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 export const CheckoutScreen = () => {
   const navigation = useNavigation<NavigationProp>();
   const { colors, spacing, typography, radius } = useAppTheme();
-  const { items, total, clear, showToast, addItem, addresses } = useCartStore();
+  const { items, total, clear, showToast, addItem, removeItem, addresses } = useCartStore();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "Sandro",
@@ -123,12 +124,14 @@ export const CheckoutScreen = () => {
       </View>
 
       <Card style={{ ...styles.section, marginBottom: spacing.lg }}>
-        <Text style={{ ...typography.h3, color: colors.text, marginBottom: spacing.md }}>Resumo</Text>
+        <Text style={{ ...typography.h3, color: colors.text, marginBottom: spacing.md }}>Resumo (Desliza para remover)</Text>
         {items.map((item) => (
-          <View key={item.id} style={[styles.row, { marginBottom: spacing.sm }]}>
-            <Text style={[typography.body, { color: colors.text }]}>{item.quantity}x {item.name}</Text>
-            <Text style={[typography.body, { color: colors.text }]}>{(item.price * item.quantity).toFixed(2)} €</Text>
-          </View>
+          <SwipeableRow key={item.id} onDelete={() => removeItem(item.id)}>
+            <View style={[styles.row, { marginBottom: spacing.sm, backgroundColor: colors.surface, padding: spacing.xs, borderRadius: 8 }]}>
+              <Text style={[typography.body, { color: colors.text }]}>{item.quantity}x {item.name}</Text>
+              <Text style={[typography.body, { color: colors.text }]}>{(item.price * item.quantity).toFixed(2)} €</Text>
+            </View>
+          </SwipeableRow>
         ))}
         <View style={[styles.row, { marginBottom: spacing.sm }]}>
           <Text style={[typography.body, { color: colors.text }]}>Taxa de Entrega</Text>
