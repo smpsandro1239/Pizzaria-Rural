@@ -6,6 +6,7 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { PizzasModule } from './pizzas/pizzas.module';
 import { OrdersModule } from './orders/orders.module';
+import { NotificationsService } from './notifications/notifications.service';
 import { NotificationsModule } from './notifications/notifications.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { ReviewsModule } from './reviews/reviews.module';
@@ -15,6 +16,7 @@ import { HealthModule } from './health/health.module';
 import { EventsModule } from './events/events.module';
 import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
+import { PrometheusModule } from '@willsoto/nestjs-prometheus';
 
 @Module({
   imports: [
@@ -24,6 +26,9 @@ import { APP_GUARD } from '@nestjs/core';
         limit: 100,
       },
     ]),
+    PrometheusModule.register({
+      path: '/metrics',
+    }),
     PrismaModule,
     AuthModule,
     UsersModule,
@@ -40,6 +45,7 @@ import { APP_GUARD } from '@nestjs/core';
   controllers: [AppController],
   providers: [
     AppService,
+    NotificationsService,
     {
       provide: APP_GUARD,
       useClass: ThrottlerGuard,

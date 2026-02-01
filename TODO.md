@@ -1,43 +1,21 @@
-# 📌 TODOLIST — Agente 1 (Frontend App Mobile)
+# 🍕 Pizzaria Rural — Estado Geral do Projeto
 
-## 1. Setup inicial
-- [x] Criar projeto Expo em PT‑PT
-- [x] Configurar Reanimated + Moti
-- [x] Configurar estrutura de pastas
-- [x] Criar tema (cores, tipografia, spacing, radius)
+Este ficheiro resume o progresso de todos os agentes. Para detalhes, consultar os ficheiros específicos `TODO_AGENTE[1-3].md`.
 
-## 2. Design System
-- [x] Implementar tokens
-- [x] Criar UI Kit completo (Botão, Input, Card, Badge)
-- [x] Criar componentes avançados (AnimatedLoader)
-- [x] Criar Motion System (Tokens integrados nos componentes)
+### 🧠 Agente 1 (Frontend)
+- **Progresso: 88%** 📈
+- **Próximo**: Integração final de MBWAY e polimento de UI/UX (Feedbacks).
+- **Bloqueios**: Nenhum.
 
-## 3. Navegação
-- [x] Stack Navigator
-- [x] Bottom Tabs
-- [x] Transições animadas (Configuradas no Stack Navigator)
+### 🧠 Agente 2 (Backend)
+- **Progresso: 100%** 🎉
+- **Concluído**: API completa, Segura (Rate Limit), Tempo Real (WebSockets), Pagamentos (Stripe/MBWAY), Stock, Dashboard, Health Check e Metrics (Prometheus).
+- **Próximo**: Apoio aos outros agentes e manutenção.
 
-## 4. Ecrãs
-- [x] Home (Hero + Destaques)
-- [x] Menu (Lista de Pizzas)
-- [x] Detalhe da Pizza (PizzaDetailScreen)
-- [x] Carrinho (FloatingCart component)
-- [x] Checkout (Formulário + Resumo)
-- [x] Tracking (Estado da Encomenda)
-- [x] Perfil (Dados do utilizador)
-- [x] Histórico (Pedidos anteriores)
+### 🧠 Agente 3 (Infraestrutura)
+- **Progresso: 92%** 📈
+- **Concluído**: Projeto online (Render), Monitorização base, Documentação de Integração.
+- **Próximo**: Configurar Grafana para as métricas do backend e base de dados PostgreSQL definitiva.
 
-## 5. Integração com API
-- [x] Criar cliente API (Axios + src/api/client.ts)
-- [x] Consumir endpoints (Pizzas e Encomendas configurados)
-- [x] Implementar Estado Global (Zustand - src/store/cart-store.ts)
-- [x] Integrar Carrinho (Menu e Checkout)
-- [ ] Validar erros
-- [ ] Loading states
-- [ ] Toasts e feedback
-
-## 6. Testes
-- [x] Testes de UI (Configurados, componente Button testado)
-- [ ] Testes de navegação
-- [x] Testes de integração com API (Store de carrinho testada)
-- [x] Verificação de tipos (tsc --noEmit passando)
+---
+**Data da última atualização:** 31 de Janeiro de 2026
