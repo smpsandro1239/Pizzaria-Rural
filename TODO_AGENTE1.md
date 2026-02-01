@@ -24,8 +24,8 @@
 - [ ] **Checkout**: Fluxo multi-passo com aplicação de **Cupões de Desconto**
 - [ ] **Checkout**: Opção de usar **Pontos de Fidelização** para desconto (API Pronta)
 - [ ] **Checkout**: Integração com **Pagamento por Cartão (Stripe)**
-- [ ] **Checkout**: Integração com **Pagamento MBWAY** (API Pronta - Callback: `/payments/mbway/callback`) (Novo)
-- [ ] **Tracking**: Acompanhamento do estado da encomenda em tempo real
+- [ ] **Checkout**: Integração com **Pagamento MBWAY** (API Pronta)
+- [ ] **Tracking**: Acompanhamento do estado da encomenda em **Tempo Real (WebSockets)** (Novo: Integrar Socket.io)
 - [ ] **Perfil**: Histórico de encomendas e consulta de **Pontos de Fidelização**
 - [ ] **Avaliações**: Ecrã para avaliar pizzas e serviço após entrega
 - [ ] **Dashboard Admin**: Interface para métricas e gestão (Opcional/Admin)
@@ -38,7 +38,8 @@
 - [ ] Integração com Endpoint de Simulação de Redenção de Pontos
 - [ ] Integração com Endpoint de Avaliações
 - [ ] Integração com Endpoints de Dashboard e Stock
-- [ ] Integração com **Endpoints de Pagamento (Stripe e MBWAY)** (Novo)
+- [ ] Integração com Endpoints de Pagamento (Stripe e MBWAY)
+- [ ] **Conexão WebSocket (Socket.io-client)** para eventos 'orderStatusUpdated' (Novo)
 - [ ] Fluxo de criação de encomenda
 - [ ] Loading states e Toasts de feedback
 

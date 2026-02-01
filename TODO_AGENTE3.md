@@ -15,12 +15,12 @@
 - [ ] Build mobile
 - [ ] Deploy backend
 - [ ] Deploy documentação
-- [ ] **Automatizar Testes de Carga em CI** (Novo: usando `backend/test/load-test.js`)
+- [ ] Automatizar Testes de Carga em CI (usando `backend/test/load-test.js`)
 
 ## 3. QA
 - [ ] Testes end‑to‑end
 - [ ] Testes de regressão
-- [ ] **Monitorização de Performance** (Novo: k6 + Grafana)
+- [ ] Monitorização de Performance (k6 + Grafana)
 
 ## 4. Infraestrutura
 - [x] Docker (`backend/Dockerfile`)
@@ -34,8 +34,9 @@
   - [ ] `STRIPE_SECRET_KEY` (Pagamentos Reais)
   - [ ] `STRIPE_WEBHOOK_SECRET` (Webhooks Pagamentos)
   - [ ] `IFTHENPAY_MBWAY_KEY` (MBWAY Real)
+- [ ] **Configuração de Proxy/Load Balancer com suporte a WebSockets** (Novo)
 - [ ] Monitorização
-- [ ] Logs centralizados
+- [ ] Logs centralizados (usando `backend/logs/*.log`)
 
 ## 5. Documentação
 - [x] README principal

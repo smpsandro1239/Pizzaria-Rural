@@ -13,6 +13,7 @@ import { ReviewsModule } from './reviews/reviews.module';
 import { IngredientsModule } from './ingredients/ingredients.module';
 import { PaymentsModule } from './payments/payments.module';
 import { HealthModule } from './health/health.module';
+import { EventsModule } from './events/events.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { HealthModule } from './health/health.module';
     IngredientsModule,
     PaymentsModule,
     HealthModule,
+    EventsModule,
   ],
   controllers: [AppController],
   providers: [AppService, NotificationsService],

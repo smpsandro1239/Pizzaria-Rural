@@ -7,6 +7,7 @@ import { PrismaService } from '../prisma/prisma.service';
 import { NotificationsService } from '../notifications/notifications.service';
 import { PaymentsService } from '../payments/payments.service';
 import { MbwayService } from '../payments/mbway.service';
+import { EventsGateway } from '../events/events.gateway';
 import { CreateOrderDto } from './dto/create-order.dto';
 
 @Injectable()
@@ -16,6 +17,7 @@ export class OrdersService {
     private notificationsService: NotificationsService,
     private paymentsService: PaymentsService,
     private mbwayService: MbwayService,
+    private eventsGateway: EventsGateway,
   ) {}
 
   async create(userId: string | null, data: CreateOrderDto) {
@@ -221,7 +223,6 @@ export class OrdersService {
     // Atualizar saldo de pontos do utilizador
     let userEmail = '';
     if (userId) {
-      // Remover pontos usados e adicionar novos (1€ faturado = 1 ponto)
       const pointsGained = Math.floor(total / 100);
       const user = await this.prisma.user.update({
         where: { id: userId },
@@ -241,6 +242,9 @@ export class OrdersService {
       order.id,
       'PENDING',
     );
+
+    // Emitir evento em tempo real
+    this.eventsGateway.emitOrderStatusUpdate(order.id, 'PENDING');
 
     return {
       ...order,
@@ -344,6 +348,9 @@ export class OrdersService {
       order.id,
       status,
     );
+
+    // Emitir evento em tempo real
+    this.eventsGateway.emitOrderStatusUpdate(order.id, status);
 
     return order;
   }

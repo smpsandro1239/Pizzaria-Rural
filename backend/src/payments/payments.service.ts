@@ -1,5 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
+import { EventsGateway } from '../events/events.gateway';
 import Stripe from 'stripe';
 
 @Injectable()
@@ -7,7 +8,10 @@ export class PaymentsService {
   private stripe: Stripe;
   private readonly logger = new Logger(PaymentsService.name);
 
-  constructor(private prisma: PrismaService) {
+  constructor(
+    private prisma: PrismaService,
+    private eventsGateway: EventsGateway,
+  ) {
     const stripeSecret = process.env.STRIPE_SECRET_KEY;
     if (stripeSecret) {
       this.stripe = new Stripe(stripeSecret);
@@ -98,6 +102,9 @@ export class PaymentsService {
     this.logger.log(
       `Pagamento confirmado para encomenda ${orderId} (Stripe ID: ${stripeId})`,
     );
+
+    // Emitir evento em tempo real
+    this.eventsGateway.emitOrderStatusUpdate(orderId, 'PREPARING');
   }
 
   private async failPayment(orderId: string) {

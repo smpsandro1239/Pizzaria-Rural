@@ -1,12 +1,16 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
+import { EventsGateway } from '../events/events.gateway';
 
 @Injectable()
 export class MbwayService {
   private readonly logger = new Logger(MbwayService.name);
   private readonly mbwayKey = process.env.IFTHENPAY_MBWAY_KEY;
 
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    private eventsGateway: EventsGateway,
+  ) {}
 
   async createPayment(orderId: string, amount: number, phone: string) {
     this.logger.log(
@@ -25,8 +29,6 @@ export class MbwayService {
     }
 
     // No mundo real, faríamos a chamada à API da IfThenPay
-    // const response = await fetch(`https://www.ifthenpay.com/api/mbway/request?key=${this.mbwayKey}&mbwaykey=${this.mbwayKey}&orderid=${orderId}&amount=${amount/100}&phone=${phone}`);
-    // const data = await response.json();
 
     return await Promise.resolve({
       success: true,
@@ -55,5 +57,8 @@ export class MbwayService {
     });
 
     this.logger.log(`[MBWAY] Pagamento confirmado para encomenda ${orderId}`);
+
+    // Emitir evento em tempo real
+    this.eventsGateway.emitOrderStatusUpdate(orderId, 'PREPARING');
   }
 }

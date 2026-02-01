@@ -31,11 +31,12 @@
      - [x] Gestão de stock de ingredientes (Listar, repor, alertas)
    - [x] **Sistema de Reviews** (Melhoria)
    - [x] **Health Check** (Melhoria)
-4. **Notificações**
+4. **Notificações & Tempo Real**
    - [x] Estrutura preparada para APIs Reais (WhatsApp/Resend)
-   - [x] Preparação para Resend (Emails Reais)
-   - [x] Logs de monitorização detalhados
+   - [x] **WebSockets (Socket.io)** para Tracking em Tempo Real (Melhoria de alto impacto)
+   - [x] **Logging Centralizado (Winston)** para Auditoria e Monitorização (Melhoria de alto impacto)
    - [/] WhatsApp (Simulado/Pronto para API)
+   - [/] Email (Simulado/Pronto para Resend)
 5. **Fidelização e Experiência**
    - [x] Atribuição de pontos por compra
    - [x] **Redenção de Pontos** (Melhoria)
@@ -50,4 +51,4 @@
    - [x] **Carga e Performance** (Script k6 e Health Check)
 
 ---
-**Progresso Total: 100%** 🎉
+**Progresso Total: 100%** 🎉 (Fase de Melhorias de Impacto Concluída)
