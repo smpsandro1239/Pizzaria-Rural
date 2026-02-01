@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
 import { MotiView } from "moti";
+<<<<<<< HEAD
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useAppTheme } from "../theme";
@@ -9,6 +10,11 @@ import { Badge } from "../components/Badge";
 import { RootStackParamList } from "../navigation/types";
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
+=======
+import { useAppTheme } from "../theme";
+import { Card } from "../components/Card";
+import { Badge } from "../components/Badge";
+>>>>>>> origin/main
 
 const HISTORY = [
   { id: "1", date: "25 Jan 2024", total: 15.5, status: "Entregue" },
@@ -16,7 +22,10 @@ const HISTORY = [
 ];
 
 export const AccountScreen = () => {
+<<<<<<< HEAD
   const navigation = useNavigation<NavigationProp>();
+=======
+>>>>>>> origin/main
   const { colors, spacing, typography, radius } = useAppTheme();
 
   return (
@@ -63,6 +72,7 @@ export const AccountScreen = () => {
         </Card>
       ))}
 
+<<<<<<< HEAD
       <Card style={{ ...styles.settingsCard, marginTop: spacing.lg }}>
         <Text style={[styles.cardTitle, { ...typography.h3, color: colors.text, marginBottom: spacing.md }]}>Configurações</Text>
         <TouchableOpacity
@@ -79,6 +89,8 @@ export const AccountScreen = () => {
         </TouchableOpacity>
       </Card>
 
+=======
+>>>>>>> origin/main
       <TouchableOpacity style={[styles.logoutButton, { marginTop: spacing.xl }]}>
         <Text style={[styles.logoutText, { ...typography.body, color: colors.error, fontWeight: "600" }]}>Sair da Conta</Text>
       </TouchableOpacity>
@@ -138,10 +150,13 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
   },
   repeatText: {},
+<<<<<<< HEAD
   settingsCard: {},
   cardTitle: {},
   settingRow: {},
   settingLabel: {},
+=======
+>>>>>>> origin/main
   logoutButton: {
     alignItems: "center",
   },

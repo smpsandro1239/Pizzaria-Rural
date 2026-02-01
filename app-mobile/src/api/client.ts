@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// Em desenvolvimento local, usar o IP da máquina
-const API_URL = "http://localhost:3000/api";
+// URL de produção configurada pelo Agente 3 no Render
+const API_URL = "https://pizzaria-rural-backend.onrender.com";
 
 export const api = axios.create({
   baseURL: API_URL,

@@ -1,0 +1,29 @@
+name: Orquestrador — Sincronizar Project
+
+on:
+  issues:
+    types: [opened, edited, labeled]
+  pull_request:
+    types: [opened, closed, merged]
+
+jobs:
+  sync-project:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Atualizar estado no Project
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.payload.issue || context.payload.pull_request
+            const labels = issue.labels.map(l => l.name)
+
+            let column = "Backlog"
+
+            if (labels.includes("frontend")) column = "🛠️ Em Progresso — Agente 1"
+            if (labels.includes("backend")) column = "🛠️ Em Progresso — Agente 2"
+            if (labels.includes("infra")) column = "🛠️ Em Progresso — Agente 3"
+            if (labels.includes("revisão")) column = "🔍 Em Revisão"
+            if (labels.includes("concluído")) column = "✅ Concluído"
+
+            console.log(`Mover issue/PR para coluna: ${column}`)

@@ -14,10 +14,14 @@ export const StarRating: React.FC<StarRatingProps> = ({ rating, count, size = 16
   const { colors, typography, spacing } = useAppTheme();
 
   return (
+<<<<<<< HEAD
     <View
       style={styles.container}
       accessibilityLabel={`Avaliação de ${rating.toFixed(1)} estrelas`}
     >
+=======
+    <View style={styles.container}>
+>>>>>>> origin/main
       <View style={styles.stars}>
         {[1, 2, 3, 4, 5].map((star) => (
           <MaterialCommunityIcons

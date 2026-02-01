@@ -54,8 +54,11 @@ export const Input: React.FC<InputProps> = ({ label, error, style: customStyle, 
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           placeholderTextColor={colors.textSecondary}
+<<<<<<< HEAD
           accessibilityLabel={label}
           accessibilityHint={props.placeholder}
+=======
+>>>>>>> origin/main
           {...props}
         />
       </MotiView>

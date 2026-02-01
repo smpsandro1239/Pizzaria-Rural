@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
+<<<<<<< HEAD
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, ActivityIndicator, ScrollView } from "react-native";
 import { Image } from "expo-image";
 import { MotiView } from "moti";
 import Animated from "react-native-reanimated";
 import { useTranslation } from "react-i18next";
+=======
+import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity, ActivityIndicator, ScrollView } from "react-native";
+import { MotiView } from "moti";
+>>>>>>> origin/main
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -23,7 +28,10 @@ type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 const CATEGORIES: PizzaCategory[] = ["Todas", "Clássica", "Carne", "Vegetariana", "Picante"];
 
 export const MenuScreen = () => {
+<<<<<<< HEAD
   const { t } = useTranslation();
+=======
+>>>>>>> origin/main
   const navigation = useNavigation<NavigationProp>();
   const { colors, spacing, typography, radius } = useAppTheme();
   const { addItem, items, total, favorites, toggleFavorite } = useCartStore();
@@ -41,7 +49,11 @@ export const MenuScreen = () => {
       setPizzas(data);
       setFilteredPizzas(data);
     } catch (err) {
+<<<<<<< HEAD
       setError(t("common.error"));
+=======
+      setError("Não foi possível carregar o menu. Tente novamente.");
+>>>>>>> origin/main
     } finally {
       setLoading(false);
     }
@@ -70,6 +82,7 @@ export const MenuScreen = () => {
       >
         <Card style={styles.card} onPress={() => navigation.navigate("PizzaDetail", { id: item.id })}>
           <View style={styles.imageContainer}>
+<<<<<<< HEAD
             <Animated.View sharedTransitionTag={`pizza-image-${item.id}`}>
               <Image
                 source={{ uri: item.image }}
@@ -78,6 +91,9 @@ export const MenuScreen = () => {
                 transition={300}
               />
             </Animated.View>
+=======
+            <Image source={{ uri: item.image }} style={styles.image} />
+>>>>>>> origin/main
             <TouchableOpacity
               style={styles.favoriteButton}
               onPress={() => toggleFavorite(item.id)}
@@ -139,7 +155,11 @@ export const MenuScreen = () => {
         <Text style={[styles.errorText, { ...typography.body, color: colors.error, marginBottom: spacing.lg }]}>
           {error}
         </Text>
+<<<<<<< HEAD
         <Button label={t("common.retry")} onPress={fetchPizzas} />
+=======
+        <Button label="Tentar Novamente" onPress={fetchPizzas} />
+>>>>>>> origin/main
       </View>
     );
   }

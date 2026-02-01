@@ -50,9 +50,12 @@ export const Button: React.FC<ButtonProps> = ({
     <Pressable
       onPress={onPress}
       disabled={disabled || loading}
+<<<<<<< HEAD
       accessibilityRole="button"
       accessibilityLabel={label}
       accessibilityState={{ disabled: disabled || loading, busy: loading }}
+=======
+>>>>>>> origin/main
       style={({ pressed }) => [
         styles.container,
         getVariantStyle(),

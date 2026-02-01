@@ -1,7 +1,10 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+<<<<<<< HEAD
 import * as Haptics from "expo-haptics";
+=======
+>>>>>>> origin/main
 
 export type CartItem = {
   id: string;
@@ -10,6 +13,7 @@ export type CartItem = {
   quantity: number;
 };
 
+<<<<<<< HEAD
 export type Address = {
   id: string;
   label: string;
@@ -19,6 +23,8 @@ export type Address = {
   isDefault: boolean;
 };
 
+=======
+>>>>>>> origin/main
 type CartState = {
   items: CartItem[];
   addItem: (item: Omit<CartItem, "quantity">) => void;
@@ -29,11 +35,14 @@ type CartState = {
   favorites: string[]; // IDs das pizzas favoritas
   toggleFavorite: (id: string) => void;
   isFavorite: (id: string) => boolean;
+<<<<<<< HEAD
   // Moradas
   addresses: Address[];
   addAddress: (address: Omit<Address, "id">) => void;
   removeAddress: (id: string) => void;
   setDefaultAddress: (id: string) => void;
+=======
+>>>>>>> origin/main
   // Feedback
   toast: { visible: boolean; message: string; type: "success" | "error" };
   showToast: (message: string, type?: "success" | "error") => void;
@@ -45,15 +54,22 @@ export const useCartStore = create<CartState>()(
     (set, get) => ({
       items: [],
       favorites: [],
+<<<<<<< HEAD
       addresses: [],
+=======
+>>>>>>> origin/main
       toggleFavorite: (id) =>
         set((state) => {
           const isFav = state.favorites.includes(id);
           const newFavorites = isFav
             ? state.favorites.filter((favId) => favId !== id)
             : [...state.favorites, id];
+<<<<<<< HEAD
 
           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+=======
+
+>>>>>>> origin/main
           return { favorites: newFavorites };
         }),
       isFavorite: (id) => get().favorites.includes(id),
@@ -69,6 +85,7 @@ export const useCartStore = create<CartState>()(
           }
           return { items: [...state.items, { ...item, quantity: 1 }] };
         });
+<<<<<<< HEAD
         Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
         get().showToast(`${item.name} adicionada!`);
       },
@@ -99,6 +116,16 @@ export const useCartStore = create<CartState>()(
             isDefault: a.id === id,
           })),
         })),
+=======
+        get().showToast(`${item.name} adicionada!`);
+      },
+      removeItem: (id) =>
+        set((state) => ({
+          items: state.items.filter((i) => i.id !== id),
+        })),
+      clear: () => set({ items: [] }),
+      total: () => get().items.reduce((sum, i) => sum + i.price * i.quantity, 0),
+>>>>>>> origin/main
       toast: { visible: false, message: "", type: "success" },
       showToast: (message, type = "success") => set({ toast: { visible: true, message, type } }),
       hideToast: () => set((state) => ({ toast: { ...state.toast, visible: false } })),
@@ -106,11 +133,15 @@ export const useCartStore = create<CartState>()(
     {
       name: "cart-storage",
       storage: createJSONStorage(() => AsyncStorage),
+<<<<<<< HEAD
       partialize: (state) => ({
         items: state.items,
         favorites: state.favorites,
         addresses: state.addresses,
       }), // Persistir itens, favoritos e moradas
+=======
+      partialize: (state) => ({ items: state.items, favorites: state.favorites }), // Persistir itens e favoritos
+>>>>>>> origin/main
     }
   )
 );

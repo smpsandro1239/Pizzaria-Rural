@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { MotiView } from "moti";
@@ -7,6 +8,16 @@ import { Card } from "../components/Card";
 import { Button } from "../components/Button";
 
 const INITIAL_STEPS = [
+=======
+import React from "react";
+import { View, Text, StyleSheet } from "react-native";
+import { MotiView } from "moti";
+import { useAppTheme } from "../theme";
+import { Card } from "../components/Card";
+import { AnimatedLoader } from "../components/AnimatedLoader";
+
+const STEPS = [
+>>>>>>> origin/main
   { id: 1, label: "A preparar", active: true },
   { id: 2, label: "No forno", active: false },
   { id: 3, label: "A caminho", active: false },
@@ -15,6 +26,7 @@ const INITIAL_STEPS = [
 
 export const TrackingScreen = () => {
   const { colors, spacing, typography } = useAppTheme();
+<<<<<<< HEAD
   const [steps, setSteps] = useState(INITIAL_STEPS);
   const [isDelivered, setIsDelivered] = useState(false);
 
@@ -66,6 +78,19 @@ export const TrackingScreen = () => {
 
       <Card style={{ ...styles.timeline, marginBottom: spacing.lg }}>
         {steps.map((step, index) => (
+=======
+
+  return (
+    <View style={[styles.container, { backgroundColor: colors.background, padding: spacing.lg }]}>
+      <View style={[styles.header, { marginBottom: spacing.xxl, marginTop: spacing.xl }]}>
+        <AnimatedLoader />
+        <Text style={[styles.title, { ...typography.h2, color: colors.text, marginTop: spacing.md }]}>A sua pizza está a ser preparada!</Text>
+        <Text style={[styles.subtitle, { ...typography.body, color: colors.textSecondary, marginTop: spacing.xs }]}>Tempo estimado: 25-35 min</Text>
+      </View>
+
+      <Card style={{ ...styles.timeline, marginBottom: spacing.lg }}>
+        {STEPS.map((step, index) => (
+>>>>>>> origin/main
           <View key={step.id} style={styles.stepContainer}>
             <View style={[styles.indicatorContainer, { marginRight: spacing.md }]}>
               <MotiView
@@ -75,7 +100,11 @@ export const TrackingScreen = () => {
                 }}
                 style={styles.indicator}
               />
+<<<<<<< HEAD
               {index < steps.length - 1 && <View style={[styles.line, { backgroundColor: colors.border }]} />}
+=======
+              {index < STEPS.length - 1 && <View style={[styles.line, { backgroundColor: colors.border }]} />}
+>>>>>>> origin/main
             </View>
             <Text
               style={[
@@ -89,15 +118,22 @@ export const TrackingScreen = () => {
         ))}
       </Card>
 
+<<<<<<< HEAD
       <Card style={{ ...styles.details, backgroundColor: colors.surface, marginBottom: spacing.lg }}>
+=======
+      <Card style={{ ...styles.details, backgroundColor: colors.surface }}>
+>>>>>>> origin/main
         <Text style={[styles.detailsTitle, { ...typography.h3, color: colors.text, marginBottom: spacing.sm }]}>Detalhes do Pedido #12345</Text>
         <Text style={[typography.body, { color: colors.text }]}>1x Margherita Rural</Text>
         <Text style={[typography.body, { color: colors.text }]}>Total: 10,50 €</Text>
       </Card>
+<<<<<<< HEAD
 
       {!isDelivered && (
         <Button label="Simular Próximo Passo" onPress={simulateNextStep} variant="outline" />
       )}
+=======
+>>>>>>> origin/main
     </View>
   );
 };

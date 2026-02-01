@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
+<<<<<<< HEAD
 import { View, Text, StyleSheet, ScrollView, ActivityIndicator, TouchableOpacity } from "react-native";
 import { Image } from "expo-image";
 import Animated from "react-native-reanimated";
+=======
+import { View, Text, StyleSheet, Image, ScrollView, ActivityIndicator, TouchableOpacity } from "react-native";
+>>>>>>> origin/main
 import { useAppTheme } from "../theme";
 import { Button } from "../components/Button";
 import { Badge } from "../components/Badge";
@@ -66,6 +70,7 @@ export const PizzaDetailScreen = ({ route }: any) => {
   return (
     <ScrollView style={[styles.container, { backgroundColor: colors.background }]}>
       <View style={[styles.imageContainer, { height: 300 }]}>
+<<<<<<< HEAD
         <Animated.View sharedTransitionTag={`pizza-image-${pizza.id}`}>
           <Image
             source={{ uri: pizza.image }}
@@ -74,6 +79,9 @@ export const PizzaDetailScreen = ({ route }: any) => {
             transition={400}
           />
         </Animated.View>
+=======
+        <Image source={{ uri: pizza.image }} style={styles.image} />
+>>>>>>> origin/main
         <TouchableOpacity
           style={[styles.favoriteButton, { top: spacing.xl, right: spacing.xl, padding: spacing.sm, borderRadius: radius.pill }]}
           onPress={() => toggleFavorite(pizza.id)}

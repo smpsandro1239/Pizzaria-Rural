@@ -6,7 +6,10 @@ import { useAppTheme } from "../theme";
 import { Input } from "../components/Input";
 import { Button } from "../components/Button";
 import { Card } from "../components/Card";
+<<<<<<< HEAD
 import { SwipeableRow } from "../components/SwipeableRow";
+=======
+>>>>>>> origin/main
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useCartStore } from "../store/cart-store";
 import { RootStackParamList } from "../navigation/types";
@@ -16,6 +19,7 @@ type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 export const CheckoutScreen = () => {
   const navigation = useNavigation<NavigationProp>();
   const { colors, spacing, typography, radius } = useAppTheme();
+<<<<<<< HEAD
   const { items, total, clear, showToast, addItem, removeItem, addresses } = useCartStore();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -23,6 +27,11 @@ export const CheckoutScreen = () => {
     phone: "912345678",
     address: addresses.find(a => a.isDefault)?.street || ""
   });
+=======
+  const { items, total, clear, showToast, addItem } = useCartStore();
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({ name: "", phone: "", address: "" });
+>>>>>>> origin/main
 
   const handleOrder = () => {
     if (!formData.name || !formData.phone || !formData.address) {
@@ -48,7 +57,11 @@ export const CheckoutScreen = () => {
   return (
     <ScrollView style={[styles.container, { backgroundColor: colors.background }]} contentContainerStyle={[styles.content, { padding: spacing.lg }]}>
       <Text style={[styles.title, { ...typography.h2, color: colors.text, marginBottom: spacing.lg }]}>Finalizar Pedido</Text>
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> origin/main
       <Card style={{ ...styles.section, marginBottom: spacing.lg }}>
         <Text style={{ ...typography.h3, color: colors.text, marginBottom: spacing.md }}>Dados de Entrega</Text>
         <Input
@@ -70,6 +83,7 @@ export const CheckoutScreen = () => {
           value={formData.address}
           onChangeText={(text) => setFormData({ ...formData, address: text })}
         />
+<<<<<<< HEAD
         {addresses.length > 0 && (
           <View style={{ marginTop: spacing.md }}>
             <Text style={{ ...typography.caption, color: colors.textSecondary, marginBottom: spacing.sm }}>Ou escolhe uma morada guardada:</Text>
@@ -93,6 +107,8 @@ export const CheckoutScreen = () => {
             </ScrollView>
           </View>
         )}
+=======
+>>>>>>> origin/main
       </Card>
 
       <View style={{ marginBottom: spacing.lg }}>
@@ -124,6 +140,7 @@ export const CheckoutScreen = () => {
       </View>
 
       <Card style={{ ...styles.section, marginBottom: spacing.lg }}>
+<<<<<<< HEAD
         <Text style={{ ...typography.h3, color: colors.text, marginBottom: spacing.md }}>Resumo (Desliza para remover)</Text>
         {items.map((item) => (
           <SwipeableRow key={item.id} onDelete={() => removeItem(item.id)}>
@@ -132,6 +149,14 @@ export const CheckoutScreen = () => {
               <Text style={[typography.body, { color: colors.text }]}>{(item.price * item.quantity).toFixed(2)} €</Text>
             </View>
           </SwipeableRow>
+=======
+        <Text style={{ ...typography.h3, color: colors.text, marginBottom: spacing.md }}>Resumo</Text>
+        {items.map((item) => (
+          <View key={item.id} style={[styles.row, { marginBottom: spacing.sm }]}>
+            <Text style={[typography.body, { color: colors.text }]}>{item.quantity}x {item.name}</Text>
+            <Text style={[typography.body, { color: colors.text }]}>{(item.price * item.quantity).toFixed(2)} €</Text>
+          </View>
+>>>>>>> origin/main
         ))}
         <View style={[styles.row, { marginBottom: spacing.sm }]}>
           <Text style={[typography.body, { color: colors.text }]}>Taxa de Entrega</Text>

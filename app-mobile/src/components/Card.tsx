@@ -38,7 +38,10 @@ export const Card: React.FC<CardProps> = ({ children, onPress, style }) => {
     return (
       <Pressable
         onPress={onPress}
+<<<<<<< HEAD
         accessibilityRole="button"
+=======
+>>>>>>> origin/main
         style={({ pressed }) => [
           {
             transform: [{ scale: pressed ? 0.98 : 1 }],

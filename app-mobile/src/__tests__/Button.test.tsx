@@ -11,7 +11,11 @@ describe("Componente Button", () => {
   it("deve chamar onPress ao ser clicado", () => {
     const onPressMock = jest.fn();
     const { getByText } = render(<Button label="Clicar" onPress={onPressMock} />);
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> origin/main
     fireEvent.press(getByText("Clicar"));
     expect(onPressMock).toHaveBeenCalledTimes(1);
   });
