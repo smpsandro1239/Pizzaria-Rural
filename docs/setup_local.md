@@ -43,3 +43,8 @@ Verifica os ficheiros `.env.example` em cada pasta e cria o teu `.env` correspon
 - `npm run lint`: Verificar erros de estilo.
 - `npm test`: Executar testes unitários.
 - `docker-compose logs -f`: Ver logs do sistema.
+
+## 6. Produção
+O sistema está online em:
+- **Backend API**: `https://pizzaria-rural-backend.onrender.com`
+- **Documentação**: `https://smpsandro1239.github.io/Pizzaria-Rural/` (GitHub Pages)

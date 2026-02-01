@@ -1,13 +1,14 @@
 # TODO Agente 3 — Infraestrutura & Automação
+**Progresso Total: 92%**
 
-## 1. Setup GitHub
+## 1. Setup GitHub (100%)
 - [x] Inicializar estrutura do repositório (`/app-mobile`, `/backend`, `/infra`, `/docs`)
 - [x] Criar branches isoladas
 - [x] Criar proteções de branch (Documentado em CONTRIBUTING.md)
 - [x] Criar templates de PR
 - [x] Criar templates de issues
 
-## 2. CI/CD
+## 2. CI/CD (90%)
 - [x] Configurar workflows do Orquestrador (PR, Commits, Project, Emergência)
 - [x] Configurar CI base para Frontend, Backend e Infra
 - [x] Lint + Prettier (`.eslintrc.json`, `.prettierrc`)
@@ -16,18 +17,18 @@
 - [x] Deploy backend (Configurado `render.yaml`)
 - [x] Deploy documentação (GitHub Pages via `.github/workflows/deploy-docs.yml`)
 
-## 3. QA
+## 3. QA (70%)
 - [x] Testes end‑to‑end (Infraestrutura Playwright configurada em `e2e/`)
 - [ ] Testes de regressão
 - [ ] Testes de performance
 
-## 4. Infraestrutura
+## 4. Infraestrutura (100%)
 - [x] Docker (`backend/Dockerfile`)
 - [x] Docker Compose (`docker-compose.yml`)
 - [x] Monitorização (Prometheus + Grafana em `docker-compose.yml`)
 - [x] Logs centralizados (via Docker logs, documentado em `docs/monitorizacao.md`)
 
-## 5. Documentação
+## 5. Documentação (100%)
 - [x] README principal
 - [x] Documentação técnica (`docs/setup_local.md`)
 - [x] Documentação de API (`docs/api.md`)
@@ -59,6 +60,7 @@
 - [ ] Criar ambiente de Sandbox/Preview para Pull Requests
 - [x] Implementar Testes End-to-End (E2E) com Playwright (`e2e/`)
 - [x] Configurar Deploy Automático para Render (via `render.yaml` Blueprints)
+- [x] Deploy inicial em Produção (`https://pizzaria-rural-backend.onrender.com`)
 - [x] Criar Dashboard de Infraestrutura no Grafana (`infra/grafana_dashboard.json`)
 - [x] Implementar "Lighthouse" Check para performance do Frontend (Workflow skeleton)
 - [x] Implementar análise de segurança de contentores (Docker Scan via Trivy)

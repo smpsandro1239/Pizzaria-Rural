@@ -1,6 +1,7 @@
 # TODO Agente 2 — Backend (API + BD)
+**Progresso Total: 0%**
 
-## 1. Setup inicial
+## 1. Setup inicial (0%)
 - [ ] Criar projeto NestJS
 - [ ] Configurar Prisma
 - [ ] Criar base de dados PostgreSQL

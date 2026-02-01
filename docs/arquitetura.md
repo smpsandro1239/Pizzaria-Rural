@@ -18,6 +18,7 @@ A arquitetura segue um modelo de microserviços simplificado (módulos independe
 - **ORM**: Prisma.
 - **Base de Dados**: PostgreSQL.
 - **Autenticação**: JWT com verificação por código (WhatsApp/SMS).
+- **Produção URL**: `https://pizzaria-rural-backend.onrender.com`
 
 ### 2.3 Infraestrutura
 - **Contentorização**: Docker e Docker Compose.

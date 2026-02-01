@@ -1,6 +1,7 @@
 # TODO Agente 1 — Frontend (App Mobile)
+**Progresso Total: 0%**
 
-## 1. Setup inicial
+## 1. Setup inicial (0%)
 - [ ] Criar projeto Expo em PT‑PT
 - [ ] Configurar Reanimated + Moti
 - [ ] Configurar estrutura de pastas
