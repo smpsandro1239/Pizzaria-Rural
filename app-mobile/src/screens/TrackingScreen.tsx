@@ -1,9 +1,9 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { MotiView } from "moti";
+import LottieView from "lottie-react-native";
 import { useAppTheme } from "../theme";
 import { Card } from "../components/Card";
-import { AnimatedLoader } from "../components/AnimatedLoader";
 
 const STEPS = [
   { id: 1, label: "A preparar", active: true },
@@ -17,8 +17,13 @@ export const TrackingScreen = () => {
 
   return (
     <View style={[styles.container, { backgroundColor: colors.background, padding: spacing.lg }]}>
-      <View style={[styles.header, { marginBottom: spacing.xxl, marginTop: spacing.xl }]}>
-        <AnimatedLoader />
+      <View style={[styles.header, { marginBottom: spacing.xxl }]}>
+        <LottieView
+          source={{ uri: "https://assets9.lottiefiles.com/packages/lf20_myejig9v.json" }} // Pizza preparation animation
+          autoPlay
+          loop
+          style={{ width: 200, height: 200 }}
+        />
         <Text style={[styles.title, { ...typography.h2, color: colors.text, marginTop: spacing.md }]}>A sua pizza está a ser preparada!</Text>
         <Text style={[styles.subtitle, { ...typography.body, color: colors.textSecondary, marginTop: spacing.xs }]}>Tempo estimado: 25-35 min</Text>
       </View>

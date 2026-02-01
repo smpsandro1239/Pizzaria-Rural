@@ -8,6 +8,7 @@ import { useAppTheme } from "../theme";
 import { Button } from "../components/Button";
 import { Card } from "../components/Card";
 import { StarRating } from "../components/StarRating";
+import { ReviewCard } from "../components/ReviewCard";
 import { RootStackParamList } from "../navigation/types";
 import { pizzasApi } from "../api/pizzas";
 
@@ -87,6 +88,20 @@ export const HomeScreen = () => {
         )}
       </View>
 
+      <View style={[styles.section, { padding: spacing.lg }]}>
+        <View style={styles.sectionHeader}>
+          <Text style={[styles.sectionTitle, { ...typography.h2, color: colors.text }]}>O que dizem os nossos clientes</Text>
+          <MaterialCommunityIcons name="google" size={20} color={colors.textSecondary} />
+        </View>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={[styles.horizontalList, { marginTop: spacing.md }]}>
+          {MOCK_REVIEWS.map((review) => (
+            <View key={review.id} style={{ marginRight: spacing.md }}>
+              <ReviewCard {...review} />
+            </View>
+          ))}
+        </ScrollView>
+      </View>
+
       <View style={[styles.whyUs, { padding: spacing.lg, backgroundColor: colors.surface, margin: spacing.lg, borderRadius: radius.lg }]}>
         <Text style={[styles.sectionTitle, { ...typography.h2, color: colors.text, marginBottom: spacing.lg }]}>
           {t("home.why_us_title")}
@@ -125,6 +140,12 @@ const styles = StyleSheet.create({
     opacity: 0.9,
   },
   section: {},
+  sectionHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 8,
+  },
   sectionTitle: {},
   horizontalList: {
     flexDirection: "row",
