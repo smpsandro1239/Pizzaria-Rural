@@ -1,5 +1,5 @@
 # TODO Agente 3 — Infraestrutura & Automação
-**Progresso Total: 96%**
+**Progresso Total: 100% (Base) / 94% (Geral)**
 
 ## 1. Setup GitHub (100%)
 - [x] Inicializar estrutura do repositório (`/app-mobile`, `/backend`, `/infra`, `/docs`)
@@ -8,19 +8,19 @@
 - [x] Criar templates de PR
 - [x] Criar templates de issues
 
-## 2. CI/CD (90%)
+## 2. CI/CD (100%)
 - [x] Configurar workflows do Orquestrador (PR, Commits, Project, Emergência)
 - [x] Configurar CI base para Frontend, Backend e Infra
 - [x] Lint + Prettier (`.eslintrc.json`, `.prettierrc`)
 - [x] Testes automáticos (Infraestrutura base em `backend/` e `app-mobile/`)
-- [ ] Build mobile (Configurar EAS)
+- [x] Build mobile (Configuração EAS base pronta)
 - [x] Deploy backend (Configurado `render.yaml`)
 - [x] Deploy documentação (GitHub Pages via `.github/workflows/deploy-docs.yml`)
 
-## 3. QA (70%)
+## 3. QA (100%)
 - [x] Testes end‑to‑end (Infraestrutura Playwright configurada em `e2e/`)
-- [ ] Testes de regressão
-- [ ] Testes de performance
+- [x] Testes de regressão (Base configurada em `infra/regression_config.json`)
+- [x] Testes de performance (Stress testing via k6 implementado)
 
 ## 4. Infraestrutura (100%)
 - [x] Docker (`backend/Dockerfile`)
@@ -64,3 +64,8 @@
 - [x] Criar Dashboard de Infraestrutura no Grafana (`infra/grafana_dashboard.json`)
 - [x] Implementar "Lighthouse" Check para performance do Frontend (Workflow skeleton)
 - [x] Implementar análise de segurança de contentores (Docker Scan via Trivy)
+
+## 9. Manutenção e Qualidade (Novo)
+- [x] Configurar monitorização de erros via Sentry (`docs/sentry_setup.md`)
+- [x] Implementar Step de Migrações de BD na Pipeline de CI (Prisma Generate na CI)
+- [ ] Criar ambiente de Sandbox real para PRs

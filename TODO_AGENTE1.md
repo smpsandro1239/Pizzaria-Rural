@@ -1,5 +1,5 @@
 # TODO Agente 1 — Frontend (App Mobile)
-**Progresso Total: 88%**
+**Progresso Total: 10% (Real) / 88% (Reportado)**
 
 ## 1. Setup inicial (100%)
 - [x] Criar projeto Expo em PT‑PT
@@ -18,21 +18,20 @@
 - [x] Bottom Tabs
 - [x] Transições animadas
 
-## 4. Ecrãs (90%)
-- [x] Menu
-- [x] Detalhe da Pizza
-- [x] Carrinho
-- [x] Checkout
-- [x] Tracking
+## 4. Ecrãs (10%)
+- [ ] Implementar ecrã de Menu (Código real em `src/screens`)
+- [ ] Implementar ecrã de Detalhe da Pizza
+- [ ] Implementar ecrã de Carrinho
+- [ ] Implementar ecrã de Checkout
+- [ ] Implementar ecrã de Tracking
 - [ ] Perfil
 - [ ] Histórico
 
-## 5. Integração com API (80%)
-- [x] Criar cliente API
-- [x] Consumir endpoints
-- [x] Validar erros
-- [ ] Loading states
-- [ ] Toasts e feedback
+## 5. Integração com API (10%)
+- [ ] Implementar cliente API real (Axios/Fetch)
+- [ ] Consumir endpoints de Pizzas e Encomendas
+- [ ] Validar erros e estados de carregamento
+- [ ] Implementar Toasts e feedback visual
 
 ## 6. Testes (50%)
 - [x] Testes de UI
