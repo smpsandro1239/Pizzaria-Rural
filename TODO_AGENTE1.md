@@ -40,5 +40,6 @@
 - [ ] Implementar testes de acessibilidade (A11y) usando `@axe-core/react` ou similar
 
 ## 💡 Melhorias Infra (Agente 3)
-- [ ] Configurar `EXPO_PUBLIC_API_URL` para apontar para o Backend (Local/Render)
+- [ ] Configurar `EXPO_PUBLIC_API_URL` para apontar para o Backend (Local/Render/Vercel)
 - [ ] Implementar componentes de feedback visual (Toasts) usando o padrão do Design System
+- [ ] Testar exportação web para deploy na Vercel (`npx expo export:web`)

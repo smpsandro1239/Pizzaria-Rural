@@ -40,4 +40,5 @@
 ## 💡 Melhorias Infra (Agente 3)
 - [ ] Implementar endpoint `GET /health` para o Heartbeat de Uptime
 - [ ] Implementar endpoint `GET /metrics` para recolha do Prometheus
-- [ ] Garantir que o build funciona com o `backend/Dockerfile` criado
+- [ ] Garantir que o build funciona com o `backend/Dockerfile` e `backend/vercel.json`
+- [ ] Garantir que a API é stateless (para compatibilidade com Vercel Serverless)

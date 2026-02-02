@@ -1,5 +1,5 @@
 # TODO Agente 3 — Infraestrutura & Automação
-**Progresso Total: 100% (Base) / 94% (Geral)**
+**Progresso Total: 100% (Base) / 96% (Geral)**
 
 ## 1. Setup GitHub (100%)
 - [x] Inicializar estrutura do repositório (`/app-mobile`, `/backend`, `/infra`, `/docs`)
@@ -68,4 +68,5 @@
 ## 9. Manutenção e Qualidade (Novo)
 - [x] Configurar monitorização de erros via Sentry (`docs/sentry_setup.md`)
 - [x] Implementar Step de Migrações de BD na Pipeline de CI (Prisma Generate na CI)
+- [x] Configurar deploy na Vercel (Backend Serverless) (`backend/vercel.json`)
 - [ ] Criar ambiente de Sandbox real para PRs
