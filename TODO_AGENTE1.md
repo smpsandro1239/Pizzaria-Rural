@@ -8,46 +8,39 @@
 
 ## 2. Design System
 - [x] Implementar tokens
-- [x] Criar UI Kit completo
-- [x] Criar componentes avançados (Tabs, Modais, Bottom Sheets)
-- [x] Criar Motion System
+- [x] Criar UI Kit básico
+- [ ] Criar componentes avançados (Tabs, Modais, Bottom Sheets)
+- [x] Criar Motion System (Tokens básicos)
 
 ## 3. Navegação
 - [x] Stack Navigator
 - [x] Bottom Tabs
-- [x] Transições animadas entre ecrãs
+- [ ] Transições animadas entre ecrãs (Framer Motion / Reanimated)
 
-## 4. Ecrãs & Funcionalidades
-- [x] Menu: Listagem de pizzas com animações e Filtros Avançados
-- [x] Detalhe da Pizza: Escolha de Tamanhos e Extras
-- [x] Carrinho: Gestão de itens e cálculo em tempo real
-- [x] Checkout: Fluxo multi-passo com Cupões
-- [x] Checkout: Pontos de Fidelização
-- [x] Checkout: Pagamento CARD (Stripe)
-- [ ] Checkout: Pagamento MBWAY
-- [x] Tracking: Tempo Real (WebSockets)
-- [x] Perfil: Histórico e Alteração de Password
-- [ ] Avaliações: Ecrã para avaliar pizzas
-- [ ] **Esqueci-me da Password**: Ecrã para recuperação via email (Novo)
-- [ ] Dashboard Admin (Opcional na App)
-- [ ] Gestão de Stock: Listagem de movimentos de stock (Novo)
+## 4. Ecrãs & Funcionalidades (Pendentes de Integração Real)
+- [ ] **Menu**: Integrar com API real (Atualmente Estático)
+- [ ] **Detalhe da Pizza**: Implementar escolha de **Tamanhos** e **Extras** (Novo)
+- [ ] **Carrinho**: Gestão de itens e cálculo em tempo real
+- [ ] **Checkout**: Implementar aplicação de **Cupões de Desconto** (Novo)
+- [ ] **Checkout**: Implementar uso de **Pontos de Fidelização** (Novo)
+- [ ] **Checkout**: Integração com **Pagamento CARD (Stripe)**
+- [ ] **Checkout**: Integração com **Pagamento MBWAY**
+- [ ] **Tracking**: Implementar **Tempo Real (Socket.io)**
+- [ ] **Perfil**: Histórico Real, Alteração de Password e **Recuperação de Password** (Novo)
+- [ ] **Avaliações**: Ecrã para avaliar pizzas e serviço
+- [ ] **Gestão de Stock**: Ecrã Admin para histórico de movimentos (Novo)
 
 ## 5. Integração com API
-- [x] Criar cliente API
-- [x] Autenticação (Login/Registo JWT)
-- [x] Integração Pizzas, Extras e Cupões
-- [x] Integração Pontos de Fidelização
-- [x] Integração Stripe
-- [ ] Integração MBWAY
-- [x] Conexão WebSocket (Socket.io-client)
-- [x] Fluxo de criação de encomenda
-- [ ] **Integração Recuperação de Password** (Novo)
-- [ ] Loading states e Toasts de feedback finais
+- [x] Criar cliente API (Base)
+- [ ] Autenticação Real (Login/Registo JWT)
+- [ ] Integrar todos os novos endpoints do Backend (Pizzas, Extras, Cupões, Pontos, Stock)
+- [ ] Implementar Toasts e Feedbacks de erro/sucesso
 
 ## 6. Testes & Qualidade
-- [x] Testes de UI
+- [x] Testes de UI básicos
 - [ ] Testes de navegação
 - [ ] Verificação de acessibilidade
 
 ---
-**Progresso Total (Agente 1): 85%** 📈
+**Progresso Total (Agente 1): 40%** 📈
+*Nota: A estrutura base existe, mas a integração com a lógica avançada do backend é prioritária agora.*

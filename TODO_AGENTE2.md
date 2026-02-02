@@ -3,46 +3,31 @@
 1. **Setup inicial**
    - [x] Criar projeto NestJS
    - [x] Configurar Prisma
-   - [x] Criar base de dados (SQLite para dev)
-   - [x] Criar estrutura modular
-2. **Modelos**
+   - [x] Criar base de dados modular
+2. **Modelos Enterprise**
    - [x] Utilizador (com Recuperação de Password)
-   - [x] Pizza
-   - [x] Ingredientes (com Stock e Movimentos)
-   - [x] Encomenda
-   - [x] Estado da encomenda
-   - [x] Pagamentos
+   - [x] Pizza (Tamanhos e Extras)
+   - [x] Ingredientes (Stock e Auditoria de Movimentos)
+   - [x] Encomenda e Pagamentos
    - [x] Cupões de Desconto
-   - [x] Tamanhos e Extras
-   - [x] Avaliações (Reviews)
-3. **Endpoints**
-   - [x] Autenticação (JWT + Recuperação de Password)
-   - [x] Listar pizzas
-   - [x] Criar encomenda (completa)
-   - [x] Atualizar estado
-   - [x] Tracking
-   - [x] Histórico
-   - [x] Validação de Cupões
-   - [x] Simulação de Redenção de Pontos
-   - [x] Dashboard de Administração
-   - [x] Sistema de Reviews
-   - [x] Health Check & Metrics
-   - [x] Pesquisa e Filtros Avançados
-   - [x] Alteração de Password e Perfil
-   - [x] **Auditoria de Stock** (Novo: Listar movimentos)
-4. **Notificações & Tempo Real**
-   - [x] Estrutura preparada para APIs Reais
-   - [x] WebSockets (Socket.io) para Tracking
-   - [x] Logging Centralizado (Winston)
-5. **Segurança e Performance**
+   - [x] Reviews e Ratings
+3. **Endpoints de Alta Performance**
+   - [x] Autenticação Segura (JWT + Bcrypt)
+   - [x] Lógica de Encomenda Segura (Validação de preços em DB + Transações)
+   - [x] Tracking em Tempo Real (WebSockets/Socket.io)
+   - [x] Fidelização (Pontos acumuláveis e redimíveis)
+   - [x] Dashboard Admin (Métricas de vendas e stock)
+   - [x] Health Check e Metrics (Prometheus)
+4. **Qualidade e Segurança**
    - [x] Rate Limiting (Throttler)
-   - [x] Segurança de tipos estrita (Linter fixo)
-   - [x] Testes Unitários e E2E
-   - [x] Script de Carga (k6)
-6. **Pagamentos Reais**
-   - [x] Integração com Stripe
-   - [x] Integração com IfThenPay (MBWAY)
+   - [x] Logging Industrial (Winston)
+   - [x] Segurança de tipos (DTOs e Interfaces)
+   - [x] Testes de Integração (E2E) e Carga (k6)
+5. **Integrações de Terceiros (Estrutura Pronta)**
+   - [x] Stripe (CARD)
+   - [x] IfThenPay (MBWAY)
+   - [x] Resend (Email)
 
 ---
 **Progresso Total (Agente 2): 100%** 🎉
-*Backend Enterprise completo e pronto para suporte total aos agentes de Frontend e Infraestrutura.*
+*Backend robusto e completo. Pendente apenas o fornecimento de credenciais de produção pelo Agente 3 para ativação real das APIs de terceiros.*
