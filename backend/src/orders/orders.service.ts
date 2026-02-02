@@ -33,223 +33,233 @@ export class OrdersService {
 
     // Calcular subtotal e validar preços da base de dados
     let subtotal = 0;
-    const orderItemsData = [];
+    const orderItemsData: any[] = [];
 
-    for (const item of items) {
-      const pizza = await this.prisma.pizza.findUnique({
-        where: { id: item.pizzaId },
-        include: {
-          sizes: true,
-          ingredients: {
-            include: {
-              ingredient: true,
+    // Usar uma transação para garantir que o stock é descontado corretamente
+    return this.prisma.$transaction(async (tx) => {
+      for (const item of items) {
+        const pizza = await tx.pizza.findUnique({
+          where: { id: item.pizzaId },
+          include: {
+            sizes: true,
+            ingredients: {
+              include: {
+                ingredient: true,
+              },
             },
           },
-        },
-      });
-      if (!pizza) {
-        throw new NotFoundException(
-          `Pizza com ID ${item.pizzaId} não encontrada`,
-        );
-      }
-
-      // Validar e descontar stock de ingredientes
-      for (const pi of pizza.ingredients) {
-        if (pi.ingredient.stock < item.quantity) {
-          throw new BadRequestException(
-            `Stock insuficiente para o ingrediente ${pi.ingredient.name}`,
+        });
+        if (!pizza) {
+          throw new NotFoundException(
+            `Pizza com ID ${item.pizzaId} não encontrada`,
           );
         }
 
-        await this.prisma.ingredient.update({
-          where: { id: pi.ingredientId },
-          data: {
-            stock: {
-              decrement: item.quantity,
+        // Validar e descontar stock de ingredientes
+        for (const pi of pizza.ingredients) {
+          if (pi.ingredient.stock < item.quantity) {
+            throw new BadRequestException(
+              `Stock insuficiente para o ingrediente ${pi.ingredient.name}`,
+            );
+          }
+
+          await tx.ingredient.update({
+            where: { id: pi.ingredientId },
+            data: {
+              stock: {
+                decrement: item.quantity,
+              },
             },
+          });
+
+          // Registar movimento de stock
+          await tx.stockMovement.create({
+            data: {
+              ingredientId: pi.ingredientId,
+              quantity: -item.quantity,
+              reason: `ENCOMENDA (ITEM PIZZA ${pizza.name})`,
+            },
+          });
+        }
+
+        let itemPrice = pizza.basePrice;
+        let sizeName = 'Média'; // Padrão
+
+        if (item.sizeId) {
+          const size = pizza.sizes.find((s) => s.id === item.sizeId);
+          if (!size) {
+            throw new NotFoundException(
+              `Tamanho com ID ${item.sizeId} não encontrado para esta pizza`,
+            );
+          }
+          itemPrice = size.price;
+          sizeName = size.name;
+        }
+
+        let itemExtrasTotal = 0;
+        const itemExtrasData = [];
+
+        if (item.extras && Array.isArray(item.extras)) {
+          for (const extraId of item.extras) {
+            const extra = await tx.extra.findUnique({ where: { id: extraId } });
+            if (!extra) {
+              throw new NotFoundException(
+                `Extra com ID ${extraId} não encontrado`,
+              );
+            }
+            itemExtrasTotal += extra.price;
+            itemExtrasData.push({
+              extraId: extra.id,
+              unitPrice: extra.price,
+            });
+          }
+        }
+
+        const unitPrice = itemPrice + itemExtrasTotal;
+        subtotal += unitPrice * item.quantity;
+
+        orderItemsData.push({
+          pizzaId: pizza.id,
+          quantity: item.quantity,
+          unitPrice: itemPrice, // Preço base do tamanho
+          sizeName: sizeName,
+          extras: {
+            create: itemExtrasData,
           },
         });
       }
 
-      let itemPrice = pizza.basePrice;
-      let sizeName = 'Média'; // Padrão
+      let total = subtotal;
+      let couponId: string | null = null;
 
-      if (item.sizeId) {
-        const size = pizza.sizes.find((s) => s.id === item.sizeId);
-        if (!size) {
-          throw new NotFoundException(
-            `Tamanho com ID ${item.sizeId} não encontrado para esta pizza`,
+      // 1. Aplicar Cupão
+      if (couponCode) {
+        const coupon = await tx.coupon.findUnique({
+          where: { code: couponCode },
+        });
+
+        if (!coupon || !coupon.active) {
+          throw new BadRequestException('Cupão inválido ou inativo');
+        }
+
+        if (coupon.validUntil && coupon.validUntil < new Date()) {
+          throw new BadRequestException('Cupão expirado');
+        }
+
+        if (coupon.minOrder && subtotal < coupon.minOrder) {
+          throw new BadRequestException(
+            `Valor mínimo de encomenda para este cupão é ${(coupon.minOrder / 100).toFixed(2)}€`,
           );
         }
-        itemPrice = size.price;
-        sizeName = size.name;
-      }
 
-      let itemExtrasTotal = 0;
-      const itemExtrasData = [];
-
-      if (item.extras && Array.isArray(item.extras)) {
-        for (const extraId of item.extras) {
-          const extra = await this.prisma.extra.findUnique({
-            where: { id: extraId },
-          });
-          if (!extra) {
-            throw new NotFoundException(
-              `Extra com ID ${extraId} não encontrado`,
-            );
-          }
-          itemExtrasTotal += extra.price;
-          itemExtrasData.push({
-            extraId: extra.id,
-            unitPrice: extra.price,
-          });
+        couponId = coupon.id;
+        if (coupon.discountType === 'PERCENT') {
+          total = subtotal - (subtotal * coupon.value) / 100;
+        } else if (coupon.discountType === 'FIXED') {
+          total = Math.max(0, subtotal - coupon.value);
         }
       }
 
-      const unitPrice = itemPrice + itemExtrasTotal;
-      subtotal += unitPrice * item.quantity;
+      // 2. Aplicar Pontos de Fidelização
+      let pointsToUse = 0;
+      if (usePoints && userId) {
+        const user = await tx.user.findUnique({ where: { id: userId } });
+        if (!user) throw new NotFoundException('Utilizador não encontrado');
 
-      orderItemsData.push({
-        pizzaId: pizza.id,
-        quantity: item.quantity,
-        unitPrice: itemPrice, // Preço base do tamanho
-        sizeName: sizeName,
-        extras: {
-          create: itemExtrasData,
-        },
-      });
-    }
+        if (usePoints > user.points) {
+          throw new BadRequestException(
+            `Não tens pontos suficientes. Saldo: ${user.points}`,
+          );
+        }
 
-    let total = subtotal;
-    let couponId: string | null = null;
-
-    // 1. Aplicar Cupão
-    if (couponCode) {
-      const coupon = await this.prisma.coupon.findUnique({
-        where: { code: couponCode },
-      });
-
-      if (!coupon || !coupon.active) {
-        throw new BadRequestException('Cupão inválido ou inativo');
+        pointsToUse = usePoints;
+        const pointDiscount = pointsToUse; // 1 ponto = 1 cêntimo
+        total = Math.max(0, total - pointDiscount);
       }
 
-      if (coupon.validUntil && coupon.validUntil < new Date()) {
-        throw new BadRequestException('Cupão expirado');
-      }
-
-      if (coupon.minOrder && subtotal < coupon.minOrder) {
-        throw new BadRequestException(
-          `Valor mínimo de encomenda para este cupão é ${(coupon.minOrder / 100).toFixed(2)}€`,
-        );
-      }
-
-      couponId = coupon.id;
-      if (coupon.discountType === 'PERCENT') {
-        total = subtotal - (subtotal * coupon.value) / 100;
-      } else if (coupon.discountType === 'FIXED') {
-        total = Math.max(0, subtotal - coupon.value);
-      }
-    }
-
-    // 2. Aplicar Pontos de Fidelização
-    let pointsToUse = 0;
-    if (usePoints && userId) {
-      const user = await this.prisma.user.findUnique({ where: { id: userId } });
-      if (!user) throw new NotFoundException('Utilizador não encontrado');
-
-      if (usePoints > user.points) {
-        throw new BadRequestException(
-          `Não tens pontos suficientes. Saldo: ${user.points}`,
-        );
-      }
-
-      pointsToUse = usePoints;
-      const pointDiscount = pointsToUse; // 1 ponto = 1 cêntimo
-      total = Math.max(0, total - pointDiscount);
-    }
-
-    // Criar encomenda
-    const order = await this.prisma.order.create({
-      data: {
-        userId,
-        total,
-        address,
-        phone,
-        delivery,
-        status: 'PENDING',
-        couponId,
-        usedPoints: pointsToUse,
-        items: {
-          create: orderItemsData,
-        },
-        payment: {
-          create: {
-            method: paymentMethod || 'CASH',
-            amount: total,
-            status: 'PENDING',
+      // Criar encomenda
+      const order = await tx.order.create({
+        data: {
+          userId,
+          total,
+          address,
+          phone,
+          delivery,
+          status: 'PENDING',
+          couponId,
+          usedPoints: pointsToUse,
+          items: {
+            create: orderItemsData,
           },
-        },
-      },
-      include: {
-        items: {
-          include: {
-            extras: {
-              include: {
-                extra: true,
-              },
+          payment: {
+            create: {
+              method: paymentMethod || 'CASH',
+              amount: total,
+              status: 'PENDING',
             },
           },
         },
-        coupon: true,
-        payment: true,
-      },
-    });
-
-    // Se for cartão, gerar clientSecret para o Stripe
-    let stripeClientSecret: string | null = null;
-    if (paymentMethod === 'CARD') {
-      const result = await this.paymentsService.createPaymentIntent(
-        order.id,
-        total,
-      );
-      stripeClientSecret = result.clientSecret;
-    }
-
-    // Se for MBWAY, disparar pedido
-    if (paymentMethod === 'MBWAY') {
-      await this.mbwayService.createPayment(order.id, total, phone);
-    }
-
-    // Atualizar saldo de pontos do utilizador
-    let userEmail = '';
-    if (userId) {
-      const pointsGained = Math.floor(total / 100);
-      const user = await this.prisma.user.update({
-        where: { id: userId },
-        data: {
-          points: {
-            increment: pointsGained - pointsToUse,
+        include: {
+          items: {
+            include: {
+              extras: {
+                include: {
+                  extra: true,
+                },
+              },
+            },
           },
+          coupon: true,
+          payment: true,
         },
       });
-      userEmail = user.email;
-    }
 
-    // Notificar criação
-    await this.notificationsService.notifyOrderStatus(
-      phone,
-      userEmail,
-      order.id,
-      'PENDING',
-    );
+      // Se for cartão, gerar clientSecret para o Stripe
+      let stripeClientSecret: string | null = null;
+      if (paymentMethod === 'CARD') {
+        const result = await this.paymentsService.createPaymentIntent(
+          order.id,
+          total,
+        );
+        stripeClientSecret = result.clientSecret;
+      }
 
-    // Emitir evento em tempo real
-    this.eventsGateway.emitOrderStatusUpdate(order.id, 'PENDING');
+      // Se for MBWAY, disparar pedido
+      if (paymentMethod === 'MBWAY') {
+        await this.mbwayService.createPayment(order.id, total, phone);
+      }
 
-    return {
-      ...order,
-      stripeClientSecret,
-    };
+      // Atualizar saldo de pontos do utilizador
+      let userEmail = '';
+      if (userId) {
+        const pointsGained = Math.floor(total / 100);
+        const user = await tx.user.update({
+          where: { id: userId },
+          data: {
+            points: {
+              increment: pointsGained - pointsToUse,
+            },
+          },
+        });
+        userEmail = user.email;
+      }
+
+      // Notificar criação
+      await this.notificationsService.notifyOrderStatus(
+        phone,
+        userEmail,
+        order.id,
+        'PENDING',
+      );
+
+      // Emitir evento em tempo real
+      this.eventsGateway.emitOrderStatusUpdate(order.id, 'PENDING');
+
+      return {
+        ...order,
+        stripeClientSecret,
+      };
+    });
   }
 
   async validateCoupon(code: string, subtotal: number) {

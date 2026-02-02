@@ -25,6 +25,12 @@ export class UsersService {
     });
   }
 
+  async findByResetToken(token: string) {
+    return this.prisma.user.findFirst({
+      where: { resetToken: token },
+    });
+  }
+
   async create(data: Prisma.UserCreateInput) {
     return this.prisma.user.create({
       data,

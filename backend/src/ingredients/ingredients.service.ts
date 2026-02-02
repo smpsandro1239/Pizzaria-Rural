@@ -11,7 +11,11 @@ export class IngredientsService {
     });
   }
 
-  async updateStock(id: string, quantity: number) {
+  async updateStock(
+    id: string,
+    quantity: number,
+    reason: string = 'REPOSIÇÃO',
+  ) {
     const ingredient = await this.prisma.ingredient.findUnique({
       where: { id },
     });
@@ -20,13 +24,25 @@ export class IngredientsService {
       throw new NotFoundException('Ingrediente não encontrado');
     }
 
-    return this.prisma.ingredient.update({
-      where: { id },
-      data: {
-        stock: {
-          increment: quantity,
+    return this.prisma.$transaction(async (tx) => {
+      const updated = await tx.ingredient.update({
+        where: { id },
+        data: {
+          stock: {
+            increment: quantity,
+          },
         },
-      },
+      });
+
+      await tx.stockMovement.create({
+        data: {
+          ingredientId: id,
+          quantity: quantity,
+          reason: reason,
+        },
+      });
+
+      return updated;
     });
   }
 
@@ -37,6 +53,15 @@ export class IngredientsService {
           lt: 10, // Stock baixo se menor que 10
         },
       },
+    });
+  }
+
+  async getMovements(ingredientId?: string) {
+    return this.prisma.stockMovement.findMany({
+      where: ingredientId ? { ingredientId } : {},
+      include: { ingredient: { select: { name: true } } },
+      orderBy: { createdAt: 'desc' },
+      take: 50,
     });
   }
 }

@@ -11,14 +11,16 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  password  String
-  name      String?
-  orders    Order[]
-  reviews   Review[]
-  points    Int      @default(0)
-  createdAt DateTime @default(now())
+  id               String    @id @default(cuid())
+  email            String    @unique
+  password         String
+  resetToken       String?
+  resetTokenExpiry DateTime?
+  name             String?
+  orders           Order[]
+  reviews          Review[]
+  points           Int       @default(0)
+  createdAt        DateTime  @default(now())
 }
 
 model Pizza {
@@ -50,10 +52,20 @@ model Extra {
 }
 
 model Ingredient {
-  id      String @id @default(cuid())
-  name    String @unique
-  stock   Int    @default(100) // Quantidade em stock (ex: gramas ou unidades)
-  pizzas  PizzaIngredient[]
+  id        String @id @default(cuid())
+  name      String @unique
+  stock     Int    @default(100) // Quantidade em stock (ex: gramas ou unidades)
+  pizzas    PizzaIngredient[]
+  movements StockMovement[]
+}
+
+model StockMovement {
+  id           String     @id @default(cuid())
+  ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
+  ingredientId String
+  quantity     Int        // Positivo para entrada, negativo para saída
+  reason       String     // Ex: "ENCOMENDA #123", "REPOSIÇÃO", "DESPERDÍCIO"
+  createdAt    DateTime   @default(now())
 }
 
 model PizzaIngredient {

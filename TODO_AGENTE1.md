@@ -9,7 +9,7 @@
 ## 2. Design System
 - [x] Implementar tokens
 - [x] Criar UI Kit completo
-- [x] Criar componentes avançados
+- [x] Criar componentes avançados (Tabs, Modais, Bottom Sheets)
 - [x] Criar Motion System
 
 ## 3. Navegação
@@ -18,7 +18,7 @@
 - [x] Transições animadas entre ecrãs
 
 ## 4. Ecrãs & Funcionalidades
-- [x] Menu: Listagem de pizzas com animações
+- [x] Menu: Listagem de pizzas com animações e Filtros Avançados
 - [x] Detalhe da Pizza: Escolha de Tamanhos e Extras
 - [x] Carrinho: Gestão de itens e cálculo em tempo real
 - [x] Checkout: Fluxo multi-passo com Cupões
@@ -28,8 +28,9 @@
 - [x] Tracking: Tempo Real (WebSockets)
 - [x] Perfil: Histórico e Alteração de Password
 - [ ] Avaliações: Ecrã para avaliar pizzas
+- [ ] **Esqueci-me da Password**: Ecrã para recuperação via email (Novo)
 - [ ] Dashboard Admin (Opcional na App)
-- [ ] Gestão de Stock (Opcional na App)
+- [ ] Gestão de Stock: Listagem de movimentos de stock (Novo)
 
 ## 5. Integração com API
 - [x] Criar cliente API
@@ -40,6 +41,7 @@
 - [ ] Integração MBWAY
 - [x] Conexão WebSocket (Socket.io-client)
 - [x] Fluxo de criação de encomenda
+- [ ] **Integração Recuperação de Password** (Novo)
 - [ ] Loading states e Toasts de feedback finais
 
 ## 6. Testes & Qualidade
@@ -48,4 +50,4 @@
 - [ ] Verificação de acessibilidade
 
 ---
-**Progresso Total (Agente 1): 88%** 📈
+**Progresso Total (Agente 1): 85%** 📈
