@@ -6,6 +6,7 @@ import { Badge } from "../components/Badge";
 import { AnimatedLoader } from "../components/AnimatedLoader";
 import { IngredientSource } from "../components/IngredientSource";
 import { StarRating } from "../components/StarRating";
+import { ProductRecommendation } from "../components/ProductRecommendation";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useCartStore } from "../store/cart-store";
 import { pizzasApi } from "../api/pizzas";
@@ -14,7 +15,9 @@ export const PizzaDetailScreen = ({ route }: any) => {
   const { colors, spacing, typography, radius } = useAppTheme();
   const { addItem, favorites, toggleFavorite } = useCartStore();
   const pizzaId = route.params?.id;
+
   const [pizza, setPizza] = useState<any>(null);
+  const [recommendations, setRecommendations] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -24,8 +27,10 @@ export const PizzaDetailScreen = ({ route }: any) => {
         setLoading(true);
         const data = await pizzasApi.getPizzas();
         const found = data.find((p: any) => p.id === pizzaId);
+
         if (found) {
           setPizza(found);
+          setRecommendations(data.filter((p: any) => p.id !== pizzaId).slice(0, 3));
         } else {
           setError("Pizza não encontrada.");
         }
@@ -94,6 +99,19 @@ export const PizzaDetailScreen = ({ route }: any) => {
         <IngredientSource ingredient="Farinha" source="Moinho da Aldeia (Grão Biológico)" icon="corn" />
         <IngredientSource ingredient="Tomate" source="Horta do Ti Manel" icon="food-apple" />
         <IngredientSource ingredient="Queijo" source="Queijaria da Serra" icon="cheese" />
+
+        <View style={{ marginTop: spacing.xxl }}>
+          <ProductRecommendation
+            pizzas={recommendations}
+            onPress={(id) => {
+              setLoading(true);
+              const next = recommendations.find(p => p.id === id);
+              // In a real app we would navigate, but here we just update state for demo
+              setPizza(next);
+              setLoading(false);
+            }}
+          />
+        </View>
 
         <View style={[styles.footer, { marginTop: spacing.xxl }]}>
           <Text style={[styles.price, { ...typography.h2, color: colors.ruralRed }]}>{pizza.price.toFixed(2)} €</Text>

@@ -41,3 +41,9 @@
 ## 6. Outros
 - [x] Commits sempre em PT‑PT
 - [x] Atualizar o GitHub sempre que realizar nova tarefa
+
+---
+### 🌟 Melhorias Sugeridas (Agente 1)
+- [ ] **Lighthouse CI:** Relatórios automáticos de performance no PR do Frontend.
+- [ ] **Sentry Setup:** Configurar DSNs para Frontend e Backend.
+- [ ] **Deploy de Docs:** Automatizar a publicação de docs para GitHub Pages.

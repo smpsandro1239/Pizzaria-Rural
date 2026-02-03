@@ -29,3 +29,9 @@
    - [x] Unitários (Estrutura base e build)
    - [ ] Integração
    - [ ] Carga
+
+---
+### 🌟 Melhorias Sugeridas (Agente 1)
+- [ ] **Geração de Faturas PDF:** Endpoint para descarregar fatura após encomenda.
+- [ ] **Motor de Recomendações IA:** Sugerir pizzas com base no histórico do utilizador.
+- [ ] **Webhooks de Pagamento:** Garantir robustez na integração com Stripe.
