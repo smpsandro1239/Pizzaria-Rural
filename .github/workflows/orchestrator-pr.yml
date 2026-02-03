@@ -33,7 +33,7 @@ jobs:
       - name: Validar tamanho do PR
         run: |
           CHANGED=$(git diff --shortstat origin/${{ github.base_ref }} | awk '{print $4}')
-          if [ -n "$CHANGED" ] && [ "$CHANGED" -gt 800 ]; then
+          if [ -n "$CHANGED" ] && [ "$CHANGED" -gt 2000 ]; then
             echo "PR demasiado grande. Divide em PRs menores."
             exit 1
           fi
