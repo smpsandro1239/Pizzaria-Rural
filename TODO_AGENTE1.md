@@ -1,6 +1,6 @@
 # 📌 TODOLIST — Agente 1 (Frontend App Mobile)
 
-## 📊 Progresso: 90%
+## 📊 Progresso: 97%
 
 ### 1. Setup inicial
 - [x] Criar projeto Expo em PT‑PT
@@ -21,32 +21,32 @@
 ### 4. Ecrãs (PT-PT)
 - [x] **Home:** Hero, Destaques, Porquê nós.
 - [x] **Menu:** Lista de Pizzas, Filtros por categoria, Entrada animada.
-- [x] **Detalhe da Pizza:** Preços, Ingredientes, Proveniência (Rural Premium), Ratings.
+- [x] **Detalhe da Pizza:** Preços, Ingredientes, Proveniência (Rural Premium), Ratings, Recomendações.
 - [x] **Favoritos:** Lista de pizzas preferidas do utilizador.
 - [x] **Carrinho:** FloatingCart persistente.
-- [x] **Checkout:** Formulário, Resumo, Up-selling (bebidas/sobremesas).
-- [x] **Tracking:** Estado da encomenda em tempo real (Mock).
-- [x] **Conta:** Dados do utilizador, Progresso de fidelidade (Loyalty progress bar).
+- [x] **Checkout:** Formulário, Resumo, Up-selling (bebidas/sobremesas), Resgate de Pontos. [EM CURSO]
+- [x] **Tracking:** Estado da encomenda dinâmico com barra de progresso.
+- [x] **Conta:** Dados, Fidelidade, Histórico, Definições.
+- [x] **Gestão de Moradas:** Listar, Adicionar e Remover moradas.
 
 ### 5. Integração & Estado Global
 - [x] Criar cliente API (Axios)
-- [x] Consumir endpoints (Mock fallback implementado)
+- [x] Consumir endpoints (Mock fallback funcional)
 - [x] Estado Global com Zustand (Carrinho, Favoritos, Toasts)
 - [x] Persistência Local (AsyncStorage)
 - [x] Suporte para Modo Escuro (Dark Mode) automático
 - [x] Sistema de Feedback (Toasts animados)
+- [x] Simulação de Biometria (UI)
 
 ### 6. Qualidade & Melhorias
 - [x] Verificação de tipos (TypeScript)
 - [x] Testes de UI & Store (Mocks configurados)
 - [x] Skeleton Loaders para carregamento
-- [x] Correção de versões das dependências
+- [x] Correção de CI (PR Validation fix)
+- [ ] Otimização de Imagens (expo-image). [PENDENTE]
 
 ### 🚀 Próximas Etapas (Agente 1)
-- [ ] **Integração com Mapas:** Visualizar entrega em tempo real no Tracking.
-- [ ] **Autenticação Biométrica:** Login rápido e seguro.
-- [ ] **Gestão de Moradas:** Guardar moradas favoritas.
-- [ ] **Otimização de Imagens:** Implementar `expo-image` para caching agressivo.
-- [ ] **Lottie Animations:** Adicionar animações vetoriais no Tracking e Sucesso.
-- [ ] **Notificações em Tempo Real:** Escutar mudanças de estado da encomenda via WebSockets.
+- [ ] **Integração com Mapas:** Visualizar entrega em tempo real no Tracking. (Bloqueado por Agente 3)
+- [ ] **Sistema de Avaliações:** UI para submeter reviews. [EM CURSO]
+- [ ] **Lottie Animations:** Adicionar animações vetoriais no Sucesso.
 - [ ] **Acessibilidade:** Auditoria completa (VoiceOver/TalkBack).

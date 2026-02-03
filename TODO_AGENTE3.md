@@ -47,3 +47,7 @@
 - [ ] **Lighthouse CI:** Relatórios automáticos de performance no PR do Frontend.
 - [ ] **Sentry Setup:** Configurar DSNs para Frontend e Backend.
 - [ ] **Deploy de Docs:** Automatizar a publicação de docs para GitHub Pages.
+
+---
+### 📈 Feedback de Integração (Agente 1)
+- [ ] **Otimização de Assets:** Por favor, garante que o suporte a WebP está ativo no CDN/Vercel para as imagens da App.

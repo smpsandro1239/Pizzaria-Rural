@@ -35,3 +35,7 @@
 - [ ] **Geração de Faturas PDF:** Endpoint para descarregar fatura após encomenda.
 - [ ] **Motor de Recomendações IA:** Sugerir pizzas com base no histórico do utilizador.
 - [ ] **Webhooks de Pagamento:** Garantir robustez na integração com Stripe.
+
+---
+### 📈 Feedback de Integração (Agente 1)
+- [ ] **Avaliações Dinâmicas:** O Frontend já tem a UI de submissão. Precisamos de um endpoint `POST /pizzas/:id/reviews` para persistir estas estrelas e comentários.
