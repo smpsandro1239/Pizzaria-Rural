@@ -1,7 +1,7 @@
-import { Controller, Get, Post, Body, Param, Patch, UseGuards, Request } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Patch, UseGuards, Request, Query } from '@nestjs/common';
 import { OrdersService } from './orders.service';
-import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
-import { AuthGuard } from '@nestjs/passport';
+import { ApiTags, ApiOperation, ApiBearerAuth, ApiQuery } from '@nestjs/swagger';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { OptionalJwtGuard } from '../auth/optional-jwt.guard';
 
 @ApiTags('orders')
@@ -14,12 +14,19 @@ export class OrdersController {
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Criar uma nova encomenda' })
   create(@Body() createOrderDto: any, @Request() req: any) {
-    // Se houver um token JWT, o userId estará em req.user.userId via OptionalJwtGuard
     const userId = req.user ? req.user.userId : null;
     return this.ordersService.create(userId, createOrderDto);
   }
 
-  @UseGuards(AuthGuard('jwt'))
+  @Get('validate-coupon')
+  @ApiOperation({ summary: 'Validar um cupão de desconto' })
+  @ApiQuery({ name: 'code', description: 'Código do cupão' })
+  @ApiQuery({ name: 'subtotal', description: 'Subtotal em cêntimos', type: Number })
+  validateCoupon(@Query('code') code: string, @Query('subtotal') subtotal: string) {
+    return this.ordersService.validateCoupon(code, parseInt(subtotal));
+  }
+
+  @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @Get('my-orders')
   @ApiOperation({ summary: 'Listar encomendas do utilizador autenticado' })

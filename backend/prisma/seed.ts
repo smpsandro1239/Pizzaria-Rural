@@ -2,6 +2,26 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
+  // Criar Ingredientes com Stock
+  const tomaterural = await prisma.ingredient.upsert({
+    where: { name: 'Tomate Rural' },
+    update: { stock: 100 },
+    create: { name: 'Tomate Rural', stock: 100 },
+  });
+
+  const queijofresco = await prisma.ingredient.upsert({
+    where: { name: 'Queijo Fresco' },
+    update: { stock: 50 },
+    create: { name: 'Queijo Fresco', stock: 50 },
+  });
+
+  const manjericam = await prisma.ingredient.upsert({
+    where: { name: 'Manjericão da Horta' },
+    update: { stock: 30 },
+    create: { name: 'Manjericão da Horta', stock: 30 },
+  });
+
+  // Criar/Atualizar Pizzas
   const margherita = await prisma.pizza.upsert({
     where: { id: 'margherita' },
     update: {},
@@ -14,31 +34,31 @@ async function main() {
     },
   });
 
-  const pepperoni = await prisma.pizza.upsert({
-    where: { id: 'pepperoni' },
+  // Ligar Ingredientes à Margherita
+  await prisma.pizzaIngredient.upsert({
+    where: { pizzaId_ingredientId: { pizzaId: margherita.id, ingredientId: tomaterural.id } },
     update: {},
-    create: {
-      id: 'pepperoni',
-      name: 'Pepperoni da Serra',
-      description: 'Picante no ponto certo. A favorita dos apressados.',
-      price: 950,
-      imageUrl: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=800&q=80',
-    },
+    create: { pizzaId: margherita.id, ingredientId: tomaterural.id },
   });
 
-  const veggie = await prisma.pizza.upsert({
-    where: { id: 'veggie' },
+  await prisma.pizzaIngredient.upsert({
+    where: { pizzaId_ingredientId: { pizzaId: margherita.id, ingredientId: queijofresco.id } },
     update: {},
-    create: {
-      id: 'veggie',
-      name: 'Veggie da Horta',
-      description: 'Leve, fresca e cheia de sabor — direto da terra para o forno.',
-      price: 900,
-      imageUrl: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80',
-    },
+    create: { pizzaId: margherita.id, ingredientId: queijofresco.id },
   });
 
-  console.log({ margherita, pepperoni, veggie });
+  await prisma.pizzaIngredient.upsert({
+    where: { pizzaId_ingredientId: { pizzaId: margherita.id, ingredientId: manjericam.id } },
+    update: {},
+    create: { pizzaId: margherita.id, ingredientId: manjericam.id },
+  });
+
+  await prisma.coupon.upsert({
+    where: { code: 'RURAL10' },
+    update: {},
+    create: { code: 'RURAL10', type: 'PERCENT', value: 10, minOrderValue: 1000 },
+  });
+  console.log('Seed concluído com sucesso!');
 }
 
 main()
