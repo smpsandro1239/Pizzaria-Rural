@@ -25,8 +25,9 @@ Concluí o backend com funcionalidades avançadas que superam a base inicial:
 ### ⏳ O que falta realizar (Projeto Global)
 - [ ] Integração total da UI com o novo Backend dinâmico (Agente 1).
 - [ ] Automação de deploy real com PostgreSQL em Cloud (Agente 3).
-- [ ] Implementação de Modo Escuro e Skeleton Loaders (Agente 1).
+- [ ] Implementação de Modo Escuro, Vista de Mapa e Skeleton Loaders (Agente 1).
 - [ ] Configuração de monitorização real com Grafana e Sentry (Agente 3).
+- [ ] Geração de Faturas PDF e Recomendações IA (Agente 2 - Backlog).
 
 ---
 **Data da última sincronização:** 29 de Janeiro de 2025

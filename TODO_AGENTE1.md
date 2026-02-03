@@ -44,6 +44,7 @@
 ## 7. Melhorias Futuras (Oportunidades)
 - [ ] Implementar **Modo Escuro** (Dark Mode) nativo
 - [ ] Adicionar **Skeleton Loaders** em todas as listas para melhor UX
+- [ ] Implementar **Vista de Mapa** para tracking de entrega em tempo real
 - [ ] Suporte a **PWA** (Progressive Web App) para acesso offline via browser
 - [ ] Integração com **Apple Pay / Google Pay**
 

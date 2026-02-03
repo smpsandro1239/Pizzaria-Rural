@@ -30,6 +30,7 @@
 6. **Melhorias Futuras (Oportunidades)**
    - [ ] Implementar Geração de Faturas em PDF (Automático após pagamento)
    - [ ] Criar Endpoint de Recomendação IA (Baseado no histórico do utilizador)
+   - [ ] Sistema de Geração de QR Codes para Cartão de Fidelidade Físico
    - [ ] Suporte a Multi-idioma (i18n) nas mensagens de erro da API
    - [ ] Auditoria de Logs de Segurança (OWASP Top 10)
 
