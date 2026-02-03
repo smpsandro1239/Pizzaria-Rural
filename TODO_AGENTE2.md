@@ -27,7 +27,12 @@
    - [x] Stripe (CARD)
    - [x] IfThenPay (MBWAY)
    - [x] Resend (Email)
+6. **Melhorias Futuras (Oportunidades)**
+   - [ ] Implementar Geração de Faturas em PDF (Automático após pagamento)
+   - [ ] Criar Endpoint de Recomendação IA (Baseado no histórico do utilizador)
+   - [ ] Suporte a Multi-idioma (i18n) nas mensagens de erro da API
+   - [ ] Auditoria de Logs de Segurança (OWASP Top 10)
 
 ---
 **Progresso Total (Agente 2): 100%** 🎉
-*Backend robusto e completo. Pendente apenas o fornecimento de credenciais de produção pelo Agente 3 para ativação real das APIs de terceiros.*
+*Backend robusto e completo. Pendente apenas o fornecimento de credenciais de produção pelo Agente 3 para ativação real das APIs de terceiros. Novas melhorias adicionadas ao backlog.*

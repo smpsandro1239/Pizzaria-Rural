@@ -41,6 +41,12 @@
 - [ ] Testes de navegação
 - [ ] Verificação de acessibilidade
 
+## 7. Melhorias Futuras (Oportunidades)
+- [ ] Implementar **Modo Escuro** (Dark Mode) nativo
+- [ ] Adicionar **Skeleton Loaders** em todas as listas para melhor UX
+- [ ] Suporte a **PWA** (Progressive Web App) para acesso offline via browser
+- [ ] Integração com **Apple Pay / Google Pay**
+
 ---
 **Progresso Total (Agente 1): 40%** 📈
 *Nota: A estrutura base existe, mas a integração com a lógica avançada do backend é prioritária agora.*

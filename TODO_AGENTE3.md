@@ -33,6 +33,12 @@
 - [x] Documentação de Arquitetura
 - [ ] Guia de Deploy final (Passo-a-passo)
 
+## 6. Melhorias Futuras (Oportunidades)
+- [ ] Implementar **Backups Automáticos** da base de dados (PostgreSQL)
+- [ ] Configurar **Sentry** para monitorização de erros em tempo real
+- [ ] Implementar **Infraestrutura como Código (IaC)** usando Terraform
+- [ ] Suporte a **Vercel Deployment** (Free Tier) para o ecossistema completo
+
 ---
 **Progresso Total (Agente 3): 35%** 📈
-*Faltam as configurações de produção e monitorização avançada solicitadas pelo Agente 2.*
+*Faltam as configurações de produção e monitorização avançada solicitadas pelo Agente 2. Adicionada a necessidade de suporte a Vercel.*
