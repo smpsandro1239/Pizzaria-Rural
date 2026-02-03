@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Validar branch correta
         run: |
@@ -29,6 +31,7 @@ jobs:
 
       - name: Validar tamanho do PR
         run: |
+          git fetch origin ${{ github.base_ref }}
           CHANGED=$(git diff --shortstat origin/${{ github.base_ref }} | awk '{print $4}')
           if [ -n "$CHANGED" ] && [ "$CHANGED" -gt 800 ]; then
             echo "PR demasiado grande. Divide em PRs menores."
@@ -37,6 +40,7 @@ jobs:
 
       - name: Validar conflitos
         run: |
+          git fetch origin ${{ github.base_ref }}
           if ! git merge --no-commit --no-ff origin/${{ github.base_ref }}; then
             echo "Existem conflitos neste PR."
             exit 1
