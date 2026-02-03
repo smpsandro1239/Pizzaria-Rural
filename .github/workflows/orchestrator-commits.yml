@@ -3,9 +3,9 @@ name: Orquestrador — Validar Commits
 on:
   push:
     branches:
-      - frontend-dev
-      - backend-dev
-      - infra-dev
+      - 'frontend-dev*'
+      - 'backend-dev*'
+      - 'infra-dev*'
 
 jobs:
   validar-commits:
