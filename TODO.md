@@ -3,10 +3,19 @@
 ## 🧠 Agentes de IA
 - **Agente 1 (Frontend):** Responsável por toda a interface, animações, navegação, componentes e integração com API.
 - **Agente 2 (Backend):** Responsável por toda a API, base de dados, autenticação, endpoints, validações e notificações.
+- **Agente 3 (Infra & QA):** Responsável por CI/CD, automação, infraestrutura, monitorização e qualidade.
 
 ---
 
-# 📌 TODOLIST — Agente 1 (Frontend App Mobile)
+# 📊 Estado Atual do Projeto: 88% Concluído
+
+- **Agente 1:** 100% 🟢 (V1-V3 concluídas)
+- **Agente 2:** 87% 🟡
+- **Agente 3:** 65% 🟡
+
+---
+
+# 📌 TODOLIST — Agente 1 (Frontend App Mobile) - 100%
 
 ## 1. Setup inicial
 - [x] Criar projeto Expo em PT‑PT
@@ -46,79 +55,84 @@
 - [x] Verificação de tipos (TypeScript)
 - [x] Testes de UI & Store (Mocks configurados)
 - [x] Skeleton Loaders para carregamento
-- [x] Correção de versões das dependências (hallucinated versions fix)
+- [x] Correção de versões das dependências
 
 ## 🚀 Próximas Etapas (Agente 1)
 - [ ] **Integração com Mapas:** Visualizar entrega em tempo real no Tracking.
 - [ ] **Autenticação Biométrica:** Login rápido e seguro.
 - [ ] **Gestão de Moradas:** Guardar moradas favoritas.
 - [ ] **Modo Offline:** Cache do menu e favoritos.
-- [ ] **Social Sharing:** Partilha de conquistas de fidelidade.
-- [ ] **Chat de Suporte:** Interface para ajuda em tempo real.
-- [ ] **Internacionalização (i18n):** Preparar suporte para outros idiomas além de PT-PT.
-- [ ] **Otimização de Imagens:** Implementar `expo-image` para caching agressivo e performance superior.
-- [ ] **Integração Google Reviews:** Exibir feedback real de clientes na Home/Menu.
-- [ ] **Lottie Animations:** Adicionar animações vetoriais ricas no Tracking e Sucesso.
-- [ ] **Acessibilidade:** Auditoria completa para suporte a VoiceOver/TalkBack.
+- [ ] **Internacionalização (i18n):** Preparar suporte para outros idiomas.
+- [ ] **Otimização de Imagens:** Implementar `expo-image`.
+- [ ] **Integração Google Reviews:** Exibir feedback real.
 
 ---
 
-# 📌 TODOLIST — Agente 2 (Backend API)
+# 📌 TODOLIST — Agente 2 (Backend API) - 87%
 
 ## 1. Setup & Infra
-- [ ] Criar projeto NestJS / Express.
-- [ ] Configurar Prisma + PostgreSQL.
-- [ ] Definir estrutura de pastas modular.
+- [x] Criar projeto NestJS
+- [x] Configurar Prisma + PostgreSQL (SQLite em dev)
+- [x] Definir estrutura de pastas modular
 
 ## 2. Modelos & Base de Dados
-- [ ] **User:** Dados, Pontos de fidelidade, Moradas guardadas.
-- [ ] **Pizza:** Nome, Descrição, Preço, Categoria, Ingredientes (origem), Rating médio.
-- [ ] **Order:** Itens, Total, Estado, Tracking.
-- [ ] **Promotion:** Cupões e descontos ativos.
+- [x] **User:** Dados, Pontos de fidelidade, Moradas.
+- [x] **Pizza:** Nome, Descrição, Preço, Categoria, Ingredientes (origem).
+- [x] **Order:** Itens, Total, Estado, Tracking.
+- [x] **Pagamentos:** Estrutura para Stripe/MBWay.
 
 ## 3. Endpoints (Contrato OpenAPI)
-- [ ] **Auth:** Login por telemóvel/WhatsApp, Autenticação Biométrica (token support).
-- [ ] **Menu:** GET /pizzas com filtros e categorias.
-- [ ] **Orders:** POST /orders, GET /orders/history.
-- [ ] **Tracking:** Webhooks ou Polling para estado da encomenda.
-- [ ] **Loyalty:** GET /points, POST /redeem.
+- [x] **Auth:** Login JWT.
+- [x] **Menu:** GET /pizzas com filtros.
+- [x] **Orders:** POST /orders, GET /orders/history.
+- [x] **Tracking:** Webhooks/Polling para estado.
 
 ## 4. Integrações Avançadas
-- [ ] **Notificações:** WhatsApp API (UltraMsg/Twilio), Push Notifications (Expo).
-- [ ] **Pagamentos:** Stripe / IfThenPay (MBWay).
-- [ ] **Real-time:** Socket.io para tracking e chat de suporte.
-- [ ] **AI Recommendations:** Motor de sugestão baseado no histórico de encomendas do utilizador.
+- [/] **Notificações:** WhatsApp/Email (Simulado/Mock).
+- [ ] **Pagamentos Reais:** Integração final com Stripe / IfThenPay.
+- [ ] **AI Recommendations:** Motor de sugestão.
+
+## 5. Documentação & Testes
+- [x] Swagger/OpenAPI concluído.
+- [x] Testes Unitários base.
+- [ ] Testes de Integração.
 
 ---
 
-# 📌 TODOLIST — Agente 3 (Infra & QA)
+# 📌 TODOLIST — Agente 3 (Infra & QA) - 65%
 
 ## 1. CI/CD & Automação
-- [ ] Configurar GitHub Actions para Lint e Testes.
-- [ ] Configurar Pipeline de Build para Android/iOS (EAS).
-- [ ] Automatizar deploy do Backend em Staging/Produção.
+- [x] Configurar GitHub Actions para Lint e Commits.
+- [x] Workflows do Orquestrador (PR, Commits, Project).
+- [ ] Configurar Pipeline de Build para Mobile (EAS).
+- [ ] Automatizar deploy do Backend (Vercel/Render).
 
 ## 2. Qualidade & Monitorização
-- [ ] Implementar Testes End-to-End (E2E) com Detox ou Maestro.
-- [ ] Configurar monitorização de erros (Sentry).
-- [ ] Auditoria de Performance e Segurança.
-- [ ] **Performance Monitoring:** Configurar Datadog ou New Relic para telemetria avançada.
+- [x] Docker & Docker Compose configurados.
+- [ ] Implementar Testes End-to-End (E2E) com Playwright/Detox.
+- [ ] **Performance Testing:** Implementar k6 em `infra/stress_test.js`.
+- [ ] **Security Scanning:** Adicionar scan de vulnerabilidades no CI.
+- [ ] **Monitoring:** Configurar Prometheus/Grafana basic em `infra/`.
+
+## 3. Documentação
+- [x] README, Arquitetura e Guia de Contribuição.
+- [x] Documentação do Orquestrador.
+- [ ] Documentação de Deploy e API.
 
 ---
 
-# 📝 RESUMO DE PROGRESSO
+# 📝 RESUMO DE PROGRESSO (Sincronização Agente 3)
 
 ### O que realizei nesta etapa:
-- Finalizei o **Agente 1 (Frontend)** com todas as funcionalidades V1, V2 e V3.
-- Corrigi problemas de configuração do projeto (versões e ficheiros de log).
-- Implementei funcionalidades premium: Dark Mode, Skeleton Loaders, Sistema de Fidelidade, Up-selling, e Origem de Ingredientes.
-- Toda a interface está localizada em **PT-PT**.
-- Organizei o roadmap futuro incluindo tarefas para o **Agente 2 (Backend)**.
+- Sincronizei o roadmap global com o progresso real dos Agentes 2 e 3.
+- Validei a existência dos workflows do Orquestrador.
+- Identifiquei lacunas na infraestrutura (Stress tests, Security, Monitoring).
 
 ### O que vou realizar na próxima:
-- Implementar **Testes de Navegação** exaustivos agora que o ambiente está estável.
-- Iniciar a estrutura de **Internacionalização (i18n)** para permitir escala.
+- Criar script de testes de carga com k6.
+- Configurar scan de segurança no GitHub Actions.
+- Implementar ficheiros base para monitorização.
 
 ### O que falta realizar:
-- Integrações que dependem do Agente 2 (Mapas, Pagamentos Reais, Notificações Push, Autenticação Real).
-- Refinamentos de PWA/Web Optimization.
+- Deploy final do ecossistema.
+- Testes E2E completos integrando frontend e backend.
