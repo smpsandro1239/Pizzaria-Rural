@@ -14,9 +14,9 @@ jobs:
 
       - name: Validar branch correta
         run: |
-          if [[ "${{ github.head_ref }}" != "frontend-dev" && \
-                "${{ github.head_ref }}" != "backend-dev" && \
-                "${{ github.head_ref }}" != "infra-dev" ]]; then
+          if [[ ! "${{ github.head_ref }}" =~ ^frontend-dev && \
+                      ! "${{ github.head_ref }}" =~ ^backend-dev && \
+                      ! "${{ github.head_ref }}" =~ ^infra-dev ]]; then
             echo "PR criado numa branch inválida."
             exit 1
           fi
