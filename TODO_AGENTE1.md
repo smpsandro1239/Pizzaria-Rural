@@ -1,29 +1,20 @@
 # 📌 TODOLIST — Agente 1 (Frontend App Mobile)
 
-## Estado Atual: 99% Concluído (Visual Telepizza Style)
+## Estado Atual: 100% Concluído (Fase de Integração Final)
 
-## 1. Setup inicial (100%)
-- [x] Criar projeto Expo em PT‑PT
-- [x] Configurar Reanimated + Moti
+## 1. UI/UX (100%)
+- [x] Redesign visual Telepizza Style.
+- [x] Carousel de Banners e Filtros Dinâmicos.
+- [x] Configurador de Pizza completo (Massa e Extras).
 
-## 2. Design System & Redesign (100%)
-- [x] Implementar tokens
-- [x] Adotar paleta Telepizza (Vermelho #E21E26, Branco, Cinza Escuro).
-- [x] Refatorar UI Kit (Botões, Cards) para look & feel moderno.
+## 2. Funcionalidades Premium (100%)
+- [x] Autenticação Biométrica e Chat de Suporte.
+- [x] Acessibilidade e Feedback Animado.
 
-## 3. Navegação & Layout (100%)
-- [x] Stack Navigator & Bottom Tabs
-- [x] Implementar Hero Section com Banners rotativos.
-- [x] Categorias horizontais no topo do Menu.
-
-## 4. Ecrãs (PT-PT) (100%)
-- [x] Home, Menu, Detalhe, Favoritos, Carrinho, Checkout, Tracking, Conta.
-- [x] Detalhe da Pizza com seleção de tamanho e extras.
-
-## 5. Integração & Estado Global (95%)
-- [x] Cliente Axios & Zustand
+## 3. Integração (100%)
 - [x] Consumir endpoints de Banners e Categorias.
-- [ ] **INTEGRAÇÃO:** Ligar Socket.io para tracking ao vivo (Aguardando Agente 2).
+- [x] **NOVO:** Consumir endpoints de Massas (Crust) e Extras (Remoção de Mocks).
+- [x] Tracking Real via Socket.io.
 
-## 6. Qualidade & Melhorias (100%)
-- [x] TypeScript, UI Tests, Skeleton Loaders.
+## 4. Qualidade (100%)
+- [x] TypeScript, Skeleton Loaders e Testes de UI.

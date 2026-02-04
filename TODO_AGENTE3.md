@@ -1,20 +1,22 @@
 # 📌 TODO Agente 3 — Infraestrutura & Automação
 
-## 📊 Progresso: 96%
+## 📊 Progresso: 98%
 
 ## 1. Estabilização de CI & Automação (100%)
 - [x] Workflows do Orquestrador otimizados (5000 lines, SHA-based diff).
 - [x] Scan de Segurança (Trivy/NPM Audit).
 - [x] Deploy Automático da Documentação.
+- [x] **NOVO:** MASTER_PROMPT.md (Bíblia de Desenvolvimento).
+- [x] **NOVO:** PULL_REQUEST_TEMPLATE.md com Checklist de Sincronização.
 
-## 2. QA & Testes (90%)
+## 2. QA & Testes (95%)
 - [x] Stress tests k6.
 - [x] Estrutura base Playwright para E2E.
-- [x] Workflow de Regressão Visual para o "Novo Visual".
-- [ ] **Falta:** Escrita dos cenários de teste reais de negócio.
+- [x] **NOVO:** Implementar Testes de Regressão Visual reais (`e2e/tests/visual-regression.spec.ts`).
+- [ ] **Falta:** Escrita final dos cenários de teste de negócio complexos.
 
 ## 3. Monitorização & Erros (100%)
-- [x] Configuração Sentry (docs e placeholders).
+- [x] Guia e Placeholder para Sentry (Industrial Error Tracking).
 - [x] Prometheus + Grafana base.
 - [x] Backup Automático da BD.
 
