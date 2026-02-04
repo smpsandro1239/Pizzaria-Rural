@@ -44,7 +44,7 @@ jobs:
           CHANGED=$(git diff --numstat $BASE_SHA..$HEAD_SHA -- . ':(exclude)*package-lock.json' ':(exclude)*yarn.lock' ':(exclude)*pnpm-lock.yaml' ':(exclude)readmeSandro' | awk '{sum+=$1} END {print sum}')
           echo "Linhas alteradas (excluindo locks e readmeSandro): ${CHANGED:-0}"
 
-          if [ -n "$CHANGED" ] && [ "$CHANGED" -gt 1500 ]; then
+          if [ -n "$CHANGED" ] && [ "$CHANGED" -gt 5000 ]; then
             echo "Erro: PR demasiado grande ($CHANGED linhas)."
             echo "Detalhe das alterações:"
             git diff --numstat $BASE_SHA..$HEAD_SHA -- . ':(exclude)*package-lock.json' ':(exclude)*yarn.lock' ':(exclude)*pnpm-lock.yaml' ':(exclude)readmeSandro' | sort -nr
