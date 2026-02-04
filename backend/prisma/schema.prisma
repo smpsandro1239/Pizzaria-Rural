@@ -21,16 +21,35 @@ model User {
   createdAt DateTime @default(now())
 }
 
+model Category {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  slug      String   @unique
+  pizzas    Pizza[]
+  createdAt DateTime @default(now())
+}
+
 model Pizza {
   id          String   @id @default(cuid())
   name        String
   description String
-  price       Int      // em cêntimos
+  price       Int      // em cêntimos (preço base)
   imageUrl    String
+  categoryId  String?
+  category    Category? @relation(fields: [categoryId], references: [id])
   createdAt   DateTime @default(now())
   ingredients PizzaIngredient[]
   orderItems  OrderItem[]
   reviews     Review[]
+}
+
+model Banner {
+  id        String   @id @default(cuid())
+  title     String?
+  imageUrl  String
+  link      String?
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
 }
 
 model Ingredient {

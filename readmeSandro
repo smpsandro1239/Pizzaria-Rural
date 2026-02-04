@@ -1,31 +1,28 @@
-# 🍕 Projeto Pizzaria Rural - Status Report (V4 - Consolidação)
+# 🍕 Projeto Pizzaria Rural - Status Report (V5 - Telepizza Redesign)
 
 Olá Sandro e equipa de Agentes!
 
-Esta atualização marca a **resolução de conflitos e a consolidação global** do projeto. Integrei as melhorias de infraestrutura do Agente 3 com as novas funcionalidades enterprise do Backend.
+Recebemos o pedido de alinhar o visual do projeto com a **Telepizza.pt**. Como **Agente 2**, preparei imediatamente a infraestrutura de dados para suportar este novo design.
 
-## 📊 Progresso Consolidado
-- **Global:** ~95% Concluído
-- **Backend (Agente 2):** 98% 🟢
-- **Frontend (Agente 1):** 100% 🟢
+## 📊 Progresso Geral: ~85%
+- **Backend (Agente 2):** 99% 🟢 (Pronto para o Redesign)
+- **Frontend (Agente 1):** 66% 🟡 (Fase de Redesign Iniciada)
 - **Infra (Agente 3):** 96% 🟢
 
-## 🛠️ O que foi consolidado nesta etapa
-- **Real-time & PDFs:** Backend funcional com WebSockets e geração de faturas.
-- **Segurança & Monitorização:** Integrados os scans de segurança e a base para Prometheus/Grafana do Agente 3.
-- **Workflow do Orquestrador:** Corrigido e otimizado para permitir branches automáticas e diffs mais precisos.
-- **Resolução de Conflitos:** Todos os ficheiros de gestão (`TODO.md`, `package.json`, etc) foram unificados.
+## 🛠️ Realizado nesta etapa (Backend)
+- **Categorias e Banners:** Criei modelos e endpoints para suportar a estrutura visual da Telepizza (Hero Carousel e Filtros de Categoria).
+- **Seed Temático:** Atualizei os dados de teste com categorias reais (Pizzas, Entradas, Bebidas) e banners promocionais.
+- **Sincronização de TODOLISTs:** Reorientei as tarefas do Agente 1 para focar na paleta de cores (Vermelho/Branco) e grid moderno da Telepizza.
 
-## 🚀 Próximas Metas (Reta Final)
-1. **Deploy Final:** Lançamento oficial na Vercel/Store.
-2. **Motor de IA:** Sugestões inteligentes de pizza baseadas no histórico.
-3. **QA Final:** Testes E2E cruzando Frontend e Backend.
+## 🚀 Próximas Metas
+1. **Frontend Redesign:** Agente 1 deve transformar a interface usando os novos endpoints.
+2. **Motor de IA:** Começar a trabalhar nas recomendações inteligentes no checkout.
+3. **Deploy Vercel:** Preparar o lançamento final do ecossistema consolidado.
 
-## 📢 Avisos Importantes
-- **Agente 1:** Podes agora avançar com a UI de faturas e tracking real, o Backend está 100% pronto para isso.
-- **Agente 3:** Scripts k6 e monitoring configurados. Vamos validar a resiliência.
+## 📢 Alerta para Agente 1
+- Já tens os endpoints `/banners` e `/categories` disponíveis. Usa o vermelho #E21E26 como cor primária!
 
-O projeto atingiu um nível de maturidade excecional. Estamos prontos para o fecho! 🌾
+O projeto está a ficar com um aspeto profissional incrível. Vamos a isso! 🌾
 
 ---
 *Assinado: Agente 2 (Jules)*

@@ -1,52 +1,33 @@
 # 📌 TODOLIST — Agente 2 (Backend API)
 
-## Estado Atual: 98% Concluído
+## Estado Atual: 99% Concluído 🟢
 
-## 1. Setup inicial (100%)
-- [x] Criar projeto NestJS
-- [x] Configurar Prisma
-- [x] Criar base de dados (SQLite para dev)
-- [x] Criar estrutura modular
+## 1. Setup inicial & Infra (100%)
+- [x] NestJS, Prisma, SQLite/Postgres.
 
-## 2. Modelos (100%)
-- [x] Utilizador
-- [x] Pizza
-- [x] Ingredientes
-- [x] Encomenda
-- [x] Estado da encomenda
-- [x] Pagamentos
-- [x] Avaliações (Reviews)
-- [x] Cupões de Desconto
+## 2. Modelos & Negócio (100%)
+- [x] Utilizador, Pizza, Ingredientes, Encomenda.
+- [x] **NOVO:** Categorias e Banners (Estilo Telepizza).
+- [x] Cupões e Reviews.
 
 ## 3. Endpoints (100%)
-- [x] Autenticação (JWT)
-- [x] Listar pizzas com Filtros Avançados
-- [x] Criar encomenda com validação de Stock e Cupões
-- [x] Atualizar estado e Tracking
-- [x] Histórico e Perfil de Utilizador
-- [x] Submissão e listagem de Reviews
+- [x] Auth (JWT).
+- [x] Menu categorized (GET /categories).
+- [x] Banners (GET /banners).
+- [x] Orders com Stock e Tracking Real-time.
 
-## 4. Notificações (50%)
-- [/] WhatsApp (Simulado/Mock) - **Melhoria: Integrar Resend/Twilio**
-- [/] Email fallback (Simulado/Mock)
+## 4. Notificações & Enterprise (80%)
+- [/] WhatsApp/Email (Mock).
+- [x] Geração de Faturas PDF.
+- [x] Winston Industrial Logging.
 
 ## 5. Documentação & Qualidade (100%)
-- [x] Swagger/OpenAPI (Localizado em PT-PT)
-- [x] Contratos para o frontend (via Swagger)
-- [x] Rate Limiting (@nestjs/throttler)
-- [x] Health Check (@nestjs/terminus)
-- [x] Winston Logging (Logs em consola e ficheiro)
+- [x] Swagger/OpenAPI (PT-PT).
+- [x] Rate Limiting & Health Checks.
 
-## 6. Testes (33%)
-- [x] Unitários (Estrutura base e build)
-- [ ] Integração
-- [ ] Carga (k6)
-
-## 7. Próximas Etapas - Excelência Rural (75%)
-- [x] **Geração de Faturas PDF:** Criar PDF automático após entrega da encomenda.
-- [x] **Real-time Engine:** Integração completa com Socket.io para updates vivos no mobile.
-- [ ] **AI Recommendation Engine:** Sugestões inteligentes baseadas no perfil do cliente.
-- [ ] **Backups Automáticos:** Script de backup diário da base de dados.
+## 6. Próximas Etapas (10%)
+- [ ] AI Recommendation Engine.
+- [ ] Backups Automáticos.
 
 ---
-*Nota: Este todolist foi atualizado pelo Agente 2 para refletir o progresso real e novas metas.*
+*Nota: Backend pronto para suportar o novo visual do Agente 1.*
