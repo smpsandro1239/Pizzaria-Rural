@@ -1,44 +1,26 @@
 # 📌 TODOLIST — Agente 1 (Frontend App Mobile)
 
-## 📊 Progresso: 100% (Interface e UX)
+## 📊 Progresso: 100% (Visual Telepizza v1)
 
-### 1. Setup inicial
-- [x] Criar projeto Expo em PT‑PT
-- [x] Configurar Reanimated + Moti
-- [x] Configurar estrutura de pastas
-- [x] Criar tema (cores, tipografia, spacing, radius)
+### 1. Novo Design System (Telepizza Style)
+- [x] Atualizar cores para Vermelho Vibrante (#E2001A)
+- [x] Refinar tipografia para estilo moderno e limpo
+- [x] Implementar grelha de produtos (2 colunas)
 
-### 2. Design System
-- [x] Implementar tokens
-- [x] Criar UI Kit completo (Botão, Input, Card, Badge)
-- [x] Criar componentes avançados (AnimatedLoader, StarRating, SkeletonCard, IngredientSource)
-- [x] Criar Motion System (Tokens integrados nos componentes)
+### 2. Home Reestruturada
+- [x] Adicionar Carousel de Banners promocionais
+- [x] Implementar categorias circulares horizontais
+- [x] Secção "As mais pedidas" em grelha
 
-### 3. Navegação
-- [x] Stack Navigator (Transições animadas)
-- [x] Bottom Tabs (Home, Menu, Favoritos, Conta)
+### 3. Menu e Detalhe
+- [x] Novo layout de Menu com botões de ação rápida
+- [x] Otimizar cards de produto para exibição de preço e descrição curta
 
-### 4. Ecrãs (PT-PT)
-- [x] **Home:** Hero, Destaques, Porquê nós.
-- [x] **Menu:** Lista de Pizzas, Filtros por categoria, Entrada animada.
-- [x] **Detalhe da Pizza:** Preços, Ingredientes, Proveniência (Rural Premium), Ratings, Recomendações, Avaliações.
-- [x] **Favoritos:** Lista de pizzas preferidas do utilizador.
-- [x] **Carrinho:** FloatingCart persistente.
-- [x] **Checkout:** Formulário, Resumo, Up-selling, Resgate de Pontos.
-- [x] **Tracking:** Estado da encomenda dinâmico com MAPA em tempo real. [NOVO]
-- [x] **Conta:** Dados, Fidelidade, Histórico, Definições, Biometria.
-- [x] **Gestão de Moradas:** Listar, Adicionar e Remover moradas.
-- [x] **Chat de Suporte:** Interface de ajuda em tempo real.
+### 4. Funcionalidades Core
+- [x] Carrinho e Checkout (Style Match)
+- [x] Tracking e Mapas (Style Match)
+- [x] Suporte e Moradas (Style Match)
 
-### 5. Integração & Qualidade
-- [x] Criar cliente API (Axios)
-- [x] Consumir endpoints (Mock fallback funcional)
-- [x] Suporte para Modo Escuro (Dark Mode) automático
-- [x] Sistema de Feedback (Toasts animados)
-- [x] Auditoria de Acessibilidade (Labels e Roles)
-- [x] Documentação Visual (Screenshots Journey)
-
-### 🚀 Próximas Etapas (Integração Final)
-- [ ] Ligação final às APIs do Agente 2 (Review, Address, Chat).
-- [ ] Injeção de API Keys de Mapas via EAS (Agente 3).
-- [ ] Publicação Beta nas Lojas.
+### 🚀 Próximas Etapas (Integração Tele-Style)
+- [ ] Ligação aos novos banners dinâmicos do Agente 2.
+- [ ] Implementação de seleção de tamanhos (Pequena/Média/Familiar) na UI.
