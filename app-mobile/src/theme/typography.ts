@@ -1,15 +1,16 @@
 export const typography = {
   h1: {
     fontSize: 32,
-    fontWeight: "700" as const,
+    fontWeight: "800" as const,
+    letterSpacing: -0.5,
   },
   h2: {
     fontSize: 24,
     fontWeight: "700" as const,
   },
   h3: {
-    fontSize: 20,
-    fontWeight: "600" as const,
+    fontSize: 18,
+    fontWeight: "700" as const,
   },
   body: {
     fontSize: 16,
@@ -18,5 +19,10 @@ export const typography = {
   caption: {
     fontSize: 14,
     fontWeight: "400" as const,
+  },
+  button: {
+    fontSize: 16,
+    fontWeight: "700" as const,
+    textTransform: "uppercase" as const,
   },
 };

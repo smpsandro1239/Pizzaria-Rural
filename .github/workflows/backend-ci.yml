@@ -17,11 +17,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Configurar Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Instalar dependências
+      - name: Install dependencies
         run: cd backend && npm install
       - name: Lint
         run: cd backend && npm run lint || echo "No lint script"

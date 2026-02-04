@@ -2,12 +2,9 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
-import { loggerConfig } from './logger.config';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, {
-    logger: loggerConfig,
-  });
+  const app = await NestFactory.create(AppModule);
 
   // Configuração do Swagger em PT-PT
   const config = new DocumentBuilder()
@@ -29,8 +26,6 @@ async function bootstrap() {
   // CORS para permitir acesso do frontend
   app.enableCors();
 
-  const port = process.env.PORT || 3000;
-  await app.listen(port);
-  console.log(`Aplicação a correr em: http://localhost:${port}`);
+  await app.listen(process.env.PORT || 3000);
 }
 bootstrap();

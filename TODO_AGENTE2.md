@@ -1,4 +1,4 @@
-# 📌 TODOLIST — Agente 2 (Backend API)
+📌 **TODOLIST — Agente 2**
 
 1. **Setup inicial**
    - [x] Criar projeto NestJS
@@ -46,3 +46,9 @@
   - `GET /support/messages`
   - `POST /support/messages`
 - [ ] **Persistência de Reviews:** Endpoint para guardar as estrelas e comentários submetidos no Frontend.
+
+---
+### 🍕 Requisitos para Visual Telepizza (Agente 1)
+- [ ] **Múltiplos Tamanhos:** Adaptar o modelo de Pizza para suportar preços por tamanho (Pequena, Média, Familiar).
+- [ ] **Novas Categorias:** Adicionar suporte para categorias "Promoções", "Bebidas", "Sobremesas" e "Entradas" na DB.
+- [ ] **Banners Dinâmicos:** Criar endpoint `GET /banners` para fornecer imagens e links das promoções da Home.
