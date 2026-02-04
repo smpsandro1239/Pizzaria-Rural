@@ -9,13 +9,4 @@ The following packages should be updated for best compatibility with the install
 Your project may not work correctly until you install the expected versions of the packages.
 Waiting on http://localhost:8081
 Logs for your project will appear below.
-Web Bundling failed 2629ms index.ts (1219 modules)
-error: SyntaxError: /app/app-mobile/src/screens/AccountScreen.tsx: Unexpected token (53:1)
-
-  51 |
-  52 |       <Text style={[styles.sectionTitle, { ...typography.h3, color: colors.text, marginBottom: spacing.md }]}>Definições</Text>
-> 53 | <<<<<<< Updated upstream
-     |  ^
-  54 |
-  55 |       <Card style={{ marginBottom: spacing.xl, padding: 0 }}>
-  56 |         <TouchableOpacity
+Web Bundled 2089ms index.ts (1295 modules)

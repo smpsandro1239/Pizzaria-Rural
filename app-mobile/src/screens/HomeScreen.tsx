@@ -45,29 +45,16 @@ export const HomeScreen = () => {
       style={[styles.container, { backgroundColor: colors.background }]}
       contentContainerStyle={{ paddingBottom: spacing.xxl }}
     >
-      {/* Banner Promocional */}
-<<<<<<< Updated upstream
       <ScrollView
         horizontal
         pagingEnabled
-=======
-      <ScrollView
-        horizontal
-        pagingEnabled
->>>>>>> Stashed changes
         showsHorizontalScrollIndicator={false}
         style={styles.bannerScroll}
       >
         <TouchableOpacity style={[styles.banner, { width: width - (spacing.lg * 2), marginHorizontal: spacing.lg, backgroundColor: colors.primary, borderRadius: radius.lg }]}>
-<<<<<<< Updated upstream
           <Image
             source={{ uri: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80' }}
             style={[styles.bannerImage, { borderRadius: radius.lg }]}
-=======
-          <Image
-            source={{ uri: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80' }}
-            style={[styles.bannerImage, { borderRadius: radius.lg }]}
->>>>>>> Stashed changes
           />
           <View style={styles.bannerOverlay}>
             <Text style={[typography.h2, { color: 'white' }]}>MENU PARA 2</Text>
@@ -76,16 +63,9 @@ export const HomeScreen = () => {
         </TouchableOpacity>
       </ScrollView>
 
-      {/* Categorias Circulares */}
-<<<<<<< Updated upstream
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-=======
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
->>>>>>> Stashed changes
         style={[styles.categoriesScroll, { marginTop: spacing.xl }]}
         contentContainerStyle={{ paddingHorizontal: spacing.lg }}
       >
@@ -99,7 +79,6 @@ export const HomeScreen = () => {
         ))}
       </ScrollView>
 
-      {/* Secção de Produtos em Grelha */}
       <View style={[styles.section, { padding: spacing.lg }]}>
         <View style={styles.sectionHeader}>
           <Text style={[typography.h3, { color: colors.text }]}>As mais pedidas</Text>
@@ -123,11 +102,7 @@ export const HomeScreen = () => {
                   {pizza.name}
                 </Text>
                 <Text style={[typography.h3, { color: colors.primary, marginTop: spacing.xs }]}>
-<<<<<<< Updated upstream
-                  {pizza.price.toFixed(2)}€
-=======
                   {pizza.basePrice.toFixed(2)}€
->>>>>>> Stashed changes
                 </Text>
                 <TouchableOpacity style={[styles.addButton, { backgroundColor: colors.primary }]}>
                   <MaterialCommunityIcons name="plus" size={20} color="white" />
@@ -142,68 +117,18 @@ export const HomeScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  bannerScroll: {
-    marginTop: 16,
-  },
-  banner: {
-    height: 180,
-    position: 'relative',
-    overflow: 'hidden',
-  },
-  bannerImage: {
-    width: '100%',
-    height: '100%',
-    opacity: 0.7,
-  },
-  bannerOverlay: {
-    position: 'absolute',
-    bottom: 20,
-    left: 20,
-  },
+  container: { flex: 1 },
+  bannerScroll: { marginTop: 16 },
+  banner: { height: 180, position: 'relative', overflow: 'hidden' },
+  bannerImage: { width: '100%', height: '100%', opacity: 0.7 },
+  bannerOverlay: { position: 'absolute', bottom: 20, left: 20 },
   categoriesScroll: {},
-  categoryItem: {
-    alignItems: 'center',
-    marginRight: 20,
-  },
-  categoryCircle: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    borderWidth: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  categoryItem: { alignItems: 'center', marginRight: 20 },
+  categoryCircle: { width: 60, height: 60, borderRadius: 30, borderWidth: 1, alignItems: 'center', justifyContent: 'center' },
   section: {},
-  sectionHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 16,
-  },
-  grid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-  },
-  gridCard: {
-    marginBottom: 16,
-    padding: 8,
-  },
-  pizzaImage: {
-    width: '100%',
-    height: 120,
-  },
-  addButton: {
-    position: 'absolute',
-    bottom: 8,
-    right: 8,
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  sectionHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 },
+  grid: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' },
+  gridCard: { marginBottom: 16, padding: 8 },
+  pizzaImage: { width: '100%', height: 120 },
+  addButton: { position: 'absolute', bottom: 8, right: 8, width: 32, height: 32, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
 });
