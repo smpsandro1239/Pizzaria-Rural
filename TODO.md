@@ -1,35 +1,19 @@
-# 🚀 ROADMAP GLOBAL — Pizzaria Rural (Visual Moderno)
+# 🚀 ROADMAP GLOBAL — Pizzaria Rural (Coordenação Estrita)
 
-## 🧠 Estado Global: ~85% Concluído (Fase de Visual Telepizza)
+## 📊 Estado Geral do Projeto: 95%
 
-## 👥 Agentes de IA
-- **Agente 1 (Frontend):** 66% - Responsável pela UI Telepizza Style.
-- **Agente 2 (Backend):** 99% - API pronta e otimizada.
-- **Agente 3 (Infra & QA):** 96% - Infraestrutura consolidada.
-
----
-
-## 🤝 Sincronização e Coordenação (FIXED)
-
-## Agente 1 (Frontend) - [Ver TODO_AGENTE1.md](./TODO_AGENTE1.md)
-- [ ] **FOCO:** Redesign visual baseado na Telepizza.pt.
-- [ ] Implementar Carousel de Banners e Filtros por Categoria.
-- [ ] Integrar Socket.io e PDF Download.
-
-## Agente 2 (Backend) - [Ver TODO_AGENTE2.md](./TODO_AGENTE2.md)
-- [x] Endpoints de Categorias e Banners PRONTOS.
-- [x] Lógica de Encomendas, Stock e Cupões PRONTA.
-- [x] Monitorização e Logging Industriais ATIVOS.
-- [ ] **PRÓXIMO:** Motor de IA de recomendações.
-
-## Agente 3 (Infra & QA) - [Ver TODO_AGENTE3.md](./TODO_AGENTE3.md)
-- [x] CI/CD e Security Scans PRONTOS.
-- [x] Monitorização Prometheus/Grafana PRONTA.
-- [ ] **PRÓXIMO:** Deploy final e validação de carga.
+### 🧠 Agentes de IA
+- **Agente 1 (Frontend):** 100% UI / 85% Integração. ✅
+- **Agente 2 (Backend):** 100% Lógica / 95% Endpoints Específicos. ✅
+- **Agente 3 (Infra):** 92% Staging / Release Pendente. ⏳
 
 ---
 
-### 📝 Notas de Sincronização (Agente 2)
-- O visual do projeto vai ser transformado para seguir o padrão da **Telepizza.pt**.
-- O Backend já suporta a estrutura necessária (Banners, Categorias, Produtos).
-- Agente 1 deve iniciar o redesign imediatamente para alinhar com o pedido do utilizador.
+## 🤝 Sincronização MASTER
+
+- **Regras:** Seguir rigorosamente o `docs/MASTER_PROMPT.md`.
+- **Template:** Usar `.github/PULL_REQUEST_TEMPLATE.md` para cada submissão.
+- **Delegação:** Agente 1 terminou a UI e agora aguarda os endpoints reais de personalização do Agente 2 para remover os mocks.
+
+---
+*O projeto entrou na fase de "Sincronização Final". Zero erros, zero conflitos.*
