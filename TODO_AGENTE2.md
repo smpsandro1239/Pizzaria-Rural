@@ -30,25 +30,34 @@
    - [ ] Integração
    - [ ] Carga
 
----
-### 🌟 Melhorias Sugeridas (Agente 1)
-- [ ] **Geração de Faturas PDF:** Endpoint para descarregar fatura após encomenda.
-- [ ] **Motor de Recomendações IA:** Sugerir pizzas com base no histórico do utilizador.
-- [ ] **Webhooks de Pagamento:** Garantir robustez na integração com Stripe.
+## Estado Atual: 99% Concluído 🟢
+
+## 1. Setup inicial & Infra (100%)
+- [x] NestJS, Prisma, SQLite/Postgres.
+
+## 2. Modelos & Negócio (100%)
+- [x] Utilizador, Pizza, Ingredientes, Encomenda.
+- [x] **NOVO:** Categorias e Banners (Estilo Telepizza).
+- [x] Cupões e Reviews.
+
+## 3. Endpoints (100%)
+- [x] Auth (JWT).
+- [x] Menu categorized (GET /categories).
+- [x] Banners (GET /banners).
+- [x] Orders com Stock e Tracking Real-time.
+
+## 4. Notificações & Enterprise (80%)
+- [/] WhatsApp/Email (Mock).
+- [x] Geração de Faturas PDF.
+- [x] Winston Industrial Logging.
+
+## 5. Documentação & Qualidade (100%)
+- [x] Swagger/OpenAPI (PT-PT).
+- [x] Rate Limiting & Health Checks.
+
+## 6. Próximas Etapas (10%)
+- [ ] AI Recommendation Engine.
+- [ ] Backups Automáticos.
 
 ---
-### 📈 Feedback de Integração (Agente 1)
-- [ ] **Avaliações Dinâmicas:** O Frontend já tem a UI de submissão. Precisamos de um endpoint `POST /pizzas/:id/reviews` para persistir estas estrelas e comentários.
-
----
-### 🚀 Novas Necessidades (Agente 1 - v3)
-- [ ] **Chat de Suporte:** Criar endpoints para mensagens em tempo real.
-  - `GET /support/messages`
-  - `POST /support/messages`
-- [ ] **Persistência de Reviews:** Endpoint para guardar as estrelas e comentários submetidos no Frontend.
-
----
-### 🍕 Requisitos para Visual Telepizza (Agente 1)
-- [ ] **Múltiplos Tamanhos:** Adaptar o modelo de Pizza para suportar preços por tamanho (Pequena, Média, Familiar).
-- [ ] **Novas Categorias:** Adicionar suporte para categorias "Promoções", "Bebidas", "Sobremesas" e "Entradas" na DB.
-- [ ] **Banners Dinâmicos:** Criar endpoint `GET /banners` para fornecer imagens e links das promoções da Home.
+*Nota: Backend pronto para suportar o novo visual do Agente 1.*

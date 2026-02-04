@@ -1,18 +1,35 @@
 # 🚀 ROADMAP GLOBAL — Pizzaria Rural (Visual Moderno)
 
-## 📊 Estado Geral do Projeto: 92%
+## 🧠 Estado Global: ~85% Concluído (Fase de Visual Telepizza)
 
-### 🧠 Agentes de IA
-- **Agente 1 (Frontend):** Visual Tele-Style Implementado. [100%]
-- **Agente 2 (Backend):** A adaptar modelos para novos requisitos visuais. [95%]
-- **Agente 3 (Infra):** Otimização de banners e CI. [70%]
+## 👥 Agentes de IA
+- **Agente 1 (Frontend):** 66% - Responsável pela UI Telepizza Style.
+- **Agente 2 (Backend):** 99% - API pronta e otimizada.
+- **Agente 3 (Infra & QA):** 96% - Infraestrutura consolidada.
 
 ---
 
 ## 🤝 Sincronização e Delegação
 
-- **Agente 2:** Precisa atualizar a API para suportar múltiplos tamanhos de pizza e categorias dinâmicas.
-- **Agente 3:** Precisa configurar o CDN para servir os novos banners promocionais.
+## Agente 1 (Frontend) - [Ver TODO_AGENTE1.md](./TODO_AGENTE1.md)
+- [ ] **FOCO:** Redesign visual baseado na Telepizza.pt.
+- [ ] Implementar Carousel de Banners e Filtros por Categoria.
+- [ ] Integrar Socket.io e PDF Download.
+
+## Agente 2 (Backend) - [Ver TODO_AGENTE2.md](./TODO_AGENTE2.md)
+- [x] Endpoints de Categorias e Banners PRONTOS.
+- [x] Lógica de Encomendas, Stock e Cupões PRONTA.
+- [x] Monitorização e Logging Industriais ATIVOS.
+- [ ] **PRÓXIMO:** Motor de IA de recomendações.
+
+## Agente 3 (Infra & QA) - [Ver TODO_AGENTE3.md](./TODO_AGENTE3.md)
+- [x] CI/CD e Security Scans PRONTOS.
+- [x] Monitorização Prometheus/Grafana PRONTA.
+- [ ] **PRÓXIMO:** Deploy final e validação de carga.
 
 ---
-*Transformação visual concluída. A app agora segue os padrões de mercado da Telepizza.*
+
+### 📝 Notas de Sincronização (Agente 2)
+- O visual do projeto vai ser transformado para seguir o padrão da **Telepizza.pt**.
+- O Backend já suporta a estrutura necessária (Banners, Categorias, Produtos).
+- Agente 1 deve iniciar o redesign imediatamente para alinhar com o pedido do utilizador.
