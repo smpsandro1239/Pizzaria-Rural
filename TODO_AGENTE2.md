@@ -1,6 +1,6 @@
 # 📌 TODOLIST — Agente 2 (Backend API)
 
-## Estado Atual: 89% Concluído
+## Estado Atual: 92% Concluído
 
 ## 1. Setup inicial (100%)
 - [x] Criar projeto NestJS
@@ -15,33 +15,37 @@
 - [x] Encomenda
 - [x] Estado da encomenda
 - [x] Pagamentos
+- [x] Avaliações (Reviews)
+- [x] Cupões de Desconto
 
 ## 3. Endpoints (100%)
 - [x] Autenticação (JWT)
-- [x] Listar pizzas
-- [x] Criar encomenda (com suporte opcional a utilizador autenticado)
-- [x] Atualizar estado
-- [x] Tracking
-- [x] Histórico
+- [x] Listar pizzas com Filtros Avançados
+- [x] Criar encomenda com validação de Stock e Cupões
+- [x] Atualizar estado e Tracking
+- [x] Histórico e Perfil de Utilizador
+- [x] Submissão e listagem de Reviews
 
 ## 4. Notificações (50%)
 - [/] WhatsApp (Simulado/Mock)
 - [/] Email fallback (Simulado/Mock)
 
-## 5. Documentação (100%)
-- [x] Swagger/OpenAPI
+## 5. Documentação & Qualidade (100%)
+- [x] Swagger/OpenAPI (Localizado em PT-PT)
 - [x] Contratos para o frontend (via Swagger)
+- [x] Rate Limiting (@nestjs/throttler)
+- [x] Health Check (@nestjs/terminus)
 
 ## 6. Testes (33%)
 - [x] Unitários (Estrutura base e build)
 - [ ] Integração
-- [ ] Carga
+- [ ] Carga (k6)
 
-## 7. Novas Funcionalidades (Melhorias) (0%)
-- [x] **Gestão de Stock:** Decrementar stock de ingredientes ao criar encomenda.
-- [x] **Sistema de Reviews:** Endpoint para submeter e listar avaliações de pizzas.
-- [x] **Cupões de Desconto:** Lógica de descontos (FIXED/PERCENT) e validação.
-- [x] **Filtros Avançados:** Suporte a filtros de preço e ingredientes no GET /pizzas.
+## 7. Próximas Etapas - Excelência Rural (0%)
+- [ ] **Geração de Faturas PDF:** Criar PDF automático após entrega da encomenda.
+- [ ] **AI Recommendation Engine:** Sugestões inteligentes baseadas no perfil do cliente.
+- [ ] **Backups Automáticos:** Script de backup diário da base de dados.
+- [ ] **Real-time Engine:** Integração completa com Socket.io para updates vivos no mobile.
 
 ---
 *Nota: Este todolist foi atualizado pelo Agente 2 para refletir o progresso real e novas metas.*

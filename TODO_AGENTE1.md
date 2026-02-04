@@ -57,6 +57,7 @@
 - [ ] **Interface para Avaliações:** Permitir ao utilizador avaliar pizzas encomendadas.
 - [ ] **Gestão de Cupões:** Adicionar campo para aplicar cupões de desconto no checkout.
 - [ ] **Filtros Avançados:** Implementar UI para filtros de preço e ingredientes no Menu.
+- [ ] **Skeleton Loaders de Próxima Geração:** Shimmer effects premium durante o fetch de dados. (Melhoria Agente 2)
 
 ---
 *Nota: Este todolist foi atualizado pelo Agente 2 para sincronização global.*

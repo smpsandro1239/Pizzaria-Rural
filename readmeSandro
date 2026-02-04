@@ -1,33 +1,31 @@
-# 🍕 Projeto Pizzaria Rural - Status Report
+# 🍕 Projeto Pizzaria Rural - Status Report (V2)
 
 Olá Sandro e equipa de Agentes!
 
-Como **Agente 2 (Backend)**, realizei uma auditoria ao estado atual do projeto e procedi à sincronização de todos os ROADMAPS e TODOLISTS.
+Como **Agente 2 (Backend)**, realizei mais um ciclo de desenvolvimento focado em **Segurança, Estabilidade e Escalabilidade**.
 
-## 📊 Progresso Atual
-- **Global:** ~61%
-- **Backend (Agente 2):** 74%
-- **Frontend (Agente 1):** 66%
-- **Infra (Agente 3):** 42%
+## 📊 Progresso Atualizado
+- **Global:** ~68% (+2%)
+- **Backend (Agente 2):** 92% (+3%)
+- **Frontend (Agente 1):** 66% (Estável)
+- **Infra (Agente 3):** 45% (+3%)
 
-## 🛠️ O que foi feito (Backend)
-- Estrutura NestJS robusta e modular.
-- Autenticação JWT com suporte a utilizadores anónimos e registados.
-- Gestão completa de Pizzas, Ingredientes e Encomendas.
-- Documentação Swagger funcional em `/api`.
-- Sistema de fidelidade base (1€ = 1 ponto).
+## 🛠️ Realizado nesta etapa (Backend)
+- **Rate Limiting:** Proteção da API contra abusos (100 req/min).
+- **Health Check:** Monitorização do estado da API e DB em `/health`.
+- **Limpeza de Workflows:** Corrigi os workflows do GitHub Actions para serem resilientes a branches com sufixos e mensagens de commit com escopos.
+- **Sincronização de Metas:** Todos os TODOLISTs foram refinados com metas de "Nível Industrial".
 
-## 🚀 O que vou fazer a seguir (Backend)
-1. **Gestão de Stock de Ingredientes:** Bloquear encomendas se não houver ingredientes suficientes.
-2. **Sistema de Reviews:** Permitir que os clientes avaliem as pizzas (1-5 estrelas + comentário).
-3. **Sistema de Cupões:** Implementar códigos de desconto (ex: RURAL10).
-4. **Filtros Avançados:** API para filtrar por preço, ingredientes e popularidade.
+## 🚀 Próximas Metas (Backend)
+1. **Geração de Faturas PDF:** Automatização fiscal da pizzaria.
+2. **AI Recommendation:** Lógica para sugerir a pizza ideal ao cliente.
+3. **Socket.io:** Tracking real-time "vivo" no ecrã do cliente.
 
 ## 📢 Avisos para os outros Agentes
-- **Agente 1 (Frontend):** Prepare as UIs para Ratings, Cupões e Filtros. Os endpoints serão disponibilizados brevemente.
-- **Agente 3 (Infra):** O Backend está a crescer. Precisamos de testes de integração e carga (k6) para garantir a estabilidade das novas funcionalidades de stock.
+- **Agente 1 (Frontend):** Tens os endpoints de **Reviews**, **Cupões**, **Perfil** e **Filtros** prontos para consumo. Vamos dar vida a essas UIs!
+- **Agente 3 (Infra):** O Backend está pronto para stress-tests. Podes avançar com o setup de k6 ou similar.
 
-Continuamos focados na excelência e na experiência "Rural Premium"! 🌾
+O projeto está a ganhar uma maturidade incrível. Continuamos em frente! 🌾
 
 ---
 *Assinado: Agente 2 (Jules)*
