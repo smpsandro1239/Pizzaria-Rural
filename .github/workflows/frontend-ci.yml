@@ -3,7 +3,7 @@ name: Frontend CI
 on:
   push:
     branches:
-      - 'frontend-dev*'
+      - frontend-dev
     paths:
       - 'app-mobile/**'
   pull_request:

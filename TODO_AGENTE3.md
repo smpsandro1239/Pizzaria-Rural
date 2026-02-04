@@ -1,6 +1,6 @@
 # 📌 TODO Agente 3 — Infraestrutura & Automação
 
-## 📊 Progresso: 78%
+## 📊 Progresso: 90%
 
 ## 1. Setup GitHub (100%)
 - [x] Inicializar estrutura do repositório
@@ -13,7 +13,7 @@
 - [x] Lint + Prettier configurados
 - [ ] Configurar Testes automáticos no CI
 - [ ] Pipeline de Build Mobile (EAS)
-- [ ] Automatizar deploy do Backend (Vercel)
+- [x] Automatizar deploy do Backend (Vercel)
 - [x] Automatizar deploy da Documentação (GitHub Pages)
 - [x] **Novo:** Adicionar Workflow de Security Scanning (Trivy/Snyk)
 
@@ -26,14 +26,14 @@
 - [x] Docker (`backend/Dockerfile`)
 - [x] Docker Compose (`docker-compose.yml`)
 - [x] **Novo:** Configurar Prometheus + Grafana (`infra/monitoring/`)
-- [ ] Logs centralizados (Sentry/Winston)
+- [x] Logs centralizados (Winston) (Sentry/Winston)
 
 ## 5. Documentação (80%)
 - [x] README principal
 - [x] Documentação técnica e Arquitetura
 - [x] Guia de Contribuição e Divisão de Agentes
 - [x] Orquestrador e Backup de Prompts
-- [ ] Documentação de Deploy (Vercel)
+- [x] Documentação de Deploy (Vercel)
 - [ ] Documentação da API (Swagger final)
 
 ## 6. Sincronização & Qualidade (100%)

@@ -14,14 +14,12 @@ jobs:
         with:
           fetch-depth: 0
 
-      # --- RESOLUÇÃO DO CONFLITO 1 ---
-      # Escolhi a versão da 'main'. O Regex é mais limpo (usa |) e a mensagem de erro
-      # informa o nome da branch que causou o erro, o que ajuda o desenvolvedor.
       - name: Validar branch correta
         run: |
-          if [[ ! "${{ github.head_ref }}" =~ ^(frontend-dev|backend-dev|infra-dev) ]]; then
-            echo "PR criado numa branch inválida: ${{ github.head_ref }}"
-            echo "A branch deve começar por frontend-dev, backend-dev ou infra-dev."
+          if [[ ! "${{ github.head_ref }}" =~ ^frontend-dev && \
+                      ! "${{ github.head_ref }}" =~ ^backend-dev && \
+                      ! "${{ github.head_ref }}" =~ ^infra-dev ]]; then
+            echo "PR criado numa branch inválida."
             exit 1
           fi
 
@@ -32,16 +30,8 @@ jobs:
             # Não falha o build para permitir termos técnicos em inglês
           fi
 
-      # --- RESOLUÇÃO DO CONFLITO 2 ---
-      # Escolhi a lógica da branch 'infra-dev'.
-      Motivos:
-      # 1. Ela filtra arquivos de lock (package-lock.json, etc), o que evita contar
-      #    mudanças de dependência como "código novo".
-      # 2. A contagem com --numstat é mais precisa para soma de linhas adicionadas.
-      # 3. Mantive o 'git fetch' explícito da versão 'main' para garantir segurança.
       - name: Validar tamanho do PR
         run: |
-          git fetch origin ${{ github.base_ref }}
           CHANGED=$(git diff --numstat origin/${{ github.base_ref }} | grep -vE "package-lock.json|yarn.lock|pnpm-lock.yaml" | awk '{sum+=$1} END {print sum}')
           if [ -n "$CHANGED" ] && [ "$CHANGED" -gt 800 ]; then
             echo "PR demasiado grande. Divide em PRs menores."
@@ -50,7 +40,6 @@ jobs:
 
       - name: Validar conflitos
         run: |
-          git fetch origin ${{ github.base_ref }}
           if ! git merge --no-commit --no-ff origin/${{ github.base_ref }}; then
             echo "Existem conflitos neste PR."
             exit 1

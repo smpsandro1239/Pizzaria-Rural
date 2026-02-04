@@ -3,9 +3,9 @@ name: Orquestrador — Validar Commits
 on:
   push:
     branches:
-      - 'frontend-dev*'
-      - 'backend-dev*'
-      - 'infra-dev*'
+      - frontend-dev
+      - backend-dev
+      - infra-dev
 
 jobs:
   validar-commits:
@@ -18,25 +18,14 @@ jobs:
       - name: Validar convenção de commits
         run: |
           COMMITS=$(git log -1 --pretty=%s)
-          echo "A analisar commit: $COMMITS"
-
-          # Permitir merge commits automáticos do GitHub
-          if echo "$COMMITS" | grep -qiE "^Merge "; then
-            echo "Merge commit detetado, validação de convenção ignorada."
-            exit 0
-          fi
-
-          # Regex que permite escopo opcional, ex: feat(api): ou fix:
-          if ! echo "$COMMITS" | grep -qiE "^(feat|fix|docs|chore|refactor|test|ci)(\(.*\))?: "; then
-            echo "Erro: Commit não segue a convenção."
-            echo "Deve começar por feat:, fix:, docs:, etc. (opcionalmente com escopo entre parênteses)."
-            echo "Exemplo: feat(backend): nova funcionalidade"
+          if ! echo "$COMMITS" | grep -qiE "^(feat|fix|docs|chore|refactor|test|ci):"; then
+            echo "Commit inválido. Deve começar com feat:, fix:, docs:, etc."
             exit 1
           fi
 
       - name: Validar PT-PT no commit (Aviso)
         run: |
-          COMMITS=$(git log -1 --pretty=%s)
           if ! echo "$COMMITS" | grep -qiE "á|é|í|ó|ú|ç|ã|õ|â|ê|ô|à"; then
             echo "Aviso: O commit pode não estar em PT-PT (não foram detetados acentos ou cedilhas)."
+            # Não falha o build para permitir termos técnicos em inglês
           fi

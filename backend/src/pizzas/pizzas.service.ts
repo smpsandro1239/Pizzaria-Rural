@@ -5,38 +5,12 @@ import { PrismaService } from '../prisma/prisma.service';
 export class PizzasService {
   constructor(private prisma: PrismaService) {}
 
-  async findAll(filters?: { minPrice?: number; maxPrice?: number; ingredient?: string }) {
-    const where: any = {};
-
-    if (filters?.minPrice || filters?.maxPrice) {
-      where.price = {};
-      if (filters.minPrice) where.price.gte = filters.minPrice;
-      if (filters.maxPrice) where.price.lte = filters.maxPrice;
-    }
-
-    if (filters?.ingredient) {
-      where.ingredients = {
-        some: {
-          ingredient: {
-            name: {
-              contains: filters.ingredient,
-            },
-          },
-        },
-      };
-    }
-
+  async findAll() {
     return this.prisma.pizza.findMany({
-      where,
       include: {
         ingredients: {
           include: {
             ingredient: true,
-          },
-        },
-        reviews: {
-          select: {
-            rating: true,
           },
         },
       },
@@ -52,7 +26,6 @@ export class PizzasService {
             ingredient: true,
           },
         },
-        reviews: true,
       },
     });
   }
