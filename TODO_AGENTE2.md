@@ -1,40 +1,48 @@
 # 📌 TODOLIST — Agente 2 (Backend API)
 
-## 📊 Progresso: 87%
+1. **Setup inicial**
+   - [x] Criar projeto NestJS
+   - [x] Configurar Prisma
+   - [x] Criar base de dados (SQLite para dev)
+   - [x] Criar estrutura modular
+2. **Modelos**
+   - [x] Utilizador
+   - [x] Pizza
+   - [x] Ingredientes
+   - [x] Encomenda
+   - [x] Estado da encomenda
+   - [x] Pagamentos
+3. **Endpoints**
+   - [x] Autenticação (JWT)
+   - [x] Listar pizzas
+   - [x] Criar encomenda (com suporte opcional a utilizador autenticado)
+   - [x] Atualizar estado
+   - [x] Tracking
+   - [x] Histórico
+4. **Notificações**
+   - [/] WhatsApp (Simulado/Mock)
+   - [/] Email fallback (Simulado/Mock)
+5. **Documentação**
+   - [x] Swagger/OpenAPI
+   - [x] Contratos para o frontend (via Swagger)
+6. **Testes**
+   - [x] Unitários (Estrutura base e build)
+   - [ ] Integração
+   - [ ] Carga
 
-## 1. Setup inicial (100%)
-- [x] Criar projeto NestJS
-- [x] Configurar Prisma
-- [x] Criar base de dados (SQLite para dev)
-- [x] Criar estrutura modular
+---
+### 🌟 Melhorias Sugeridas (Agente 1)
+- [ ] **Geração de Faturas PDF:** Endpoint para descarregar fatura após encomenda.
+- [ ] **Motor de Recomendações IA:** Sugerir pizzas com base no histórico do utilizador.
+- [ ] **Webhooks de Pagamento:** Garantir robustez na integração com Stripe.
 
-## 2. Modelos (100%)
-- [x] Utilizador
-- [x] Pizza
-- [x] Ingredientes
-- [x] Encomenda
-- [x] Estado da encomenda
-- [x] Pagamentos
+---
+### 📈 Feedback de Integração (Agente 1)
+- [ ] **Avaliações Dinâmicas:** O Frontend já tem a UI de submissão. Precisamos de um endpoint `POST /pizzas/:id/reviews` para persistir estas estrelas e comentários.
 
-## 3. Endpoints (100%)
-- [x] Autenticação (JWT)
-- [x] Listar pizzas (com filtros)
-- [x] Criar encomenda
-- [x] Atualizar estado
-- [x] Tracking em tempo real
-- [x] Histórico de encomendas
-
-## 4. Integrações Avançadas (30%)
-- [/] Notificações WhatsApp/Email (Simulado/Mock) - **Melhoria: Integrar Resend/Twilio**
-- [ ] Pagamentos Reais (Stripe/IfThenPay)
-- [ ] Motor de Recomendações (AI)
-
-## 5. Documentação & Qualidade (80%)
-- [x] Swagger/OpenAPI
-- [x] Contratos para o frontend
-- [ ] Testes de Integração
-- [ ] Testes de Carga (Em coordenação com Agente 3)
-
-## 6. Sincronização
-- [x] Manter documentação em PT-PT
-- [x] Atualizar progresso no TODO global
+---
+### 🚀 Novas Necessidades (Agente 1 - v3)
+- [ ] **Chat de Suporte:** Criar endpoints para mensagens em tempo real.
+  - `GET /support/messages`
+  - `POST /support/messages`
+- [ ] **Persistência de Reviews:** Endpoint para guardar as estrelas e comentários submetidos no Frontend.
