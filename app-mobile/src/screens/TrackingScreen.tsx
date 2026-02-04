@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import React, { useState } from "react";
+import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
 import { MotiView } from "moti";
 import { useAppTheme } from "../theme";
 import { Card } from "../components/Card";
@@ -16,116 +16,97 @@ const STEPS = [
 
 export const TrackingScreen = () => {
   const { colors, spacing, typography, radius } = useAppTheme();
-  const [currentStep, setCurrentStep] = useState(1);
-
-  // Simular progresso automático para demonstração
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentStep((prev) => (prev < STEPS.length ? prev + 1 : 1));
-    }, 5000);
-    return () => clearInterval(timer);
-  }, []);
+  const [currentStep] = useState(4);
 
   return (
-    <ScrollView style={[styles.container, { backgroundColor: colors.background, padding: spacing.lg }]}>
-      <View style={[styles.header, { marginBottom: spacing.xl, marginTop: spacing.xl }]}>
+    <ScrollView style={[styles.container, { backgroundColor: colors.background }]}>
+      <View style={[styles.header, { padding: spacing.lg, marginTop: spacing.xl }]}>
         <AnimatedLoader />
         <Text style={[styles.title, { ...typography.h2, color: colors.text, marginTop: spacing.md }]}>
           Estado da sua Encomenda
         </Text>
         <Text style={[styles.subtitle, { ...typography.body, color: colors.textSecondary, marginTop: spacing.xs }]}>
-          Tempo estimado: {30 - currentStep * 5} min
+          Tempo estimado: 15 min
         </Text>
       </View>
 
-      <View style={[styles.progressBarContainer, { marginBottom: spacing.xl, backgroundColor: colors.border, borderRadius: radius.pill, height: 8 }]}>
-        <MotiView
-          animate={{
-            width: `${(currentStep / STEPS.length) * 100}%`,
-            backgroundColor: colors.ruralRed,
-          }}
-          transition={{ type: "timing", duration: 1000 }}
-          style={styles.progressBar}
+      {/* Mapa Visual Placeholder para Web/Dev */}
+      <View style={[styles.mapContainer, { margin: spacing.lg, borderRadius: radius.lg, overflow: 'hidden', backgroundColor: colors.surface }]}>
+        <Image
+          source={{ uri: 'https://maps.googleapis.com/maps/api/staticmap?center=38.7167,-9.1399&zoom=14&size=600x300&markers=color:red%7C38.7167,-9.1399&markers=color:green%7C38.7180,-9.1420&key=YOUR_API_KEY_HERE' }}
+          style={styles.mapPlaceholderImage}
         />
+        <View style={[styles.mapOverlay, { backgroundColor: 'rgba(0,0,0,0.6)' }]}>
+          <MaterialCommunityIcons name="map-marker-radius" size={24} color="white" />
+          <Text style={[typography.caption, { color: 'white', marginLeft: 8 }]}>
+            Mapa Rural Ativo
+          </Text>
+        </View>
       </View>
 
-      <Card style={styles.timeline}>
-        {STEPS.map((step, index) => {
-          const isActive = step.id <= currentStep;
-          const isCurrent = step.id === currentStep;
-
-          return (
-            <View key={step.id} style={styles.stepRow}>
-              <View style={styles.indicatorCol}>
-                <MotiView
-                  animate={{
-                    backgroundColor: isActive ? colors.ruralRed : colors.border,
-                    scale: isCurrent ? 1.3 : 1,
-                  }}
-                  style={[styles.dot, { borderRadius: radius.pill }]}
-                >
-                  {isActive && (
-                    <MaterialCommunityIcons name="check" size={10} color="white" />
-                  )}
-                </MotiView>
-                {index < STEPS.length - 1 && (
-                  <View style={[styles.verticalLine, { backgroundColor: isActive ? colors.ruralRed : colors.border }]} />
-                )}
-              </View>
-
-              <View style={[styles.labelCol, { paddingBottom: spacing.xl }]}>
-                <View style={styles.labelHeader}>
-                  <MaterialCommunityIcons
-                    name={step.icon as any}
-                    size={20}
-                    color={isActive ? colors.ruralRed : colors.textSecondary}
-                    style={{ marginRight: spacing.sm }}
-                  />
-                  <Text
-                    style={[
-                      styles.stepLabel,
-                      {
-                        ...typography.body,
-                        color: isActive ? colors.text : colors.textSecondary,
-                        fontWeight: isCurrent ? "700" : "400"
-                      },
-                    ]}
-                  >
-                    {step.label}
-                  </Text>
-                </View>
-                {isCurrent && (
-                  <MotiView
-                    from={{ opacity: 0, translateY: -5 }}
-                    animate={{ opacity: 1, translateY: 0 }}
-                    style={{ marginTop: spacing.xs }}
-                  >
-                    <Text style={[typography.caption, { color: colors.ruralRed }]}>
-                      Estamos a tratar disto agora...
-                    </Text>
-                  </MotiView>
-                )}
-              </View>
-            </View>
-          );
-        })}
-      </Card>
-
-      <Card style={{ ...styles.courierCard, marginTop: spacing.xl, backgroundColor: colors.surface }}>
-        <View style={styles.courierInfo}>
-          <View style={[styles.avatar, { backgroundColor: colors.border, borderRadius: radius.pill }]}>
-            <MaterialCommunityIcons name="account" size={30} color={colors.textSecondary} />
-          </View>
-          <View style={{ marginLeft: spacing.md }}>
-            <Text style={[typography.body, { fontWeight: "700", color: colors.text }]}>Carlos Entregas</Text>
-            <Text style={[typography.caption, { color: colors.textSecondary }]}>O seu estafeta rural</Text>
-          </View>
-          <View style={{ flex: 1 }} />
-          <TouchableOpacity style={[styles.callButton, { backgroundColor: colors.ruralRed, borderRadius: radius.pill, padding: spacing.sm }]}>
-            <MaterialCommunityIcons name="phone" size={20} color="white" />
-          </TouchableOpacity>
+      <View style={{ paddingHorizontal: spacing.lg }}>
+        <View style={[styles.progressBarContainer, { marginBottom: spacing.xl, backgroundColor: colors.border, borderRadius: radius.pill, height: 8 }]}>
+          <MotiView
+            animate={{
+              width: `${(currentStep / STEPS.length) * 100}%`,
+              backgroundColor: colors.ruralRed,
+            }}
+            transition={{ type: "timing", duration: 1000 }}
+            style={styles.progressBar}
+          />
         </View>
-      </Card>
+
+        <Card style={styles.timeline}>
+          {STEPS.map((step, index) => {
+            const isActive = step.id <= currentStep;
+            const isCurrent = step.id === currentStep;
+
+            return (
+              <View key={step.id} style={styles.stepRow}>
+                <View style={styles.indicatorCol}>
+                  <MotiView
+                    animate={{
+                      backgroundColor: isActive ? colors.ruralRed : colors.border,
+                      scale: isCurrent ? 1.3 : 1,
+                    }}
+                    style={[styles.dot, { borderRadius: radius.pill }]}
+                  >
+                    {isActive && (
+                      <MaterialCommunityIcons name="check" size={10} color="white" />
+                    )}
+                  </MotiView>
+                  {index < STEPS.length - 1 && (
+                    <View style={[styles.verticalLine, { backgroundColor: isActive ? colors.ruralRed : colors.border }]} />
+                  )}
+                </View>
+
+                <View style={[styles.labelCol, { paddingBottom: spacing.xl }]}>
+                  <View style={styles.labelHeader}>
+                    <MaterialCommunityIcons
+                      name={step.icon as any}
+                      size={20}
+                      color={isActive ? colors.ruralRed : colors.textSecondary}
+                      style={{ marginRight: spacing.sm }}
+                    />
+                    <Text
+                      style={[
+                        styles.stepLabel,
+                        {
+                          ...typography.body,
+                          color: isActive ? colors.text : colors.textSecondary,
+                          fontWeight: isCurrent ? "700" : "400"
+                        },
+                      ]}
+                    >
+                      {step.label}
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            );
+          })}
+        </Card>
+      </View>
     </ScrollView>
   );
 };
@@ -142,6 +123,27 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     textAlign: "center",
+  },
+  mapContainer: {
+    height: 180,
+    position: 'relative',
+    borderWidth: 1,
+    borderColor: '#ddd',
+  },
+  mapPlaceholderImage: {
+    width: '100%',
+    height: '100%',
+    opacity: 0.8,
+  },
+  mapOverlay: {
+    position: 'absolute',
+    top: 10,
+    left: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 20,
   },
   progressBarContainer: {
     width: "100%",
@@ -184,18 +186,4 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   stepLabel: {},
-  courierCard: {
-    padding: 15,
-  },
-  courierInfo: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  avatar: {
-    width: 50,
-    height: 50,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  callButton: {},
 });

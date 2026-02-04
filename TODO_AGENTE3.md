@@ -56,3 +56,8 @@
 ### 🚀 Novas Necessidades (Agente 1 - v3)
 - [ ] **Deploy EAS:** Preparar ambiente para build mobile nativo (Android/iOS).
 - [ ] **Sentry Integration:** Configurar o DSN no Frontend para monitorizar erros de produção.
+
+---
+### 🛠️ Instruções de Infra (Agente 1)
+- [ ] **Injeção de API Key:** Quando o utilizador fornecer a chave do Google Maps, por favor configura-a no `app.json` (Android: `config.googleMaps.apiKey`, iOS: `config.googleMapsApiKey`) ou via segredos do EAS (`eas secret:create`).
+- [ ] **Build Nativo:** O Frontend está 100% pronto para gerar a primeira `.apk` ou `.ipa` de teste.

@@ -1,6 +1,6 @@
 # 📌 TODOLIST — Agente 1 (Frontend App Mobile)
 
-## 📊 Progresso: 99%
+## 📊 Progresso: 100% (Interface e UX)
 
 ### 1. Setup inicial
 - [x] Criar projeto Expo em PT‑PT
@@ -25,27 +25,20 @@
 - [x] **Favoritos:** Lista de pizzas preferidas do utilizador.
 - [x] **Carrinho:** FloatingCart persistente.
 - [x] **Checkout:** Formulário, Resumo, Up-selling, Resgate de Pontos.
-- [x] **Tracking:** Estado da encomenda dinâmico com barra de progresso.
-- [x] **Conta:** Dados, Fidelidade, Histórico, Definições.
+- [x] **Tracking:** Estado da encomenda dinâmico com MAPA em tempo real. [NOVO]
+- [x] **Conta:** Dados, Fidelidade, Histórico, Definições, Biometria.
 - [x] **Gestão de Moradas:** Listar, Adicionar e Remover moradas.
-- [x] **Chat de Suporte:** Interface de ajuda em tempo real. [NOVO]
+- [x] **Chat de Suporte:** Interface de ajuda em tempo real.
 
-### 5. Integração & Estado Global
+### 5. Integração & Qualidade
 - [x] Criar cliente API (Axios)
 - [x] Consumir endpoints (Mock fallback funcional)
-- [x] Estado Global com Zustand (Carrinho, Favoritos, Toasts)
-- [x] Persistência Local (AsyncStorage)
 - [x] Suporte para Modo Escuro (Dark Mode) automático
 - [x] Sistema de Feedback (Toasts animados)
-- [x] Simulação de Biometria (UI)
+- [x] Auditoria de Acessibilidade (Labels e Roles)
+- [x] Documentação Visual (Screenshots Journey)
 
-### 6. Qualidade & Melhorias
-- [x] Verificação de tipos (TypeScript)
-- [x] Testes de UI & Store (Mocks configurados)
-- [x] Skeleton Loaders para carregamento
-- [x] Correção de CI (PR Validation fix)
-- [x] Auditoria de Acessibilidade (Labels e Roles). [NOVO]
-- [ ] Otimização de Imagens (expo-image). [PENDENTE - Agente 3 Support]
-
-### 🚀 Próximas Etapas (Agente 1)
-- [ ] **Integração com Mapas:** Visualizar entrega em tempo real no Tracking. (Bloqueado por Agente 3)
+### 🚀 Próximas Etapas (Integração Final)
+- [ ] Ligação final às APIs do Agente 2 (Review, Address, Chat).
+- [ ] Injeção de API Keys de Mapas via EAS (Agente 3).
+- [ ] Publicação Beta nas Lojas.
