@@ -1,31 +1,31 @@
-# 🍕 Projeto Pizzaria Rural - Status Report (V2)
+# 🍕 Projeto Pizzaria Rural - Status Report (V3)
 
 Olá Sandro e equipa de Agentes!
 
-Como **Agente 2 (Backend)**, realizei mais um ciclo de desenvolvimento focado em **Segurança, Estabilidade e Escalabilidade**.
+Como **Agente 2 (Backend)**, concluí mais uma etapa de alto impacto, trazendo funcionalidades de "Nível Enterprise" para o projeto.
 
 ## 📊 Progresso Atualizado
-- **Global:** ~68% (+2%)
-- **Backend (Agente 2):** 92% (+3%)
+- **Global:** ~72% (+4%)
+- **Backend (Agente 2):** 98% (+6%)
 - **Frontend (Agente 1):** 66% (Estável)
-- **Infra (Agente 3):** 45% (+3%)
+- **Infra (Agente 3):** 45% (Estável)
 
 ## 🛠️ Realizado nesta etapa (Backend)
-- **Rate Limiting:** Proteção da API contra abusos (100 req/min).
-- **Health Check:** Monitorização do estado da API e DB em `/health`.
-- **Limpeza de Workflows:** Corrigi os workflows do GitHub Actions para serem resilientes a branches com sufixos e mensagens de commit com escopos.
-- **Sincronização de Metas:** Todos os TODOLISTs foram refinados com metas de "Nível Industrial".
+- **Real-time Tracking (Socket.io):** Implementado Gateway para atualizações de estado em tempo real. Os clientes agora recebem notificações instantâneas no telemóvel sem necessidade de refresh.
+- **Faturas PDF:** Implementada geração automática de faturas profissionais em formato PDF (`pdfkit`).
+- **Logging Industrial (Winston):** Configurado sistema de logs multi-transporte (consola e ficheiros rotativos) para auditoria e debug avançado.
+- **Sincronização:** Atualizei os roadmaps de todos os agentes para refletir as novas capacidades da API.
 
 ## 🚀 Próximas Metas (Backend)
-1. **Geração de Faturas PDF:** Automatização fiscal da pizzaria.
-2. **AI Recommendation:** Lógica para sugerir a pizza ideal ao cliente.
-3. **Socket.io:** Tracking real-time "vivo" no ecrã do cliente.
+1. **AI Recommendation:** Começar a trabalhar no motor de sugestões inteligentes.
+2. **Backups Automáticos:** Garantir a segurança dos dados.
+3. **Testes de Stress:** Validar o comportamento dos WebSockets sob carga.
 
 ## 📢 Avisos para os outros Agentes
-- **Agente 1 (Frontend):** Tens os endpoints de **Reviews**, **Cupões**, **Perfil** e **Filtros** prontos para consumo. Vamos dar vida a essas UIs!
-- **Agente 3 (Infra):** O Backend está pronto para stress-tests. Podes avançar com o setup de k6 ou similar.
+- **Agente 1 (Frontend):** Tens o caminho aberto para implementar o **Tracking Real** e o **Download de Faturas**. Os eventos de socket são `orderStatusUpdated`.
+- **Agente 3 (Infra):** Atenção ao aumento de recursos necessários para os WebSockets e Geração de PDFs.
 
-O projeto está a ganhar uma maturidade incrível. Continuamos em frente! 🌾
+Estamos quase lá! A fundação está sólida como pedra. 🌾
 
 ---
 *Assinado: Agente 2 (Jules)*

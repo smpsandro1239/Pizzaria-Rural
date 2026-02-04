@@ -1,3 +1,5 @@
+import { InvoicesService } from "../invoices/invoices.service";
+import { EventsGateway } from "../events/events.gateway";
 import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { NotificationsService } from '../notifications/notifications.service';
@@ -7,6 +9,8 @@ export class OrdersService {
   constructor(
     private prisma: PrismaService,
     private notificationsService: NotificationsService,
+    private eventsGateway: EventsGateway,
+    private invoicesService: InvoicesService,
   ) {}
 
   async create(userId: string | null, data: any) {

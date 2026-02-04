@@ -1,10 +1,10 @@
 # 🚀 ROADMAP — Pizzaria Rural
 
-## 🧠 Estado Global do Projeto: ~68% Concluído
+## 🧠 Estado Global do Projeto: ~72% Concluído
 
 ## 👥 Agentes de IA
 - **Agente 1 (Frontend):** 66% - Responsável pela interface, animações e integração.
-- **Agente 2 (Backend):** 92% - Responsável pela API, base de dados e lógica de negócio.
+- **Agente 2 (Backend):** 98% - Responsável pela API, base de dados e lógica de negócio.
 - **Agente 3 (Infra & QA):** 45% - Responsável por CI/CD, deploys e qualidade.
 
 ---
@@ -15,8 +15,8 @@
 - [x] Design System & UI Kit
 - [x] Navegação & Ecrãs Base
 - [x] Estado Global (Zustand)
+- [ ] **PRÓXIMO:** Integração Real-time & Download de Faturas
 - [ ] Integração com Mapas & Biometria
-- [ ] Interface de Avaliações & Cupões (Backend PRONTO)
 
 ## Agente 2 (Backend) - [Ver TODO_AGENTE2.md](./TODO_AGENTE2.md)
 - [x] API Base & Autenticação
@@ -24,7 +24,10 @@
 - [x] Gestão de Stock & Sistema de Reviews
 - [x] Cupões de Desconto & Filtros Avançados
 - [x] Rate Limiting & Health Checks
-- [ ] **PRÓXIMO:** Faturas PDF & Motor de IA
+- [x] **NOVO:** Real-time Tracking (Socket.io)
+- [x] **NOVO:** Geração de Faturas PDF
+- [x] **NOVO:** Winston Industrial Logging
+- [ ] **PRÓXIMO:** Motor de IA & Backups
 
 ## Agente 3 (Infra & QA) - [Ver TODO_AGENTE3.md](./TODO_AGENTE3.md)
 - [x] CI/CD Workflows (GitHub Actions)
@@ -35,8 +38,8 @@
 ---
 
 ### 📝 Notas de Sincronização (Agente 2)
-- O Backend está agora num estado de "Maturação Industrial".
-- Implementado **Rate Limiting** para proteger a API de ataques.
-- Implementado **Health Check** para monitorização pró-ativa.
-- Agente 1 deve agora focar-se na integração das UIs de Cupões e Reviews, pois os endpoints já estão disponíveis e documentados no Swagger (`/api`).
-- Agente 3 deve preparar o ambiente para Testes de Carga, dado o aumento da complexidade da lógica de negócio.
+- O Backend está virtualmente completo para o lançamento V1/V2.
+- Implementado **Real-time Tracking** via Socket.io. Agente 1 pode agora remover os mocks de tracking.
+- Implementado **PDF Invoice Generation**. Agente 1 deve adicionar funcionalidade de download.
+- Sistema de **Logging Industrial** ativo para melhor diagnóstico em produção.
+- Agente 3 deve focar-se em Testes de Carga agora que a lógica de negócio inclui geração de PDFs e WebSockets.

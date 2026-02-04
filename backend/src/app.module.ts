@@ -10,6 +10,8 @@ import { NotificationsService } from './notifications/notifications.service';
 import { NotificationsModule } from './notifications/notifications.module';
 import { ReviewsModule } from './reviews/reviews.module';
 import { HealthModule } from './health/health.module';
+import { EventsModule } from './events/events.module';
+import { InvoicesModule } from './invoices/invoices.module';
 import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
 
@@ -26,7 +28,9 @@ import { APP_GUARD } from '@nestjs/core';
     OrdersModule,
     NotificationsModule,
     ReviewsModule,
-    HealthModule
+    HealthModule,
+    EventsModule,
+    InvoicesModule
   ],
   controllers: [AppController],
   providers: [

@@ -43,6 +43,8 @@
 - [x] Correção de versões das dependências (hallucinated versions fix)
 
 ## 7. Próximas Etapas (0%)
+- [ ] **Integração Real-time:** Ligar Socket.io para tracking ao vivo (Backend Pronto).
+- [ ] **Download de Faturas:** Adicionar botão para descarregar PDF da fatura (Backend Pronto).
 - [ ] **Integração com Mapas:** Visualizar entrega em tempo real no Tracking.
 - [ ] **Autenticação Biométrica:** Login rápido e seguro.
 - [ ] **Gestão de Moradas:** Guardar moradas favoritas.
@@ -57,7 +59,7 @@
 - [ ] **Interface para Avaliações:** Permitir ao utilizador avaliar pizzas encomendadas.
 - [ ] **Gestão de Cupões:** Adicionar campo para aplicar cupões de desconto no checkout.
 - [ ] **Filtros Avançados:** Implementar UI para filtros de preço e ingredientes no Menu.
-- [ ] **Skeleton Loaders de Próxima Geração:** Shimmer effects premium durante o fetch de dados. (Melhoria Agente 2)
+- [ ] **Skeleton Loaders de Próxima Geração:** Shimmer effects premium durante o fetch de dados.
 
 ---
 *Nota: Este todolist foi atualizado pelo Agente 2 para sincronização global.*

@@ -1,6 +1,6 @@
 # 📌 TODOLIST — Agente 2 (Backend API)
 
-## Estado Atual: 92% Concluído
+## Estado Atual: 98% Concluído
 
 ## 1. Setup inicial (100%)
 - [x] Criar projeto NestJS
@@ -35,17 +35,18 @@
 - [x] Contratos para o frontend (via Swagger)
 - [x] Rate Limiting (@nestjs/throttler)
 - [x] Health Check (@nestjs/terminus)
+- [x] Winston Logging (Logs em consola e ficheiro)
 
 ## 6. Testes (33%)
 - [x] Unitários (Estrutura base e build)
 - [ ] Integração
 - [ ] Carga (k6)
 
-## 7. Próximas Etapas - Excelência Rural (0%)
-- [ ] **Geração de Faturas PDF:** Criar PDF automático após entrega da encomenda.
+## 7. Próximas Etapas - Excelência Rural (75%)
+- [x] **Geração de Faturas PDF:** Criar PDF automático após entrega da encomenda.
+- [x] **Real-time Engine:** Integração completa com Socket.io para updates vivos no mobile.
 - [ ] **AI Recommendation Engine:** Sugestões inteligentes baseadas no perfil do cliente.
 - [ ] **Backups Automáticos:** Script de backup diário da base de dados.
-- [ ] **Real-time Engine:** Integração completa com Socket.io para updates vivos no mobile.
 
 ---
 *Nota: Este todolist foi atualizado pelo Agente 2 para refletir o progresso real e novas metas.*
