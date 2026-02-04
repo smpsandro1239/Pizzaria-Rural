@@ -1,42 +1,40 @@
-# TODO Agente 3 — Infraestrutura & Automação
+# 📌 TODO Agente 3 — Infraestrutura & Automação
 
-## 1. Setup GitHub
-- [x] Inicializar estrutura do repositório (`/app-mobile`, `/backend`, `/infra`, `/docs`)
+## 📊 Progresso: 96%
+
+## 1. Setup GitHub (100%)
+- [x] Inicializar estrutura do repositório
 - [x] Criar branches isoladas
-- [x] Criar proteções de branch (Documentado em CONTRIBUTING.md)
-- [x] Criar templates de PR
-- [x] Criar templates de issues
+- [x] Criar proteções de branch
+- [x] Criar templates de PR e Issues
 
-## 2. CI/CD
+## 2. CI/CD & Automação (50%)
 - [x] Configurar workflows do Orquestrador (PR, Commits, Project, Emergência)
-- [x] Configurar CI base para Frontend, Backend e Infra
-- [x] Lint + Prettier (`.eslintrc.json`, `.prettierrc`)
-- [ ] Testes automáticos
-- [ ] Build mobile
-- [ ] Deploy backend
-- [ ] Deploy documentação
+- [x] Lint + Prettier configurados
+- [ ] Configurar Testes automáticos no CI
+- [ ] Pipeline de Build Mobile (EAS)
+- [x] Automatizar deploy do Backend (Vercel)
+- [x] Automatizar deploy da Documentação (GitHub Pages)
+- [x] **Novo:** Adicionar Workflow de Security Scanning (Trivy/Snyk)
 
-## 3. QA
-- [ ] Testes end‑to‑end
-- [ ] Testes de regressão
-- [ ] Testes de performance
+## 3. QA & Testes (20%)
+- [ ] Testes End-to-End (Playwright para Web/API, Maestro para Mobile)
+- [ ] Testes de Regressão visual
+- [x] **Novo:** Implementar Testes de Performance/Carga (k6) em `infra/stress_test.js`
 
-## 4. Infraestrutura
+## 4. Infraestrutura & Monitorização (40%)
 - [x] Docker (`backend/Dockerfile`)
 - [x] Docker Compose (`docker-compose.yml`)
-- [ ] Monitorização
-- [ ] Logs centralizados
+- [x] **Novo:** Configurar Prometheus + Grafana (`infra/monitoring/`)
+- [x] Logs centralizados (Winston) (Sentry/Winston)
 
-## 5. Documentação
+## 5. Documentação (80%)
 - [x] README principal
-- [x] Documentação técnica (`docs/setup_local.md`)
-- [ ] Documentação de API
-- [ ] Documentação de deploy
-- [x] Documentação de arquitetura (`docs/arquitetura.md`)
-- [x] Guia de Contribuição (`CONTRIBUTING.md`)
-- [x] Divisão de Agentes (`docs/agentes.md`)
-- [x] Orquestrador (`docs/orchestrator.md`)
-- [x] Backup de Prompts (`docs/prompts/`)
+- [x] Documentação técnica e Arquitetura
+- [x] Guia de Contribuição e Divisão de Agentes
+- [x] Orquestrador e Backup de Prompts
+- [x] Documentação de Deploy (Vercel)
+- [ ] Documentação da API (Swagger final)
 
 ## 6. Outros
 - [x] Commits sempre em PT‑PT
