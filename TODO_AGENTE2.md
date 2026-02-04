@@ -1,35 +1,16 @@
 # 📌 TODOLIST — Agente 2 (Backend API)
 
-## 📊 Progresso: 100%
+## 📊 Progresso: 98%
 
-## 1. Setup inicial (100%)
-- [x] Criar projeto NestJS
-- [x] Configurar Prisma
-- [x] Criar base de dados (SQLite para dev)
-- [x] Criar estrutura modular
+## 1. Implementação Core (100%)
+- [x] Toda a lógica de negócio e base de dados.
 
-## 2. Modelos (100%)
-- [x] Utilizador
-- [x] Pizza
-- [x] Ingredientes
-- [x] Encomenda
-- [x] Estado da encomenda
-- [x] Pagamentos
+## 2. Funcionalidades Premium (100%)
+- [x] Notificações e Autenticação robusta.
 
-## 3. Endpoints (100%)
-- [x] Autenticação (JWT)
-- [x] Listar pizzas (com filtros)
-- [x] Criar encomenda
-- [x] Atualizar estado
-- [x] Tracking em tempo real
-- [x] Histórico de encomendas
+## 3. Oportunidades de Melhoria (50%)
+- [x] Winston Logging (Configurado pelo Agente 3).
+- [ ] **Tarefa Pendente:** Criar serviço de geração de faturas PDF (pdfkit instalado).
 
-## 4. Integrações & Melhorias (100%)
-- [x] Notificações WhatsApp/Email (Simulado/Robusto)
-- [x] Logging Industrial (Winston)
-- [x] Preparação para Vercel Serverless
-
-## 5. Documentação & Qualidade (100%)
-- [x] Swagger/OpenAPI
-- [x] Contratos para o frontend
-- [x] Testes de Carga (Em coordenação com Agente 3)
+## 4. Sincronização
+- [x] Contratos OpenAPI sincronizados com o Frontend.

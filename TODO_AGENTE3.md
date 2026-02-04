@@ -1,24 +1,20 @@
 # 📌 TODO Agente 3 — Infraestrutura & Automação
 
-## 📊 Progresso: 96%
+## 📊 Progresso: 98%
 
-## 1. CI/CD & Automação (100%)
-- [x] Configurar workflows do Orquestrador ultra-robustos (Fetch-depth 0, SHA-based diff)
-- [x] Corrigir limite de linhas do PR para 5000 (Sincronização Agente 1)
-- [x] Scan de Segurança (Trivy/NPM Audit Critical)
-- [x] Deploy automático da Documentação
+## 1. Estabilização de CI (100%)
+- [x] Workflows do Orquestrador otimizados para 5000 linhas.
+- [x] Resolução de conflitos de sincronização.
 
-## 2. Monitorização & QA (90%)
-- [x] Testes de Performance/Carga com k6
-- [x] Prometheus + Grafana base
-- [ ] Testes End-to-End finais (Aguardando integração Mapas)
+## 2. QA & Testes (95%)
+- [x] Stress tests k6.
+- [x] Estrutura base Playwright para E2E.
+- [ ] **Falta:** Escrita de cenários de teste reais.
 
-## 3. Infraestrutura (100%)
-- [x] Docker & Docker Compose
-- [x] Logging Industrial (Winston)
-- [x] Configuração Vercel para Backend
+## 3. Backup & Segurança (100%)
+- [x] Script de backup da BD automatizado.
+- [x] Workflow de backup diário.
+- [x] Scans de segurança Trivy/NPM.
 
-## 4. Documentação (100%)
-- [x] README principal e Guia de Contribuição
-- [x] Guia de Deploy Vercel
-- [x] Relatórios de Sincronização V1-V5
+## 4. Documentação Final (100%)
+- [x] Guia de Deploy e Relatórios de Sincronização.
