@@ -16,6 +16,7 @@ model User {
   password  String
   name      String?
   orders    Order[]
+  reviews   Review[]
   points    Int      @default(0)
   createdAt DateTime @default(now())
 }
@@ -39,6 +40,21 @@ model Pizza {
   createdAt   DateTime @default(now())
   ingredients PizzaIngredient[]
   orderItems  OrderItem[]
+  reviews     Review[]
+}
+
+model PizzaSize {
+  id          String   @id @default(cuid())
+  name        String   @unique // ex: Individual, Média, Familiar
+  extraPrice  Int      @default(0) // em cêntimos
+  orderItems  OrderItem[]
+}
+
+model CrustType {
+  id          String   @id @default(cuid())
+  name        String   @unique // ex: Fina, Clássica, Recheada
+  extraPrice  Int      @default(0) // em cêntimos
+  orderItems  OrderItem[]
 }
 
 model Banner {
@@ -51,9 +67,12 @@ model Banner {
 }
 
 model Ingredient {
-  id      String @id @default(cuid())
-  name    String @unique
-  pizzas  PizzaIngredient[]
+  id          String @id @default(cuid())
+  name        String @unique
+  stock       Int    @default(0)
+  extraPrice  Int    @default(0) // preço como extra (ex: +1.50€)
+  pizzas      PizzaIngredient[]
+  orderExtras OrderItemExtra[]
 }
 
 model PizzaIngredient {
@@ -74,6 +93,8 @@ model Order {
   address     String
   phone       String
   delivery    Boolean
+  couponCode  String?
+  discount    Int          @default(0)
   items       OrderItem[]
   payment     Payment?
   createdAt   DateTime     @default(now())
@@ -95,6 +116,42 @@ model OrderItem {
   orderId   String
   pizza     Pizza   @relation(fields: [pizzaId], references: [id])
   pizzaId   String
+  size      PizzaSize? @relation(fields: [sizeId], references: [id])
+  sizeId    String?
+  crust     CrustType? @relation(fields: [crustId], references: [id])
+  crustId   String?
   quantity  Int
   unitPrice Int
+  extras    OrderItemExtra[]
+}
+
+model OrderItemExtra {
+  id           String     @id @default(cuid())
+  orderItem    OrderItem  @relation(fields: [orderItemId], references: [id])
+  orderItemId  String
+  ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
+  ingredientId String
+  quantity     Int        @default(1)
+  priceAtOrder Int        // Preço cobrado na altura
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  pizza     Pizza    @relation(fields: [pizzaId], references: [id])
+  pizzaId   String
+  rating    Int
+  comment   String?
+  createdAt DateTime @default(now())
+}
+
+model Coupon {
+  id            String   @id @default(cuid())
+  code          String   @unique
+  type          String   // PERCENT, FIXED
+  value         Int
+  minOrderValue Int      @default(0)
+  active        Boolean  @default(true)
+  createdAt     DateTime @default(now())
 }

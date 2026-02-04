@@ -7,10 +7,9 @@ interface CardProps {
   children: React.ReactNode;
   onPress?: () => void;
   style?: ViewStyle;
-  accessibilityLabel?: string;
 }
 
-export const Card: React.FC<CardProps> = ({ children, onPress, style, accessibilityLabel }) => {
+export const Card: React.FC<CardProps> = ({ children, onPress, style }) => {
   const { colors, spacing, radius, motion } = useAppTheme();
 
   const content = (
@@ -39,8 +38,6 @@ export const Card: React.FC<CardProps> = ({ children, onPress, style, accessibil
     return (
       <Pressable
         onPress={onPress}
-        accessibilityRole="button"
-        accessibilityLabel={accessibilityLabel}
         style={({ pressed }) => [
           {
             transform: [{ scale: pressed ? 0.98 : 1 }],

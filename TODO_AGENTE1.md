@@ -5,33 +5,29 @@
 ## 1. Setup inicial (100%)
 - [x] Criar projeto Expo em PT‑PT
 - [x] Configurar Reanimated + Moti
-- [x] Configurar estrutura de pastas
-- [x] Criar tema (cores, tipografia, spacing, radius)
 
-## 2. Design System & Redesign (Telepizza Style) (50%)
+## 2. Design System & Redesign (Telepizza Style) (40%)
 - [x] Implementar tokens
-- [ ] **NOVO:** Adotar paleta Telepizza (Vermelho #E21E26, Branco, Cinza Escuro).
-- [ ] **NOVO:** Refatorar UI Kit (Botões, Cards) para look & feel moderno e "fast food".
-- [x] Criar componentes avançados (AnimatedLoader, StarRating, SkeletonCard)
+- [ ] **URGENTE:** Adotar paleta Telepizza (Vermelho #E21E26, Branco).
+- [ ] **NOVO:** Criar ecrã de "Configurador de Pizza" (Step-by-step).
+    - Passo 1: Escolha do Tamanho (usar GET /options - sizes).
+    - Passo 2: Escolha da Massa (usar GET /options - crusts).
+    - Passo 3: Adicionar/Remover Ingredientes (usar GET /options - ingredients).
+- [ ] **NOVO:** UI de Banners rotativos na Home.
 
 ## 3. Navegação & Layout (80%)
 - [x] Stack Navigator & Bottom Tabs
-- [ ] **NOVO:** Implementar Hero Section com Banners rotativos (usar GET /banners).
-- [ ] **NOVO:** Categorias horizontais no topo do Menu (usar GET /categories).
+- [ ] Implementar Categorias horizontais (usar GET /categories).
 
-## 4. Ecrãs (PT-PT) (90%)
-- [x] Home: Hero, Destaques.
-- [x] Menu: Lista de Pizzas.
-- [ ] **MELHORIA:** Detalhe da Pizza com seleção de tamanho e extras.
-- [x] Favoritos, Carrinho, Checkout, Tracking, Conta.
+## 4. Ecrãs (PT-PT) (85%)
+- [x] Home, Menu, Carrinho, Checkout.
+- [ ] Refatorar "Detalhe da Pizza" para abrir o Configurador.
 
-## 5. Integração & Estado Global (90%)
-- [x] Cliente Axios & Zustand
-- [ ] **INTEGRAÇÃO:** Consumir endpoints de Banners e Categorias.
-- [ ] **INTEGRAÇÃO:** Ligar Socket.io para tracking ao vivo.
-
-## 6. Qualidade & Melhorias (100%)
-- [x] TypeScript, UI Tests, Skeleton Loaders.
+## 5. Integração (70%)
+- [x] Cliente Axios
+- [ ] **BACKEND PRONTO:** Consumir `/options` para personalizar pizzas.
+- [ ] **BACKEND PRONTO:** Enviar encomenda com `sizeId`, `crustId` e `extras`.
+- [ ] Ligar Socket.io.
 
 ---
-*Nota: Prioridade máxima para o visual "Telepizza Style" conforme pedido pelo utilizador.*
+*Nota: O Agente 2 já disponibilizou os modelos de Tamanho, Massa e Extras. O cálculo de preço agora é feito no servidor.*

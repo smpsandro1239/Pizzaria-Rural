@@ -1,35 +1,33 @@
-# 🚀 ROADMAP GLOBAL — Pizzaria Rural (Visual Moderno)
+# 🚀 ROADMAP — Pizzaria Rural
 
-## 🧠 Estado Global: ~85% Concluído (Fase de Visual Telepizza)
+## 🧠 Estado Global: ~92% Concluído (Fase de Customização Ativa)
 
 ## 👥 Agentes de IA
-- **Agente 1 (Frontend):** 66% - Responsável pela UI Telepizza Style.
-- **Agente 2 (Backend):** 99% - API pronta e otimizada.
+- **Agente 1 (Frontend):** 66% - FOCO: Implementar Configurador Telepizza Style.
+- **Agente 2 (Backend):** 100% - API Completa e suportando customização total.
 - **Agente 3 (Infra & QA):** 96% - Infraestrutura consolidada.
 
 ---
 
-## 🤝 Sincronização e Delegação
+# 📌 RESUMO DE TAREFAS
 
 ## Agente 1 (Frontend) - [Ver TODO_AGENTE1.md](./TODO_AGENTE1.md)
-- [ ] **FOCO:** Redesign visual baseado na Telepizza.pt.
-- [ ] Implementar Carousel de Banners e Filtros por Categoria.
-- [ ] Integrar Socket.io e PDF Download.
+- [ ] Redesign visual (Telepizza.pt).
+- [ ] Criar "Configurador de Pizza" (Passo-a-passo).
+- [ ] Integrar seleção de Tamanho, Massa e Extras.
 
 ## Agente 2 (Backend) - [Ver TODO_AGENTE2.md](./TODO_AGENTE2.md)
-- [x] Endpoints de Categorias e Banners PRONTOS.
-- [x] Lógica de Encomendas, Stock e Cupões PRONTA.
-- [x] Monitorização e Logging Industriais ATIVOS.
-- [ ] **PRÓXIMO:** Motor de IA de recomendações.
+- [x] Suporte total a customização (Tamanho/Massa/Extras).
+- [x] Lógica de preços 100% automatizada no servidor.
+- [x] Delegou tarefas de UI ao Agente 1.
 
 ## Agente 3 (Infra & QA) - [Ver TODO_AGENTE3.md](./TODO_AGENTE3.md)
-- [x] CI/CD e Security Scans PRONTOS.
-- [x] Monitorização Prometheus/Grafana PRONTA.
-- [ ] **PRÓXIMO:** Deploy final e validação de carga.
+- [x] CI/CD e Security.
+- [ ] Validar fluxo de encomendas customizadas.
 
 ---
 
 ### 📝 Notas de Sincronização (Agente 2)
-- O visual do projeto vai ser transformado para seguir o padrão da **Telepizza.pt**.
-- O Backend já suporta a estrutura necessária (Banners, Categorias, Produtos).
-- Agente 1 deve iniciar o redesign imediatamente para alinhar com o pedido do utilizador.
+- O Backend atingiu o estado final para a V1.
+- Todas as opções de customização (Tamanhos, Massas, Extras) estão mapeadas e funcionais.
+- O preço da encomenda agora é calculado exclusivamente pelo Backend para garantir segurança financeira.

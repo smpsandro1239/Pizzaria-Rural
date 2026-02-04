@@ -1,63 +1,26 @@
-📌 **TODOLIST — Agente 2**
+# 📌 TODOLIST — Agente 2 (Backend API)
 
-1. **Setup inicial**
-   - [x] Criar projeto NestJS
-   - [x] Configurar Prisma
-   - [x] Criar base de dados (SQLite para dev)
-   - [x] Criar estrutura modular
-2. **Modelos**
-   - [x] Utilizador
-   - [x] Pizza
-   - [x] Ingredientes
-   - [x] Encomenda
-   - [x] Estado da encomenda
-   - [x] Pagamentos
-3. **Endpoints**
-   - [x] Autenticação (JWT)
-   - [x] Listar pizzas
-   - [x] Criar encomenda (com suporte opcional a utilizador autenticado)
-   - [x] Atualizar estado
-   - [x] Tracking
-   - [x] Histórico
-4. **Notificações**
-   - [/] WhatsApp (Simulado/Mock)
-   - [/] Email fallback (Simulado/Mock)
-5. **Documentação**
-   - [x] Swagger/OpenAPI
-   - [x] Contratos para o frontend (via Swagger)
-6. **Testes**
-   - [x] Unitários (Estrutura base e build)
-   - [ ] Integração
-   - [ ] Carga
+## Estado Atual: 100% Concluído (Fase Telepizza Core) 🟢
 
-## Estado Atual: 99% Concluído 🟢
+## 1. Infraestrutura & Estabilidade (100%)
+- [x] NestJS, Prisma, Logging (Winston), Rate Limiting.
+- [x] Health Check em /health.
 
-## 1. Setup inicial & Infra (100%)
-- [x] NestJS, Prisma, SQLite/Postgres.
+## 2. Modelos Customização (100%)
+- [x] Categorias e Banners.
+- [x] Tamanhos de Pizza (Individual, Média, Familiar).
+- [x] Tipos de Massa (Fina, Clássica, Recheada).
+- [x] Suporte a Extras pagos.
 
-## 2. Modelos & Negócio (100%)
-- [x] Utilizador, Pizza, Ingredientes, Encomenda.
-- [x] **NOVO:** Categorias e Banners (Estilo Telepizza).
-- [x] Cupões e Reviews.
+## 3. Endpoints de Alta Performance (100%)
+- [x] GET /categories - Catálogo com produtos.
+- [x] GET /banners - Promoções dinâmicas.
+- [x] GET /options - Opções de configuração para o frontend.
+- [x] POST /orders - Cálculo dinâmico e validação de stock multi-nível.
 
-## 3. Endpoints (100%)
-- [x] Auth (JWT).
-- [x] Menu categorized (GET /categories).
-- [x] Banners (GET /banners).
-- [x] Orders com Stock e Tracking Real-time.
-
-## 4. Notificações & Enterprise (80%)
-- [/] WhatsApp/Email (Mock).
-- [x] Geração de Faturas PDF.
-- [x] Winston Industrial Logging.
-
-## 5. Documentação & Qualidade (100%)
-- [x] Swagger/OpenAPI (PT-PT).
-- [x] Rate Limiting & Health Checks.
-
-## 6. Próximas Etapas (10%)
+## 4. Próximas Etapas (Manutenção)
 - [ ] AI Recommendation Engine.
-- [ ] Backups Automáticos.
+- [ ] Integração real com Pagamentos.
 
 ---
-*Nota: Backend pronto para suportar o novo visual do Agente 1.*
+*Nota: Backend totalmente pronto para o Agente 1 implementar o visual da Telepizza.*

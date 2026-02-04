@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Switch } from "react-native";
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useAppTheme } from "../theme";
@@ -19,13 +19,6 @@ export const CheckoutScreen = () => {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({ name: "", phone: "", address: "" });
 
-  // Fidelidade
-  const [usePoints, setUsePoints] = useState(false);
-  const userPoints = 120; // Mock: sincronizado com AccountScreen
-  const discountPerPoint = 0.01;
-  const maxPointsToUse = Math.min(userPoints, Math.floor((total() + 2) / discountPerPoint));
-  const discount = usePoints ? maxPointsToUse * discountPerPoint : 0;
-
   const handleOrder = () => {
     if (!formData.name || !formData.phone || !formData.address) {
       showToast("Por favor, preencha todos os campos.", "error");
@@ -42,7 +35,7 @@ export const CheckoutScreen = () => {
     setTimeout(() => {
       setLoading(false);
       clear();
-      showToast(usePoints ? `Pedido realizado! Resgataste ${maxPointsToUse} pontos.` : "Pedido realizado com sucesso!");
+      showToast("Pedido realizado com sucesso!");
       navigation.replace("Tracking", { orderId: "12345" });
     }, 2000);
   };
@@ -102,25 +95,6 @@ export const CheckoutScreen = () => {
         </ScrollView>
       </View>
 
-      <Card style={{ ...styles.section, marginBottom: spacing.lg, padding: spacing.md }}>
-        <View style={styles.loyaltyRow}>
-          <View style={{ flex: 1 }}>
-            <Text style={{ ...typography.body, fontWeight: "700", color: colors.text }}>Usar Pontos de Fidelidade</Text>
-            <Text style={{ ...typography.caption, color: colors.textSecondary }}>Tens {userPoints} pontos disponíveis</Text>
-          </View>
-          <Switch
-            value={usePoints}
-            onValueChange={setUsePoints}
-            trackColor={{ false: colors.border, true: colors.ruralRed }}
-          />
-        </View>
-        {usePoints && (
-          <Text style={{ ...typography.caption, color: colors.ruralRed, marginTop: spacing.xs }}>
-            Desconto de {discount.toFixed(2)} € aplicado!
-          </Text>
-        )}
-      </Card>
-
       <Card style={{ ...styles.section, marginBottom: spacing.lg }}>
         <Text style={{ ...typography.h3, color: colors.text, marginBottom: spacing.md }}>Resumo</Text>
         {items.map((item) => (
@@ -133,15 +107,9 @@ export const CheckoutScreen = () => {
           <Text style={[typography.body, { color: colors.text }]}>Taxa de Entrega</Text>
           <Text style={[typography.body, { color: colors.text }]}>2,00 €</Text>
         </View>
-        {usePoints && (
-          <View style={[styles.row, { marginBottom: spacing.sm }]}>
-            <Text style={[typography.body, { color: colors.ruralRed }]}>Desconto (Fidelidade)</Text>
-            <Text style={[typography.body, { color: colors.ruralRed }]}>- {discount.toFixed(2)} €</Text>
-          </View>
-        )}
         <View style={[styles.row, styles.totalRow, { borderTopColor: colors.border, paddingTop: spacing.sm, marginTop: spacing.sm }]}>
           <Text style={[styles.totalText, { ...typography.h3, color: colors.text }]}>Total</Text>
-          <Text style={[styles.totalPrice, { ...typography.h3, color: colors.ruralRed }]}>{(total() + 2 - discount).toFixed(2)} €</Text>
+          <Text style={[styles.totalPrice, { ...typography.h3, color: colors.ruralRed }]}>{(total() + 2).toFixed(2)} €</Text>
         </View>
       </Card>
 
@@ -162,11 +130,7 @@ const styles = StyleSheet.create({
   content: {},
   title: {},
   section: {},
-  loyaltyRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
+  sectionTitle: {},
   row: {
     flexDirection: "row",
     justifyContent: "space-between",

@@ -14,6 +14,7 @@ import { EventsModule } from './events/events.module';
 import { InvoicesModule } from './invoices/invoices.module';
 import { CategoriesModule } from './categories/categories.module';
 import { BannersModule } from './banners/banners.module';
+import { OptionsModule } from './options/options.module';
 import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
 
@@ -34,7 +35,8 @@ import { APP_GUARD } from '@nestjs/core';
     EventsModule,
     InvoicesModule,
     CategoriesModule,
-    BannersModule
+    BannersModule,
+    OptionsModule
   ],
   controllers: [AppController],
   providers: [
