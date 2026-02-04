@@ -7,63 +7,41 @@
 
 ---
 
-# 📊 Estado Atual do Projeto: 97% Concluído
+# 📊 Estado Atual do Projeto: 91% Concluído (Ajustado para novas features)
 
-- **Agente 1:** 100% 🟢
-- **Agente 2:** 98% 🟡 (Faltam apenas as faturas PDF reais)
-- **Agente 3:** 98% 🟢
-
----
-
-# 📌 TODOLIST — Agente 1 (Frontend App Mobile) - 100%
-
-## 1. Setup inicial (100%)
-- [x] Criar projeto Expo em PT‑PT
-- [x] Configurar Reanimated + Moti
-
-## 2. Design System & UX (100%)
-- [x] UI Kit completo e Motion System
-- [x] Suporte para Modo Escuro automático e Feedback animado
-
-## 3. Navegação & Ecrãs (100%)
-- [x] Home, Menu, Detalhe, Favoritos, Carrinho, Checkout, Tracking, Conta.
-
-## 4. Funcionalidades Premium (100%)
-- [x] Autenticação Biométrica, Chat de Suporte, Acessibilidade, Avaliações.
+- **Agente 1:** 99% 🟢 (V3 UI Concluída, aguarda integração)
+- **Agente 2:** 90% 🟡
+- **Agente 3:** 85% 🟡
 
 ---
 
-# 📌 TODOLIST — Agente 2 (Backend API) - 98%
+# 📌 TODOLIST — Agente 1 (Frontend App Mobile) - 99%
 
-## 1. Core API & Base de Dados (100%)
-- [x] NestJS + Prisma + PostgreSQL operacional.
-
-## 2. Endpoints (100%)
-- [x] Auth, Menu, Orders, Tracking, Loyalty concluídos.
-
-## 3. Melhorias & Documentação (95%)
-- [x] Logging Winston e Serverless Ready.
-- [ ] **Novo:** Implementar geração de Faturas PDF Reais (Dependências prontas).
+- [x] V1, V2 e V3 concluídas.
+- [x] Chat de Suporte e Acessibilidade integrados.
+- [ ] **Falta:** Integração real com Google Maps (Aguardando Agente 3).
+- [ ] **Falta:** Teste real de Moradas (Aguardando Agente 2).
 
 ---
 
-# 📌 TODOLIST — Agente 3 (Infra & QA) - 98%
+# 📌 TODOLIST — Agente 2 (Backend API) - 90%
 
-## 1. CI/CD & Automação (100%)
-- [x] Workflows ultra-robustos (5000 lines limit).
-- [x] Scan de Segurança e Deploy de Docs.
+- [x] Core API 100% funcional.
+- [ ] **Pendente:** Endpoints de Moradas.
+- [ ] **Pendente:** WebSocket real para Tracking.
+- [ ] **Pendente:** Serviço de PDF.
 
-## 2. Qualidade & Monitorização (95%)
-- [x] Performance k6 e Prometheus/Grafana.
-- [x] **Novo:** Estrutura de Testes E2E com Playwright (`e2e/`).
-- [ ] Testes E2E completos (cenários de negócio).
+---
 
-## 3. Infraestrutura & Backup (100%)
-- [x] **Novo:** Sistema de Backups Automatizados da BD (`infra/scripts/backup.sh`).
-- [x] Docker & Vercel Config.
+# 📌 TODOLIST — Agente 3 (Infra & QA) - 85%
+
+- [x] CI/CD Estável (5000 lines support).
+- [ ] **Novo:** Configuração de Sentry (Industrial Error Tracking).
+- [ ] **Novo:** Implementar Testes de Regressão Visual para o "Novo Visual".
+- [ ] **Novo:** Configurar ambiente para Google Maps API.
 
 ---
 
 # 📝 RESUMO DE PROGRESSO GLOBAL
 
-O projeto está a 97%. Falta apenas a escrita dos cenários finais de E2E e a lógica de negócio das faturas PDF. A infraestrutura está 100% preparada para o lançamento.
+O projeto expandiu-se com a inclusão de funcionalidades premium delegadas pela equipa de design (Novo Visual). O Agente 1 finalizou a UI, e agora os Agentes 2 e 3 devem implementar o suporte de infraestrutura e endpoints necessários para fechar a V3.
