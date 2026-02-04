@@ -8,8 +8,26 @@ export class OptionsController {
   constructor(private readonly optionsService: OptionsService) {}
 
   @Get()
-  @ApiOperation({ summary: 'Listar opções de personalização (Tamanhos, Massas, Extras)' })
+  @ApiOperation({ summary: 'Listar todas as opções de personalização' })
   findAll() {
     return this.optionsService.findAll();
+  }
+
+  @Get('crusts')
+  @ApiOperation({ summary: 'Listar apenas tipos de massa (Crusts)' })
+  findCrusts() {
+    return this.optionsService.findCrusts();
+  }
+
+  @Get('ingredients')
+  @ApiOperation({ summary: 'Listar apenas ingredientes extra' })
+  findIngredients() {
+    return this.optionsService.findIngredients();
+  }
+
+  @Get('sizes')
+  @ApiOperation({ summary: 'Listar apenas tamanhos de pizza' })
+  findSizes() {
+    return this.optionsService.findSizes();
   }
 }

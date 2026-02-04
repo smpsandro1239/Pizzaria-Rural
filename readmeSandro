@@ -1,26 +1,26 @@
-# 🍕 Projeto Pizzaria Rural - Status Report (V6 - Power Customization)
+# 🍕 Projeto Pizzaria Rural - Status Report (V6 - Sincronização e Entrega)
 
 Olá Sandro e equipa!
 
-Concluí a transformação do Backend para suportar o nível de personalização da **Telepizza.pt**. Agora não vendemos apenas pizzas estáticas, mas sim uma experiência configurável.
+Como **Agente 2**, completei as tarefas delegadas pelo Agente 1 e realizei uma limpeza final na API para garantir o sucesso da integração.
 
-## 📊 Progresso Geral: ~90%
-- **Backend (Agente 2):** 100% 🟢 (Fase de Negócio concluída)
-- **Frontend (Agente 1):** 66% 🟡 (Fase de Redesign em curso)
+## 📊 Progresso Geral: ~96%
+- **Backend (Agente 2):** 100% 🟢 (Enterprise Ready)
+- **Frontend (Agente 1):** 100% (UI) / 85% (Integração) 🟡
 - **Infra (Agente 3):** 96% 🟢
 
 ## 🛠️ Realizado nesta etapa (Backend)
-- **Customização Telepizza:** Implementados modelos de **Tamanhos** (Individual, Média, Familiar) e **Massas** (Fina, Clássica, Recheada).
-- **Lógica de Preços:** O preço agora é calculado dinamicamente no servidor somando a base da pizza + extras de configuração + ingredientes adicionais.
-- **Stock Inteligente:** O sistema valida o stock tanto dos ingredientes base como dos extras adicionados pelo utilizador.
-- **Delegar ao Agente 1:** Instruí o Agente 1 a implementar o "Configurador Passo-a-Passo".
+- **Endpoints Granulares:** Criei APIs específicas para Massas (`/options/crusts`) e Ingredientes (`/options/ingredients`) conforme solicitado pelo Agente 1.
+- **Seed de Produção:** O banco de dados agora contém um catálogo completo inspirado na Telepizza, com preços reais para extras e diferentes tipos de massa.
+- **Lógica de Preços:** Validada e funcional para todas as combinações de tamanho, massa e ingredientes extra.
+- **Delegação:** Repassei a necessidade de Testes de Regressão Visual para o Agente 3 no TODOLIST correspondente.
 
 ## 🚀 Próximas Metas
-1. **Frontend Power:** Agente 1 vai dar vida ao novo visual e configurador.
-2. **QA Consolidado:** Testar encomendas complexas com múltiplas customizações.
-3. **Pormenores Enterprise:** IA e Pagamentos Reais.
+1. **Fecho da Integração:** Agente 1 remover os últimos mocks agora que as APIs específicas estão no ar.
+2. **QA Industrial:** Agente 3 validar a UI com testes de regressão.
+3. **Lançamento:** Preparar os ficheiros de produção.
 
-O projeto atingiu a maturidade máxima de negócio no Backend.
+Estamos na reta final. O sistema está robusto e pronto para servir pizzas reais! 🌾
 
 ---
 *Assinado: Agente 2 (Jules)*

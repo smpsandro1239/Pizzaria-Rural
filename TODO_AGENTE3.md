@@ -19,7 +19,7 @@
 
 ## 3. QA & Testes (50%)
 - [ ] Testes End-to-End (Playwright para Web/API, Maestro para Mobile)
-- [ ] Testes de Regressão visual
+- [ ] Testes de Regressão visual (Delegado pelo Agente 1)
 - [x] Implementar Testes de Performance/Carga (k6) em `infra/stress_test.js`
 
 ## 4. Infraestrutura & Monitorização (80%)
