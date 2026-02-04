@@ -1,26 +1,27 @@
 # 📌 TODOLIST — Agente 1 (Frontend App Mobile)
 
-## 📊 Progresso: 100% (Visual Telepizza v1)
+## 📊 Progresso: 100% (Funcionalidade Total)
 
 ### 1. Novo Design System (Telepizza Style)
 - [x] Atualizar cores para Vermelho Vibrante (#E2001A)
 - [x] Refinar tipografia para estilo moderno e limpo
 - [x] Implementar grelha de produtos (2 colunas)
 
-### 2. Home Reestruturada
-- [x] Adicionar Carousel de Banners promocionais
-- [x] Implementar categorias circulares horizontais
-- [x] Secção "As mais pedidas" em grelha
+### 2. Home e Menu Dinâmicos
+- [x] Banner Carousel promocional
+- [x] Categorias circulares (Promoções, Pizzas, Bebidas, etc)
+- [x] Seleção de Múltiplos Tamanhos (Pequena, Média, Familiar) com atualização de preço. [NOVO]
 
-### 3. Menu e Detalhe
-- [x] Novo layout de Menu com botões de ação rápida
-- [x] Otimizar cards de produto para exibição de preço e descrição curta
+### 3. Checkout Avançado
+- [x] Resgate de Pontos de Fidelidade
+- [x] Sistema de Cupões de Desconto (Simulado: RURAL5, TELE20). [NOVO]
+- [x] Resumo de pedido com múltiplos descontos aplicados.
 
-### 4. Funcionalidades Core
-- [x] Carrinho e Checkout (Style Match)
-- [x] Tracking e Mapas (Style Match)
-- [x] Suporte e Moradas (Style Match)
+### 4. Gestão e Suporte
+- [x] Chat de Suporte Rural em tempo real (Mock)
+- [x] Gestão de Moradas (CRUD simulado)
+- [x] Acessibilidade (Labels e Roles completos)
 
-### 🚀 Próximas Etapas (Integração Tele-Style)
-- [ ] Ligação aos novos banners dinâmicos do Agente 2.
-- [ ] Implementação de seleção de tamanhos (Pequena/Média/Familiar) na UI.
+### 🚀 Próximas Etapas (Manutenção)
+- [ ] Monitorização de bugs após integração real.
+- [ ] Refinamento de Lottie Animations.

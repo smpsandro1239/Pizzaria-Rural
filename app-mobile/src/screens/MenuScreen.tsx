@@ -43,7 +43,7 @@ export const MenuScreen = () => {
           {item.description}
         </Text>
         <View style={styles.cardFooter}>
-          <Text style={[typography.h3, { color: colors.primary }]}>{item.price.toFixed(2)}€</Text>
+          <Text style={[typography.h3, { color: colors.primary }]}>{item.basePrice.toFixed(2)}€</Text>
           <TouchableOpacity style={[styles.addButton, { backgroundColor: colors.primary }]}>
             <MaterialCommunityIcons name="plus" size={20} color="white" />
           </TouchableOpacity>

@@ -2,7 +2,6 @@ import React from "react";
 import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from "react-native";
 import { useAppTheme } from "../theme";
 import { Card } from "./Card";
-import { StarRating } from "./StarRating";
 
 type RecommendationProps = {
   pizzas: any[];
@@ -32,8 +31,8 @@ export const ProductRecommendation = ({ pizzas, onPress }: RecommendationProps) 
               <Text numberOfLines={1} style={[styles.name, { ...typography.body, fontWeight: "600", color: colors.text }]}>
                 {pizza.name}
               </Text>
-              <Text style={[styles.price, { ...typography.caption, color: colors.ruralRed, fontWeight: "700" }]}>
-                {pizza.price.toFixed(2)} €
+              <Text style={[styles.price, { ...typography.caption, color: colors.primary, fontWeight: "700" }]}>
+                Desde {pizza.basePrice?.toFixed(2) || pizza.price?.toFixed(2)} €
               </Text>
             </Card>
           </TouchableOpacity>

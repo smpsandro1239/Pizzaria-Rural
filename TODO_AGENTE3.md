@@ -66,3 +66,7 @@
 ### 🍕 Requisitos para Visual Telepizza (Agente 1)
 - [ ] **Otimização de Banners:** Garantir que as imagens promocionais são servidas em WebP com compressão agressiva.
 - [ ] **Asset Management:** Organizar os novos ícones de categorias no repositório de assets centralizado.
+
+---
+### 📱 Release Management (Agente 1)
+- [ ] **Build Perfil:** Configurar o `eas.json` com perfis de `preview` e `production` para testarmos os links profundos (deep links) da App.

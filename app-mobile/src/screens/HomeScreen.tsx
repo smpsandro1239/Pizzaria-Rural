@@ -105,7 +105,7 @@ export const HomeScreen = () => {
                   {pizza.name}
                 </Text>
                 <Text style={[typography.h3, { color: colors.primary, marginTop: spacing.xs }]}>
-                  {pizza.price.toFixed(2)}€
+                  {pizza.basePrice.toFixed(2)}€
                 </Text>
                 <TouchableOpacity style={[styles.addButton, { backgroundColor: colors.primary }]}>
                   <MaterialCommunityIcons name="plus" size={20} color="white" />

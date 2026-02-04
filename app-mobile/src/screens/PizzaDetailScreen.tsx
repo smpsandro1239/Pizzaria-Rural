@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, Image, ScrollView, ActivityIndicator, TouchableOpacity, TextInput } from "react-native";
+import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity, TextInput } from "react-native";
 import { useAppTheme } from "../theme";
 import { Button } from "../components/Button";
 import { Badge } from "../components/Badge";
@@ -10,7 +10,7 @@ import { ProductRecommendation } from "../components/ProductRecommendation";
 import { Card } from "../components/Card";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useCartStore } from "../store/cart-store";
-import { pizzasApi } from "../api/pizzas";
+import { pizzasApi, PizzaSize } from "../api/pizzas";
 
 export const PizzaDetailScreen = ({ route }: any) => {
   const { colors, spacing, typography, radius } = useAppTheme();
@@ -21,6 +21,9 @@ export const PizzaDetailScreen = ({ route }: any) => {
   const [recommendations, setRecommendations] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  // Estados para Tamanho
+  const [selectedSize, setSelectedSize] = useState<PizzaSize | null>(null);
 
   // Estados para Review
   const [userRating, setUserRating] = useState(0);
@@ -36,6 +39,7 @@ export const PizzaDetailScreen = ({ route }: any) => {
 
         if (found) {
           setPizza(found);
+          setSelectedSize(found.sizes[1]); // Selecionar Média por padrão
           setRecommendations(data.filter((p: any) => p.id !== pizzaId).slice(0, 3));
         } else {
           setError("Pizza não encontrada.");
@@ -85,6 +89,7 @@ export const PizzaDetailScreen = ({ route }: any) => {
   }
 
   const isFav = pizza && favorites.includes(pizza.id);
+  const currentPrice = pizza.basePrice * (selectedSize?.multiplier || 1);
 
   return (
     <ScrollView style={[styles.container, { backgroundColor: colors.background }]}>
@@ -97,7 +102,7 @@ export const PizzaDetailScreen = ({ route }: any) => {
           <MaterialCommunityIcons
             name={isFav ? "heart" : "heart-outline"}
             size={32}
-            color={isFav ? colors.ruralRed : "white"}
+            color={isFav ? colors.primary : "white"}
           />
         </TouchableOpacity>
       </View>
@@ -109,9 +114,35 @@ export const PizzaDetailScreen = ({ route }: any) => {
         <View style={{ marginBottom: spacing.md }}>
           <StarRating rating={pizza.rating} count={pizza.reviewsCount} size={20} />
         </View>
-        <Text style={[styles.description, { ...typography.body, color: colors.textSecondary, marginBottom: spacing.xxl }]}>
+
+        <Text style={[styles.description, { ...typography.body, color: colors.textSecondary, marginBottom: spacing.xl }]}>
           {pizza.description}
         </Text>
+
+        {/* Seleção de Tamanho */}
+        <View style={{ marginBottom: spacing.xl }}>
+          <Text style={[typography.h3, { color: colors.text, marginBottom: spacing.md }]}>Escolha o Tamanho</Text>
+          <View style={styles.sizeRow}>
+            {pizza.sizes.map((size: PizzaSize) => (
+              <TouchableOpacity
+                key={size.id}
+                onPress={() => setSelectedSize(size)}
+                style={[
+                  styles.sizeButton,
+                  {
+                    borderColor: selectedSize?.id === size.id ? colors.primary : colors.border,
+                    backgroundColor: selectedSize?.id === size.id ? colors.primary : colors.white,
+                    borderRadius: radius.md
+                  }
+                ]}
+              >
+                <Text style={[typography.caption, { color: selectedSize?.id === size.id ? 'white' : colors.text, fontWeight: '700' }]}>
+                  {size.name}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+        </View>
 
         <Text style={[styles.sectionTitle, { ...typography.h3, color: colors.text, marginBottom: spacing.md }]}>
           Origem dos Ingredientes 🌿
@@ -131,7 +162,7 @@ export const PizzaDetailScreen = ({ route }: any) => {
                   <MaterialCommunityIcons
                     name={s <= userRating ? "star" : "star-outline"}
                     size={32}
-                    color={s <= userRating ? colors.ruralRed : colors.border}
+                    color={s <= userRating ? colors.primary : colors.border}
                   />
                 </TouchableOpacity>
               ))}
@@ -162,16 +193,17 @@ export const PizzaDetailScreen = ({ route }: any) => {
               setLoading(true);
               const next = recommendations.find(p => p.id === id);
               setPizza(next);
+              setSelectedSize(next.sizes[1]);
               setLoading(false);
             }}
           />
         </View>
 
         <View style={[styles.footer, { marginTop: spacing.xxl, marginBottom: spacing.xl }]}>
-          <Text style={[styles.price, { ...typography.h2, color: colors.ruralRed }]}>{pizza.price.toFixed(2)} €</Text>
+          <Text style={[styles.price, { ...typography.h2, color: colors.primary }]}>{currentPrice.toFixed(2)} €</Text>
           <Button
-            label="Adicionar ao Carrinho"
-            onPress={() => addItem({ id: pizza.id, name: pizza.name, price: pizza.price })}
+            label="Adicionar"
+            onPress={() => addItem({ id: pizza.id, name: `${pizza.name} (${selectedSize?.name})`, price: currentPrice })}
           />
         </View>
       </View>
@@ -210,6 +242,18 @@ const styles = StyleSheet.create({
   name: {},
   description: {
     lineHeight: 24,
+  },
+  sizeRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  sizeButton: {
+    flex: 1,
+    height: 44,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginHorizontal: 4,
+    borderWidth: 1,
   },
   sectionTitle: {},
   starRow: {

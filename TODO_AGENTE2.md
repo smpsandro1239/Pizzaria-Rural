@@ -52,3 +52,8 @@
 - [ ] **Múltiplos Tamanhos:** Adaptar o modelo de Pizza para suportar preços por tamanho (Pequena, Média, Familiar).
 - [ ] **Novas Categorias:** Adicionar suporte para categorias "Promoções", "Bebidas", "Sobremesas" e "Entradas" na DB.
 - [ ] **Banners Dinâmicos:** Criar endpoint `GET /banners` para fornecer imagens e links das promoções da Home.
+
+---
+### 🎟️ Gestão de Descontos (Agente 1)
+- [ ] **Validação de Cupões:** Criar endpoint `POST /coupons/validate` para verificar códigos promocionais.
+- [ ] **Lógica de Preços:** Garantir que o cálculo final no backend considera: Preço Base * Multiplicador Tamanho - Descontos.
