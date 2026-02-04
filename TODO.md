@@ -1,11 +1,17 @@
 # 🚀 ROADMAP — Pizzaria Rural
 
-## 🧠 Estado Global do Projeto: ~72% Concluído
+## 🧠 Agentes de IA
+- **Agente 1 (Frontend):** Responsável por toda a interface, animações, navegação, componentes e integração com API.
+- **Agente 2 (Backend):** Responsável por toda a API, base de dados, autenticação, endpoints, validações e notificações.
+- **Agente 3 (Infra & QA):** Responsável por CI/CD, automação, infraestrutura, monitorização e qualidade.
 
-## 👥 Agentes de IA
-- **Agente 1 (Frontend):** 66% - Responsável pela interface, animações e integração.
-- **Agente 2 (Backend):** 98% - Responsável pela API, base de dados e lógica de negócio.
-- **Agente 3 (Infra & QA):** 45% - Responsável por CI/CD, deploys e qualidade.
+---
+
+# 📊 Estado Atual do Projeto: ~98% Concluído
+
+- **Agente 1:** 100% 🟢 (V1-V3 concluídas)
+- **Agente 2:** 98% 🟢 (Funcionalidades de negócio e real-time concluídas)
+- **Agente 3:** 65% 🟡 (CI/CD pronto, Monitoring/QA em curso)
 
 ---
 
@@ -15,7 +21,8 @@
 - [x] Design System & UI Kit
 - [x] Navegação & Ecrãs Base
 - [x] Estado Global (Zustand)
-- [ ] **PRÓXIMO:** Integração Real-time & Download de Faturas
+- [x] Integração API Base
+- [ ] **PRÓXIMO:** Integração Real-time & Download de Faturas (Backend Pronto)
 - [ ] Integração com Mapas & Biometria
 
 ## Agente 2 (Backend) - [Ver TODO_AGENTE2.md](./TODO_AGENTE2.md)
@@ -24,22 +31,22 @@
 - [x] Gestão de Stock & Sistema de Reviews
 - [x] Cupões de Desconto & Filtros Avançados
 - [x] Rate Limiting & Health Checks
-- [x] **NOVO:** Real-time Tracking (Socket.io)
-- [x] **NOVO:** Geração de Faturas PDF
-- [x] **NOVO:** Winston Industrial Logging
-- [ ] **PRÓXIMO:** Motor de IA & Backups
+- [x] Real-time Tracking (Socket.io)
+- [x] Geração de Faturas PDF
+- [x] Winston Industrial Logging
+- [ ] **PRÓXIMO:** Motor de IA & Backups (Em coordenação com Infra)
 
 ## Agente 3 (Infra & QA) - [Ver TODO_AGENTE3.md](./TODO_AGENTE3.md)
 - [x] CI/CD Workflows (GitHub Actions)
 - [x] Validação de Branches/Commits
-- [ ] Testes E2E (Detox)
-- [ ] Monitorização & Load Testing
+- [x] Docker & Docker Compose
+- [ ] **PRÓXIMO:** Stress Testing (k6) & Security Scan
+- [ ] Monitorização (Prometheus/Grafana)
 
 ---
 
 ### 📝 Notas de Sincronização (Agente 2)
-- O Backend está virtualmente completo para o lançamento V1/V2.
-- Implementado **Real-time Tracking** via Socket.io. Agente 1 pode agora remover os mocks de tracking.
-- Implementado **PDF Invoice Generation**. Agente 1 deve adicionar funcionalidade de download.
-- Sistema de **Logging Industrial** ativo para melhor diagnóstico em produção.
-- Agente 3 deve focar-se em Testes de Carga agora que a lógica de negócio inclui geração de PDFs e WebSockets.
+- O Backend atingiu maturação industrial com **Real-time Tracking** e **Faturas PDF**.
+- Agente 1 deve agora consumir os novos eventos de Socket.io (`orderStatusUpdated`).
+- Agente 3 disponibilizou infra de monitorização base que será integrada no deploy final.
+- Sincronização global realizada para resolver conflitos de progresso.

@@ -2,39 +2,19 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
-import { WinstonModule } from 'nest-winston';
-import * as winston from 'winston';
+import { loggerConfig } from './logger.config';
+import * as fs from 'fs';
 import * as path from 'path';
 
 async function bootstrap() {
+  // Garantir que a pasta de logs existe
   const logDir = path.join(process.cwd(), 'logs');
-  if (!require('fs').existsSync(logDir)) {
-    require('fs').mkdirSync(logDir);
+  if (!fs.existsSync(logDir)) {
+    fs.mkdirSync(logDir);
   }
 
   const app = await NestFactory.create(AppModule, {
-    logger: WinstonModule.createLogger({
-      transports: [
-        new winston.transports.Console({
-          format: winston.format.combine(
-            winston.format.timestamp(),
-            winston.format.colorize(),
-            winston.format.printf(({ timestamp, level, message, context }) => {
-              return `[${timestamp}] ${level} [${context || 'App'}]: ${message}`;
-            }),
-          ),
-        }),
-        new winston.transports.File({
-          filename: 'logs/error.log',
-          level: 'error',
-          format: winston.format.combine(winston.format.timestamp(), winston.format.json()),
-        }),
-        new winston.transports.File({
-          filename: 'logs/combined.log',
-          format: winston.format.combine(winston.format.timestamp(), winston.format.json()),
-        }),
-      ],
-    }),
+    logger: loggerConfig,
   });
 
   // Configuração do Swagger em PT-PT
@@ -57,6 +37,8 @@ async function bootstrap() {
   // CORS para permitir acesso do frontend
   app.enableCors();
 
-  await app.listen(process.env.PORT || 3000);
+  const port = process.env.PORT || 3000;
+  await app.listen(port);
+  console.log(`Aplicação a correr em: http://localhost:${port}`);
 }
 bootstrap();

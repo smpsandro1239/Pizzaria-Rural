@@ -27,7 +27,7 @@
 - [x] Submissão e listagem de Reviews
 
 ## 4. Notificações (50%)
-- [/] WhatsApp (Simulado/Mock)
+- [/] WhatsApp (Simulado/Mock) - **Melhoria: Integrar Resend/Twilio**
 - [/] Email fallback (Simulado/Mock)
 
 ## 5. Documentação & Qualidade (100%)
