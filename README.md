@@ -15,6 +15,8 @@ Abaixo pode ver o fluxo completo da aplicação, desde a descoberta até à entr
 </table>
 
 ### 2. Escolha e Personalização
+<<<<<<< Updated upstream
+=======
 ### 5. Escolha de Tamanho e Cupões
 <table>
   <tr>
@@ -22,6 +24,7 @@ Abaixo pode ver o fluxo completo da aplicação, desde a descoberta até à entr
     <td><img src="docs/screenshots/10_checkout_final.png" width="300" alt="Cupões" /><br /><b>Checkout:</b> Cupões e Descontos</td>
   </tr>
 </table>
+>>>>>>> Stashed changes
 <table>
   <tr>
     <td><img src="docs/screenshots/03_detalhe.png" width="300" alt="Detalhe" /><br /><b>Detalhe:</b> Origem dos ingredientes e Recomendações</td>

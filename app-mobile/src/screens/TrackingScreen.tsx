@@ -32,8 +32,13 @@ export const TrackingScreen = () => {
 
       {/* Mapa Visual Placeholder para Web/Dev */}
       <View style={[styles.mapContainer, { margin: spacing.lg, borderRadius: radius.lg, overflow: 'hidden', backgroundColor: colors.surface }]}>
+<<<<<<< Updated upstream
         <Image
           source={{ uri: 'https://maps.googleapis.com/maps/api/staticmap?center=38.7167,-9.1399&zoom=14&size=600x300&markers=color:red%7C38.7167,-9.1399&markers=color:green%7C38.7180,-9.1420&key=YOUR_API_KEY_HERE' }}
+=======
+        <Image
+          source={{ uri: 'https://maps.googleapis.com/maps/api/staticmap?center=38.7167,-9.1399&zoom=14&size=600x300&markers=color:red%7C38.7167,-9.1399&markers=color:green%7C38.7180,-9.1420&key=YOUR_API_KEY_HERE' }}
+>>>>>>> Stashed changes
           style={styles.mapPlaceholderImage}
         />
         <View style={[styles.mapOverlay, { backgroundColor: 'rgba(0,0,0,0.6)' }]}>
@@ -60,7 +65,11 @@ export const TrackingScreen = () => {
           {STEPS.map((step, index) => {
             const isActive = step.id <= currentStep;
             const isCurrent = step.id === currentStep;
+<<<<<<< Updated upstream
 
+=======
+
+>>>>>>> Stashed changes
             return (
               <View key={step.id} style={styles.stepRow}>
                 <View style={styles.indicatorCol}>
@@ -79,6 +88,7 @@ export const TrackingScreen = () => {
                     <View style={[styles.verticalLine, { backgroundColor: isActive ? colors.ruralRed : colors.border }]} />
                   )}
                 </View>
+<<<<<<< Updated upstream
 
                 <View style={[styles.labelCol, { paddingBottom: spacing.xl }]}>
                   <View style={styles.labelHeader}>
@@ -86,15 +96,31 @@ export const TrackingScreen = () => {
                       name={step.icon as any}
                       size={20}
                       color={isActive ? colors.ruralRed : colors.textSecondary}
+=======
+
+                <View style={[styles.labelCol, { paddingBottom: spacing.xl }]}>
+                  <View style={styles.labelHeader}>
+                    <MaterialCommunityIcons
+                      name={step.icon as any}
+                      size={20}
+                      color={isActive ? colors.ruralRed : colors.textSecondary}
+>>>>>>> Stashed changes
                       style={{ marginRight: spacing.sm }}
                     />
                     <Text
                       style={[
                         styles.stepLabel,
+<<<<<<< Updated upstream
                         {
                           ...typography.body,
                           color: isActive ? colors.text : colors.textSecondary,
                           fontWeight: isCurrent ? "700" : "400"
+=======
+                        {
+                          ...typography.body,
+                          color: isActive ? colors.text : colors.textSecondary,
+                          fontWeight: isCurrent ? "700" : "400"
+>>>>>>> Stashed changes
                         },
                       ]}
                     >

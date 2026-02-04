@@ -18,7 +18,11 @@ No menu lateral, vai a **APIs & Services > Library** e ativa estas três:
 3. Copia a chave gerada (parece-se com: `AIzaSy... `).
 
 ## 4. Como me entregar a chave?
+<<<<<<< Updated upstream
 Podes simplesmente escrever aqui no chat:
+=======
+Podes simplesmente escrever aqui no chat:
+>>>>>>> Stashed changes
 > "Agente 1, aqui está a chave: [TUA_CHAVE_AQUI]"
 
 Eu tratarei de a configurar nos ficheiros `app.json` e no código para que tudo comece a funcionar imediatamente!

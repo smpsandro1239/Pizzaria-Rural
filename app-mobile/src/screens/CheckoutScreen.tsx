@@ -44,6 +44,13 @@ export const CheckoutScreen = () => {
 
   const finalTotal = total() + 2 - loyaltyDiscount - (appliedPromo?.discount || 0);
 
+  // Fidelidade
+  const [usePoints, setUsePoints] = useState(false);
+  const userPoints = 120; // Mock: sincronizado com AccountScreen
+  const discountPerPoint = 0.01;
+  const maxPointsToUse = Math.min(userPoints, Math.floor((total() + 2) / discountPerPoint));
+  const discount = usePoints ? maxPointsToUse * discountPerPoint : 0;
+
   const handleOrder = () => {
     if (!formData.name || !formData.phone || !formData.address) {
       showToast("Por favor, preencha todos os campos.", "error");
@@ -59,7 +66,7 @@ export const CheckoutScreen = () => {
     setTimeout(() => {
       setLoading(false);
       clear();
-      showToast("Pedido realizado com sucesso!");
+      showToast(usePoints ? `Pedido realizado! Resgataste ${maxPointsToUse} pontos.` : "Pedido realizado com sucesso!");
       navigation.replace("Tracking", { orderId: "12345" });
     }, 2000);
   };
@@ -130,6 +137,25 @@ export const CheckoutScreen = () => {
         </View>
       </Card>
 
+      <Card style={{ ...styles.section, marginBottom: spacing.lg, padding: spacing.md }}>
+        <View style={styles.loyaltyRow}>
+          <View style={{ flex: 1 }}>
+            <Text style={{ ...typography.body, fontWeight: "700", color: colors.text }}>Usar Pontos de Fidelidade</Text>
+            <Text style={{ ...typography.caption, color: colors.textSecondary }}>Tens {userPoints} pontos disponíveis</Text>
+          </View>
+          <Switch
+            value={usePoints}
+            onValueChange={setUsePoints}
+            trackColor={{ false: colors.border, true: colors.ruralRed }}
+          />
+        </View>
+        {usePoints && (
+          <Text style={{ ...typography.caption, color: colors.ruralRed, marginTop: spacing.xs }}>
+            Desconto de {discount.toFixed(2)} € aplicado!
+          </Text>
+        )}
+      </Card>
+
       <Card style={{ ...styles.section, marginBottom: spacing.lg }}>
         <Text style={{ ...typography.h3, color: colors.text, marginBottom: spacing.md }}>Resumo</Text>
         {items.map((item) => (
@@ -142,6 +168,17 @@ export const CheckoutScreen = () => {
           <Text style={[typography.body, { color: colors.text }]}>Taxa de Entrega</Text>
           <Text style={[typography.body, { color: colors.text }]}>2,00 €</Text>
         </View>
+<<<<<<< Updated upstream
+        {usePoints && (
+          <View style={[styles.row, { marginBottom: spacing.sm }]}>
+            <Text style={[typography.body, { color: colors.ruralRed }]}>Desconto (Fidelidade)</Text>
+            <Text style={[typography.body, { color: colors.ruralRed }]}>- {discount.toFixed(2)} €</Text>
+          </View>
+        )}
+        <View style={[styles.row, styles.totalRow, { borderTopColor: colors.border, paddingTop: spacing.sm, marginTop: spacing.sm }]}>
+          <Text style={[styles.totalText, { ...typography.h3, color: colors.text }]}>Total</Text>
+          <Text style={[styles.totalPrice, { ...typography.h3, color: colors.ruralRed }]}>{(total() + 2 - discount).toFixed(2)} €</Text>
+=======
 
         {loyaltyDiscount > 0 && (
           <View style={[styles.row, { marginBottom: spacing.sm }]}>
@@ -160,6 +197,7 @@ export const CheckoutScreen = () => {
         <View style={[styles.row, styles.totalRow, { borderTopColor: colors.border, paddingTop: spacing.sm, marginTop: spacing.sm }]}>
           <Text style={[styles.totalText, { ...typography.h3, color: colors.text }]}>Total</Text>
           <Text style={[styles.totalPrice, { ...typography.h3, color: colors.primary }]}>{Math.max(0, finalTotal).toFixed(2)} €</Text>
+>>>>>>> Stashed changes
         </View>
       </Card>
 
@@ -180,10 +218,13 @@ const styles = StyleSheet.create({
   content: {},
   title: {},
   section: {},
+<<<<<<< Updated upstream
+=======
   promoRow: {
     flexDirection: 'row',
     alignItems: 'flex-start',
   },
+>>>>>>> Stashed changes
   loyaltyRow: {
     flexDirection: "row",
     alignItems: "center",

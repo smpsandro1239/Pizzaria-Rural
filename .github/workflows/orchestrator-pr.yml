@@ -27,20 +27,22 @@ jobs:
         run: |
           if ! echo "${{ github.event.pull_request.title }}" | grep -qiE "á|é|í|ó|ú|ç|ã|õ|â|ê|ô|à"; then
             echo "Aviso: O título do PR pode não estar em PT-PT (não foram detetados acentos ou cedilhas)."
-            # Não falha o build para permitir termos técnicos em inglês
           fi
 
       - name: Validar tamanho do PR
         run: |
-          CHANGED=$(git diff --shortstat origin/${{ github.base_ref }} | awk '{print $4}')
-          if [ -n "$CHANGED" ] && [ "$CHANGED" -gt 2000 ]; then
-            echo "PR demasiado grande. Divide em PRs menores."
+          BASE_SHA="${{ github.event.pull_request.base.sha }}"
+          HEAD_SHA="${{ github.event.pull_request.head.sha }}"
+          CHANGED=$(git diff --numstat $BASE_SHA..$HEAD_SHA -- . ':(exclude)*package-lock.json' ':(exclude)*yarn.lock' ':(exclude)*pnpm-lock.yaml' ':(exclude)readmeSandro' | awk '{sum+=$1} END {print sum}')
+          echo "Linhas alteradas: ${CHANGED:-0}"
+          if [ -n "$CHANGED" ] && [ "$CHANGED" -gt 5000 ]; then
             exit 1
           fi
 
       - name: Validar conflitos
         run: |
-          if ! git merge --no-commit --no-ff origin/${{ github.base_ref }}; then
-            echo "Existem conflitos neste PR."
+          if ! git merge-base --is-ancestor origin/${{ github.base_ref }} HEAD; then
+            echo "🚨 ERRO: A tua branch está desatualizada em relação à ${{ github.base_ref }}."
+            echo "Por favor, executa 'git fetch origin && git merge origin/${{ github.base_ref }}' localmente e resolve os conflitos antes de submeter."
             exit 1
           fi

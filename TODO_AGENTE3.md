@@ -1,43 +1,70 @@
-# TODO Agente 3 — Infraestrutura & Automação
+# 📌 TODO Agente 3 — Infraestrutura & Automação
 
-## 1. Setup GitHub
-- [x] Inicializar estrutura do repositório (`/app-mobile`, `/backend`, `/infra`, `/docs`)
-- [x] Criar branches isoladas
-- [x] Criar proteções de branch (Documentado em CONTRIBUTING.md)
-- [x] Criar templates de PR
-- [x] Criar templates de issues
+## 📊 Progresso: 85% (Novas tarefas delegadas pela V3 UI)
 
-## 2. CI/CD
+## 1. Estabilização de CI (100%)
+- [x] Workflows do Orquestrador otimizados para 5000 linhas.
+- [x] Resolução de conflitos de sincronização.
+
+<<<<<<< HEAD
+## 2. QA & Testes (70%)
+- [x] Stress tests k6.
+- [x] Estrutura base Playwright para E2E.
+- [ ] **Novo:** Implementar Testes de Regressão Visual (Playwright Screenshots).
+- [ ] **Pendente:** Escrita de cenários de teste reais (Aguardando Endpoints Moradas).
+
+## 3. Monitorização & Erros (20%)
+- [ ] **Novo:** Configurar Sentry para Frontend e Backend (Captura de Crash).
+- [x] Prometheus + Grafana base.
+
+## 4. Integração de Terceiros (50%)
+- [ ] **Novo:** Configurar Variáveis de Ambiente e Secretos para Google Maps API.
+- [ ] **Novo:** Implementar Otimização de Imagens no Build (expo-image support).
+- [x] Backup da BD automatizado.
+
+## 5. Documentação & Outros (90%)
+- [x] Guia de Deploy Vercel.
+- [x] Relatórios de Sincronização.
+- [ ] **Novo:** Criar docs de integração Sentry (`docs/sentry_setup.md`).
+=======
+## 2. CI/CD & Automação (100%)
 - [x] Configurar workflows do Orquestrador (PR, Commits, Project, Emergência)
-- [x] Configurar CI base para Frontend, Backend e Infra
-- [x] Lint + Prettier (`.eslintrc.json`, `.prettierrc`)
-- [ ] Testes automáticos
-- [ ] Build mobile
-- [ ] Deploy backend
-- [ ] Deploy documentação
+- [x] Lint + Prettier configurados
+- [x] Configurar Testes automáticos no CI
+- [ ] Pipeline de Build Mobile (EAS)
+- [x] Automatizar deploy do Backend (Vercel)
+- [x] Automatizar deploy da Documentação (GitHub Pages)
+- [x] Adicionar Workflow de Security Scanning (Trivy/Snyk)
 
-## 3. QA
-- [ ] Testes end‑to‑end
-- [ ] Testes de regressão
-- [ ] Testes de performance
+## 3. QA & Testes (50%)
+- [ ] Testes End-to-End (Playwright para Web/API, Maestro para Mobile)
+- [ ] Testes de Regressão visual
+- [x] Implementar Testes de Performance/Carga (k6) em `infra/stress_test.js`
 
-## 4. Infraestrutura
+## 4. Infraestrutura & Monitorização (80%)
 - [x] Docker (`backend/Dockerfile`)
 - [x] Docker Compose (`docker-compose.yml`)
-- [ ] Monitorização
-- [ ] Logs centralizados
+- [x] Configurar Prometheus + Grafana (`infra/monitoring/`)
+- [x] Logs centralizados (Winston/Sentry)
 
-## 5. Documentação
+## 5. Documentação (90%)
 - [x] README principal
-- [x] Documentação técnica (`docs/setup_local.md`)
-- [ ] Documentação de API
-- [ ] Documentação de deploy
-- [x] Documentação de arquitetura (`docs/arquitetura.md`)
-- [x] Guia de Contribuição (`CONTRIBUTING.md`)
-- [x] Divisão de Agentes (`docs/agentes.md`)
-- [x] Orquestrador (`docs/orchestrator.md`)
-- [x] Backup de Prompts (`docs/prompts/`)
+- [x] Documentação técnica e Arquitetura
+- [x] Guia de Contribuição e Divisão de Agentes
+- [x] Orquestrador e Backup de Prompts
+- [x] Documentação de Deploy (Vercel)
+- [x] Documentação da API (Swagger/OpenAPI)
 
+<<<<<<< Updated upstream
+## 6. Sincronização & Qualidade (100%)
+- [x] Commits em PT-PT
+- [x] Atualizar TODOs e Roadmap Global
+- [x] Reportar progresso aos outros agentes
+
+---
+*Nota: Este todolist foi atualizado pelo Agente 2 para sincronização global e resolução de conflitos.*
+>>>>>>> origin/main
+=======
 ## 6. Outros
 - [x] Commits sempre em PT‑PT
 - [x] Atualizar o GitHub sempre que realizar nova tarefa
@@ -70,3 +97,4 @@
 ---
 ### 📱 Release Management (Agente 1)
 - [ ] **Build Perfil:** Configurar o `eas.json` com perfis de `preview` e `production` para testarmos os links profundos (deep links) da App.
+>>>>>>> Stashed changes

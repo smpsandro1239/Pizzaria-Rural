@@ -2,43 +2,83 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
+  // Criar Categorias
+  const catPizzas = await prisma.category.upsert({
+    where: { slug: 'pizzas' },
+    update: {},
+    create: { name: 'Pizzas Rural', slug: 'pizzas' },
+  });
+
+  const catEntradas = await prisma.category.upsert({
+    where: { slug: 'entradas' },
+    update: {},
+    create: { name: 'Entradas Rural', slug: 'entradas' },
+  });
+
+  const catBebidas = await prisma.category.upsert({
+    where: { slug: 'bebidas' },
+    update: {},
+    create: { name: 'Bebidas Frescas', slug: 'bebidas' },
+  });
+
+  // Criar Ingredientes
+  const tomaterural = await prisma.ingredient.upsert({
+    where: { name: 'Tomate Rural' },
+    update: { stock: 100 },
+    create: { name: 'Tomate Rural', stock: 100 },
+  });
+
+  const queijofresco = await prisma.ingredient.upsert({
+    where: { name: 'Queijo Fresco' },
+    update: { stock: 50 },
+    create: { name: 'Queijo Fresco', stock: 50 },
+  });
+
+  // Criar/Atualizar Pizzas
   const margherita = await prisma.pizza.upsert({
     where: { id: 'margherita' },
-    update: {},
+    update: { categoryId: catPizzas.id },
     create: {
       id: 'margherita',
       name: 'Margherita Rural',
       description: 'Simples, rápida e perfeita. A rainha da casa.',
       price: 850,
       imageUrl: 'https://images.unsplash.com/photo-1574071318508-1cdbad80ad50?auto=format&fit=crop&w=800&q=80',
+      categoryId: catPizzas.id,
     },
   });
 
-  const pepperoni = await prisma.pizza.upsert({
-    where: { id: 'pepperoni' },
+  // Criar Banners
+  await prisma.banner.upsert({
+    where: { id: 'promo1' },
     update: {},
     create: {
-      id: 'pepperoni',
-      name: 'Pepperoni da Serra',
-      description: 'Picante no ponto certo. A favorita dos apressados.',
-      price: 950,
-      imageUrl: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=800&q=80',
+      id: 'promo1',
+      title: 'Promoção de Inverno',
+      imageUrl: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1200&q=80',
+      link: '/category/pizzas',
     },
   });
 
-  const veggie = await prisma.pizza.upsert({
-    where: { id: 'veggie' },
+  await prisma.banner.upsert({
+    where: { id: 'promo2' },
     update: {},
     create: {
-      id: 'veggie',
-      name: 'Veggie da Horta',
-      description: 'Leve, fresca e cheia de sabor — direto da terra para o forno.',
-      price: 900,
-      imageUrl: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80',
+      id: 'promo2',
+      title: 'Menu Familiar Rural',
+      imageUrl: 'https://images.unsplash.com/photo-1590947132387-155cc02f3212?auto=format&fit=crop&w=1200&q=80',
+      link: '/coupons',
     },
   });
 
-  console.log({ margherita, pepperoni, veggie });
+  // Criar Cupão
+  await prisma.coupon.upsert({
+    where: { code: 'RURAL10' },
+    update: {},
+    create: { code: 'RURAL10', type: 'PERCENT', value: 10, minOrderValue: 1000 },
+  });
+
+  console.log('Seed concluído com sucesso!');
 }
 
 main()

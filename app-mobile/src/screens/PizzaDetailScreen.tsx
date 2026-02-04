@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
+<<<<<<< Updated upstream
+import { View, Text, StyleSheet, Image, ScrollView, ActivityIndicator, TouchableOpacity, TextInput } from "react-native";
+=======
 import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity, TextInput } from "react-native";
+>>>>>>> Stashed changes
 import { useAppTheme } from "../theme";
 import { Button } from "../components/Button";
 import { Badge } from "../components/Badge";
@@ -16,15 +20,22 @@ export const PizzaDetailScreen = ({ route }: any) => {
   const { colors, spacing, typography, radius } = useAppTheme();
   const { addItem, favorites, toggleFavorite, showToast } = useCartStore();
   const pizzaId = route.params?.id;
+<<<<<<< Updated upstream
 
+=======
+
+>>>>>>> Stashed changes
   const [pizza, setPizza] = useState<any>(null);
   const [recommendations, setRecommendations] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+<<<<<<< Updated upstream
+=======
   // Estados para Tamanho
   const [selectedSize, setSelectedSize] = useState<PizzaSize | null>(null);
 
+>>>>>>> Stashed changes
   // Estados para Review
   const [userRating, setUserRating] = useState(0);
   const [userComment, setUserComment] = useState("");
@@ -36,10 +47,16 @@ export const PizzaDetailScreen = ({ route }: any) => {
         setLoading(true);
         const data = await pizzasApi.getPizzas();
         const found = data.find((p: any) => p.id === pizzaId);
+<<<<<<< Updated upstream
+
+        if (found) {
+          setPizza(found);
+=======
 
         if (found) {
           setPizza(found);
           setSelectedSize(found.sizes[1]); // Selecionar Média por padrão
+>>>>>>> Stashed changes
           setRecommendations(data.filter((p: any) => p.id !== pizzaId).slice(0, 3));
         } else {
           setError("Pizza não encontrada.");
@@ -162,7 +179,11 @@ export const PizzaDetailScreen = ({ route }: any) => {
                   <MaterialCommunityIcons
                     name={s <= userRating ? "star" : "star-outline"}
                     size={32}
+<<<<<<< Updated upstream
+                    color={s <= userRating ? colors.ruralRed : colors.border}
+=======
                     color={s <= userRating ? colors.primary : colors.border}
+>>>>>>> Stashed changes
                   />
                 </TouchableOpacity>
               ))}
@@ -187,20 +208,34 @@ export const PizzaDetailScreen = ({ route }: any) => {
         </View>
 
         <View style={{ marginTop: spacing.xxl }}>
+<<<<<<< Updated upstream
           <ProductRecommendation
             pizzas={recommendations}
+=======
+          <ProductRecommendation
+            pizzas={recommendations}
+>>>>>>> Stashed changes
             onPress={(id) => {
               setLoading(true);
               const next = recommendations.find(p => p.id === id);
               setPizza(next);
+<<<<<<< Updated upstream
+              setLoading(false);
+            }}
+=======
               setSelectedSize(next.sizes[1]);
               setLoading(false);
             }}
+>>>>>>> Stashed changes
           />
         </View>
 
         <View style={[styles.footer, { marginTop: spacing.xxl, marginBottom: spacing.xl }]}>
+<<<<<<< Updated upstream
+          <Text style={[styles.price, { ...typography.h2, color: colors.ruralRed }]}>{pizza.price.toFixed(2)} €</Text>
+=======
           <Text style={[styles.price, { ...typography.h2, color: colors.primary }]}>{currentPrice.toFixed(2)} €</Text>
+>>>>>>> Stashed changes
           <Button
             label="Adicionar"
             onPress={() => addItem({ id: pizza.id, name: `${pizza.name} (${selectedSize?.name})`, price: currentPrice })}
