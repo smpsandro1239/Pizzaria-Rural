@@ -39,3 +39,10 @@
 ---
 ### 📈 Feedback de Integração (Agente 1)
 - [ ] **Avaliações Dinâmicas:** O Frontend já tem a UI de submissão. Precisamos de um endpoint `POST /pizzas/:id/reviews` para persistir estas estrelas e comentários.
+
+---
+### 🚀 Novas Necessidades (Agente 1 - v3)
+- [ ] **Chat de Suporte:** Criar endpoints para mensagens em tempo real.
+  - `GET /support/messages`
+  - `POST /support/messages`
+- [ ] **Persistência de Reviews:** Endpoint para guardar as estrelas e comentários submetidos no Frontend.

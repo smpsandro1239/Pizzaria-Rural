@@ -1,6 +1,6 @@
 # 📌 TODOLIST — Agente 1 (Frontend App Mobile)
 
-## 📊 Progresso: 97%
+## 📊 Progresso: 99%
 
 ### 1. Setup inicial
 - [x] Criar projeto Expo em PT‑PT
@@ -21,13 +21,14 @@
 ### 4. Ecrãs (PT-PT)
 - [x] **Home:** Hero, Destaques, Porquê nós.
 - [x] **Menu:** Lista de Pizzas, Filtros por categoria, Entrada animada.
-- [x] **Detalhe da Pizza:** Preços, Ingredientes, Proveniência (Rural Premium), Ratings, Recomendações.
+- [x] **Detalhe da Pizza:** Preços, Ingredientes, Proveniência (Rural Premium), Ratings, Recomendações, Avaliações.
 - [x] **Favoritos:** Lista de pizzas preferidas do utilizador.
 - [x] **Carrinho:** FloatingCart persistente.
-- [x] **Checkout:** Formulário, Resumo, Up-selling (bebidas/sobremesas), Resgate de Pontos. [EM CURSO]
+- [x] **Checkout:** Formulário, Resumo, Up-selling, Resgate de Pontos.
 - [x] **Tracking:** Estado da encomenda dinâmico com barra de progresso.
 - [x] **Conta:** Dados, Fidelidade, Histórico, Definições.
 - [x] **Gestão de Moradas:** Listar, Adicionar e Remover moradas.
+- [x] **Chat de Suporte:** Interface de ajuda em tempo real. [NOVO]
 
 ### 5. Integração & Estado Global
 - [x] Criar cliente API (Axios)
@@ -43,10 +44,8 @@
 - [x] Testes de UI & Store (Mocks configurados)
 - [x] Skeleton Loaders para carregamento
 - [x] Correção de CI (PR Validation fix)
-- [ ] Otimização de Imagens (expo-image). [PENDENTE]
+- [x] Auditoria de Acessibilidade (Labels e Roles). [NOVO]
+- [ ] Otimização de Imagens (expo-image). [PENDENTE - Agente 3 Support]
 
 ### 🚀 Próximas Etapas (Agente 1)
 - [ ] **Integração com Mapas:** Visualizar entrega em tempo real no Tracking. (Bloqueado por Agente 3)
-- [ ] **Sistema de Avaliações:** UI para submeter reviews. [EM CURSO]
-- [ ] **Lottie Animations:** Adicionar animações vetoriais no Sucesso.
-- [ ] **Acessibilidade:** Auditoria completa (VoiceOver/TalkBack).

@@ -1,17 +1,25 @@
-import React from "react";
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Switch } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { MotiView } from "moti";
 import { useAppTheme } from "../theme";
 import { Card } from "../components/Card";
 import { Badge } from "../components/Badge";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { RootStackParamList } from "../navigation/types";
 
 const HISTORY = [
   { id: "1", date: "25 Jan 2024", total: 15.5, status: "Entregue" },
   { id: "2", date: "18 Jan 2024", total: 10.5, status: "Entregue" },
 ];
 
+type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
+
 export const AccountScreen = () => {
+  const navigation = useNavigation<NavigationProp>();
   const { colors, spacing, typography, radius } = useAppTheme();
+  const [biometricsEnabled, setBiometricsEnabled] = useState(false);
 
   return (
     <ScrollView style={[styles.container, { backgroundColor: colors.background }]} contentContainerStyle={[styles.content, { padding: spacing.lg }]}>
@@ -41,6 +49,44 @@ export const AccountScreen = () => {
         </Text>
       </Card>
 
+      <Text style={[styles.sectionTitle, { ...typography.h3, color: colors.text, marginBottom: spacing.md }]}>Definições</Text>
+
+      <Card style={{ marginBottom: spacing.xl, padding: 0 }}>
+        <TouchableOpacity
+          style={[styles.menuItem, { borderBottomWidth: 1, borderBottomColor: colors.border }]}
+          onPress={() => navigation.navigate("Addresses")}
+        >
+          <View style={styles.menuItemLeft}>
+            <MaterialCommunityIcons name="map-marker-outline" size={24} color={colors.text} />
+            <Text style={[typography.body, { color: colors.text, marginLeft: spacing.md }]}>Gerir Moradas</Text>
+          </View>
+          <MaterialCommunityIcons name="chevron-right" size={24} color={colors.textSecondary} />
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[styles.menuItem, { borderBottomWidth: 1, borderBottomColor: colors.border }]}
+          onPress={() => navigation.navigate("SupportChat")}
+        >
+          <View style={styles.menuItemLeft}>
+            <MaterialCommunityIcons name="chat-question-outline" size={24} color={colors.text} />
+            <Text style={[typography.body, { color: colors.text, marginLeft: spacing.md }]}>Suporte Rural</Text>
+          </View>
+          <MaterialCommunityIcons name="chevron-right" size={24} color={colors.textSecondary} />
+        </TouchableOpacity>
+
+        <View style={styles.menuItem}>
+          <View style={styles.menuItemLeft}>
+            <MaterialCommunityIcons name="fingerprint" size={24} color={colors.text} />
+            <Text style={[typography.body, { color: colors.text, marginLeft: spacing.md }]}>Acesso Biométrico</Text>
+          </View>
+          <Switch
+            value={biometricsEnabled}
+            onValueChange={setBiometricsEnabled}
+            trackColor={{ false: colors.border, true: colors.ruralRed }}
+          />
+        </View>
+      </Card>
+
       <Text style={[styles.sectionTitle, { ...typography.h3, color: colors.text, marginBottom: spacing.md }]}>Histórico de Pedidos</Text>
       {HISTORY.map((item) => (
         <Card key={item.id} style={{ ...styles.historyCard, marginBottom: spacing.md }}>
@@ -57,7 +103,7 @@ export const AccountScreen = () => {
         </Card>
       ))}
 
-      <TouchableOpacity style={[styles.logoutButton, { marginTop: spacing.xl }]}>
+      <TouchableOpacity style={[styles.logoutButton, { marginTop: spacing.xl, marginBottom: spacing.xxl }]}>
         <Text style={[styles.logoutText, { ...typography.body, color: colors.error, fontWeight: "600" }]}>Sair da Conta</Text>
       </TouchableOpacity>
     </ScrollView>
@@ -102,6 +148,16 @@ const styles = StyleSheet.create({
   },
   pointsDesc: {},
   sectionTitle: {},
+  menuItem: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: 16,
+  },
+  menuItemLeft: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
   historyCard: {},
   historyHeader: {
     flexDirection: "row",

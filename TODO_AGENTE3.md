@@ -51,3 +51,8 @@
 ---
 ### 📈 Feedback de Integração (Agente 1)
 - [ ] **Otimização de Assets:** Por favor, garante que o suporte a WebP está ativo no CDN/Vercel para as imagens da App.
+
+---
+### 🚀 Novas Necessidades (Agente 1 - v3)
+- [ ] **Deploy EAS:** Preparar ambiente para build mobile nativo (Android/iOS).
+- [ ] **Sentry Integration:** Configurar o DSN no Frontend para monitorizar erros de produção.
