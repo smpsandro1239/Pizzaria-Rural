@@ -1,8 +1,8 @@
 # 📌 TODOLIST — Agente 1 (Frontend App Mobile)
 
-## Estado Atual: 66% Concluído (Fase de Redesign Telepizza)
+## 📊 Progresso: 99%
 
-## 1. Setup inicial (100%)
+### 1. Setup inicial
 - [x] Criar projeto Expo em PT‑PT
 - [x] Configurar Reanimated + Moti
 - [x] Configurar estrutura de pastas

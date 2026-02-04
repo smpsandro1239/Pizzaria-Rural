@@ -33,6 +33,7 @@
     "@nestjs/throttler": "^6.4.0",
     "@nestjs/websockets": "^11.0.1",
     "@prisma/client": "^6.4.1",
+    "@types/pdfkit": "^0.17.4",
     "axios": "^1.13.4",
     "bcrypt": "^6.0.0",
     "class-transformer": "^0.5.1",

@@ -35,7 +35,7 @@ export const Button: React.FC<ButtonProps> = ({
       case "ghost":
         return { backgroundColor: "transparent" };
       case "destructive":
-        return { backgroundColor: "#dc2626" };
+        return { backgroundColor: colors.ruralRedDestructive || "#dc2626" };
       default:
         return { backgroundColor: colors.ruralRed };
     }
@@ -44,6 +44,9 @@ export const Button: React.FC<ButtonProps> = ({
   const getTextColor = () => {
     if (variant === "outline" || variant === "ghost") {
       return colors.ruralRed;
+    }
+    if (variant === "destructive") {
+      return colors.white;
     }
     return colors.white;
   };
@@ -55,38 +58,49 @@ export const Button: React.FC<ButtonProps> = ({
       accessibilityLabel={accessibilityLabel || label}
       accessibilityRole="button"
       accessibilityState={{ disabled: disabled || loading, busy: loading }}
+      accessibilityHint={loading ? "A carregar" : undefined}
       style={({ pressed }) => [
         styles.container,
         getVariantStyle(),
         {
-          opacity: disabled || pressed ? 0.7 : 1,
+          opacity: disabled || loading ? 0.6 : pressed ? 0.85 : 1,
           paddingVertical: spacing.lg,
           paddingHorizontal: spacing.xl,
           borderRadius: radius.pill,
+          borderWidth: variant === "outline" ? 2 : 0,
+          borderColor: variant === "outline" ? colors.ruralRed : "transparent",
         },
       ]}
     >
       <MotiView
         animate={{
-          scale: disabled ? 1 : 1,
+          scale: loading ? 0.95 : 1,
         }}
         transition={{
-          type: "timing",
-          duration: motion.duration.fast,
+          type: "spring",
+          damping: 15,
+          stiffness: 200,
         }}
         style={styles.inner}
       >
         {loading ? (
-          <ActivityIndicator color={getTextColor()} testID="button-loader" />
+          <ActivityIndicator 
+            color={getTextColor()} 
+            size="small"
+            accessibilityLabel={`${label} a carregar`}
+            testID="button-loader"
+          />
         ) : (
           <Text
             style={[
               styles.text,
+              typography.button,
               {
-                ...typography.body,
                 color: getTextColor(),
+                fontFamily: typography.fontFamily.bold,
               },
             ]}
+            selectable={false}
           >
             {label}
           </Text>
@@ -101,6 +115,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     minHeight: 56,
+    minWidth: 120,
+    overflow: "hidden",
   },
   inner: {
     flexDirection: "row",
@@ -108,6 +124,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   text: {
-    fontWeight: "600",
+    fontSize: 16,
+    lineHeight: 24,
   },
 });

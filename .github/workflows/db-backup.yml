@@ -1,0 +1,30 @@
+name: Infraestrutura — Backup da Base de Dados
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Diariamente à meia-noite
+  workflow_dispatch: # Permite execução manual
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Instalar cliente PostgreSQL
+        run: sudo apt-get update && sudo apt-get install -y postgresql-client
+
+      - name: Executar script de backup
+        env:
+          DATABASE_NAME: ${{ secrets.DB_NAME }}
+          DATABASE_USER: ${{ secrets.DB_USER }}
+          PGPASSWORD: ${{ secrets.DB_PASSWORD }}
+        run: ./infra/scripts/backup.sh
+
+      - name: Upload do backup como artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: db-backup
+          path: ./backups/*.sql
+          retention-days: 7

@@ -34,6 +34,7 @@ npx expo start
 Podes usar o Expo Go no teu telemóvel para visualizar a app.
 
 ## 4. Variáveis de Ambiente
+- **Google Maps**: `GOOGLE_MAPS_API_KEY` (Necessária para Agente 1 e Agente 3).
 Verifica os ficheiros `.env.example` em cada pasta e cria o teu `.env` correspondente.
 
 - **Backend**: `DATABASE_URL`, `JWT_SECRET`, `WHATSAPP_API_KEY`.
