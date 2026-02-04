@@ -1,9 +1,8 @@
 # 📌 TODOLIST — Agente 1 (Frontend App Mobile)
 
-<<<<<<< Updated upstream
-## Estado Atual: 66% Concluído (Fase de Redesign Telepizza)
+## 📊 Progresso: 99%
 
-## 1. Setup inicial (100%)
+### 1. Setup inicial
 - [x] Criar projeto Expo em PT‑PT
 - [x] Configurar Reanimated + Moti
 - [x] Configurar estrutura de pastas
@@ -36,7 +35,6 @@
 
 ---
 *Nota: Prioridade máxima para o visual "Telepizza Style" conforme pedido pelo utilizador.*
-=======
 ## 📊 Progresso: 100% (Funcionalidade Total)
 
 ### 1. Novo Design System (Telepizza Style)
@@ -63,4 +61,5 @@
 - [ ] Monitorização de bugs após integração real.
 - [ ] Refinamento de Lottie Animations.
 
->>>>>>> Stashed changes
+=======
+
