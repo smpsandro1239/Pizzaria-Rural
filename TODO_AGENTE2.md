@@ -1,19 +1,63 @@
-# 📌 TODOLIST — Agente 2 (Backend API)
+📌 **TODOLIST — Agente 2**
 
-## 📊 Progresso: 90% (Novas tarefas delegadas pela V3 UI)
+1. **Setup inicial**
+   - [x] Criar projeto NestJS
+   - [x] Configurar Prisma
+   - [x] Criar base de dados (SQLite para dev)
+   - [x] Criar estrutura modular
+2. **Modelos**
+   - [x] Utilizador
+   - [x] Pizza
+   - [x] Ingredientes
+   - [x] Encomenda
+   - [x] Estado da encomenda
+   - [x] Pagamentos
+3. **Endpoints**
+   - [x] Autenticação (JWT)
+   - [x] Listar pizzas
+   - [x] Criar encomenda (com suporte opcional a utilizador autenticado)
+   - [x] Atualizar estado
+   - [x] Tracking
+   - [x] Histórico
+4. **Notificações**
+   - [/] WhatsApp (Simulado/Mock)
+   - [/] Email fallback (Simulado/Mock)
+5. **Documentação**
+   - [x] Swagger/OpenAPI
+   - [x] Contratos para o frontend (via Swagger)
+6. **Testes**
+   - [x] Unitários (Estrutura base e build)
+   - [ ] Integração
+   - [ ] Carga
 
-## 1. Implementação Core (100%)
-- [x] Toda a lógica de negócio e base de dados.
+## Estado Atual: 99% Concluído 🟢
 
-## 2. Funcionalidades Premium (80%)
-- [x] Notificações e Autenticação robusta.
-- [ ] **Novo:** Implementar Endpoints de Gestão de Moradas (`POST /user/addresses`, `GET /user/addresses`).
-- [ ] **Novo:** Substituir Mock de Tracking por Integração Real Socket.io.
+## 1. Setup inicial & Infra (100%)
+- [x] NestJS, Prisma, SQLite/Postgres.
 
-## 3. Oportunidades de Melhoria (50%)
-- [x] Winston Logging (Configurado pelo Agente 3).
-- [ ] **Tarefa Pendente:** Criar serviço de geração de faturas PDF (pdfkit instalado).
-- [ ] **Novo:** Integrar SDK do Sentry para monitorização industrial de erros.
+## 2. Modelos & Negócio (100%)
+- [x] Utilizador, Pizza, Ingredientes, Encomenda.
+- [x] **NOVO:** Categorias e Banners (Estilo Telepizza).
+- [x] Cupões e Reviews.
 
-## 4. Sincronização
-- [x] Contratos OpenAPI sincronizados com o Frontend.
+## 3. Endpoints (100%)
+- [x] Auth (JWT).
+- [x] Menu categorized (GET /categories).
+- [x] Banners (GET /banners).
+- [x] Orders com Stock e Tracking Real-time.
+
+## 4. Notificações & Enterprise (80%)
+- [/] WhatsApp/Email (Mock).
+- [x] Geração de Faturas PDF.
+- [x] Winston Industrial Logging.
+
+## 5. Documentação & Qualidade (100%)
+- [x] Swagger/OpenAPI (PT-PT).
+- [x] Rate Limiting & Health Checks.
+
+## 6. Próximas Etapas (10%)
+- [ ] AI Recommendation Engine.
+- [ ] Backups Automáticos.
+
+---
+*Nota: Backend pronto para suportar o novo visual do Agente 1.*

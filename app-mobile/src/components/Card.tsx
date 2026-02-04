@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Pressable, ViewStyle } from "react-native";
+import { StyleSheet, Pressable, ViewStyle, AccessibilityRole } from "react-native";
 import { MotiView } from "moti";
 import { useAppTheme } from "../theme";
 
@@ -7,17 +7,28 @@ interface CardProps {
   children: React.ReactNode;
   onPress?: () => void;
   style?: ViewStyle;
-<<<<<<< HEAD
   accessibilityLabel?: string;
+  accessibilityRole?: AccessibilityRole;
 }
 
-export const Card: React.FC<CardProps> = ({ children, onPress, style, accessibilityLabel }) => {
-=======
-}
-
-export const Card: React.FC<CardProps> = ({ children, onPress, style }) => {
->>>>>>> origin/main
+export const Card: React.FC<CardProps> = ({
+  children,
+  onPress,
+  style,
+  accessibilityLabel,
+  accessibilityRole = onPress ? "button" : undefined,
+}) => {
   const { colors, spacing, radius, motion } = useAppTheme();
+
+  const containerStyle = [
+    styles.container,
+    {
+      backgroundColor: colors.card,
+      padding: spacing.lg,
+      borderRadius: radius.lg,
+    },
+    style,
+  ];
 
   const content = (
     <MotiView
@@ -27,15 +38,9 @@ export const Card: React.FC<CardProps> = ({ children, onPress, style }) => {
         type: "timing",
         duration: motion.duration.normal,
       }}
-      style={[
-        styles.container,
-        {
-          backgroundColor: colors.card,
-          padding: spacing.lg,
-          borderRadius: radius.lg,
-        },
-        style,
-      ]}
+      style={containerStyle}
+      accessibilityLabel={onPress ? undefined : accessibilityLabel}
+      accessibilityRole={onPress ? undefined : accessibilityRole}
     >
       {children}
     </MotiView>
@@ -45,14 +50,14 @@ export const Card: React.FC<CardProps> = ({ children, onPress, style }) => {
     return (
       <Pressable
         onPress={onPress}
-<<<<<<< HEAD
-        accessibilityRole="button"
+        accessibilityRole={accessibilityRole}
         accessibilityLabel={accessibilityLabel}
-=======
->>>>>>> origin/main
+        accessibilityState={{ disabled: false }}
+        accessibilityHint={accessibilityLabel ? undefined : "Toque para interagir"}
         style={({ pressed }) => [
           {
             transform: [{ scale: pressed ? 0.98 : 1 }],
+            transition: `transform ${motion.duration.fast}ms`,
           },
         ]}
       >

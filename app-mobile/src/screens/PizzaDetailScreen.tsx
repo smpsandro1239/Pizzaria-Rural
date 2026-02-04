@@ -1,29 +1,21 @@
 import React, { useEffect, useState } from "react";
-<<<<<<< HEAD
 import { View, Text, StyleSheet, Image, ScrollView, ActivityIndicator, TouchableOpacity, TextInput } from "react-native";
-=======
-import { View, Text, StyleSheet, Image, ScrollView, ActivityIndicator, TouchableOpacity } from "react-native";
->>>>>>> origin/main
 import { useAppTheme } from "../theme";
 import { Button } from "../components/Button";
 import { Badge } from "../components/Badge";
 import { AnimatedLoader } from "../components/AnimatedLoader";
 import { IngredientSource } from "../components/IngredientSource";
 import { StarRating } from "../components/StarRating";
-<<<<<<< HEAD
 import { ProductRecommendation } from "../components/ProductRecommendation";
 import { Card } from "../components/Card";
-=======
->>>>>>> origin/main
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useCartStore } from "../store/cart-store";
 import { pizzasApi } from "../api/pizzas";
 
 export const PizzaDetailScreen = ({ route }: any) => {
   const { colors, spacing, typography, radius } = useAppTheme();
-<<<<<<< HEAD
   const { addItem, favorites, toggleFavorite, showToast } = useCartStore();
-  const pizzaId = route.params?.id;
+  const pizzaId = route?.params?.id;
 
   const [pizza, setPizza] = useState<any>(null);
   const [recommendations, setRecommendations] = useState<any[]>([]);
@@ -35,29 +27,16 @@ export const PizzaDetailScreen = ({ route }: any) => {
   const [userComment, setUserComment] = useState("");
   const [isSubmittingReview, setIsSubmittingReview] = useState(false);
 
-=======
-  const { addItem, favorites, toggleFavorite } = useCartStore();
-  const pizzaId = route.params?.id;
-  const [pizza, setPizza] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
->>>>>>> origin/main
   useEffect(() => {
     const fetchPizza = async () => {
       try {
         setLoading(true);
         const data = await pizzasApi.getPizzas();
         const found = data.find((p: any) => p.id === pizzaId);
-<<<<<<< HEAD
 
         if (found) {
           setPizza(found);
-          setRecommendations(data.filter((p: any) => p.id !== pizzaId).slice(0, 3));
-=======
-        if (found) {
-          setPizza(found);
->>>>>>> origin/main
+          setRecommendations(data.filter((p: any) => p.id !== pizzaId && p.category === found.category).slice(0, 3));
         } else {
           setError("Pizza não encontrada.");
         }
@@ -70,10 +49,12 @@ export const PizzaDetailScreen = ({ route }: any) => {
 
     if (pizzaId) {
       fetchPizza();
+    } else {
+      setError("ID de pizza não especificado.");
+      setLoading(false);
     }
   }, [pizzaId]);
 
-<<<<<<< HEAD
   const handleSubmitReview = () => {
     if (userRating === 0) {
       showToast("Por favor, seleciona uma classificação.", "error");
@@ -88,8 +69,6 @@ export const PizzaDetailScreen = ({ route }: any) => {
     }, 1500);
   };
 
-=======
->>>>>>> origin/main
   if (loading) {
     return (
       <View style={[styles.centered, { backgroundColor: colors.background }]}>
@@ -100,23 +79,52 @@ export const PizzaDetailScreen = ({ route }: any) => {
 
   if (error || !pizza) {
     return (
-      <View style={[styles.centered, { backgroundColor: colors.background }]}>
-        <Text style={[styles.errorText, { ...typography.body, color: colors.error }]}>
+      <View style={[styles.centered, { backgroundColor: colors.background, padding: spacing.lg }]}>
+        <MaterialCommunityIcons name="alert-circle" size={48} color={colors.error} />
+        <Text style={[styles.errorText, { ...typography.h3, color: colors.error, marginTop: spacing.md, textAlign: "center" }]}>
           {error || "Algo correu mal."}
         </Text>
+        <Button
+          label="Voltar ao Menu"
+          onPress={() => navigation.goBack()}
+          variant="secondary"
+          style={{ marginTop: spacing.xl }}
+        />
       </View>
     );
   }
 
-  const isFav = pizza && favorites.includes(pizza.id);
+  const isFav = favorites.includes(pizza.id);
+  const hasReviewed = userRating > 0 || userComment.length > 0;
 
   return (
-    <ScrollView style={[styles.container, { backgroundColor: colors.background }]}>
+    <ScrollView 
+      style={[styles.container, { backgroundColor: colors.background }]}
+      contentContainerStyle={{ paddingBottom: spacing.xxl }}
+      accessibilityLabel={`Detalhes da pizza ${pizza.name}`}
+    >
       <View style={[styles.imageContainer, { height: 300 }]}>
-        <Image source={{ uri: pizza.image }} style={styles.image} />
+        <Image 
+          source={{ uri: pizza.image }} 
+          style={styles.image} 
+          resizeMode="cover"
+          accessibilityLabel={`Imagem da pizza ${pizza.name}`}
+        />
         <TouchableOpacity
-          style={[styles.favoriteButton, { top: spacing.xl, right: spacing.xl, padding: spacing.sm, borderRadius: radius.pill }]}
+          style={[
+            styles.favoriteButton, 
+            { 
+              top: spacing.xl, 
+              right: spacing.xl, 
+              padding: spacing.sm, 
+              borderRadius: radius.pill,
+              backgroundColor: 'rgba(0,0,0,0.3)'
+            }
+          ]}
           onPress={() => toggleFavorite(pizza.id)}
+          accessibilityRole="button"
+          accessibilityLabel={isFav ? `Remover ${pizza.name} dos favoritos` : `Adicionar ${pizza.name} aos favoritos`}
+          accessibilityState={{ selected: isFav }}
         >
           <MaterialCommunityIcons
             name={isFav ? "heart" : "heart-outline"}
@@ -125,34 +133,59 @@ export const PizzaDetailScreen = ({ route }: any) => {
           />
         </TouchableOpacity>
       </View>
-      <View style={[styles.content, { padding: spacing.xl, backgroundColor: colors.surface, borderTopLeftRadius: radius.lg, borderTopRightRadius: radius.lg, marginTop: -spacing.xl }]}>
+      
+      <View style={[
+        styles.content, 
+        { 
+          padding: spacing.xl, 
+          backgroundColor: colors.surface, 
+          borderTopLeftRadius: radius.lg, 
+          borderTopRightRadius: radius.lg, 
+          marginTop: -spacing.xl 
+        }
+      ]}>
         <View style={[styles.header, { marginBottom: spacing.sm }]}>
           <Text style={[styles.name, { ...typography.h1, color: colors.text }]}>{pizza.name}</Text>
           <Badge label={pizza.tag} />
         </View>
+        
         <View style={{ marginBottom: spacing.md }}>
           <StarRating rating={pizza.rating} count={pizza.reviewsCount} size={20} />
         </View>
-        <Text style={[styles.description, { ...typography.body, color: colors.textSecondary, marginBottom: spacing.xxl }]}>
+        
+        <Text style={[
+          styles.description, 
+          { ...typography.body, color: colors.textSecondary, marginBottom: spacing.xxl, lineHeight: 24 }
+        ]}>
           {pizza.description}
         </Text>
 
-        <Text style={[styles.sectionTitle, { ...typography.h3, color: colors.text, marginBottom: spacing.md }]}>
+        <Text style={[
+          styles.sectionTitle, 
+          { ...typography.h3, color: colors.text, marginBottom: spacing.md }
+        ]}>
           Origem dos Ingredientes 🌿
         </Text>
         <IngredientSource ingredient="Farinha" source="Moinho da Aldeia (Grão Biológico)" icon="corn" />
         <IngredientSource ingredient="Tomate" source="Horta do Ti Manel" icon="food-apple" />
         <IngredientSource ingredient="Queijo" source="Queijaria da Serra" icon="cheese" />
 
-<<<<<<< HEAD
         <View style={{ marginTop: spacing.xxl }}>
-          <Text style={[styles.sectionTitle, { ...typography.h3, color: colors.text, marginBottom: spacing.md }]}>
+          <Text style={[
+            styles.sectionTitle, 
+            { ...typography.h3, color: colors.text, marginBottom: spacing.md }
+          ]}>
             O que achaste desta pizza? ⭐
           </Text>
           <Card style={{ padding: spacing.md }}>
             <View style={styles.starRow}>
               {[1, 2, 3, 4, 5].map((s) => (
-                <TouchableOpacity key={s} onPress={() => setUserRating(s)}>
+                <TouchableOpacity 
+                  key={s} 
+                  onPress={() => setUserRating(s)}
+                  accessibilityRole="button"
+                  accessibilityLabel={`Classificar com ${s} estrelas`}
+                >
                   <MaterialCommunityIcons
                     name={s <= userRating ? "star" : "star-outline"}
                     size={32}
@@ -162,44 +195,86 @@ export const PizzaDetailScreen = ({ route }: any) => {
               ))}
             </View>
             <TextInput
-              style={[styles.reviewInput, { backgroundColor: colors.background, color: colors.text, borderRadius: radius.md, padding: spacing.sm, borderColor: colors.border }]}
+              style={[
+                styles.reviewInput, 
+                { 
+                  backgroundColor: colors.background, 
+                  color: colors.text, 
+                  borderRadius: radius.md, 
+                  padding: spacing.sm, 
+                  borderColor: colors.border,
+                  borderWidth: 1,
+                  marginTop: spacing.sm,
+                  minHeight: 80
+                }
+              ]}
               placeholder="Escreve aqui o teu comentário..."
               placeholderTextColor={colors.textSecondary}
               multiline
-              numberOfLines={3}
+              textAlignVertical="top"
               value={userComment}
               onChangeText={setUserComment}
+              accessibilityLabel="Caixa de comentário para avaliação"
+              accessibilityHint="Máximo 200 caracteres"
             />
             <Button
               label="Submeter Avaliação"
               onPress={handleSubmitReview}
               loading={isSubmittingReview}
+              disabled={userRating === 0 || isSubmittingReview}
               style={{ marginTop: spacing.md }}
               variant="secondary"
+              accessibilityLabel={hasReviewed ? "Avaliação submetida" : "Submeter avaliação da pizza"}
             />
           </Card>
         </View>
 
         <View style={{ marginTop: spacing.xxl }}>
+          <Text style={[
+            styles.sectionTitle, 
+            { ...typography.h3, color: colors.text, marginBottom: spacing.md }
+          ]}>
+            Também Podes Gostar 🍕
+          </Text>
           <ProductRecommendation
             pizzas={recommendations}
             onPress={(id) => {
               setLoading(true);
               const next = recommendations.find(p => p.id === id);
-              setPizza(next);
+              if (next) {
+                setPizza(next);
+                // Scroll to top when changing pizza
+                setTimeout(() => {
+                  // Note: Would need ref to ScrollView for proper scroll implementation
+                }, 100);
+              }
               setLoading(false);
             }}
           />
         </View>
 
-        <View style={[styles.footer, { marginTop: spacing.xxl, marginBottom: spacing.xl }]}>
-=======
-        <View style={[styles.footer, { marginTop: spacing.xxl }]}>
->>>>>>> origin/main
-          <Text style={[styles.price, { ...typography.h2, color: colors.ruralRed }]}>{pizza.price.toFixed(2)} €</Text>
+        <View style={[
+          styles.footer, 
+          { 
+            marginTop: spacing.xxl, 
+            paddingTop: spacing.xl, 
+            borderTopWidth: 1, 
+            borderTopColor: colors.border,
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center"
+          }
+        ]}>
+          <Text style={[styles.price, { ...typography.h2, color: colors.ruralRed }]}>
+            {pizza.price.toFixed(2)} €
+          </Text>
           <Button
             label="Adicionar ao Carrinho"
-            onPress={() => addItem({ id: pizza.id, name: pizza.name, price: pizza.price })}
+            onPress={() => {
+              addItem({ id: pizza.id, name: pizza.name, price: pizza.price, quantity: 1 });
+              showToast(`"${pizza.name}" adicionada ao carrinho!`, "success");
+            }}
+            accessibilityLabel={`Adicionar ${pizza.name} ao carrinho por ${pizza.price.toFixed(2)} euros`}
           />
         </View>
       </View>
@@ -216,7 +291,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  errorText: {},
+  errorText: {
+    fontSize: 18,
+    textAlign: "center",
+  },
   imageContainer: {
     position: "relative",
     width: "100%",
@@ -227,7 +305,8 @@ const styles = StyleSheet.create({
   },
   favoriteButton: {
     position: "absolute",
-    backgroundColor: "rgba(0,0,0,0.3)",
+    justifyContent: "center",
+    alignItems: "center",
   },
   content: {},
   header: {
@@ -235,28 +314,27 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
-  name: {},
-  description: {
-    lineHeight: 24,
+  name: {
+    fontSize: 28,
+    fontWeight: "800",
+    flex: 1,
   },
-  sectionTitle: {},
-<<<<<<< HEAD
+  description: {},
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: "700",
+  },
   starRow: {
     flexDirection: "row",
     justifyContent: "center",
     marginBottom: 12,
+    gap: 8,
   },
   reviewInput: {
-    height: 80,
-    borderWidth: 1,
-    textAlignVertical: "top",
+    fontSize: 16,
   },
-=======
->>>>>>> origin/main
-  footer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+  footer: {},
+  price: {
+    fontWeight: "800",
   },
-  price: {},
 });

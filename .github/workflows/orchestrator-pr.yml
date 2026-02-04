@@ -16,17 +16,12 @@ jobs:
 
       - name: Validar branch correta
         run: |
-<<<<<<< HEAD
-          if [[ ! "${{ github.head_ref }}" =~ ^frontend-dev.* && \
-                ! "${{ github.head_ref }}" =~ ^backend-dev.* && \
-                ! "${{ github.head_ref }}" =~ ^infra-dev.* ]]; then
-            echo "PR criado numa branch inválida."
-=======
+          # Correção: Unifiquei as verificações duplicadas em um único bloco lógico.
+          # O Regex verifica se a branch começa com frontend-dev, backend-dev ou infra-dev
           if [[ ! "${{ github.head_ref }}" =~ ^frontend-dev && \
-                      ! "${{ github.head_ref }}" =~ ^backend-dev && \
-                      ! "${{ github.head_ref }}" =~ ^infra-dev ]]; then
+                ! "${{ github.head_ref }}" =~ ^backend-dev && \
+                ! "${{ github.head_ref }}" =~ ^infra-dev ]]; then
             echo "PR criado numa branch inválida: ${{ github.head_ref }}"
->>>>>>> origin/main
             exit 1
           fi
 
@@ -34,39 +29,29 @@ jobs:
         run: |
           if ! echo "${{ github.event.pull_request.title }}" | grep -qiE "á|é|í|ó|ú|ç|ã|õ|â|ê|ô|à"; then
             echo "Aviso: O título do PR pode não estar em PT-PT (não foram detetados acentos ou cedilhas)."
-            # Não falha o build para permitir termos técnicos em inglês
           fi
 
       - name: Validar tamanho do PR
         run: |
-<<<<<<< HEAD
-          CHANGED=$(git diff --shortstat origin/${{ github.base_ref }} | awk '{print $4}')
-          if [ -n "$CHANGED" ] && [ "$CHANGED" -gt 2000 ]; then
-            echo "PR demasiado grande. Divide em PRs menores."
-=======
           # Usamos as SHAs do evento para garantir precisão máxima
           BASE_SHA="${{ github.event.pull_request.base.sha }}"
           HEAD_SHA="${{ github.event.pull_request.head.sha }}"
-
-          echo "Comparando $BASE_SHA com $HEAD_SHA"
-
-          # Ignora ficheiros de lock e documentação gigante (roadmap)
-          DIFF_CMD="git diff --numstat $BASE_SHA..$HEAD_SHA -- . ':(exclude)*package-lock.json' ':(exclude)*yarn.lock' ':(exclude)*pnpm-lock.yaml' ':(exclude)readmeSandro'"
-
+          
+          # Calcula linhas adicionadas, ignorando locks e readmeSandro
           CHANGED=$(git diff --numstat $BASE_SHA..$HEAD_SHA -- . ':(exclude)*package-lock.json' ':(exclude)*yarn.lock' ':(exclude)*pnpm-lock.yaml' ':(exclude)readmeSandro' | awk '{sum+=$1} END {print sum}')
+          
           echo "Linhas alteradas (excluindo locks e readmeSandro): ${CHANGED:-0}"
 
+          # Mantive o limite de 1500 linhas (versão mais estrita) e o detalhamento dos arquivos
           if [ -n "$CHANGED" ] && [ "$CHANGED" -gt 1500 ]; then
             echo "Erro: PR demasiado grande ($CHANGED linhas)."
             echo "Detalhe das alterações:"
             git diff --numstat $BASE_SHA..$HEAD_SHA -- . ':(exclude)*package-lock.json' ':(exclude)*yarn.lock' ':(exclude)*pnpm-lock.yaml' ':(exclude)readmeSandro' | sort -nr
->>>>>>> origin/main
             exit 1
           fi
 
       - name: Validar conflitos
         run: |
           if ! git merge --no-commit --no-ff origin/${{ github.base_ref }}; then
-            echo "Existem conflitos neste PR."
             exit 1
           fi

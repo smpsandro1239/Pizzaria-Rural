@@ -9,10 +9,7 @@ interface ButtonProps {
   variant?: "primary" | "secondary" | "outline" | "ghost" | "destructive";
   loading?: boolean;
   disabled?: boolean;
-<<<<<<< HEAD
   accessibilityLabel?: string;
-=======
->>>>>>> origin/main
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -21,10 +18,7 @@ export const Button: React.FC<ButtonProps> = ({
   variant = "primary",
   loading = false,
   disabled = false,
-<<<<<<< HEAD
   accessibilityLabel,
-=======
->>>>>>> origin/main
 }) => {
   const { colors, spacing, radius, typography, motion } = useAppTheme();
 
@@ -41,7 +35,7 @@ export const Button: React.FC<ButtonProps> = ({
       case "ghost":
         return { backgroundColor: "transparent" };
       case "destructive":
-        return { backgroundColor: "#dc2626" };
+        return { backgroundColor: colors.ruralRedDestructive || "#dc2626" };
       default:
         return { backgroundColor: colors.ruralRed };
     }
@@ -51,6 +45,9 @@ export const Button: React.FC<ButtonProps> = ({
     if (variant === "outline" || variant === "ghost") {
       return colors.ruralRed;
     }
+    if (variant === "destructive") {
+      return colors.white;
+    }
     return colors.white;
   };
 
@@ -58,44 +55,52 @@ export const Button: React.FC<ButtonProps> = ({
     <Pressable
       onPress={onPress}
       disabled={disabled || loading}
-<<<<<<< HEAD
       accessibilityLabel={accessibilityLabel || label}
       accessibilityRole="button"
       accessibilityState={{ disabled: disabled || loading, busy: loading }}
-=======
->>>>>>> origin/main
+      accessibilityHint={loading ? "A carregar" : undefined}
       style={({ pressed }) => [
         styles.container,
         getVariantStyle(),
         {
-          opacity: disabled || pressed ? 0.7 : 1,
+          opacity: disabled || loading ? 0.6 : pressed ? 0.85 : 1,
           paddingVertical: spacing.lg,
           paddingHorizontal: spacing.xl,
           borderRadius: radius.pill,
+          borderWidth: variant === "outline" ? 2 : 0,
+          borderColor: variant === "outline" ? colors.ruralRed : "transparent",
         },
       ]}
     >
       <MotiView
         animate={{
-          scale: disabled ? 1 : 1,
+          scale: loading ? 0.95 : 1,
         }}
         transition={{
-          type: "timing",
-          duration: motion.duration.fast,
+          type: "spring",
+          damping: 15,
+          stiffness: 200,
         }}
         style={styles.inner}
       >
         {loading ? (
-          <ActivityIndicator color={getTextColor()} testID="button-loader" />
+          <ActivityIndicator 
+            color={getTextColor()} 
+            size="small"
+            accessibilityLabel={`${label} a carregar`}
+            testID="button-loader"
+          />
         ) : (
           <Text
             style={[
               styles.text,
+              typography.button,
               {
-                ...typography.body,
                 color: getTextColor(),
+                fontFamily: typography.fontFamily.bold,
               },
             ]}
+            selectable={false}
           >
             {label}
           </Text>
@@ -110,6 +115,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     minHeight: 56,
+    minWidth: 120,
+    overflow: "hidden",
   },
   inner: {
     flexDirection: "row",
@@ -117,6 +124,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   text: {
-    fontWeight: "600",
+    fontSize: 16,
+    lineHeight: 24,
   },
 });

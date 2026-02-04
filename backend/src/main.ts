@@ -8,8 +8,16 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 =======
 import { loggerConfig } from './logger.config';
+import * as fs from 'fs';
+import * as path from 'path';
 
 async function bootstrap() {
+  // Garantir que a pasta de logs existe
+  const logDir = path.join(process.cwd(), 'logs');
+  if (!fs.existsSync(logDir)) {
+    fs.mkdirSync(logDir);
+  }
+
   const app = await NestFactory.create(AppModule, {
     logger: loggerConfig,
   });

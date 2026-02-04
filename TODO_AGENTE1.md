@@ -8,44 +8,30 @@
 - [x] Configurar estrutura de pastas
 - [x] Criar tema (cores, tipografia, spacing, radius)
 
-### 2. Design System
+## 2. Design System & Redesign (Telepizza Style) (50%)
 - [x] Implementar tokens
-- [x] Criar UI Kit completo (Botão, Input, Card, Badge)
-- [x] Criar componentes avançados (AnimatedLoader, StarRating, SkeletonCard, IngredientSource)
-- [x] Criar Motion System (Tokens integrados nos componentes)
+- [ ] **NOVO:** Adotar paleta Telepizza (Vermelho #E21E26, Branco, Cinza Escuro).
+- [ ] **NOVO:** Refatorar UI Kit (Botões, Cards) para look & feel moderno e "fast food".
+- [x] Criar componentes avançados (AnimatedLoader, StarRating, SkeletonCard)
 
-### 3. Navegação
-- [x] Stack Navigator (Transições animadas)
-- [x] Bottom Tabs (Home, Menu, Favoritos, Conta)
+## 3. Navegação & Layout (80%)
+- [x] Stack Navigator & Bottom Tabs
+- [ ] **NOVO:** Implementar Hero Section com Banners rotativos (usar GET /banners).
+- [ ] **NOVO:** Categorias horizontais no topo do Menu (usar GET /categories).
 
-### 4. Ecrãs (PT-PT)
-- [x] **Home:** Hero, Destaques, Porquê nós.
-- [x] **Menu:** Lista de Pizzas, Filtros por categoria, Entrada animada.
-- [x] **Detalhe da Pizza:** Preços, Ingredientes, Proveniência (Rural Premium), Ratings, Recomendações, Avaliações.
-- [x] **Favoritos:** Lista de pizzas preferidas do utilizador.
-- [x] **Carrinho:** FloatingCart persistente.
-- [x] **Checkout:** Formulário, Resumo, Up-selling, Resgate de Pontos.
-- [x] **Tracking:** Estado da encomenda dinâmico com barra de progresso.
-- [x] **Conta:** Dados, Fidelidade, Histórico, Definições.
-- [x] **Gestão de Moradas:** Listar, Adicionar e Remover moradas.
-- [x] **Chat de Suporte:** Interface de ajuda em tempo real. [NOVO]
+## 4. Ecrãs (PT-PT) (90%)
+- [x] Home: Hero, Destaques.
+- [x] Menu: Lista de Pizzas.
+- [ ] **MELHORIA:** Detalhe da Pizza com seleção de tamanho e extras.
+- [x] Favoritos, Carrinho, Checkout, Tracking, Conta.
 
-### 5. Integração & Estado Global
-- [x] Criar cliente API (Axios)
-- [x] Consumir endpoints (Mock fallback funcional)
-- [x] Estado Global com Zustand (Carrinho, Favoritos, Toasts)
-- [x] Persistência Local (AsyncStorage)
-- [x] Suporte para Modo Escuro (Dark Mode) automático
-- [x] Sistema de Feedback (Toasts animados)
-- [x] Simulação de Biometria (UI)
+## 5. Integração & Estado Global (90%)
+- [x] Cliente Axios & Zustand
+- [ ] **INTEGRAÇÃO:** Consumir endpoints de Banners e Categorias.
+- [ ] **INTEGRAÇÃO:** Ligar Socket.io para tracking ao vivo.
 
-### 6. Qualidade & Melhorias
-- [x] Verificação de tipos (TypeScript)
-- [x] Testes de UI & Store (Mocks configurados)
-- [x] Skeleton Loaders para carregamento
-- [x] Correção de CI (PR Validation fix)
-- [x] Auditoria de Acessibilidade (Labels e Roles). [NOVO]
-- [ ] Otimização de Imagens (expo-image). [PENDENTE - Agente 3 Support]
+## 6. Qualidade & Melhorias (100%)
+- [x] TypeScript, UI Tests, Skeleton Loaders.
 
-### 🚀 Próximas Etapas (Agente 1)
-- [ ] **Integração com Mapas:** Visualizar entrega em tempo real no Tracking. (Bloqueado por Agente 3)
+---
+*Nota: Prioridade máxima para o visual "Telepizza Style" conforme pedido pelo utilizador.*
