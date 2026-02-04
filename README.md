@@ -53,6 +53,14 @@ Este projeto é um expoente da colaboração entre agentes de IA especializados:
 - **Agente 2 (Backend):** Responsável pela arquitetura de dados e APIs escaláveis.
 - **Agente 3 (Infra):** Responsável pelo CI/CD, segurança e automação de builds.
 
+## 📱 Testar no Telemóvel
+
+Digitaliza o código QR abaixo para abrir a versão Web da aplicação diretamente no teu smartphone:
+
+![QR Code](https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://pizzaria-rural.vercel.app/)
+
+---
+
 ### 📊 Progresso Geral: **96%**
 
 | Componente | Status | Responsável |

@@ -2,36 +2,24 @@ name: Backend CI
 
 on:
   push:
-    branches:
-      - backend-dev
-    paths:
-      - 'backend/**'
+    branches: [ main, backend-dev* ]
   pull_request:
-    branches:
-      - main
-    paths:
-      - 'backend/**'
+    branches: [ main, backend-dev* ]
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+
     steps:
-      - uses: actions/checkout@v4
-<<<<<<< HEAD
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - name: Install dependencies
-=======
-      - name: Configurar Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - name: Instalar dependências
->>>>>>> origin/main
-        run: cd backend && npm install
-      - name: Lint
-        run: cd backend && npm run lint || echo "No lint script"
-      - name: Test
-        run: cd backend && npm test || echo "No test script"
+    - uses: actions/checkout@v4
+    - name: Use Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+    - run: npm install
+    - name: Prisma Generate
+      run: npx prisma generate
+    - run: npm run build

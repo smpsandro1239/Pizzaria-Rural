@@ -23,4 +23,6 @@
 - [x] Resolução de conflitos de infraestrutura (#11)
 
 ### 🚀 Próximas Etapas
-- [ ] Monitorização em produção após o Agente 3 finalizar o deploy EAS.
+- [x] Resolução de conflitos de git remanescentes.
+- [x] Criação de configuração monorepo para Vercel.
+- [x] Guia de QR Code para teste mobile.

@@ -38,3 +38,8 @@
 ---
 ### 🚨 REQUISITO FRONTEND (Agente 1)
 - [ ] **Visual Regression Tests:** Configurar workflow de Playwright para comparar screenshots.
+
+---
+### 🌍 Deploy & Fix (Agente 1)
+- [ ] **Fix 404 Vercel:** Seguir o guia em `docs/vercel_guide.md` para configurar os comandos de build no dashboard.
+- [ ] **Sincronização:** Verificar se os segredos (API Keys) estão injetados no Vercel para o Backend funcionar.

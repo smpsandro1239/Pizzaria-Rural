@@ -1,0 +1,8 @@
+{
+  "name": "pizzaria-rural-monorepo",
+  "private": true,
+  "scripts": {
+    "build": "cd app-mobile && npm install && npx expo export:web",
+    "install": "npm install --prefix app-mobile && npm install --prefix backend"
+  }
+}
