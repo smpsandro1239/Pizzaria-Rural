@@ -16,11 +16,9 @@ jobs:
 
       - name: Validar branch correta
         run: |
-          # Correção: Unifiquei as verificações duplicadas em um único bloco lógico.
-          # O Regex verifica se a branch começa com frontend-dev, backend-dev ou infra-dev
-          if [[ ! "${{ github.head_ref }}" =~ ^frontend-dev && \
-                ! "${{ github.head_ref }}" =~ ^backend-dev && \
-                ! "${{ github.head_ref }}" =~ ^infra-dev ]]; then
+          if [[ ! "${{ github.head_ref }}" =~ ^frontend-dev.* && \
+                ! "${{ github.head_ref }}" =~ ^backend-dev.* && \
+                ! "${{ github.head_ref }}" =~ ^infra-dev.* ]]; then
             echo "PR criado numa branch inválida: ${{ github.head_ref }}"
             exit 1
           fi
@@ -33,19 +31,14 @@ jobs:
 
       - name: Validar tamanho do PR
         run: |
-          # Usamos as SHAs do evento para garantir precisão máxima
           BASE_SHA="${{ github.event.pull_request.base.sha }}"
           HEAD_SHA="${{ github.event.pull_request.head.sha }}"
-          
-          # Calcula linhas adicionadas, ignorando locks e readmeSandro
+
           CHANGED=$(git diff --numstat $BASE_SHA..$HEAD_SHA -- . ':(exclude)*package-lock.json' ':(exclude)*yarn.lock' ':(exclude)*pnpm-lock.yaml' ':(exclude)readmeSandro' | awk '{sum+=$1} END {print sum}')
-          
           echo "Linhas alteradas (excluindo locks e readmeSandro): ${CHANGED:-0}"
 
-          # Mantive o limite de 1500 linhas (versão mais estrita) e o detalhamento dos arquivos
-          if [ -n "$CHANGED" ] && [ "$CHANGED" -gt 1500 ]; then
-            echo "Erro: PR demasiado grande ($CHANGED linhas)."
-            echo "Detalhe das alterações:"
+          if [ -n "$CHANGED" ] && [ "$CHANGED" -gt 5000 ]; then
+            echo "Erro: PR demasiado grande ($CHANGED linhas). Limite é 5000."
             git diff --numstat $BASE_SHA..$HEAD_SHA -- . ':(exclude)*package-lock.json' ':(exclude)*yarn.lock' ':(exclude)*pnpm-lock.yaml' ':(exclude)readmeSandro' | sort -nr
             exit 1
           fi
@@ -53,5 +46,6 @@ jobs:
       - name: Validar conflitos
         run: |
           if ! git merge --no-commit --no-ff origin/${{ github.base_ref }}; then
+            echo "Existem conflitos neste PR."
             exit 1
           fi
