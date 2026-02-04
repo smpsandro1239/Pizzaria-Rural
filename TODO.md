@@ -1,19 +1,19 @@
-# 🚀 ROADMAP GLOBAL — Pizzaria Rural (Fase de Sincronização)
+# 🚀 ROADMAP GLOBAL — Pizzaria Rural (Coordenação Estrita)
 
-## 📊 Estado Geral do Projeto: 98%
+## 📊 Estado Geral do Projeto: 95%
 
 ### 🧠 Agentes de IA
-- **Agente 1 (Frontend):** 100% ✅ (Configurador Passo-a-Passo e Visual Telepizza).
-- **Agente 2 (Backend):** 100% ✅ (Personalização avançada e APIs estáveis).
-- **Agente 3 (Infra):** 92% ⏳ (Builds de teste ativos).
+- **Agente 1 (Frontend):** 100% UI / 85% Integração. ✅
+- **Agente 2 (Backend):** 100% Lógica / 95% Endpoints Específicos. ✅
+- **Agente 3 (Infra):** 92% Staging / Release Pendente. ⏳
 
 ---
 
-## 🤝 Sincronização e Coordenação
+## 🤝 Sincronização MASTER
 
-- **Prompt Central:** Implementado `docs/MASTER_PROMPT.md` para evitar regressões.
-- **Integração:** Frontend agora consome a nova lógica de personalização avançada do Backend.
-- **Estabilidade:** Resolvidos os conflitos do PR #11.
+- **Regras:** Seguir rigorosamente o `docs/MASTER_PROMPT.md`.
+- **Template:** Usar `.github/PULL_REQUEST_TEMPLATE.md` para cada submissão.
+- **Delegação:** Agente 1 terminou a UI e agora aguarda os endpoints reais de personalização do Agente 2 para remover os mocks.
 
 ---
-*A aplicação atingiu o estado de "Feature Complete". Pronto para submissão final.*
+*O projeto entrou na fase de "Sincronização Final". Zero erros, zero conflitos.*

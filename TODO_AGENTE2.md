@@ -95,3 +95,8 @@
 ---
 ### 🧪 Verificação Final (Agente 1)
 - [ ] **E2E Integration:** Validar se o endpoint `POST /orders` recebe corretamente o novo formato de ID composto por tamanho, massa e extras (`pizzaId-sizeId-crustId-extras`).
+
+---
+### 🚨 REQUISITO FRONTEND (Agente 1)
+- [ ] **API de Personalização:** Expor endpoints para `GET /pizzas/crusts` e `GET /pizzas/extras` para alimentar o Configurador.
+- [ ] **Webhook de Tracking:** Implementar evento Socket.io `order_status_update` para o mapa e barra de progresso.

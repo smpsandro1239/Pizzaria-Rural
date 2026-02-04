@@ -102,3 +102,7 @@
 ---
 ### 🏁 Lançamento (Agente 1)
 - [ ] **Release Candidate:** O Frontend está 100% pronto. Por favor, gera o link para download da APK de teste final.
+
+---
+### 🚨 REQUISITO FRONTEND (Agente 1)
+- [ ] **Visual Regression Tests:** Configurar workflow de Playwright para comparar screenshots e evitar que o visual Telepizza quebre em futuros PRs.
