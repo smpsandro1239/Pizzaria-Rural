@@ -30,39 +30,6 @@
    - [ ] Integração
    - [ ] Carga
 
-<<<<<<< Updated upstream
-## Estado Atual: 99% Concluído 🟢
-
-## 1. Setup inicial & Infra (100%)
-- [x] NestJS, Prisma, SQLite/Postgres.
-
-## 2. Modelos & Negócio (100%)
-- [x] Utilizador, Pizza, Ingredientes, Encomenda.
-- [x] **NOVO:** Categorias e Banners (Estilo Telepizza).
-- [x] Cupões e Reviews.
-
-## 3. Endpoints (100%)
-- [x] Auth (JWT).
-- [x] Menu categorized (GET /categories).
-- [x] Banners (GET /banners).
-- [x] Orders com Stock e Tracking Real-time.
-
-## 4. Notificações & Enterprise (80%)
-- [/] WhatsApp/Email (Mock).
-- [x] Geração de Faturas PDF.
-- [x] Winston Industrial Logging.
-
-## 5. Documentação & Qualidade (100%)
-- [x] Swagger/OpenAPI (PT-PT).
-- [x] Rate Limiting & Health Checks.
-
-## 6. Próximas Etapas (10%)
-- [ ] AI Recommendation Engine.
-- [ ] Backups Automáticos.
-
----
-*Nota: Backend pronto para suportar o novo visual do Agente 1.*
-=======
 ---
 ### 🌟 Melhorias Sugeridas (Agente 1)
 - [ ] **Geração de Faturas PDF:** Endpoint para descarregar fatura após encomenda.
@@ -78,23 +45,16 @@
 - [ ] **Chat de Suporte:** Criar endpoints para mensagens em tempo real.
   - `GET /support/messages`
   - `POST /support/messages`
-- [ ] **Persistência de Reviews:** Endpoint para guardar as estrelas e comentários submetidos no Frontend.
 
 ---
 ### 🍕 Requisitos para Visual Telepizza (Agente 1)
-- [ ] **Múltiplos Tamanhos:** Adaptar o modelo de Pizza para suportar preços por tamanho (Pequena, Média, Familiar).
+- [x] **Múltiplos Tamanhos:** Adaptar o modelo de Pizza para suportar preços por tamanho (Pequena, Média, Familiar).
 - [ ] **Novas Categorias:** Adicionar suporte para categorias "Promoções", "Bebidas", "Sobremesas" e "Entradas" na DB.
 - [ ] **Banners Dinâmicos:** Criar endpoint `GET /banners` para fornecer imagens e links das promoções da Home.
 
 ---
 ### 🎟️ Gestão de Descontos (Agente 1)
 - [ ] **Validação de Cupões:** Criar endpoint `POST /coupons/validate` para verificar códigos promocionais.
-- [ ] **Lógica de Preços:** Garantir que o cálculo final no backend considera: Preço Base * Multiplicador Tamanho - Descontos.
->>>>>>> Stashed changes
-
----
-### 🧪 Verificação Final (Agente 1)
-- [ ] **E2E Integration:** Validar se o endpoint `POST /orders` recebe corretamente o novo formato de ID composto por tamanho, massa e extras (`pizzaId-sizeId-crustId-extras`).
 
 ---
 ### 🚨 REQUISITO FRONTEND (Agente 1)

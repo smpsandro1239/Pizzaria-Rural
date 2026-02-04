@@ -9,186 +9,63 @@ import { Badge } from "../components/Badge";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { RootStackParamList } from "../navigation/types";
 
-const HISTORY = [
-  { id: "1", date: "25 Jan 2024", total: 15.5, status: "Entregue" },
-  { id: "2", date: "18 Jan 2024", total: 10.5, status: "Entregue" },
-];
-
 type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 export const AccountScreen = () => {
   const navigation = useNavigation<NavigationProp>();
-  const { colors, spacing, typography, radius } = useAppTheme();
+  const { colors, spacing, typography } = useAppTheme();
   const [biometricsEnabled, setBiometricsEnabled] = useState(false);
 
   return (
     <ScrollView style={[styles.container, { backgroundColor: colors.background }]} contentContainerStyle={[styles.content, { padding: spacing.lg }]}>
       <View style={[styles.header, { marginBottom: spacing.xl }]}>
-        <View style={[styles.avatar, { backgroundColor: colors.ruralRed, borderRadius: 40 }]}>
-          <Text style={[styles.avatarText, { ...typography.h1, color: "white" }]}>S</Text>
+        <View style={[styles.avatar, { backgroundColor: colors.primary, borderRadius: 40 }]}>
+          <Text style={[typography.h1, { color: "white" }]}>S</Text>
         </View>
-        <Text style={[styles.name, { ...typography.h2, color: colors.text }]}>Sandro</Text>
-        <Text style={[styles.email, { ...typography.body, color: colors.textSecondary }]}>sandro@email.com</Text>
+        <Text style={[typography.h2, { color: colors.text }]}>Sandro</Text>
+        <Text style={[typography.body, { color: colors.textSecondary }]}>sandro@email.com</Text>
       </View>
 
-      <Card style={{ ...styles.pointsCard, backgroundColor: colors.ruralRed, marginBottom: spacing.xl }}>
+      <Card style={{ ...styles.pointsCard, backgroundColor: colors.primary, marginBottom: spacing.xl }}>
         <View style={[styles.pointsInfo, { marginBottom: spacing.sm }]}>
-          <Text style={[styles.pointsTitle, { ...typography.h3, color: "white" }]}>Programa de Fidelidade</Text>
-          <Text style={[styles.pointsValue, { ...typography.h2, color: "white" }]}>120 / 200 pts</Text>
+          <Text style={[typography.h3, { color: "white" }]}>Fidelidade</Text>
+          <Text style={[typography.h2, { color: "white" }]}>120 / 200 pts</Text>
         </View>
         <View style={styles.progressBarContainer}>
-          <MotiView
-            from={{ width: 0 }}
-            animate={{ width: "60%" }}
-            transition={{ type: "timing", duration: 1000 }}
-            style={styles.progressBar}
-          />
+          <MotiView from={{ width: 0 }} animate={{ width: "60%" }} transition={{ type: "timing", duration: 1000 }} style={styles.progressBar} />
         </View>
-        <Text style={[styles.pointsDesc, { ...typography.caption, color: "white", opacity: 0.9, marginTop: spacing.md }]}>
-          Faltam 80 pontos para a tua próxima Margherita grátis! 🍕
-        </Text>
       </Card>
 
-      <Text style={[styles.sectionTitle, { ...typography.h3, color: colors.text, marginBottom: spacing.md }]}>Definições</Text>
-<<<<<<< Updated upstream
-
+      <Text style={[typography.h3, { color: colors.text, marginBottom: spacing.md }]}>Definições</Text>
       <Card style={{ marginBottom: spacing.xl, padding: 0 }}>
-        <TouchableOpacity
-=======
-
-      <Card style={{ marginBottom: spacing.xl, padding: 0 }}>
-        <TouchableOpacity
->>>>>>> Stashed changes
-          style={[styles.menuItem, { borderBottomWidth: 1, borderBottomColor: colors.border }]}
-          onPress={() => navigation.navigate("Addresses")}
-        >
-          <View style={styles.menuItemLeft}>
-            <MaterialCommunityIcons name="map-marker-outline" size={24} color={colors.text} />
-            <Text style={[typography.body, { color: colors.text, marginLeft: spacing.md }]}>Gerir Moradas</Text>
-          </View>
+        <TouchableOpacity style={[styles.menuItem, { borderBottomWidth: 1, borderBottomColor: colors.border }]} onPress={() => navigation.navigate("Addresses")}>
+          <MaterialCommunityIcons name="map-marker-outline" size={24} color={colors.text} />
+          <Text style={[typography.body, { color: colors.text, marginLeft: spacing.md, flex: 1 }]}>Gerir Moradas</Text>
           <MaterialCommunityIcons name="chevron-right" size={24} color={colors.textSecondary} />
         </TouchableOpacity>
-
-<<<<<<< Updated upstream
-        <TouchableOpacity
-=======
-        <TouchableOpacity
->>>>>>> Stashed changes
-          style={[styles.menuItem, { borderBottomWidth: 1, borderBottomColor: colors.border }]}
-          onPress={() => navigation.navigate("SupportChat")}
-        >
-          <View style={styles.menuItemLeft}>
-            <MaterialCommunityIcons name="chat-question-outline" size={24} color={colors.text} />
-            <Text style={[typography.body, { color: colors.text, marginLeft: spacing.md }]}>Suporte Rural</Text>
-          </View>
+        <TouchableOpacity style={[styles.menuItem, { borderBottomWidth: 1, borderBottomColor: colors.border }]} onPress={() => navigation.navigate("SupportChat")}>
+          <MaterialCommunityIcons name="chat-question-outline" size={24} color={colors.text} />
+          <Text style={[typography.body, { color: colors.text, marginLeft: spacing.md, flex: 1 }]}>Suporte Rural</Text>
           <MaterialCommunityIcons name="chevron-right" size={24} color={colors.textSecondary} />
         </TouchableOpacity>
-
         <View style={styles.menuItem}>
-          <View style={styles.menuItemLeft}>
-            <MaterialCommunityIcons name="fingerprint" size={24} color={colors.text} />
-            <Text style={[typography.body, { color: colors.text, marginLeft: spacing.md }]}>Acesso Biométrico</Text>
-          </View>
-<<<<<<< Updated upstream
-          <Switch
-            value={biometricsEnabled}
-=======
-          <Switch
-            value={biometricsEnabled}
->>>>>>> Stashed changes
-            onValueChange={setBiometricsEnabled}
-            trackColor={{ false: colors.border, true: colors.ruralRed }}
-          />
+          <MaterialCommunityIcons name="fingerprint" size={24} color={colors.text} />
+          <Text style={[typography.body, { color: colors.text, marginLeft: spacing.md, flex: 1 }]}>Acesso Biométrico</Text>
+          <Switch value={biometricsEnabled} onValueChange={setBiometricsEnabled} trackColor={{ false: colors.border, true: colors.primary }} />
         </View>
       </Card>
-
-      <Text style={[styles.sectionTitle, { ...typography.h3, color: colors.text, marginBottom: spacing.md }]}>Histórico de Pedidos</Text>
-      {HISTORY.map((item) => (
-        <Card key={item.id} style={{ ...styles.historyCard, marginBottom: spacing.md }}>
-          <View style={[styles.historyHeader, { marginBottom: spacing.sm }]}>
-            <Text style={[styles.historyDate, { ...typography.body, fontWeight: "700", color: colors.text }]}>{item.date}</Text>
-            <Badge label={item.status} variant="success" />
-          </View>
-          <View style={[styles.historyFooter, { borderTopColor: colors.border, paddingTop: spacing.sm }]}>
-            <Text style={[typography.body, { color: colors.text }]}>Total: {item.total.toFixed(2)} €</Text>
-            <TouchableOpacity>
-              <Text style={[styles.repeatText, { ...typography.body, color: colors.ruralRed, fontWeight: "700" }]}>Repetir Pedido</Text>
-            </TouchableOpacity>
-          </View>
-        </Card>
-      ))}
-
-      <TouchableOpacity style={[styles.logoutButton, { marginTop: spacing.xl, marginBottom: spacing.xxl }]}>
-        <Text style={[styles.logoutText, { ...typography.body, color: colors.error, fontWeight: "600" }]}>Sair da Conta</Text>
-      </TouchableOpacity>
     </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
+  container: { flex: 1 },
   content: {},
-  header: {
-    alignItems: "center",
-  },
-  avatar: {
-    width: 80,
-    height: 80,
-    alignItems: "center",
-    justifyContent: "center",
-    marginBottom: 12,
-  },
-  avatarText: {},
-  name: {},
-  email: {},
+  header: { alignItems: "center" },
+  avatar: { width: 80, height: 80, alignItems: "center", justifyContent: "center", marginBottom: 12 },
   pointsCard: {},
-  pointsInfo: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  pointsTitle: {},
-  pointsValue: {},
-  progressBarContainer: {
-    height: 8,
-    backgroundColor: "rgba(255, 255, 255, 0.2)",
-    borderRadius: 4,
-    overflow: "hidden",
-  },
-  progressBar: {
-    height: "100%",
-    backgroundColor: "#FFD700", // Gold color for progress
-  },
-  pointsDesc: {},
-  sectionTitle: {},
-  menuItem: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: 16,
-  },
-  menuItemLeft: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  historyCard: {},
-  historyHeader: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  historyDate: {},
-  historyFooter: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    borderTopWidth: 1,
-  },
-  repeatText: {},
-  logoutButton: {
-    alignItems: "center",
-  },
-  logoutText: {},
+  pointsInfo: { flexDirection: "row", justifyContent: "space-between", alignItems: "center" },
+  progressBarContainer: { height: 8, backgroundColor: "rgba(255, 255, 255, 0.2)", borderRadius: 4, overflow: "hidden" },
+  progressBar: { height: "100%", backgroundColor: "#FFD700" },
+  menuItem: { flexDirection: "row", alignItems: "center", padding: 16 },
 });

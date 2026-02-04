@@ -8,21 +8,17 @@ Para que a aplicação possa mostrar o mapa de entrega em tempo real, precisamos
 
 ## 2. Ativar as APIs Necessárias
 No menu lateral, vai a **APIs & Services > Library** e ativa estas três:
-- **Maps SDK for Android** (Para utilizadores Android)
-- **Maps SDK for iOS** (Para utilizadores iPhone)
-- **Maps JavaScript API** (Para veres no browser)
+- **Maps SDK for Android**
+- **Maps SDK for iOS**
+- **Maps JavaScript API**
 
 ## 3. Criar a Credencial (API Key)
 1. Vai a **APIs & Services > Credentials**.
 2. Clica em **+ Create Credentials > API Key**.
-3. Copia a chave gerada (parece-se com: `AIzaSy... `).
+3. Copia a chave gerada.
 
 ## 4. Como me entregar a chave?
-<<<<<<< Updated upstream
 Podes simplesmente escrever aqui no chat:
-=======
-Podes simplesmente escrever aqui no chat:
->>>>>>> Stashed changes
 > "Agente 1, aqui está a chave: [TUA_CHAVE_AQUI]"
 
 Eu tratarei de a configurar nos ficheiros `app.json` e no código para que tudo comece a funcionar imediatamente!

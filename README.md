@@ -1,95 +1,73 @@
 # 🍕 Pizzaria Rural — Do Campo para a sua Mesa
 
-Uma aplicação mobile premium feita com **React Native (Expo)** para uma experiência autêntica de pedir pizzas tradicionais. Este projeto foi desenvolvido de forma colaborativa por 3 agentes de IA especializados.
+Uma aplicação mobile premium desenvolvida com **React Native (Expo)**, inspirada nos melhores padrões de mercado (**Telepizza Style**), para oferecer uma experiência de pedido rápida, intuitiva e autêntica.
 
-## 🚀 Jornada do Utilizador (Tour Visual)
+---
 
-Abaixo pode ver o fluxo completo da aplicação, desde a descoberta até à entrega.
+## 📸 Tour Visual (Design System Moderno)
 
-### 1. Início e Menu
+### 🚀 Experiência de Início e Descoberta
 <table>
   <tr>
-    <td><img src="docs/screenshots/01_home.png" width="300" alt="Home" /><br /><b>Início:</b> Destaques e Favoritos</td>
-    <td><img src="docs/screenshots/02_menu.png" width="300" alt="Menu" /><br /><b>Menu:</b> Categorias e Filtros</td>
+    <td align="center"><img src="docs/screenshots/01_home.png" width="300" /><br /><b>Início:</b> Banners e Destaques</td>
+    <td align="center"><img src="docs/screenshots/02_menu.png" width="300" /><br /><b>Menu:</b> Grelha de Produtos Moderno</td>
   </tr>
 </table>
 
-### 2. Escolha e Personalização
-<<<<<<< Updated upstream
-=======
-### 5. Escolha de Tamanho e Cupões
+### 🛠️ Personalização e Configurador de Pizza
 <table>
   <tr>
-    <td><img src="docs/screenshots/09_size_selection.png" width="300" alt="Tamanhos" /><br /><b>Personalização:</b> Escolha de tamanho</td>
-    <td><img src="docs/screenshots/10_checkout_final.png" width="300" alt="Cupões" /><br /><b>Checkout:</b> Cupões e Descontos</td>
-  </tr>
-</table>
->>>>>>> Stashed changes
-<table>
-  <tr>
-    <td><img src="docs/screenshots/03_detalhe.png" width="300" alt="Detalhe" /><br /><b>Detalhe:</b> Origem dos ingredientes e Recomendações</td>
-    <td><img src="docs/screenshots/04_checkout.png" width="300" alt="Checkout" /><br /><b>Checkout:</b> Resumo e Resgate de Pontos</td>
+    <td align="center"><img src="docs/screenshots/03_detalhe.png" width="300" /><br /><b>Configurador:</b> Escolha de Tamanho e Massa</td>
+    <td align="center"><img src="docs/screenshots/04_checkout.png" width="300" /><br /><b>Checkout:</b> Cupões e Fidelidade</td>
   </tr>
 </table>
 
-### 3. Acompanhamento e Suporte
+### 📦 Acompanhamento e Suporte Rural
 <table>
   <tr>
-    <td><img src="docs/screenshots/05_tracking.png" width="300" alt="Tracking" /><br /><b>Tracking:</b> Estado em tempo real</td>
-    <td><img src="docs/screenshots/07_suporte.png" width="300" alt="Suporte" /><br /><b>Suporte:</b> Chat direto com a aldeia</td>
+    <td align="center"><img src="docs/screenshots/05_tracking.png" width="300" /><br /><b>Tracking:</b> Mapa em Tempo Real</td>
+    <td align="center"><img src="docs/screenshots/07_suporte.png" width="300" /><br /><b>Suporte:</b> Chat direto com a aldeia</td>
   </tr>
 </table>
 
-### 4. Gestão de Perfil
+### 👤 Gestão de Conta e Moradas
 <table>
   <tr>
-    <td><img src="docs/screenshots/06_conta.png" width="300" alt="Conta" /><br /><b>Fidelidade:</b> Histórico e Pontos</td>
-    <td><img src="docs/screenshots/08_moradas.png" width="300" alt="Moradas" /><br /><b>Moradas:</b> Gestão de endereços favoritos</td>
+    <td align="center"><img src="docs/screenshots/06_conta.png" width="300" /><br /><b>Fidelidade:</b> Histórico e Pontos</td>
+    <td align="center"><img src="docs/screenshots/08_moradas.png" width="300" /><br /><b>Moradas:</b> Endereços Favoritos</td>
   </tr>
 </table>
 
 ---
 
-## 🛠️ Stack Tecnológica
+## 🛠️ Stack Tecnológica de Elite
 
-- **Frontend:** React Native, Expo, Reanimated, Moti, Zustand, Axios.
-- **Backend:** NestJS, Prisma, PostgreSQL, JWT, WebSockets (Socket.io).
-- **Infra:** Docker, GitHub Actions (CI/CD), Vercel/Render.
+- **Frontend:** React Native (SDK 51), Expo, Moti (Animações), Zustand (Estado), Axios.
+- **Backend:** NestJS, Prisma ORM, PostgreSQL, Socket.io (Real-time).
+- **Qualidade:** Playwright (E2E), Jest (Unit), Master Prompt (Coordenação IA).
 
-## 🤖 Equipa de Agentes
+## 🤖 Modelo de Desenvolvimento Multi-Agente
 
-Este projeto é um exemplo de colaboração multi-agente:
-- **Agente 1 (Frontend):** Responsável por toda a UI/UX, animações e integração (Jules).
-- **Agente 2 (Backend):** Responsável pela lógica de negócio, API e base de dados.
-- **Agente 3 (Infra):** Responsável pela automação, deploy e qualidade.
+Este projeto é um expoente da colaboração entre agentes de IA especializados:
+- **Agente 1 (Frontend):** Responsável pela UI/UX, animações e lógica de cliente. (Jules)
+- **Agente 2 (Backend):** Responsável pela arquitetura de dados e APIs escaláveis.
+- **Agente 3 (Infra):** Responsável pelo CI/CD, segurança e automação de builds.
 
-## 📊 Progresso do Projeto
+### 📊 Progresso Geral: **96%**
 
-| Componente | Progresso | Responsável |
+| Componente | Status | Responsável |
 | :--- | :---: | :--- |
-| **Frontend App** | 99% | Agente 1 |
-| **Backend API** | 100% | Agente 2 |
-| **Infraestrutura** | 55% | Agente 3 |
-| **Geral** | **85%** | --- |
+| **Interface (UI/UX)** | 100% ✅ | Agente 1 |
+| **Lógica de Negócio** | 100% ✅ | Agente 2 |
+| **Infra & Deploy** | 95% ⏳ | Agente 3 |
 
 ---
 
-## 📖 Como Executar
+## 📖 Como Executar localmente
 
-### Frontend
-```bash
-cd app-mobile
-npm install
-npx expo start
-```
-
-### Backend
-```bash
-cd backend
-npm install
-npx prisma generate
-npm run start:dev
-```
+1. Clone o repositório.
+2. No diretório `app-mobile`, execute `npm install` e `npx expo start`.
+3. No diretório `backend`, execute `npm install` e `npm run start:dev`.
 
 ---
 *Pizzaria Rural — Sabor tradicional com tecnologia moderna.*
