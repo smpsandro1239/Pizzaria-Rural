@@ -1,0 +1,22 @@
+
+> app-mobile@1.0.0 web
+> expo start --web
+
+Starting project at /app/app-mobile
+Starting Metro Bundler
+The following packages should be updated for best compatibility with the installed expo version:
+  @react-native-masked-view/masked-view@0.3.2 - expected version: 0.3.1
+Your project may not work correctly until you install the expected versions of the packages.
+Waiting on http://localhost:8081
+Logs for your project will appear below.
+Web Bundled 1584ms index.ts (1256 modules)
+Web Bundled 74ms index.ts (1 module)
+Web Bundled 82ms index.ts (1 module)
+Web Bundled 116ms index.ts (1 module)
+Web Bundled 76ms index.ts (1 module)
+Web Bundled 70ms index.ts (1 module)
+Web Bundled 66ms index.ts (1 module)
+Web Bundled 70ms index.ts (1 module)
+Web Bundled 80ms index.ts (1 module)
+Web Bundled 73ms index.ts (1 module)
+Web Bundled 108ms index.ts (1 module)

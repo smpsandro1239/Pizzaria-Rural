@@ -127,8 +127,13 @@ Entrega rápida e rastreável
 Receitas exclusivas do chef
 
 CTA:
+<<<<<<< HEAD
 “Pedir Agora”
 “Ver Menu”
+=======
+“Pedir Agora”
+“Ver Menu”
+>>>>>>> origin/main
 “Experimentar a Pizza do Mês”
 
 🟦 5. Funcionalidades premium
@@ -211,7 +216,11 @@ E eu preparo tudo com qualidade de agência.
 
 Dito por si
 Nome: Pizzaria Rural
+<<<<<<< HEAD
 Estilo: tradicional
+=======
+Estilo: tradicional
+>>>>>>> origin/main
 Tom de voz: jovem descontraido
 Diferenciação: rápido e perfeito e delicioso
 O Copilot disse
@@ -238,6 +247,7 @@ Exemplo de tom:
 
 🏡 Website da Pizzaria Rural — versão perfeita
 🟥 Hero (capa do site)
+<<<<<<< HEAD
 Título:
 “Pizza tradicional com sabor de aldeia — entregue num instante.”
 
@@ -246,6 +256,16 @@ Subtítulo:
 
 CTA:
 👉 Pedir Agora
+=======
+Título:
+“Pizza tradicional com sabor de aldeia — entregue num instante.”
+
+Subtítulo:
+“Massa leve, ingredientes frescos e aquele toque rústico que nunca falha.”
+
+CTA:
+👉 Pedir Agora
+>>>>>>> origin/main
 👉 Ver Menu
 
 🟧 Secção: As nossas pizzas favoritas
@@ -285,6 +305,7 @@ Bebidas
 Sobremesas Caseiras
 
 Exemplo de descrição:
+<<<<<<< HEAD
 Pizza Rural Clássica
 “Massa fina, molho caseiro e queijo a derreter. Simples, rápida e deliciosa.”
 
@@ -293,6 +314,16 @@ Título:
 “Uma pizzaria com alma rústica e espírito jovem.”
 
 Texto:
+=======
+Pizza Rural Clássica
+“Massa fina, molho caseiro e queijo a derreter. Simples, rápida e deliciosa.”
+
+🟦 Sobre Nós
+Título:
+“Uma pizzaria com alma rústica e espírito jovem.”
+
+Texto:
+>>>>>>> origin/main
 “A Pizzaria Rural nasceu da vontade de juntar o melhor dos dois mundos: a tradição das receitas de forno a lenha e a rapidez que a vida moderna exige. Aqui, cada pizza é feita com calma… mas chega até ti num instante.”
 
 🟪 Secção de Encomendas
@@ -1422,6 +1453,7 @@ Vou entregar tudo organizado por páginas, com títulos, subtítulos, micro‑co
 🍕 COPYWRITING FINAL — PIZZARIA RURAL
 🟥 HOME
 Hero
+<<<<<<< HEAD
 Título:
 Pizza tradicional com sabor de aldeia — entregue num instante.
 
@@ -1439,10 +1471,30 @@ Título:
 As pizzas que fazem a aldeia inteira falar.
 
 Descrição curta:
+=======
+Título:
+Pizza tradicional com sabor de aldeia — entregue num instante.
+
+Subtítulo:
+Massa leve, ingredientes frescos e aquele toque rústico que nunca falha.
+
+CTA principal:
+👉 Pedir Agora
+
+CTA secundário:
+👉 Ver Menu
+
+Secção: As Favoritas da Casa
+Título:
+As pizzas que fazem a aldeia inteira falar.
+
+Descrição curta:
+>>>>>>> origin/main
 Receitas tradicionais, preparadas com calma… mas entregues com rapidez.
 
 Pizzas:
 
+<<<<<<< HEAD
 🍕 Margherita Rural
 Simples, rápida e perfeita. A rainha da casa.
 
@@ -1454,6 +1506,19 @@ Fresca, leve e cheia de sabor. Direto da horta para o forno.
 
 Secção: Porquê a Pizzaria Rural
 Título:
+=======
+🍕 Margherita Rural
+Simples, rápida e perfeita. A rainha da casa.
+
+🔥 Pepperoni da Serra
+Picante no ponto certo. Para quem não gosta de esperar… nem de comida sem graça.
+
+🌿 Veggie da Horta
+Fresca, leve e cheia de sabor. Direto da horta para o forno.
+
+Secção: Porquê a Pizzaria Rural
+Título:
+>>>>>>> origin/main
 O sabor da tradição, a rapidez da vida moderna.
 
 Bullet points:
@@ -1466,11 +1531,19 @@ Ingredientes frescos e locais
 
 Equipa jovem e apaixonada por pizza
 
+<<<<<<< HEAD
 Frase de impacto:
 “Somos tradicionais no forno, modernos na velocidade.”
 
 Secção: Promoções
 Título:
+=======
+Frase de impacto:
+“Somos tradicionais no forno, modernos na velocidade.”
+
+Secção: Promoções
+Título:
+>>>>>>> origin/main
 Promoções que sabem ainda melhor.
 
 Exemplos:
@@ -1481,7 +1554,11 @@ Pizza do Mês: receita exclusiva, sempre surpreendente
 
 Cupões semanais: porque todos merecem um mimo
 
+<<<<<<< HEAD
 CTA:
+=======
+CTA:
+>>>>>>> origin/main
 👉 Ver Promoções
 
 🟧 MENU
@@ -1492,6 +1569,7 @@ Subtítulo:
 Escolhe a tua pizza, adiciona extras e deixa o resto connosco.
 
 Categoria: Pizzas Tradicionais
+<<<<<<< HEAD
 Pizza Rural Clássica
 Massa fina, molho caseiro e queijo a derreter. Simples, rápida e deliciosa.
 
@@ -1514,16 +1592,47 @@ Pão de Alho da Casa
 Tostado, aromático e impossível de comer só um.
 
 Bruschetta Rústica
+=======
+Pizza Rural Clássica
+Massa fina, molho caseiro e queijo a derreter. Simples, rápida e deliciosa.
+
+Margherita Rural
+Tomate, mozzarella e manjericão. A prova de que o básico pode ser perfeito.
+
+Categoria: Pizzas Especiais
+Pepperoni da Serra
+Picante, crocante e viciante. A favorita dos apressados.
+
+Quatro Queijos da Quinta
+Cremosa, intensa e irresistível. Uma viagem ao campo em cada fatia.
+
+Categoria: Vegetarianas
+Veggie da Horta
+Legumes frescos, sabor autêntico e zero complicações.
+
+Categoria: Entradas Rurais
+Pão de Alho da Casa
+Tostado, aromático e impossível de comer só um.
+
+Bruschetta Rústica
+>>>>>>> origin/main
 Tomate fresco, azeite e aquele toque rural.
 
 Categoria: Bebidas
 Refrigerantes, sumos naturais e águas fresquinhas.
 
 Categoria: Sobremesas Caseiras
+<<<<<<< HEAD
 Tiramisu Rural
 Café forte, creme suave e sabor de “quero mais”.
 
 Mousse de Chocolate da Avó
+=======
+Tiramisu Rural
+Café forte, creme suave e sabor de “quero mais”.
+
+Mousse de Chocolate da Avó
+>>>>>>> origin/main
 Clássica, cremosa e feita com carinho.
 
 🟨 CHECKOUT
@@ -1534,6 +1643,7 @@ Subtítulo:
 Só precisamos de alguns detalhes para preparar tudo no ponto.
 
 Secção: Dados do Cliente
+<<<<<<< HEAD
 Nome:
 Para sabermos quem agradecer.
 
@@ -1552,6 +1662,26 @@ Confere tudo direitinho — queremos que recebas exatamente o que estás a imagi
 
 Secção: Pagamento
 Título:
+=======
+Nome:
+Para sabermos quem agradecer.
+
+Telemóvel:
+Caso precisemos de falar contigo (prometemos não ligar a vender nada).
+
+Morada:
+Ou escolhe “Levantar no local” se estiveres com pressa.
+
+Secção: Resumo da Encomenda
+Título:
+O que vai para o forno:
+
+Texto:
+Confere tudo direitinho — queremos que recebas exatamente o que estás a imaginar.
+
+Secção: Pagamento
+Título:
+>>>>>>> origin/main
 Escolhe como queres pagar.
 
 Opções:
@@ -1565,7 +1695,11 @@ Levantamento com pagamento no balcão
 CTA Final:
 👉 Confirmar Encomenda
 
+<<<<<<< HEAD
 Micro-copy:
+=======
+Micro-copy:
+>>>>>>> origin/main
 Prometemos rapidez. A tua fome agradece.
 
 🟩 SOBRE NÓS
@@ -1615,7 +1749,11 @@ A caminho
 
 Entregue
 
+<<<<<<< HEAD
 Mensagem final:
+=======
+Mensagem final:
+>>>>>>> origin/main
 Obrigado por escolheres a Pizzaria Rural.
 Prometemos sempre rapidez, perfeição e muito sabor.
 
@@ -3412,7 +3550,11 @@ Rural Green	#2E7D32	Acentos, badges, ingredientes
 Rural Cream	#FFF4E6	Fundo principal
 Rural Dark	#1A1A1A	Texto forte
 Cinza Suave	#EDEDED	Bordas, cartões
+<<<<<<< HEAD
 Racional:
+=======
+Racional:
+>>>>>>> origin/main
 A paleta mistura tradição (vermelho rústico), natureza (verde), e conforto (creme), criando uma identidade calorosa e moderna.
 
 🟦 5. Tipografia da Marca
@@ -3612,7 +3754,11 @@ Lista de encomendas
 
 Histórico do cliente
 
+<<<<<<< HEAD
 Efeito:
+=======
+Efeito:
+>>>>>>> origin/main
 Cada item entra com 0.05s de atraso.
 
 🟨 3. Animações de Componentes
@@ -4635,10 +4781,17 @@ Estratégia de custo zero
 Tudo pensado para a Pizzaria Rural funcionar como uma marca de topo.
 
 🍕 SISTEMA DE NOTIFICAÇÕES — PIZZARIA RURAL
+<<<<<<< HEAD
 (WhatsApp + Email + SMS + Push)
 WhatsApp = canal predefinido (grátis)
 Email = grátis
 SMS = opcional (pago)
+=======
+(WhatsApp + Email + SMS + Push)
+WhatsApp = canal predefinido (grátis)
+Email = grátis
+SMS = opcional (pago)
+>>>>>>> origin/main
 Push = opcional (grátis)
 
 🟥 1. Arquitetura Geral
@@ -4918,7 +5071,11 @@ Vou tratar a App Mobile da Pizzaria Rural (React Native / Expo) como um produto 
 Vou dividir em: visão, arquitetura, ecrãs, estado & dados, integração com backend, e extras de produto real.
 
 🎯 Visão da app
+<<<<<<< HEAD
 Objetivo:
+=======
+Objetivo:
+>>>>>>> origin/main
 App mobile que torna mais rápido pedir pizza na Pizzaria Rural do que abrir o browser.
 Tudo centrado em:
 
@@ -5309,7 +5466,11 @@ Se quiseres, no próximo passo posso:
 Escrever o código completo de um ecrã (por exemplo, Menu + Carrinho) em React Native/Expo
 ou
 
+<<<<<<< HEAD
 Detalhar o fluxo de autenticação (login por telemóvel + código)
+=======
+Detalhar o fluxo de autenticação (login por telemóvel + código)
+>>>>>>> origin/main
 ou
 
 Desenhar um roadmap de desenvolvimento (MVP → v1.1 → v2) para esta app.
@@ -6547,7 +6708,11 @@ Onboarding → Login → Home → Menu → Checkout → Tracking.
 
 Se quiseres, no próximo passo posso:
 
+<<<<<<< HEAD
 Especificar as rotas de auth no backend em detalhe (Next.js + Prisma)
+=======
+Especificar as rotas de auth no backend em detalhe (Next.js + Prisma)
+>>>>>>> origin/main
 ou
 
 Desenhar o fluxo de notificações end-to-end (app → backend → WhatsApp/email/push).
@@ -6555,7 +6720,11 @@ Desenhar o fluxo de notificações end-to-end (app → backend → WhatsApp/emai
 Dito por si
 Configuração apiurl a apontar para o Backend IP da máquina independente se ele mudar dá para realizar desta forma assim independente de qual servidor estiver vai dar sempre certo
 certo
+<<<<<<< HEAD
 Liga tudo ao backend
+=======
+Liga tudo ao backend
+>>>>>>> origin/main
 Especificar rotas auth
 O Copilot disse
 Sandro, vamos fazer isto como deve ser feito numa app profissional:
@@ -6624,7 +6793,11 @@ export const API_URL =
   "https://api.pizzaria-rural.com" ||
   guessLocalIP() ||
   "http://localhost:3000";
+<<<<<<< HEAD
 Resultado:
+=======
+Resultado:
+>>>>>>> origin/main
 Mesmo que o IP mude, a app encontra o backend.
 
 🟠 OPÇÃO C — Backend envia a API URL para a app
@@ -7964,10 +8137,17 @@ Copiar
 │                                              │
 └──────────────────────────────────────────────┘
 🟩 8. ARQUITETURA FINAL (versão executiva)
+<<<<<<< HEAD
 A App Mobile comunica com o Backend via HTTPS usando JWT.
 O Backend gere encomendas, tracking, promoções, pontos e notificações.
 O Painel Admin controla tudo: produtos, estados, clientes, promoções.
 A Base de Dados centraliza toda a informação.
+=======
+A App Mobile comunica com o Backend via HTTPS usando JWT.
+O Backend gere encomendas, tracking, promoções, pontos e notificações.
+O Painel Admin controla tudo: produtos, estados, clientes, promoções.
+A Base de Dados centraliza toda a informação.
+>>>>>>> origin/main
 WhatsApp é o canal primário de comunicação com o cliente.
 
 🎉 ARQUITETURA COMPLETA ENTREGUE
@@ -8719,7 +8899,11 @@ info:
   title: Pizzaria Rural API
   version: 1.0.0
   description: >
+<<<<<<< HEAD
     API oficial da Pizzaria Rural.
+=======
+    API oficial da Pizzaria Rural.
+>>>>>>> origin/main
     Inclui autenticação, encomendas, tracking, promoções, pontos, produtos e painel admin.
 
 servers:
@@ -9315,9 +9499,15 @@ Código
 
 
 Copiar
+<<<<<<< HEAD
 main → produção
 dev → staging
 feature/* → CI apenas
+=======
+main → produção
+dev → staging
+feature/* → CI apenas
+>>>>>>> origin/main
 Exemplo:
 yaml
 
@@ -10160,7 +10350,11 @@ Notificações Discord
 🟫 11. Checklist para Novos Developers
 ✔️ Instalar Node, PostgreSQL, Expo
 ✔️ Clonar repositórios
+<<<<<<< HEAD
 ✔️ Criar .env
+=======
+✔️ Criar .env
+>>>>>>> origin/main
 ✔️ Rodar migrations
 ✔️ Iniciar backend
 ✔️ Iniciar app mobile
@@ -18109,11 +18303,19 @@ ou
 
 14 — O ficheiro Figma real (estrutura textual → blueprint visual detalhado)
 Dito por si
+<<<<<<< HEAD
 Como poderia dividir o projeto em 3
 Preciso de dividir o projeto em 3 agentes de IA que iram todos trabalhar em conjunto no github ou seja cada um deve ter a sua todolist commitar em PT PT e enviar cada um a sua parte sem conflitos uns com os outros
  toda a aplicação também deve ser em PT PT.
 
 Podes criar uma todolist para cada para que fique fácil de resolver este projeto sem conflitos
+=======
+Como poderia dividir o projeto em 3
+Preciso de dividir o projeto em 3 agentes de IA que iram todos trabalhar em conjunto no github ou seja cada um deve ter a sua todolist commitar em PT PT e enviar cada um a sua parte sem conflitos uns com os outros
+ toda a aplicação também deve ser em PT PT.
+
+Podes criar uma todolist para cada para que fique fácil de resolver este projeto sem conflitos
+>>>>>>> origin/main
 Cria a estratégia perfeita com tudo que é preciso incluindo todolist para cada
 O Copilot disse
 Sandro, isto que estás a pedir é engenharia organizacional para agentes de IA, com foco em:
@@ -18786,7 +18988,11 @@ Código
 
 
 Copiar
+<<<<<<< HEAD
 És um agente de desenvolvimento de software a trabalhar no repositório da Pizzaria Rural.
+=======
+És um agente de desenvolvimento de software a trabalhar no repositório da Pizzaria Rural.
+>>>>>>> origin/main
 Todo o teu trabalho deve ser escrito em PT‑PT, incluindo código, comentários, commits, PRs e documentação.
 
 Nunca alteres ficheiros fora da tua área de responsabilidade.
@@ -18813,7 +19019,11 @@ Segue sempre:
   - Checklist preenchido
   - Sempre em PT‑PT
 
+<<<<<<< HEAD
 Nunca assumes decisões fora do teu domínio.
+=======
+Nunca assumes decisões fora do teu domínio.
+>>>>>>> origin/main
 Se precisares de algo de outro agente, cria uma issue clara e objetiva.
 🟩 PROMPT DO AGENTE 1 — FRONTEND (APP MOBILE)
 Responsável por:
@@ -20933,3 +21143,7 @@ Qual preferes?
 
 
 Continue a conversa
+<<<<<<< HEAD
+
+=======
+>>>>>>> origin/main

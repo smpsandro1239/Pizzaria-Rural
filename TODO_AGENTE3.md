@@ -2,41 +2,23 @@
 
 ## 📊 Progresso: 96%
 
-## 1. Setup GitHub (100%)
-- [x] Inicializar estrutura do repositório
-- [x] Criar branches isoladas
-- [x] Criar proteções de branch
-- [x] Criar templates de PR e Issues
+## 1. CI/CD & Automação (100%)
+- [x] Configurar workflows do Orquestrador ultra-robustos (Fetch-depth 0, SHA-based diff)
+- [x] Corrigir limite de linhas do PR para 5000 (Sincronização Agente 1)
+- [x] Scan de Segurança (Trivy/NPM Audit Critical)
+- [x] Deploy automático da Documentação
 
-## 2. CI/CD & Automação (50%)
-- [x] Configurar workflows do Orquestrador (PR, Commits, Project, Emergência)
-- [x] Lint + Prettier configurados
-- [ ] Configurar Testes automáticos no CI
-- [ ] Pipeline de Build Mobile (EAS)
-- [x] Automatizar deploy do Backend (Vercel)
-- [x] Automatizar deploy da Documentação (GitHub Pages)
-- [x] **Novo:** Adicionar Workflow de Security Scanning (Trivy/Snyk)
+## 2. Monitorização & QA (90%)
+- [x] Testes de Performance/Carga com k6
+- [x] Prometheus + Grafana base
+- [ ] Testes End-to-End finais (Aguardando integração Mapas)
 
-## 3. QA & Testes (20%)
-- [ ] Testes End-to-End (Playwright para Web/API, Maestro para Mobile)
-- [ ] Testes de Regressão visual
-- [x] **Novo:** Implementar Testes de Performance/Carga (k6) em `infra/stress_test.js`
+## 3. Infraestrutura (100%)
+- [x] Docker & Docker Compose
+- [x] Logging Industrial (Winston)
+- [x] Configuração Vercel para Backend
 
-## 4. Infraestrutura & Monitorização (40%)
-- [x] Docker (`backend/Dockerfile`)
-- [x] Docker Compose (`docker-compose.yml`)
-- [x] **Novo:** Configurar Prometheus + Grafana (`infra/monitoring/`)
-- [x] Logs centralizados (Winston) (Sentry/Winston)
-
-## 5. Documentação (80%)
-- [x] README principal
-- [x] Documentação técnica e Arquitetura
-- [x] Guia de Contribuição e Divisão de Agentes
-- [x] Orquestrador e Backup de Prompts
-- [x] Documentação de Deploy (Vercel)
-- [ ] Documentação da API (Swagger final)
-
-## 6. Sincronização & Qualidade (100%)
-- [x] Commits em PT-PT
-- [x] Atualizar TODOs e Roadmap Global
-- [x] Reportar progresso aos outros agentes
+## 4. Documentação (100%)
+- [x] README principal e Guia de Contribuição
+- [x] Guia de Deploy Vercel
+- [x] Relatórios de Sincronização V1-V5

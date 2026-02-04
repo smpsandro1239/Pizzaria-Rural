@@ -9,6 +9,10 @@ interface ButtonProps {
   variant?: "primary" | "secondary" | "outline" | "ghost" | "destructive";
   loading?: boolean;
   disabled?: boolean;
+<<<<<<< HEAD
+  accessibilityLabel?: string;
+=======
+>>>>>>> origin/main
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -17,6 +21,10 @@ export const Button: React.FC<ButtonProps> = ({
   variant = "primary",
   loading = false,
   disabled = false,
+<<<<<<< HEAD
+  accessibilityLabel,
+=======
+>>>>>>> origin/main
 }) => {
   const { colors, spacing, radius, typography, motion } = useAppTheme();
 
@@ -50,6 +58,12 @@ export const Button: React.FC<ButtonProps> = ({
     <Pressable
       onPress={onPress}
       disabled={disabled || loading}
+<<<<<<< HEAD
+      accessibilityLabel={accessibilityLabel || label}
+      accessibilityRole="button"
+      accessibilityState={{ disabled: disabled || loading, busy: loading }}
+=======
+>>>>>>> origin/main
       style={({ pressed }) => [
         styles.container,
         getVariantStyle(),
