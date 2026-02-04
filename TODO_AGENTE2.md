@@ -29,7 +29,10 @@
    - [x] Unitários (Estrutura base e build)
    - [ ] Integração
    - [ ] Carga
-
+### 🌟 Melhorias Sugeridas (Agente 1)
+- [ ] **Geração de Faturas PDF:** Endpoint para descarregar fatura após encomenda.
+- [ ] **Motor de Recomendações IA:** Sugerir pizzas com base no histórico do utilizador.
+- [ ] **Webhooks de Pagamento:** Garantir robustez na integração com Stripe.
 ## Estado Atual: 99% Concluído 🟢
 
 ## 1. Setup inicial & Infra (100%)
@@ -58,6 +61,12 @@
 ## 6. Próximas Etapas (10%)
 - [ ] AI Recommendation Engine.
 - [ ] Backups Automáticos.
+### 🍕 Requisitos para Visual Telepizza (Agente 1)
+- [ ] **Múltiplos Tamanhos:** Adaptar o modelo de Pizza para suportar preços por tamanho (Pequena, Média, Familiar).
+- [ ] **Novas Categorias:** Adicionar suporte para categorias "Promoções", "Bebidas", "Sobremesas" e "Entradas" na DB.
+- [ ] **Banners Dinâmicos:** Criar endpoint `GET /banners` para fornecer imagens e links das promoções da Home.
 
 ---
-*Nota: Backend pronto para suportar o novo visual do Agente 1.*
+### 🎟️ Gestão de Descontos (Agente 1)
+- [ ] **Validação de Cupões:** Criar endpoint `POST /coupons/validate` para verificar códigos promocionais.
+- [ ] **Lógica de Preços:** Garantir que o cálculo final no backend considera: Preço Base * Multiplicador Tamanho - Descontos.

@@ -33,6 +33,7 @@ export const TrackingScreen = () => {
       {/* Static map placeholder */}
       <View style={[styles.mapContainer, { margin: spacing.lg, borderRadius: radius.lg, overflow: 'hidden', backgroundColor: colors.surface }]}>
         <Image
+          source={{ uri: 'https://maps.googleapis.com/maps/api/staticmap?center=38.7167,-9.1399&zoom=14&size=600x300&markers=color:red%7C38.7167,-9.1399&markers=color:green%7C38.7180,-9.1420&key=YOUR_API_KEY_HERE' }}
           source={{
             uri: 'https://maps.googleapis.com/maps/api/staticmap?center=38.7167,-9.1399&zoom=14&size=600x300&markers=color:red%7C38.7167,-9.1399&markers=color:green%7C38.7180,-9.1420&key=YOUR_API_KEY_HERE',
           }}

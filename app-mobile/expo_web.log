@@ -9,4 +9,18 @@ The following packages should be updated for best compatibility with the install
 Your project may not work correctly until you install the expected versions of the packages.
 Waiting on http://localhost:8081
 Logs for your project will appear below.
+<<<<<<< HEAD
+Web Bundled 1584ms index.ts (1256 modules)
+Web Bundled 74ms index.ts (1 module)
+Web Bundled 82ms index.ts (1 module)
+Web Bundled 116ms index.ts (1 module)
+Web Bundled 76ms index.ts (1 module)
+Web Bundled 70ms index.ts (1 module)
+Web Bundled 66ms index.ts (1 module)
+Web Bundled 70ms index.ts (1 module)
+Web Bundled 80ms index.ts (1 module)
+Web Bundled 73ms index.ts (1 module)
+Web Bundled 108ms index.ts (1 module)
+=======
 Web Bundled 2542ms index.ts (1252 modules)
+>>>>>>> origin/main

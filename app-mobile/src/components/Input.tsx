@@ -60,7 +60,11 @@ export const Input: React.FC<InputProps> = ({ label, error, style: customStyle, 
         />
       </MotiView>
       {error && (
+<<<<<<< Updated upstream
         <Text
+=======
+        <Text
+>>>>>>> Stashed changes
           style={[styles.errorText, { ...typography.caption, color: colors.error, marginTop: spacing.xs }]}
           accessibilityRole="alert"
         >

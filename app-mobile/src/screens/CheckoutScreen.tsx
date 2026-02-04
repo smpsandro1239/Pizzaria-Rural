@@ -21,6 +21,31 @@ export const CheckoutScreen = () => {
 
   // Fidelidade
   const [usePoints, setUsePoints] = useState(false);
+  const userPoints = 120;
+  const discountPerPoint = 0.01;
+  const maxPointsToUse = Math.min(userPoints, Math.floor((total() + 2) / discountPerPoint));
+  const loyaltyDiscount = usePoints ? maxPointsToUse * discountPerPoint : 0;
+
+  // Cupão
+  const [promoCode, setPromoCode] = useState("");
+  const [appliedPromo, setAppliedPromo] = useState<{ code: string; discount: number } | null>(null);
+
+  const handleApplyPromo = () => {
+    if (promoCode.toUpperCase() === "RURAL5") {
+      setAppliedPromo({ code: "RURAL5", discount: 5.0 });
+      showToast("Cupão de 5€ aplicado!");
+    } else if (promoCode.toUpperCase() === "TELE20") {
+      setAppliedPromo({ code: "TELE20", discount: total() * 0.2 });
+      showToast("Cupão de 20% aplicado!");
+    } else {
+      showToast("Cupão inválido.", "error");
+    }
+  };
+
+  const finalTotal = total() + 2 - loyaltyDiscount - (appliedPromo?.discount || 0);
+
+  // Fidelidade
+  const [usePoints, setUsePoints] = useState(false);
   const userPoints = 120; // Mock: sincronizado com AccountScreen
   const discountPerPoint = 0.01;
   const maxPointsToUse = Math.min(userPoints, Math.floor((total() + 2) / discountPerPoint));
@@ -38,7 +63,6 @@ export const CheckoutScreen = () => {
     }
 
     setLoading(true);
-    // Simular pedido
     setTimeout(() => {
       setLoading(false);
       clear();
@@ -158,15 +182,24 @@ export const CheckoutScreen = () => {
           <Text style={[typography.body, { color: colors.text }]}>Taxa de Entrega</Text>
           <Text style={[typography.body, { color: colors.text }]}>2,00 €</Text>
         </View>
-        {usePoints && (
+
+        {loyaltyDiscount > 0 && (
           <View style={[styles.row, { marginBottom: spacing.sm }]}>
-            <Text style={[typography.body, { color: colors.ruralRed }]}>Desconto (Fidelidade)</Text>
-            <Text style={[typography.body, { color: colors.ruralRed }]}>- {discount.toFixed(2)} €</Text>
+            <Text style={[typography.body, { color: colors.primary }]}>Desconto Fidelidade</Text>
+            <Text style={[typography.body, { color: colors.primary }]}>- {loyaltyDiscount.toFixed(2)} €</Text>
           </View>
         )}
+
+        {appliedPromo && (
+          <View style={[styles.row, { marginBottom: spacing.sm }]}>
+            <Text style={[typography.body, { color: colors.primary }]}>Desconto Cupão</Text>
+            <Text style={[typography.body, { color: colors.primary }]}>- {appliedPromo.discount.toFixed(2)} €</Text>
+          </View>
+        )}
+
         <View style={[styles.row, styles.totalRow, { borderTopColor: colors.border, paddingTop: spacing.sm, marginTop: spacing.sm }]}>
           <Text style={[styles.totalText, { ...typography.h3, color: colors.text }]}>Total</Text>
-          <Text style={[styles.totalPrice, { ...typography.h3, color: colors.ruralRed }]}>{(total() + 2 - discount).toFixed(2)} €</Text>
+          <Text style={[styles.totalPrice, { ...typography.h3, color: colors.primary }]}>{Math.max(0, finalTotal).toFixed(2)} €</Text>
         </View>
       </Card>
 
@@ -188,6 +221,10 @@ const SUGGESTIONS = [
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  promoRow: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
   },
   content: {
     paddingBottom: 24,

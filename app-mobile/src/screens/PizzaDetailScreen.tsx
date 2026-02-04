@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, Image, ScrollView, ActivityIndicator, TouchableOpacity, TextInput } from "react-native";
+import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity, TextInput } from "react-native";
 import { useAppTheme } from "../theme";
 import { Button } from "../components/Button";
 import { Badge } from "../components/Badge";
@@ -10,7 +10,7 @@ import { ProductRecommendation } from "../components/ProductRecommendation";
 import { Card } from "../components/Card";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useCartStore } from "../store/cart-store";
-import { pizzasApi } from "../api/pizzas";
+import { pizzasApi, PizzaSize } from "../api/pizzas";
 
 export const PizzaDetailScreen = ({ route }: any) => {
   const { colors, spacing, typography, radius } = useAppTheme();
@@ -21,6 +21,9 @@ export const PizzaDetailScreen = ({ route }: any) => {
   const [recommendations, setRecommendations] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  // Estados para Tamanho
+  const [selectedSize, setSelectedSize] = useState<PizzaSize | null>(null);
 
   // Estados para Review
   const [userRating, setUserRating] = useState(0);
@@ -36,6 +39,7 @@ export const PizzaDetailScreen = ({ route }: any) => {
 
         if (found) {
           setPizza(found);
+          setRecommendations(data.filter((p: any) => p.id !== pizzaId).slice(0, 3));
           setRecommendations(data.filter((p: any) => p.id !== pizzaId && p.category === found.category).slice(0, 3));
         } else {
           setError("Pizza não encontrada.");
@@ -129,7 +133,7 @@ export const PizzaDetailScreen = ({ route }: any) => {
           <MaterialCommunityIcons
             name={isFav ? "heart" : "heart-outline"}
             size={32}
-            color={isFav ? colors.ruralRed : "white"}
+            color={isFav ? colors.primary : "white"}
           />
         </TouchableOpacity>
       </View>
@@ -189,7 +193,7 @@ export const PizzaDetailScreen = ({ route }: any) => {
                   <MaterialCommunityIcons
                     name={s <= userRating ? "star" : "star-outline"}
                     size={32}
-                    color={s <= userRating ? colors.ruralRed : colors.border}
+                    color={s <= userRating ? colors.primary : colors.border}
                   />
                 </TouchableOpacity>
               ))}
@@ -238,9 +242,12 @@ export const PizzaDetailScreen = ({ route }: any) => {
           </Text>
           <ProductRecommendation
             pizzas={recommendations}
+          <ProductRecommendation
+            pizzas={recommendations}
             onPress={(id) => {
               setLoading(true);
               const next = recommendations.find(p => p.id === id);
+              setSelectedSize(next.sizes[1]);
               if (next) {
                 setPizza(next);
                 // Scroll to top when changing pizza
@@ -253,6 +260,10 @@ export const PizzaDetailScreen = ({ route }: any) => {
           />
         </View>
 
+          <Text style={[styles.price, { ...typography.h2, color: colors.primary }]}>{currentPrice.toFixed(2)} €</Text>
+          <Button
+            label="Adicionar"
+            onPress={() => addItem({ id: pizza.id, name: `${pizza.name} (${selectedSize?.name})`, price: currentPrice })}
         <View style={[
           styles.footer, 
           { 

@@ -46,16 +46,28 @@ export const HomeScreen = () => {
       contentContainerStyle={{ paddingBottom: spacing.xxl }}
     >
       {/* Banner Promocional */}
+<<<<<<< Updated upstream
       <ScrollView
         horizontal
         pagingEnabled
+=======
+      <ScrollView
+        horizontal
+        pagingEnabled
+>>>>>>> Stashed changes
         showsHorizontalScrollIndicator={false}
         style={styles.bannerScroll}
       >
         <TouchableOpacity style={[styles.banner, { width: width - (spacing.lg * 2), marginHorizontal: spacing.lg, backgroundColor: colors.primary, borderRadius: radius.lg }]}>
+<<<<<<< Updated upstream
           <Image
             source={{ uri: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80' }}
             style={[styles.bannerImage, { borderRadius: radius.lg }]}
+=======
+          <Image
+            source={{ uri: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80' }}
+            style={[styles.bannerImage, { borderRadius: radius.lg }]}
+>>>>>>> Stashed changes
           />
           <View style={styles.bannerOverlay}>
             <Text style={[typography.h2, { color: 'white' }]}>MENU PARA 2</Text>
@@ -65,9 +77,15 @@ export const HomeScreen = () => {
       </ScrollView>
 
       {/* Categorias Circulares */}
+<<<<<<< Updated upstream
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
+=======
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+>>>>>>> Stashed changes
         style={[styles.categoriesScroll, { marginTop: spacing.xl }]}
         contentContainerStyle={{ paddingHorizontal: spacing.lg }}
       >
@@ -105,7 +123,11 @@ export const HomeScreen = () => {
                   {pizza.name}
                 </Text>
                 <Text style={[typography.h3, { color: colors.primary, marginTop: spacing.xs }]}>
+<<<<<<< Updated upstream
                   {pizza.price.toFixed(2)}€
+=======
+                  {pizza.basePrice.toFixed(2)}€
+>>>>>>> Stashed changes
                 </Text>
                 <TouchableOpacity style={[styles.addButton, { backgroundColor: colors.primary }]}>
                   <MaterialCommunityIcons name="plus" size={20} color="white" />

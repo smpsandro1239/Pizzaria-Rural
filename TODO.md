@@ -9,7 +9,7 @@
 
 ---
 
-## 🤝 Sincronização e Delegação
+## 🤝 Sincronização e Coordenação (FIXED)
 
 ## Agente 1 (Frontend) - [Ver TODO_AGENTE1.md](./TODO_AGENTE1.md)
 - [ ] **FOCO:** Redesign visual baseado na Telepizza.pt.

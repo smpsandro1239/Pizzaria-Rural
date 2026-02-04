@@ -57,9 +57,15 @@ export const AccountScreen = () => {
 
       {/* Settings Section */}
       <Text style={[styles.sectionTitle, { ...typography.h3, color: colors.text, marginBottom: spacing.md }]}>Definições</Text>
+<<<<<<< Updated upstream
 
       <Card style={{ marginBottom: spacing.xl, padding: 0 }}>
         <TouchableOpacity
+=======
+
+      <Card style={{ marginBottom: spacing.xl, padding: 0 }}>
+        <TouchableOpacity
+>>>>>>> Stashed changes
           style={[styles.menuItem, { borderBottomWidth: 1, borderBottomColor: colors.border }]}
           onPress={() => navigation.navigate("Addresses")}
           accessibilityRole="button"
@@ -72,7 +78,11 @@ export const AccountScreen = () => {
           <MaterialCommunityIcons name="chevron-right" size={24} color={colors.textSecondary} />
         </TouchableOpacity>
 
+<<<<<<< Updated upstream
         <TouchableOpacity
+=======
+        <TouchableOpacity
+>>>>>>> Stashed changes
           style={[styles.menuItem, { borderBottomWidth: 1, borderBottomColor: colors.border }]}
           onPress={() => navigation.navigate("SupportChat")}
           accessibilityRole="button"
@@ -90,8 +100,13 @@ export const AccountScreen = () => {
             <MaterialCommunityIcons name="fingerprint" size={24} color={colors.text} />
             <Text style={[typography.body, { color: colors.text, marginLeft: spacing.md }]}>Acesso Biométrico</Text>
           </View>
+<<<<<<< Updated upstream
           <Switch
             value={biometricsEnabled}
+=======
+          <Switch
+            value={biometricsEnabled}
+>>>>>>> Stashed changes
             onValueChange={setBiometricsEnabled}
             trackColor={{ false: colors.border, true: colors.ruralRed }}
             thumbColor={biometricsEnabled ? colors.white : colors.textSecondary}

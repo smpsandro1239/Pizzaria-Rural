@@ -30,10 +30,7 @@
     "axios": "^1.6.8",
     "expo": "~51.0.31",
     "expo-status-bar": "~1.12.1",
-<<<<<<< HEAD
-=======
     "fast-xml-parser": "^5.3.4",
->>>>>>> origin/main
     "moti": "^0.29.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -51,17 +48,10 @@
     "@testing-library/react-native": "^12.4.5",
     "@types/jest": "^29.5.12",
     "@types/react": "~18.2.79",
-<<<<<<< HEAD
-    "react-test-renderer": "18.2.0",
-    "babel-preset-expo": "~11.0.14",
-    "jest": "^29.7.0",
-    "jest-expo": "~51.0.3",
-=======
     "babel-preset-expo": "~11.0.14",
     "jest": "^29.7.0",
     "jest-expo": "~51.0.3",
     "react-test-renderer": "18.2.0",
->>>>>>> origin/main
     "typescript": "~5.3.3"
   },
   "private": true
