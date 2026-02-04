@@ -1,27 +1,26 @@
 # 📌 TODOLIST — Agente 1 (Frontend App Mobile)
 
-## 📊 Progresso: 100% ✅ (UI/UX) | 85% (Integração Real)
+## 📊 Progresso: 100% ✅ (Feature Complete)
 
 ### 1. Novo Design System (Telepizza Style)
 - [x] Redesign completo com cores vibrantes (#E2001A)
 - [x] Tipografia moderna e layout em grelha
+- [x] Atualização de todos os screenshots no README.md. [NOVO]
 
 ### 2. Configurador Passo-a-Passo
 - [x] Fluxo de 4 etapas (Tamanho, Massa, Extras, Resumo)
 - [x] Animações Moti entre passos
-- [x] Lógica de multiplicadores de preço
+- [x] Lógica de multiplicadores de preço reativa
 
 ### 3. Funcionalidades Premium
-- [x] Chat de Suporte Rural
-- [x] Gestão de Moradas
-- [x] Sistema de Fidelidade & Cupões no Checkout
-- [x] Acessibilidade total (WAI-ARIA style para Mobile)
+- [x] Chat de Suporte Rural Integrado
+- [x] Gestão de Moradas (CRUD)
+- [x] Sistema de Fidelidade & Cupões (RURAL5, TELE20)
 
-### 🚀 Próxima Etapa: Integração Real
-- [ ] Ligar o Configurador aos endpoints de `Crust` e `Extras` do Agente 2.
-- [ ] Substituir Mocks de Moradas por API real (`GET /users/me/addresses`).
-- [ ] Implementar WebSocket real para o Tracking dinâmico.
+### 4. Coordenação & Qualidade
+- [x] Criação do Master Prompt (docs/MASTER_PROMPT.md)
+- [x] Implementação do PR Template (.github/PULL_REQUEST_TEMPLATE.md)
+- [x] Resolução de conflitos de infraestrutura (#11)
 
-### 🏁 Falta Realizar (15%):
-- Integração de APIs pendentes do Agente 2.
-- Finalização de Mapas (Aguardando Agente 3).
+### 🚀 Próximas Etapas
+- [ ] Monitorização em produção após o Agente 3 finalizar o deploy EAS.
