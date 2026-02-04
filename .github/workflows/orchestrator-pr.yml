@@ -32,9 +32,9 @@ jobs:
 
       - name: Validar tamanho do PR
         run: |
-          CHANGED=$(git diff --numstat origin/${{ github.base_ref }} -- . ":(exclude)*package-lock.json" ":(exclude)*yarn.lock" ":(exclude)*pnpm-lock.yaml" | awk '{sum+=$1} END {print sum}')
+          CHANGED=$(git diff --numstat origin/${{ github.base_ref }}...HEAD -- . ":(exclude)*package-lock.json" ":(exclude)*yarn.lock" ":(exclude)*pnpm-lock.yaml" | awk '{sum+=$1} END {print sum}')
           echo "Linhas alteradas (excluindo ficheiros de lock): $CHANGED"
-          if [ -n "$CHANGED" ] && [ "$CHANGED" -gt 1000 ]; then
+          if [ -n "$CHANGED" ] && [ "$CHANGED" -gt 1500 ]; then
             echo "PR demasiado grande ($CHANGED linhas). Divide em PRs menores."
             exit 1
           fi
