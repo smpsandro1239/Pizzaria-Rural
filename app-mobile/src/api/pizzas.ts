@@ -8,6 +8,18 @@ export type PizzaSize = {
   multiplier: number;
 };
 
+export type CrustType = {
+  id: string;
+  name: string;
+  price: number;
+};
+
+export type ExtraIngredient = {
+  id: string;
+  name: string;
+  price: number;
+};
+
 export type Pizza = {
   id: string;
   name: string;
@@ -19,12 +31,27 @@ export type Pizza = {
   rating: number;
   reviewsCount: number;
   sizes: PizzaSize[];
+  crusts: CrustType[];
 };
 
 const DEFAULT_SIZES: PizzaSize[] = [
   { id: 'p', name: 'Pequena', multiplier: 0.8 },
   { id: 'm', name: 'Média', multiplier: 1.0 },
   { id: 'f', name: 'Familiar', multiplier: 1.4 },
+];
+
+const DEFAULT_CRUSTS: CrustType[] = [
+  { id: 'c1', name: 'Fina', price: 0 },
+  { id: 'c2', name: 'Clássica', price: 0 },
+  { id: 'c3', name: 'Recheada com Queijo', price: 2.5 },
+];
+
+export const MOCK_EXTRAS: ExtraIngredient[] = [
+  { id: 'e1', name: 'Queijo Extra', price: 1.5 },
+  { id: 'e2', name: 'Bacon', price: 1.2 },
+  { id: 'e3', name: 'Azeitonas', price: 0.8 },
+  { id: 'e4', name: 'Cogumelos', price: 1.0 },
+  { id: 'e5', name: 'Ananás', price: 1.0 },
 ];
 
 const MOCK_PIZZAS: Pizza[] = [
@@ -39,6 +66,7 @@ const MOCK_PIZZAS: Pizza[] = [
     rating: 4.8,
     reviewsCount: 124,
     sizes: DEFAULT_SIZES,
+    crusts: DEFAULT_CRUSTS,
   },
   {
     id: "2",
@@ -51,30 +79,7 @@ const MOCK_PIZZAS: Pizza[] = [
     rating: 4.9,
     reviewsCount: 89,
     sizes: DEFAULT_SIZES,
-  },
-  {
-    id: "3",
-    name: "Veggie da Horta",
-    description: "Legumes frescos grelhados e manjericão fresco.",
-    basePrice: 9.0,
-    image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=300&q=80",
-    tag: "Vegetariana",
-    category: "Vegetariana",
-    rating: 4.7,
-    reviewsCount: 56,
-    sizes: DEFAULT_SIZES,
-  },
-  {
-    id: "4",
-    name: "Explosão Picante",
-    description: "Chouriço regional, malagueta e mozzarella.",
-    basePrice: 10.5,
-    image: "https://images.unsplash.com/photo-1593504049359-7b7d92c7185c?auto=format&fit=crop&w=300&q=80",
-    tag: "Nova",
-    category: "Picante",
-    rating: 4.5,
-    reviewsCount: 32,
-    sizes: DEFAULT_SIZES,
+    crusts: DEFAULT_CRUSTS,
   },
 ];
 
@@ -87,5 +92,8 @@ export const pizzasApi = {
       console.warn("API falhou, usando dados mock.");
       return MOCK_PIZZAS;
     }
+  },
+  getExtras: async (): Promise<ExtraIngredient[]> => {
+    return MOCK_EXTRAS;
   }
 };
