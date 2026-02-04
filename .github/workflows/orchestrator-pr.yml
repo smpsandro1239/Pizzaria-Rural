@@ -19,7 +19,7 @@ jobs:
           if [[ ! "${{ github.head_ref }}" =~ ^frontend-dev && \
                       ! "${{ github.head_ref }}" =~ ^backend-dev && \
                       ! "${{ github.head_ref }}" =~ ^infra-dev ]]; then
-            echo "PR criado numa branch inválida."
+            echo "PR criado numa branch inválida: ${{ github.head_ref }}"
             exit 1
           fi
 
@@ -32,10 +32,22 @@ jobs:
 
       - name: Validar tamanho do PR
         run: |
-          CHANGED=$(git diff --numstat origin/${{ github.base_ref }}...HEAD -- . ":(exclude)*package-lock.json" ":(exclude)*yarn.lock" ":(exclude)*pnpm-lock.yaml" | awk '{sum+=$1} END {print sum}')
-          echo "Linhas alteradas (excluindo ficheiros de lock): $CHANGED"
+          # Usamos as SHAs do evento para garantir precisão máxima
+          BASE_SHA="${{ github.event.pull_request.base.sha }}"
+          HEAD_SHA="${{ github.event.pull_request.head.sha }}"
+
+          echo "Comparando $BASE_SHA com $HEAD_SHA"
+
+          # Ignora ficheiros de lock e documentação gigante (roadmap)
+          DIFF_CMD="git diff --numstat $BASE_SHA..$HEAD_SHA -- . ':(exclude)*package-lock.json' ':(exclude)*yarn.lock' ':(exclude)*pnpm-lock.yaml' ':(exclude)readmeSandro'"
+
+          CHANGED=$(git diff --numstat $BASE_SHA..$HEAD_SHA -- . ':(exclude)*package-lock.json' ':(exclude)*yarn.lock' ':(exclude)*pnpm-lock.yaml' ':(exclude)readmeSandro' | awk '{sum+=$1} END {print sum}')
+          echo "Linhas alteradas (excluindo locks e readmeSandro): ${CHANGED:-0}"
+
           if [ -n "$CHANGED" ] && [ "$CHANGED" -gt 1500 ]; then
-            echo "PR demasiado grande ($CHANGED linhas). Divide em PRs menores."
+            echo "Erro: PR demasiado grande ($CHANGED linhas)."
+            echo "Detalhe das alterações:"
+            git diff --numstat $BASE_SHA..$HEAD_SHA -- . ':(exclude)*package-lock.json' ':(exclude)*yarn.lock' ':(exclude)*pnpm-lock.yaml' ':(exclude)readmeSandro' | sort -nr
             exit 1
           fi
 
