@@ -16,9 +16,10 @@ jobs:
 
       - name: Validar branch correta
         run: |
-          if [[ ! "${{ github.head_ref }}" =~ ^(frontend-dev|backend-dev|infra-dev) ]]; then
-            echo "PR criado numa branch inválida: ${{ github.head_ref }}"
-            echo "A branch deve começar por frontend-dev, backend-dev ou infra-dev."
+          if [[ ! "${{ github.head_ref }}" =~ ^frontend-dev.* && \
+                ! "${{ github.head_ref }}" =~ ^backend-dev.* && \
+                ! "${{ github.head_ref }}" =~ ^infra-dev.* ]]; then
+            echo "PR criado numa branch inválida."
             exit 1
           fi
 
@@ -40,7 +41,6 @@ jobs:
 
       - name: Validar conflitos
         run: |
-          git fetch origin ${{ github.base_ref }}
           if ! git merge --no-commit --no-ff origin/${{ github.base_ref }}; then
             exit 1
           fi

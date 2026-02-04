@@ -54,11 +54,16 @@ export const Input: React.FC<InputProps> = ({ label, error, style: customStyle, 
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           placeholderTextColor={colors.textSecondary}
+          accessibilityLabel={label || props.placeholder}
+          accessibilityState={{ error: !!error }}
           {...props}
         />
       </MotiView>
       {error && (
-        <Text style={[styles.errorText, { ...typography.caption, color: colors.error, marginTop: spacing.xs }]}>
+        <Text
+          style={[styles.errorText, { ...typography.caption, color: colors.error, marginTop: spacing.xs }]}
+          accessibilityRole="alert"
+        >
           {error}
         </Text>
       )}

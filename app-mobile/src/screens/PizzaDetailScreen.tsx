@@ -1,22 +1,31 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, Image, ScrollView, ActivityIndicator, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, Image, ScrollView, ActivityIndicator, TouchableOpacity, TextInput } from "react-native";
 import { useAppTheme } from "../theme";
 import { Button } from "../components/Button";
 import { Badge } from "../components/Badge";
 import { AnimatedLoader } from "../components/AnimatedLoader";
 import { IngredientSource } from "../components/IngredientSource";
 import { StarRating } from "../components/StarRating";
+import { ProductRecommendation } from "../components/ProductRecommendation";
+import { Card } from "../components/Card";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useCartStore } from "../store/cart-store";
 import { pizzasApi } from "../api/pizzas";
 
 export const PizzaDetailScreen = ({ route }: any) => {
   const { colors, spacing, typography, radius } = useAppTheme();
-  const { addItem, favorites, toggleFavorite } = useCartStore();
+  const { addItem, favorites, toggleFavorite, showToast } = useCartStore();
   const pizzaId = route.params?.id;
+
   const [pizza, setPizza] = useState<any>(null);
+  const [recommendations, setRecommendations] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  // Estados para Review
+  const [userRating, setUserRating] = useState(0);
+  const [userComment, setUserComment] = useState("");
+  const [isSubmittingReview, setIsSubmittingReview] = useState(false);
 
   useEffect(() => {
     const fetchPizza = async () => {
@@ -24,8 +33,10 @@ export const PizzaDetailScreen = ({ route }: any) => {
         setLoading(true);
         const data = await pizzasApi.getPizzas();
         const found = data.find((p: any) => p.id === pizzaId);
+
         if (found) {
           setPizza(found);
+          setRecommendations(data.filter((p: any) => p.id !== pizzaId).slice(0, 3));
         } else {
           setError("Pizza não encontrada.");
         }
@@ -40,6 +51,20 @@ export const PizzaDetailScreen = ({ route }: any) => {
       fetchPizza();
     }
   }, [pizzaId]);
+
+  const handleSubmitReview = () => {
+    if (userRating === 0) {
+      showToast("Por favor, seleciona uma classificação.", "error");
+      return;
+    }
+    setIsSubmittingReview(true);
+    setTimeout(() => {
+      setIsSubmittingReview(false);
+      setUserRating(0);
+      setUserComment("");
+      showToast("Obrigado pela tua avaliação!");
+    }, 1500);
+  };
 
   if (loading) {
     return (
@@ -95,7 +120,54 @@ export const PizzaDetailScreen = ({ route }: any) => {
         <IngredientSource ingredient="Tomate" source="Horta do Ti Manel" icon="food-apple" />
         <IngredientSource ingredient="Queijo" source="Queijaria da Serra" icon="cheese" />
 
-        <View style={[styles.footer, { marginTop: spacing.xxl }]}>
+        <View style={{ marginTop: spacing.xxl }}>
+          <Text style={[styles.sectionTitle, { ...typography.h3, color: colors.text, marginBottom: spacing.md }]}>
+            O que achaste desta pizza? ⭐
+          </Text>
+          <Card style={{ padding: spacing.md }}>
+            <View style={styles.starRow}>
+              {[1, 2, 3, 4, 5].map((s) => (
+                <TouchableOpacity key={s} onPress={() => setUserRating(s)}>
+                  <MaterialCommunityIcons
+                    name={s <= userRating ? "star" : "star-outline"}
+                    size={32}
+                    color={s <= userRating ? colors.ruralRed : colors.border}
+                  />
+                </TouchableOpacity>
+              ))}
+            </View>
+            <TextInput
+              style={[styles.reviewInput, { backgroundColor: colors.background, color: colors.text, borderRadius: radius.md, padding: spacing.sm, borderColor: colors.border }]}
+              placeholder="Escreve aqui o teu comentário..."
+              placeholderTextColor={colors.textSecondary}
+              multiline
+              numberOfLines={3}
+              value={userComment}
+              onChangeText={setUserComment}
+            />
+            <Button
+              label="Submeter Avaliação"
+              onPress={handleSubmitReview}
+              loading={isSubmittingReview}
+              style={{ marginTop: spacing.md }}
+              variant="secondary"
+            />
+          </Card>
+        </View>
+
+        <View style={{ marginTop: spacing.xxl }}>
+          <ProductRecommendation
+            pizzas={recommendations}
+            onPress={(id) => {
+              setLoading(true);
+              const next = recommendations.find(p => p.id === id);
+              setPizza(next);
+              setLoading(false);
+            }}
+          />
+        </View>
+
+        <View style={[styles.footer, { marginTop: spacing.xxl, marginBottom: spacing.xl }]}>
           <Text style={[styles.price, { ...typography.h2, color: colors.ruralRed }]}>{pizza.price.toFixed(2)} €</Text>
           <Button
             label="Adicionar ao Carrinho"
@@ -140,6 +212,16 @@ const styles = StyleSheet.create({
     lineHeight: 24,
   },
   sectionTitle: {},
+  starRow: {
+    flexDirection: "row",
+    justifyContent: "center",
+    marginBottom: 12,
+  },
+  reviewInput: {
+    height: 80,
+    borderWidth: 1,
+    textAlignVertical: "top",
+  },
   footer: {
     flexDirection: "row",
     justifyContent: "space-between",

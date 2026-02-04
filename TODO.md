@@ -1,4 +1,4 @@
-# 🚀 ROADMAP — Pizzaria Rural
+# 🚀 ROADMAP GLOBAL — Pizzaria Rural (Visual Moderno)
 
 ## 🧠 Estado Global: ~85% Concluído (Fase de Visual Telepizza)
 
@@ -9,7 +9,7 @@
 
 ---
 
-# 📌 RESUMO DE TAREFAS
+## 🤝 Sincronização e Delegação
 
 ## Agente 1 (Frontend) - [Ver TODO_AGENTE1.md](./TODO_AGENTE1.md)
 - [ ] **FOCO:** Redesign visual baseado na Telepizza.pt.

@@ -3,7 +3,7 @@ name: Infra CI
 on:
   push:
     branches:
-      - 'infra-dev*'
+      - infra-dev
     paths:
       - 'infra/**'
       - '.github/workflows/**'

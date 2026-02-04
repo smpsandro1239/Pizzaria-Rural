@@ -1,35 +1,33 @@
-export const commonColors = {
-  ruralRed: "#B23A2F",
-  ruralGreen: "#2E7D32",
-  white: "#FFFFFF",
-  black: "#000000",
-  graySoft: "#EDEDED",
-  ruralCream: "#FFF4E6",
-  ruralDark: "#1A1A1A",
-};
-
 export const lightTheme = {
-  ...commonColors,
-  background: "#FFF4E6",
-  surface: "#FFFFFF",
+  primary: "#E2001A", // Telepizza Red
+  secondary: "#000000",
+  background: "#FFFFFF",
+  surface: "#F8F8F8",
+  card: "#FFFFFF",
   text: "#1A1A1A",
   textSecondary: "#666666",
-  border: "#EDEDED",
-  card: "#FFFFFF",
-  error: "#DC2626",
-  success: "#4CAF50",
+  border: "#E0E0E0",
+  error: "#FF3B30",
+  success: "#4CD964",
+  white: "#FFFFFF",
+  graySoft: "#F2F2F2",
+  ruralRed: "#E2001A",
+  ruralGreen: "#008800",
 };
 
 export const darkTheme = {
-  ...commonColors,
+  primary: "#FF4D4D",
+  secondary: "#FFFFFF",
   background: "#121212",
   surface: "#1E1E1E",
-  text: "#FFF4E6",
-  textSecondary: "#A0A0A0",
+  card: "#1E1E1E",
+  text: "#FFFFFF",
+  textSecondary: "#AAAAAA",
   border: "#333333",
-  card: "#252525",
-  error: "#EF4444",
-  success: "#66BB6A",
+  error: "#FF453A",
+  success: "#32D74B",
+  white: "#FFFFFF",
+  graySoft: "#2C2C2E",
+  ruralRed: "#FF4D4D",
+  ruralGreen: "#32D74B",
 };
-
-export const colors = lightTheme;

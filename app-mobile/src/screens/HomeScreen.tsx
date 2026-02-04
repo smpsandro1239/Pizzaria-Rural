@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, ActivityIndicator } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, ActivityIndicator, Dimensions } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useAppTheme } from "../theme";
-import { Button } from "../components/Button";
 import { Card } from "../components/Card";
-import { StarRating } from "../components/StarRating";
 import { RootStackParamList } from "../navigation/types";
 import { pizzasApi } from "../api/pizzas";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
+
+const { width } = Dimensions.get('window');
 
 export const HomeScreen = () => {
   const navigation = useNavigation<NavigationProp>();
@@ -21,7 +22,7 @@ export const HomeScreen = () => {
     const fetchFavorites = async () => {
       try {
         const data = await pizzasApi.getPizzas();
-        setFavorites(data.slice(0, 2)); // Pegar apenas as duas primeiras como favoritas
+        setFavorites(data.slice(0, 4));
       } catch (err) {
         console.error("Erro ao carregar favoritos", err);
       } finally {
@@ -31,70 +32,88 @@ export const HomeScreen = () => {
     fetchFavorites();
   }, []);
 
+  const CATEGORIES = [
+    { id: '1', name: 'Promoções', icon: 'sale' },
+    { id: '2', name: 'Pizzas', icon: 'pizza' },
+    { id: '3', name: 'Entradas', icon: 'food-croissant' },
+    { id: '4', name: 'Bebidas', icon: 'cup-water' },
+    { id: '5', name: 'Sobremesas', icon: 'ice-cream' },
+  ];
+
   return (
     <ScrollView
       style={[styles.container, { backgroundColor: colors.background }]}
-      contentContainerStyle={[styles.content, { paddingBottom: spacing.xxl }]}
+      contentContainerStyle={{ paddingBottom: spacing.xxl }}
     >
-      <View style={[styles.hero, { backgroundColor: colors.ruralRed, padding: spacing.xl, paddingVertical: spacing.xxxl }]}>
-        <Text style={[styles.heroTitle, { ...typography.h1, color: "white", marginBottom: spacing.sm }]}>
-          Pizza tradicional com sabor de aldeia
-        </Text>
-        <Text style={[styles.heroSubtitle, { ...typography.body, color: "white", marginBottom: spacing.xl }]}>
-          Feita no momento, entregue quentinha à sua porta.
-        </Text>
-        <Button
-          label="Pedir Agora"
-          onPress={() => navigation.navigate("MainTabs", { screen: "Menu" } as any)}
-        />
-      </View>
+      {/* Banner Promocional */}
+      <ScrollView
+        horizontal
+        pagingEnabled
+        showsHorizontalScrollIndicator={false}
+        style={styles.bannerScroll}
+      >
+        <TouchableOpacity style={[styles.banner, { width: width - (spacing.lg * 2), marginHorizontal: spacing.lg, backgroundColor: colors.primary, borderRadius: radius.lg }]}>
+          <Image
+            source={{ uri: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80' }}
+            style={[styles.bannerImage, { borderRadius: radius.lg }]}
+          />
+          <View style={styles.bannerOverlay}>
+            <Text style={[typography.h2, { color: 'white' }]}>MENU PARA 2</Text>
+            <Text style={[typography.body, { color: 'white' }]}>Apenas 15.95€</Text>
+          </View>
+        </TouchableOpacity>
+      </ScrollView>
 
+      {/* Categorias Circulares */}
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={[styles.categoriesScroll, { marginTop: spacing.xl }]}
+        contentContainerStyle={{ paddingHorizontal: spacing.lg }}
+      >
+        {CATEGORIES.map((cat) => (
+          <TouchableOpacity key={cat.id} style={styles.categoryItem} onPress={() => navigation.navigate("MainTabs", { screen: "Menu" } as any)}>
+            <View style={[styles.categoryCircle, { backgroundColor: colors.surface, borderColor: colors.border }]}>
+              <MaterialCommunityIcons name={cat.icon as any} size={28} color={colors.primary} />
+            </View>
+            <Text style={[typography.caption, { color: colors.text, marginTop: spacing.xs, fontWeight: '600' }]}>{cat.name}</Text>
+          </TouchableOpacity>
+        ))}
+      </ScrollView>
+
+      {/* Secção de Produtos em Grelha */}
       <View style={[styles.section, { padding: spacing.lg }]}>
-        <Text style={[styles.sectionTitle, { ...typography.h2, color: colors.text, marginBottom: spacing.lg }]}>
-          As Nossas Favoritas
-        </Text>
+        <View style={styles.sectionHeader}>
+          <Text style={[typography.h3, { color: colors.text }]}>As mais pedidas</Text>
+          <TouchableOpacity onPress={() => navigation.navigate("MainTabs", { screen: "Menu" } as any)}>
+            <Text style={[typography.body, { color: colors.primary, fontWeight: '700' }]}>Ver tudo</Text>
+          </TouchableOpacity>
+        </View>
+
         {loading ? (
-          <ActivityIndicator color={colors.ruralRed} size="large" />
+          <ActivityIndicator color={colors.primary} size="large" style={{ marginTop: spacing.xl }} />
         ) : (
-          <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalList}>
+          <View style={styles.grid}>
             {favorites.map((pizza) => (
               <Card
                 key={pizza.id}
-                style={{ ...styles.pizzaCard, width: 200, marginRight: spacing.lg }}
+                style={[styles.gridCard, { width: (width / 2) - spacing.lg - (spacing.md / 2) }]}
                 onPress={() => navigation.navigate("PizzaDetail", { id: pizza.id })}
               >
-                <Image source={{ uri: pizza.image }} style={[styles.pizzaImage, { borderRadius: radius.md, marginBottom: spacing.sm }]} />
-                <Text style={[styles.pizzaName, { ...typography.h3, fontSize: 16, color: colors.text }]}>
+                <Image source={{ uri: pizza.image }} style={[styles.pizzaImage, { borderRadius: radius.md }]} />
+                <Text numberOfLines={1} style={[typography.body, { fontWeight: '700', color: colors.text, marginTop: spacing.sm }]}>
                   {pizza.name}
                 </Text>
-                <View style={{ marginBottom: spacing.xs }}>
-                  <StarRating rating={pizza.rating} showCount={false} size={12} />
-                </View>
-                <Text style={[styles.pizzaPrice, { ...typography.body, color: colors.ruralRed }]}>
-                  {pizza.price.toFixed(2)} €
+                <Text style={[typography.h3, { color: colors.primary, marginTop: spacing.xs }]}>
+                  {pizza.price.toFixed(2)}€
                 </Text>
+                <TouchableOpacity style={[styles.addButton, { backgroundColor: colors.primary }]}>
+                  <MaterialCommunityIcons name="plus" size={20} color="white" />
+                </TouchableOpacity>
               </Card>
             ))}
-          </ScrollView>
+          </View>
         )}
-      </View>
-
-      <View style={[styles.whyUs, { padding: spacing.lg, backgroundColor: colors.surface, margin: spacing.lg, borderRadius: radius.lg }]}>
-        <Text style={[styles.sectionTitle, { ...typography.h2, color: colors.text, marginBottom: spacing.lg }]}>
-          Porquê a Pizzaria Rural?
-        </Text>
-        <View style={[styles.benefitRow, { marginBottom: spacing.md }]}>
-          <Text style={[styles.benefitTitle, { ...typography.body, color: colors.text }]}>🚀 Entrega Rápida</Text>
-          <Text style={[styles.benefitDesc, { ...typography.caption, color: colors.textSecondary }]}>
-            Fome não espera, nós também não.
-          </Text>
-        </View>
-        <View style={[styles.benefitRow, { marginBottom: spacing.md }]}>
-          <Text style={[styles.benefitTitle, { ...typography.body, color: colors.text }]}>🌿 Ingredientes Frescos</Text>
-          <Text style={[styles.benefitDesc, { ...typography.caption, color: colors.textSecondary }]}>
-            Diretamente da horta para o seu prato.
-          </Text>
-        </View>
       </View>
     </ScrollView>
   );
@@ -104,36 +123,65 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  content: {},
-  hero: {
-    alignItems: "center",
-    textAlign: "center",
+  bannerScroll: {
+    marginTop: 16,
   },
-  heroTitle: {
-    textAlign: "center",
+  banner: {
+    height: 180,
+    position: 'relative',
+    overflow: 'hidden',
   },
-  heroSubtitle: {
-    textAlign: "center",
-    opacity: 0.9,
+  bannerImage: {
+    width: '100%',
+    height: '100%',
+    opacity: 0.7,
+  },
+  bannerOverlay: {
+    position: 'absolute',
+    bottom: 20,
+    left: 20,
+  },
+  categoriesScroll: {},
+  categoryItem: {
+    alignItems: 'center',
+    marginRight: 20,
+  },
+  categoryCircle: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    borderWidth: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   section: {},
-  sectionTitle: {},
-  horizontalList: {
-    flexDirection: "row",
+  sectionHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 16,
   },
-  pizzaCard: {},
+  grid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
+  gridCard: {
+    marginBottom: 16,
+    padding: 8,
+  },
   pizzaImage: {
-    width: "100%",
+    width: '100%',
     height: 120,
   },
-  pizzaName: {},
-  pizzaPrice: {
-    fontWeight: "700",
+  addButton: {
+    position: 'absolute',
+    bottom: 8,
+    right: 8,
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  whyUs: {},
-  benefitRow: {},
-  benefitTitle: {
-    fontWeight: "700",
-  },
-  benefitDesc: {},
 });
