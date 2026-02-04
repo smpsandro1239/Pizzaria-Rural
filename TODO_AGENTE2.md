@@ -1,6 +1,6 @@
 # 📌 TODOLIST — Agente 2 (Backend API)
 
-## Estado Atual: 89% Concluído
+## 📊 Progresso: 87%
 
 ## 1. Setup inicial (100%)
 - [x] Criar projeto NestJS
@@ -18,30 +18,23 @@
 
 ## 3. Endpoints (100%)
 - [x] Autenticação (JWT)
-- [x] Listar pizzas
-- [x] Criar encomenda (com suporte opcional a utilizador autenticado)
+- [x] Listar pizzas (com filtros)
+- [x] Criar encomenda
 - [x] Atualizar estado
-- [x] Tracking
-- [x] Histórico
+- [x] Tracking em tempo real
+- [x] Histórico de encomendas
 
-## 4. Notificações (50%)
-- [/] WhatsApp (Simulado/Mock)
-- [/] Email fallback (Simulado/Mock)
+## 4. Integrações Avançadas (30%)
+- [/] Notificações WhatsApp/Email (Simulado/Mock) - **Melhoria: Integrar Resend/Twilio**
+- [ ] Pagamentos Reais (Stripe/IfThenPay)
+- [ ] Motor de Recomendações (AI)
 
-## 5. Documentação (100%)
+## 5. Documentação & Qualidade (80%)
 - [x] Swagger/OpenAPI
-- [x] Contratos para o frontend (via Swagger)
+- [x] Contratos para o frontend
+- [ ] Testes de Integração
+- [ ] Testes de Carga (Em coordenação com Agente 3)
 
-## 6. Testes (33%)
-- [x] Unitários (Estrutura base e build)
-- [ ] Integração
-- [ ] Carga
-
-## 7. Novas Funcionalidades (Melhorias) (0%)
-- [x] **Gestão de Stock:** Decrementar stock de ingredientes ao criar encomenda.
-- [x] **Sistema de Reviews:** Endpoint para submeter e listar avaliações de pizzas.
-- [x] **Cupões de Desconto:** Lógica de descontos (FIXED/PERCENT) e validação.
-- [x] **Filtros Avançados:** Suporte a filtros de preço e ingredientes no GET /pizzas.
-
----
-*Nota: Este todolist foi atualizado pelo Agente 2 para refletir o progresso real e novas metas.*
+## 6. Sincronização
+- [x] Manter documentação em PT-PT
+- [x] Atualizar progresso no TODO global
