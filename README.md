@@ -4,39 +4,28 @@ Uma aplicação mobile premium desenvolvida com **React Native (Expo)**, inspira
 
 ---
 
-## 📸 Tour Visual (Design System Moderno)
+## 📸 Visão Geral da Aplicação
 
-### 🚀 Experiência de Início e Descoberta
+Abaixo pode ver os principais ecrãs da aplicação com o novo Design System moderno.
+
 <table>
   <tr>
     <td align="center"><img src="docs/screenshots/01_home.png" width="300" /><br /><b>Início:</b> Banners e Destaques</td>
     <td align="center"><img src="docs/screenshots/02_menu.png" width="300" /><br /><b>Menu:</b> Grelha de Produtos Moderno</td>
   </tr>
-</table>
-
-### 🛠️ Personalização e Configurador de Pizza
-<table>
   <tr>
-    <td align="center"><img src="docs/screenshots/03_detalhe.png" width="300" /><br /><b>Configurador:</b> Escolha de Tamanho e Massa</td>
-    <td align="center"><img src="docs/screenshots/04_checkout.png" width="300" /><br /><b>Checkout:</b> Cupões e Fidelidade</td>
+    <td align="center"><img src="docs/screenshots/03_detalhe.png" width="300" /><br /><b>Detalhe:</b> Configurador de Pizza</td>
+    <td align="center"><img src="docs/screenshots/06_conta.png" width="300" /><br /><b>Conta:</b> Perfil e Fidelidade</td>
   </tr>
 </table>
 
-### 📦 Acompanhamento e Suporte Rural
-<table>
-  <tr>
-    <td align="center"><img src="docs/screenshots/05_tracking.png" width="300" /><br /><b>Tracking:</b> Mapa em Tempo Real</td>
-    <td align="center"><img src="docs/screenshots/07_suporte.png" width="300" /><br /><b>Suporte:</b> Chat direto com a aldeia</td>
-  </tr>
-</table>
+---
 
-### 👤 Gestão de Conta e Moradas
-<table>
-  <tr>
-    <td align="center"><img src="docs/screenshots/06_conta.png" width="300" /><br /><b>Fidelidade:</b> Histórico e Pontos</td>
-    <td align="center"><img src="docs/screenshots/08_moradas.png" width="300" /><br /><b>Moradas:</b> Endereços Favoritos</td>
-  </tr>
-</table>
+## 📱 Testar no Telemóvel
+
+Digitaliza o código QR abaixo para abrir a versão Web da aplicação diretamente no teu smartphone:
+
+![QR Code](https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://pizzaria-rural.vercel.app/)
 
 ---
 
@@ -53,15 +42,7 @@ Este projeto é um expoente da colaboração entre agentes de IA especializados:
 - **Agente 2 (Backend):** Responsável pela arquitetura de dados e APIs escaláveis.
 - **Agente 3 (Infra):** Responsável pelo CI/CD, segurança e automação de builds.
 
-## 📱 Testar no Telemóvel
-
-Digitaliza o código QR abaixo para abrir a versão Web da aplicação diretamente no teu smartphone:
-
-![QR Code](https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://pizzaria-rural.vercel.app/)
-
----
-
-### 📊 Progresso Geral: **96%**
+### 📊 Progresso Geral: **98%**
 
 | Componente | Status | Responsável |
 | :--- | :---: | :--- |
