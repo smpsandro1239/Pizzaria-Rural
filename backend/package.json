@@ -3,10 +3,10 @@
   "version": "0.0.1",
   "description": "Backend para Pizzaria Rural",
   "author": "Agente 2",
-  "private": true,
+  "private": true, "engines": { "node": ">=20.0.0" },
   "license": "UNLICENSED",
   "scripts": {
-    "build": "nest build",
+    "build": "prisma generate && nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
