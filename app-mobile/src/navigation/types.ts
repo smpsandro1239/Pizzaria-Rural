@@ -3,6 +3,8 @@ export type RootStackParamList = {
   PizzaDetail: { id: string };
   Checkout: undefined;
   Tracking: { orderId: string };
+  AdminProductForm: { id?: string };
+  Login: undefined;
 };
 
 export type MainTabsParamList = {
@@ -10,4 +12,5 @@ export type MainTabsParamList = {
   Menu: undefined;
   Favorites: undefined;
   Account: undefined;
+  AdminPanel: undefined;
 };

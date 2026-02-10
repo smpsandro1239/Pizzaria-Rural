@@ -1,113 +1,165 @@
 import React from "react";
-import { Text, ActivityIndicator, StyleSheet, Pressable } from "react-native";
-import { MotiView } from "moti";
+import {
+  TouchableOpacity,
+  Text,
+  StyleSheet,
+  ActivityIndicator,
+  ViewStyle,
+  TextStyle,
+  Platform
+} from "react-native";
 import { useAppTheme } from "../theme";
+import { MotiView } from "moti";
 
 interface ButtonProps {
-  label: string;
+  title: string;
   onPress: () => void;
-  variant?: "primary" | "secondary" | "outline" | "ghost" | "destructive";
+  variant?: "primary" | "secondary" | "outline" | "ghost" | "danger";
+  size?: "sm" | "md" | "lg";
   loading?: boolean;
   disabled?: boolean;
-  accessibilityLabel?: string;
+  icon?: React.ReactNode;
+  style?: ViewStyle;
+  textStyle?: TextStyle;
 }
 
-export const Button: React.FC<ButtonProps> = ({
-  label,
+export const Button = ({
+  title,
   onPress,
   variant = "primary",
+  size = "md",
   loading = false,
   disabled = false,
-  accessibilityLabel,
-}) => {
-  const { colors, spacing, radius, typography, motion } = useAppTheme();
+  icon,
+  style,
+  textStyle,
+}: ButtonProps) => {
+  const { colors, radius, spacing, typography } = useAppTheme();
 
-  const getVariantStyle = () => {
+  const getVariantStyles = () => {
     switch (variant) {
+      case "primary":
+        return {
+          button: { backgroundColor: colors.primary },
+          text: { color: "#FFFFFF" },
+        };
       case "secondary":
-        return { backgroundColor: colors.ruralGreen };
+        return {
+          button: { backgroundColor: colors.secondary },
+          text: { color: colors.background },
+        };
       case "outline":
         return {
-          backgroundColor: "transparent",
-          borderWidth: 2,
-          borderColor: colors.ruralRed,
+          button: { backgroundColor: "transparent", borderWidth: 1, borderColor: colors.border },
+          text: { color: colors.text },
         };
       case "ghost":
-        return { backgroundColor: "transparent" };
-      case "destructive":
-        return { backgroundColor: "#dc2626" };
+        return {
+          button: { backgroundColor: "transparent" },
+          text: { color: colors.text },
+        };
+      case "danger":
+        return {
+          button: { backgroundColor: colors.error },
+          text: { color: "#FFFFFF" },
+        };
       default:
-        return { backgroundColor: colors.ruralRed };
+        return {
+          button: { backgroundColor: colors.primary },
+          text: { color: "#FFFFFF" },
+        };
     }
   };
 
-  const getTextColor = () => {
-    if (variant === "outline" || variant === "ghost") {
-      return colors.ruralRed;
+  const getSizeStyles = () => {
+    switch (size) {
+      case "sm":
+        return {
+          button: { paddingVertical: spacing.xs, paddingHorizontal: spacing.md },
+          text: { fontSize: 14 },
+        };
+      case "lg":
+        return {
+          button: { paddingVertical: spacing.lg, paddingHorizontal: spacing.xxl },
+          text: { fontSize: 18 },
+        };
+      default:
+        return {
+          button: { paddingVertical: spacing.md, paddingHorizontal: spacing.xl },
+          text: { fontSize: 16 },
+        };
     }
-    return colors.white;
   };
+
+  const variantStyles = getVariantStyles();
+  const sizeStyles = getSizeStyles();
 
   return (
-    <Pressable
+    <TouchableOpacity
+      accessibilityRole="button"
       onPress={onPress}
       disabled={disabled || loading}
-      accessibilityLabel={accessibilityLabel || label}
-      accessibilityRole="button"
-      accessibilityState={{ disabled: disabled || loading, busy: loading }}
-      style={({ pressed }) => [
-        styles.container,
-        getVariantStyle(),
-        {
-          opacity: disabled || pressed ? 0.7 : 1,
-          paddingVertical: spacing.lg,
-          paddingHorizontal: spacing.xl,
-          borderRadius: radius.pill,
-        },
+      activeOpacity={0.8}
+      style={[
+        styles.baseButton,
+        { borderRadius: radius.md },
+        variantStyles.button,
+        sizeStyles.button,
+        (disabled || loading) && { opacity: 0.5 },
+        style,
       ]}
     >
-      <MotiView
-        animate={{
-          scale: disabled ? 1 : 1,
-        }}
-        transition={{
-          type: "timing",
-          duration: motion.duration.fast,
-        }}
-        style={styles.inner}
-      >
-        {loading ? (
-          <ActivityIndicator color={getTextColor()} testID="button-loader" />
-        ) : (
-          <Text
-            style={[
-              styles.text,
-              {
-                ...typography.body,
-                color: getTextColor(),
-              },
-            ]}
-          >
-            {label}
+      {loading ? (
+        <ActivityIndicator color={variantStyles.text.color} />
+      ) : (
+        <MotiView
+          from={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          style={styles.content}
+        >
+          {icon && <MotiView style={{ marginRight: spacing.sm }}>{icon}</MotiView>}
+          <Text style={[
+            styles.text,
+            typography.button,
+            variantStyles.text,
+            sizeStyles.text,
+            textStyle
+          ]}>
+            {title}
           </Text>
-        )}
-      </MotiView>
-    </Pressable>
+        </MotiView>
+      )}
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  baseButton: {
+    flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    minHeight: 56,
+    ...Platform.select({
+      ios: {
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+      },
+      android: {
+        elevation: 2,
+      },
+      web: {
+        cursor: "pointer",
+        transition: "all 0.2s ease-in-out",
+      }
+    }),
   },
-  inner: {
+  content: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
   },
   text: {
-    fontWeight: "600",
+    textAlign: "center",
   },
 });

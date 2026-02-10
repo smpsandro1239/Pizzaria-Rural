@@ -1,71 +1,117 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity, ActivityIndicator, Dimensions } from "react-native";
+import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity, ActivityIndicator } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useAppTheme } from "../theme";
 import { Card } from "../components/Card";
+import { Badge } from "../components/Badge";
 import { RootStackParamList } from "../navigation/types";
 import { pizzasApi, Pizza } from "../api/pizzas";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useAuthStore } from "../store/auth-store";
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
-const { width } = Dimensions.get('window');
 
 export const MenuScreen = () => {
   const navigation = useNavigation<NavigationProp>();
   const { colors, spacing, typography, radius } = useAppTheme();
+  const { user } = useAuthStore();
+  const isAdmin = user?.role === "ADMIN";
+
   const [pizzas, setPizzas] = useState<Pizza[]>([]);
   const [loading, setLoading] = useState(true);
 
+  const fetchPizzas = async () => {
+    setLoading(true);
+    try {
+      const data = await pizzasApi.getPizzas();
+      setPizzas(data);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchPizzas = async () => {
-      try {
-        const data = await pizzasApi.getPizzas();
-        setPizzas(data);
-      } catch (err) {
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    };
     fetchPizzas();
   }, []);
 
+  const handleDelete = async (id: string) => {
+    try {
+        await pizzasApi.deletePizza(id);
+        fetchPizzas();
+    } catch (err) {
+        console.error(err);
+    }
+  };
+
   const renderItem = ({ item }: { item: Pizza }) => (
     <Card
-      style={[styles.card, { width: (width / 2) - spacing.lg - (spacing.md / 2) }]}
+      variant="outline"
+      style={styles.card}
       onPress={() => navigation.navigate("PizzaDetail", { id: item.id })}
     >
-      <Image source={{ uri: item.image }} style={[styles.image, { borderRadius: radius.md }]} />
       <View style={styles.cardContent}>
-        <Text numberOfLines={1} style={[typography.body, { fontWeight: '700', color: colors.text }]}>{item.name}</Text>
-        <Text numberOfLines={2} style={[typography.caption, { color: colors.textSecondary, marginTop: 4, height: 32 }]}>
-          {item.description}
-        </Text>
-        <View style={styles.cardFooter}>
-          <Text style={[typography.h3, { color: colors.primary }]}>{item.basePrice.toFixed(2)}€</Text>
-          <TouchableOpacity style={[styles.addButton, { backgroundColor: colors.primary }]}>
-            <MaterialCommunityIcons name="plus" size={20} color="white" />
-          </TouchableOpacity>
+        <Image source={{ uri: item.imageUrl || item.image }} style={[styles.image, { borderRadius: radius.md }]} />
+        <View style={styles.info}>
+          <View style={styles.infoHead}>
+            <Text style={[typography.bodyBold, { color: colors.text }]}>{item.name}</Text>
+            {item.featured && <Badge label="Destaque" variant="primary" />}
+          </View>
+          <Text numberOfLines={2} style={[typography.caption, { color: colors.textSecondary, marginTop: 4 }]}>
+            {item.description}
+          </Text>
+          <Text style={[typography.h3, { color: colors.primary, marginTop: 8 }]}>
+            {(item.price / 100).toFixed(2)}€
+          </Text>
         </View>
       </View>
+
+      {isAdmin && (
+        <View style={[styles.adminActions, { borderTopColor: colors.border }]}>
+          <TouchableOpacity
+            style={[styles.adminBtn, { backgroundColor: colors.graySoft }]}
+            onPress={() => navigation.navigate("AdminProductForm", { id: item.id })}
+          >
+            <MaterialCommunityIcons name="pencil" size={18} color={colors.text} />
+            <Text style={[typography.caption, { color: colors.text, fontWeight: '600', marginLeft: 6 }]}>Editar</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.adminBtn, { backgroundColor: colors.error + '15' }]}
+            onPress={() => handleDelete(item.id)}
+          >
+            <MaterialCommunityIcons name="trash-can-outline" size={18} color={colors.error} />
+            <Text style={[typography.caption, { color: colors.error, fontWeight: '600', marginLeft: 6 }]}>Apagar</Text>
+          </TouchableOpacity>
+        </View>
+      )}
     </Card>
   );
 
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
-      {loading ? (
-        <View style={styles.centered}>
-          <ActivityIndicator color={colors.primary} size="large" />
+      {isAdmin && (
+        <View style={[styles.adminHeader, { padding: spacing.lg }]}>
+          <TouchableOpacity
+            style={[styles.addNewBtn, { backgroundColor: colors.primary }]}
+            onPress={() => navigation.navigate("AdminProductForm", {})}
+          >
+            <MaterialCommunityIcons name="plus" size={24} color="white" />
+            <Text style={[typography.button, { color: 'white', marginLeft: 8 }]}>Novo Produto</Text>
+          </TouchableOpacity>
         </View>
+      )}
+
+      {loading ? (
+        <ActivityIndicator color={colors.primary} size="large" style={{ marginTop: spacing.xl }} />
       ) : (
         <FlatList
           data={pizzas}
           renderItem={renderItem}
           keyExtractor={(item) => item.id}
-          numColumns={2}
-          contentContainerStyle={{ padding: spacing.lg }}
-          columnWrapperStyle={{ justifyContent: 'space-between' }}
+          contentContainerStyle={{ padding: spacing.lg, paddingBottom: 100 }}
+          showsVerticalScrollIndicator={false}
         />
       )}
     </View>
@@ -73,36 +119,33 @@ export const MenuScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  centered: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  card: {
-    marginBottom: 16,
-    padding: 8,
-  },
-  image: {
-    width: '100%',
-    height: 120,
-  },
-  cardContent: {
-    marginTop: 8,
-  },
-  cardFooter: {
+  container: { flex: 1 },
+  adminHeader: { width: '100%' },
+  addNewBtn: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginTop: 8,
-  },
-  addButton: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
     alignItems: 'center',
     justifyContent: 'center',
+    padding: 16,
+    borderRadius: 12
+  },
+  card: { marginBottom: 16, padding: 12 },
+  cardContent: { flexDirection: 'row' },
+  image: { width: 90, height: 90 },
+  info: { flex: 1, marginLeft: 16 },
+  infoHead: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
+  adminActions: {
+    flexDirection: 'row',
+    marginTop: 12,
+    paddingTop: 12,
+    borderTopWidth: 1,
+    justifyContent: 'flex-end'
+  },
+  adminBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 8,
+    marginLeft: 8
   },
 });

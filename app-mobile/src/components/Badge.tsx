@@ -1,67 +1,60 @@
 import React from "react";
-import { StyleSheet, Text } from "react-native";
-import { MotiView } from "moti";
+import { View, Text, StyleSheet, ViewStyle } from "react-native";
 import { useAppTheme } from "../theme";
 
 interface BadgeProps {
   label: string;
-  variant?: "success" | "warning" | "error" | "info";
+  variant?: "primary" | "secondary" | "success" | "outline" | "danger";
+  style?: ViewStyle;
 }
 
-export const Badge: React.FC<BadgeProps> = ({ label, variant = "info" }) => {
-  const { colors, spacing, radius, typography } = useAppTheme();
+export const Badge = ({ label, variant = "primary", style }: BadgeProps) => {
+  const { colors, radius, spacing } = useAppTheme();
 
-  const getBackgroundColor = () => {
+  const getVariantStyles = () => {
     switch (variant) {
+      case "primary":
+        return { bg: colors.primary + "15", text: colors.primary };
+      case "secondary":
+        return { bg: colors.secondary + "15", text: colors.secondary };
       case "success":
-        return colors.ruralGreen;
-      case "warning":
-        return "#f59e0b";
-      case "error":
-        return "#dc2626";
+        return { bg: colors.success + "15", text: colors.success };
+      case "danger":
+        return { bg: colors.error + "15", text: colors.error };
+      case "outline":
+        return { bg: "transparent", text: colors.textSecondary, border: 1 };
       default:
-        return colors.ruralRed;
+        return { bg: colors.graySoft, text: colors.textSecondary };
     }
   };
 
+  const v = getVariantStyles();
+
   return (
-    <MotiView
-      from={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{
-        type: "spring",
-        damping: 14,
-      }}
-      style={[
-        styles.container,
-        {
-          backgroundColor: getBackgroundColor(),
-          paddingHorizontal: spacing.md,
-          paddingVertical: spacing.xs,
-          borderRadius: radius.pill,
-        },
-      ]}
-    >
-      <Text
-        style={[
-          styles.text,
-          {
-            ...typography.caption,
-            color: colors.white,
-          },
-        ]}
-      >
-        {label}
-      </Text>
-    </MotiView>
+    <View style={[
+      styles.container,
+      {
+        backgroundColor: v.bg,
+        borderRadius: radius.full,
+        borderColor: colors.border,
+        borderWidth: v.border || 0,
+      },
+      style
+    ]}>
+      <Text style={[styles.text, { color: v.text }]}>{label.toUpperCase()}</Text>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    paddingHorizontal: 8,
+    paddingVertical: 2,
     alignSelf: "flex-start",
   },
   text: {
+    fontSize: 10,
     fontWeight: "700",
+    letterSpacing: 0.5,
   },
 });
