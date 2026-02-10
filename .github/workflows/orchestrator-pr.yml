@@ -18,7 +18,7 @@ jobs:
         run: |
           if [[ ! "${{ github.head_ref }}" =~ ^frontend-dev.* && \
                 ! "${{ github.head_ref }}" =~ ^backend-dev.* && \
-                ! "${{ github.head_ref }}" =~ ^infra-dev.* ]]; then
+                ! "${{ github.head_ref }}" =~ ^infra-dev.* && ! "${{ github.head_ref }}" =~ ^modern-ui-rbac.* ]]; then
             echo "PR criado numa branch inválida."
             exit 1
           fi
