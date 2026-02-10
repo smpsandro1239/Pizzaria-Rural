@@ -1,11 +1,17 @@
 import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-// Em desenvolvimento local, usar o IP da máquina
-const API_URL = "http://localhost:3000/api";
+const API_URL = "http://localhost:3000";
 
 export const api = axios.create({
   baseURL: API_URL,
-  headers: {
-    "Content-Type": "application/json",
-  },
+  timeout: 10000,
+});
+
+api.interceptors.request.use(async (config) => {
+  const token = await AsyncStorage.getItem("token");
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
 });

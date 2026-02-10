@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useAppTheme } from "../theme";
+import { useAuthStore } from "../store/auth-store";
 
 import { HomeScreen } from "../screens/HomeScreen";
 import { MenuScreen } from "../screens/MenuScreen";
@@ -11,6 +12,8 @@ import { AccountScreen } from "../screens/AccountScreen";
 import { CheckoutScreen } from "../screens/CheckoutScreen";
 import { TrackingScreen } from "../screens/TrackingScreen";
 import { PizzaDetailScreen } from "../screens/PizzaDetailScreen";
+import { LoginScreen } from "../screens/LoginScreen";
+import { AdminProductFormScreen } from "../screens/AdminProductFormScreen";
 import { Toast } from "../components/Toast";
 import { useCartStore } from "../store/cart-store";
 
@@ -20,23 +23,32 @@ const Tab = createBottomTabNavigator<MainTabsParamList>();
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const MainTabs = () => {
-  const { colors } = useAppTheme();
+  const { colors, spacing } = useAppTheme();
+  const { user } = useAuthStore();
+  const isAdmin = user?.role === "ADMIN";
 
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveTintColor: colors.ruralRed,
+        tabBarActiveTintColor: colors.primary,
         tabBarInactiveTintColor: colors.textSecondary,
         tabBarStyle: {
-          backgroundColor: colors.surface,
+          backgroundColor: colors.background,
           borderTopColor: colors.border,
+          height: 60,
+          paddingBottom: 8,
         },
         headerStyle: {
-          backgroundColor: colors.ruralRed,
+          backgroundColor: colors.background,
+          elevation: 0,
+          shadowOpacity: 0,
+          borderBottomWidth: 1,
+          borderBottomColor: colors.border,
         },
-        headerTintColor: "white",
+        headerTintColor: colors.text,
         headerTitleStyle: {
           fontWeight: "700",
+          fontSize: 18,
         },
       }}
     >
@@ -45,8 +57,8 @@ const MainTabs = () => {
         component={HomeScreen}
         options={{
           tabBarLabel: "Início",
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="home" color={color} size={size} />
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="home-variant" color={color} size={24} />
           ),
           headerTitle: "Pizzaria Rural",
         }}
@@ -56,32 +68,47 @@ const MainTabs = () => {
         component={MenuScreen}
         options={{
           tabBarLabel: "Menu",
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="pizza" color={color} size={size} />
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="pizza" color={color} size={24} />
           ),
-          headerTitle: "Nosso Menu",
+          headerTitle: "Explorar Menu",
         }}
       />
+
+      {isAdmin && (
+        <Tab.Screen
+          name="AdminPanel"
+          component={MenuScreen}
+          options={{
+            tabBarLabel: "Admin",
+            tabBarIcon: ({ color }) => (
+              <MaterialCommunityIcons name="shield-check" color={color} size={24} />
+            ),
+            headerTitle: "Gestão de Produtos",
+          }}
+        />
+      )}
+
       <Tab.Screen
         name="Favorites"
         component={FavoritesScreen}
         options={{
           tabBarLabel: "Favoritos",
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="heart" color={color} size={size} />
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="heart-outline" color={color} size={24} />
           ),
-          headerTitle: "Os Meus Favoritos",
+          headerTitle: "Favoritos",
         }}
       />
       <Tab.Screen
         name="Account"
         component={AccountScreen}
         options={{
-          tabBarLabel: "Conta",
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="account" color={color} size={size} />
+          tabBarLabel: "Perfil",
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="account-circle-outline" color={color} size={24} />
           ),
-          headerTitle: "A Minha Conta",
+          headerTitle: "Perfil",
         }}
       />
     </Tab.Navigator>
@@ -91,18 +118,24 @@ const MainTabs = () => {
 export const Navigation = () => {
   const { toast, hideToast } = useCartStore();
   const { colors } = useAppTheme();
+  const { loadSession } = useAuthStore();
+
+  useEffect(() => {
+    loadSession();
+  }, []);
 
   return (
     <>
     <Stack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: colors.ruralRed,
+          backgroundColor: colors.background,
         },
-        headerTintColor: "white",
+        headerTintColor: colors.text,
         headerTitleStyle: {
           fontWeight: "700",
         },
+        headerShadowVisible: false,
         animation: "slide_from_right",
         contentStyle: {
           backgroundColor: colors.background,
@@ -117,17 +150,27 @@ export const Navigation = () => {
       <Stack.Screen
         name="PizzaDetail"
         component={PizzaDetailScreen}
-        options={{ title: "Detalhes" }}
+        options={{ title: "" }}
       />
       <Stack.Screen
         name="Checkout"
         component={CheckoutScreen}
-        options={{ title: "Checkout" }}
+        options={{ title: "Finalizar Pedido" }}
       />
       <Stack.Screen
         name="Tracking"
         component={TrackingScreen}
-        options={{ title: "Seguir Pedido" }}
+        options={{ title: "Estado do Pedido" }}
+      />
+      <Stack.Screen
+        name="Login"
+        component={LoginScreen}
+        options={{ title: "Entrar" }}
+      />
+      <Stack.Screen
+        name="AdminProductForm"
+        component={AdminProductFormScreen}
+        options={{ title: "Produto" }}
       />
     </Stack.Navigator>
     <Toast

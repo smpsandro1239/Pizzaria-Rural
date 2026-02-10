@@ -1,66 +1,77 @@
 import React from "react";
-import { StyleSheet, Pressable, ViewStyle } from "react-native";
-import { MotiView } from "moti";
+import {
+  View,
+  StyleSheet,
+  ViewStyle,
+  Platform,
+  TouchableOpacity
+} from "react-native";
 import { useAppTheme } from "../theme";
+import { MotiView } from "moti";
 
 interface CardProps {
   children: React.ReactNode;
-  onPress?: () => void;
   style?: ViewStyle;
-  accessibilityLabel?: string;
+  onPress?: () => void;
+  variant?: "elevated" | "outline" | "ghost";
 }
 
-export const Card: React.FC<CardProps> = ({ children, onPress, style, accessibilityLabel }) => {
-  const { colors, spacing, radius, motion } = useAppTheme();
+export const Card = ({
+  children,
+  style,
+  onPress,
+  variant = "outline"
+}: CardProps) => {
+  const { colors, radius, spacing } = useAppTheme();
 
-  const content = (
-    <MotiView
-      from={{ opacity: 0, translateY: 10 }}
-      animate={{ opacity: 1, translateY: 0 }}
-      transition={{
-        type: "timing",
-        duration: motion.duration.normal,
-      }}
+  const Container = onPress ? TouchableOpacity : View;
+
+  return (
+    <Container
+      onPress={onPress}
+      activeOpacity={0.9}
       style={[
-        styles.container,
+        styles.base,
         {
-          backgroundColor: colors.card,
-          padding: spacing.lg,
           borderRadius: radius.lg,
+          backgroundColor: colors.card,
+          borderColor: colors.border,
+          borderWidth: variant === "outline" ? 1 : 0,
         },
+        variant === "elevated" && styles.elevated,
         style,
       ]}
     >
-      {children}
-    </MotiView>
-  );
-
-  if (onPress) {
-    return (
-      <Pressable
-        onPress={onPress}
-        accessibilityRole="button"
-        accessibilityLabel={accessibilityLabel}
-        style={({ pressed }) => [
-          {
-            transform: [{ scale: pressed ? 0.98 : 1 }],
-          },
-        ]}
+      <MotiView
+        from={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ type: "timing", duration: 300 }}
       >
-        {content}
-      </Pressable>
-    );
-  }
-
-  return content;
+        {children}
+      </MotiView>
+    </Container>
+  );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    elevation: 4,
+  base: {
+    overflow: "hidden",
+    padding: 16,
+  },
+  elevated: {
+    ...Platform.select({
+      ios: {
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.05,
+        shadowRadius: 12,
+      },
+      android: {
+        elevation: 4,
+      },
+      web: {
+        boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+      }
+    }),
   },
 });

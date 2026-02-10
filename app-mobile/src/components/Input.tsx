@@ -1,32 +1,63 @@
-import React, { useState } from "react";
-import { TextInput, StyleSheet, TextInputProps, Text, View } from "react-native";
-import { MotiView } from "moti";
+import React from "react";
+import {
+  View,
+  TextInput,
+  Text,
+  StyleSheet,
+  TextInputProps,
+  ViewStyle
+} from "react-native";
 import { useAppTheme } from "../theme";
 
 interface InputProps extends TextInputProps {
   label?: string;
   error?: string;
+  containerStyle?: ViewStyle;
 }
 
-export const Input: React.FC<InputProps> = ({ label, error, ...props }) => {
-  const [isFocused, setIsFocused] = useState(false);
-  const { colors, spacing, radius, typography, motion } = useAppTheme();
+export const Input = ({ label, error, containerStyle, ...props }: InputProps) => {
+  const { colors, radius, spacing, typography } = useAppTheme();
 
   return (
-    <View style={[styles.container, { marginBottom: spacing.md }]}>
-      {label && <Text style={[styles.label, { ...typography.caption, color: colors.text, marginBottom: spacing.xs }]}>{label}</Text>}
-      <MotiView animate={{ borderColor: error ? colors.error : isFocused ? colors.primary : colors.border, scale: isFocused ? 1.01 : 1 }} transition={{ type: "timing", duration: motion.duration.fast }} style={[styles.inputContainer, { borderRadius: radius.md, backgroundColor: colors.surface, paddingHorizontal: spacing.md }]}>
-        <TextInput style={[styles.input, { ...typography.body, color: colors.text }]} onFocus={() => setIsFocused(true)} onBlur={() => setIsFocused(false)} placeholderTextColor={colors.textSecondary} accessibilityLabel={label || props.placeholder} accessibilityState={{ error: !!error }} {...props} />
-      </MotiView>
-      {error && <Text style={[styles.errorText, { ...typography.caption, color: colors.error, marginTop: spacing.xs }]} accessibilityRole="alert">{error}</Text>}
+    <View style={[styles.container, containerStyle]}>
+      {label && (
+        <Text style={[
+          typography.caption,
+          { color: colors.text, marginBottom: spacing.xs, fontWeight: "600" }
+        ]}>
+          {label}
+        </Text>
+      )}
+      <TextInput
+        style={[
+          styles.input,
+          {
+            backgroundColor: colors.surface,
+            borderColor: error ? colors.error : colors.border,
+            borderRadius: radius.md,
+            color: colors.text,
+            padding: spacing.md,
+          },
+        ]}
+        placeholderTextColor={colors.textSecondary}
+        {...props}
+      />
+      {error && (
+        <Text style={[typography.caption, { color: colors.error, marginTop: spacing.xs }]}>
+          {error}
+        </Text>
+      )}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: { width: "100%" },
-  label: { fontWeight: "600" },
-  inputContainer: { borderWidth: 2, height: 52, justifyContent: "center" },
-  input: { flex: 1 },
-  errorText: {},
+  container: {
+    width: "100%",
+    marginBottom: 16,
+  },
+  input: {
+    borderWidth: 1,
+    fontSize: 16,
+  },
 });

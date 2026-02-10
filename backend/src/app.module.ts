@@ -8,7 +8,6 @@ import { PizzasModule } from './pizzas/pizzas.module';
 import { OrdersModule } from './orders/orders.module';
 import { NotificationsService } from './notifications/notifications.service';
 import { NotificationsModule } from './notifications/notifications.module';
-import { ReviewsModule } from './reviews/reviews.module';
 import { HealthModule } from './health/health.module';
 import { EventsModule } from './events/events.module';
 import { InvoicesModule } from './invoices/invoices.module';
@@ -19,22 +18,23 @@ import { APP_GUARD } from '@nestjs/core';
 
 @Module({
   imports: [
-    ThrottlerModule.forRoot([{
-      ttl: 60000,
-      limit: 100,
-    }]),
+    ThrottlerModule.forRoot([
+      {
+        ttl: 60000,
+        limit: 100,
+      },
+    ]),
     PrismaModule,
     AuthModule,
     UsersModule,
     PizzasModule,
     OrdersModule,
     NotificationsModule,
-    ReviewsModule,
     HealthModule,
     EventsModule,
     InvoicesModule,
     CategoriesModule,
-    BannersModule
+    BannersModule,
   ],
   controllers: [AppController],
   providers: [

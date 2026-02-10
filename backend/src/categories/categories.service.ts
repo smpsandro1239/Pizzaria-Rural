@@ -15,11 +15,6 @@ export class CategoriesService {
                 ingredient: true,
               },
             },
-            reviews: {
-              select: {
-                rating: true,
-              },
-            },
           },
         },
       },
