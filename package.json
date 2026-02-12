@@ -7,7 +7,7 @@
     "app-mobile"
   ],
   "scripts": {
-    "build": "cd backend && npm install && npx prisma generate && npm run build"
+    "build": "cd backend && npm install && npm run build && cd .. && mkdir -p public && echo 'Pizzaria Rural API' > public/index.txt"
   },
   "dependencies": {
     "prisma": "^6.4.1",
