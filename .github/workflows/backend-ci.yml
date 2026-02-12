@@ -3,27 +3,38 @@ name: Backend CI
 on:
   push:
     branches:
-      - backend-dev
+      - frontend-dev
     paths:
-      - 'backend/**'
+      - 'app-mobile/**'
   pull_request:
     branches:
       - main
     paths:
-      - 'backend/**'
+      - 'app-mobile/**'
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - name: Configurar Node.js
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Instalar dependências
-        run: cd backend && npm install
+          cache: 'npm'
+          cache-dependency-path: app-mobile/package-lock.json
+
+      - name: Install dependencies
+        working-directory: app-mobile
+        run: npm ci
+
       - name: Lint
-        run: cd backend && npm run lint || echo "No lint script"
-      - name: Test
-        run: cd backend && npm test || echo "No test script"
+        working-directory: app-mobile
+        run: npm run lint --if-present   # only runs if script exists
+
+      - name: Run tests
+        working-directory: app-mobile
+        run: npm test --if-present
