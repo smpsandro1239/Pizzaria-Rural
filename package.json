@@ -1,0 +1,16 @@
+{
+  "name": "pizzaria-rural-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "app-mobile"
+  ],
+  "scripts": {
+    "build": "cd backend && npm install && npx prisma generate && npm run build"
+  },
+  "dependencies": {
+    "prisma": "^6.4.1",
+    "@prisma/client": "^6.4.1"
+  }
+}
