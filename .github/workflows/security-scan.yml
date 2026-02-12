@@ -2,7 +2,7 @@ name: Infraestrutura — Scan de Segurança
 
 on:
   push:
-    branches: [ main, backend-dev, frontend-dev, infra-dev ]
+    branches: [ main, backend-dev, frontend-dev, infra-dev, modern-ui-rbac, frontend-dev-modern-ui-rbac ]
   pull_request:
     branches: [ main ]
 
@@ -32,9 +32,15 @@ jobs:
       - name: Auditoria do Backend
         run: |
           cd backend
+          if [ ! -f package-lock.json ]; then
+            npm i --package-lock-only
+          fi
           npm audit --audit-level=critical
 
       - name: Auditoria do Frontend
         run: |
           cd app-mobile
+          if [ ! -f package-lock.json ]; then
+            npm i --package-lock-only
+          fi
           npm audit --audit-level=critical
