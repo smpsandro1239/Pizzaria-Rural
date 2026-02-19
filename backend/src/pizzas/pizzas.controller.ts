@@ -24,6 +24,18 @@ export class PizzasController {
     return this.pizzasService.findFeatured();
   }
 
+  @Get('sizes')
+  @ApiOperation({ summary: 'Listar tamanhos disponíveis' })
+  getSizes() {
+    return this.pizzasService.getSizes();
+  }
+
+  @Get('crusts')
+  @ApiOperation({ summary: 'Listar tipos de massa disponíveis' })
+  getCrusts() {
+    return this.pizzasService.getCrusts();
+  }
+
   @Get(':id')
   @ApiOperation({ summary: 'Obter detalhes de uma pizza' })
   findOne(@Param('id') id: string) {

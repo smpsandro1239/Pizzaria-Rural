@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Switch } from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Switch, ActivityIndicator } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useAppTheme } from "../theme";
@@ -8,7 +8,10 @@ import { Button } from "../components/Button";
 import { Card } from "../components/Card";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useCartStore } from "../store/cart-store";
+import { useAuthStore } from "../store/auth-store";
 import { RootStackParamList } from "../navigation/types";
+import { createOrder } from "../api/orders";
+import { validateCoupon } from "../api/coupons";
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
@@ -16,33 +19,53 @@ export const CheckoutScreen = () => {
   const navigation = useNavigation<NavigationProp>();
   const { colors, spacing, typography, radius } = useAppTheme();
   const { items, total, clear, showToast } = useCartStore();
+  const { user } = useAuthStore();
   const [loading, setLoading] = useState(false);
-  const [formData, setFormData] = useState({ name: "", phone: "", address: "" });
+  const [promoLoading, setPromoLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    name: user?.name || "",
+    phone: "",
+    address: ""
+  });
 
   const [usePoints, setUsePoints] = useState(false);
-  const userPoints = 120;
+  const userPoints = user?.points || 0;
   const discountPerPoint = 0.01;
   const maxPointsToUse = Math.min(userPoints, Math.floor((total() + 2) / discountPerPoint));
   const loyaltyDiscount = usePoints ? maxPointsToUse * discountPerPoint : 0;
 
   const [promoCode, setPromoCode] = useState("");
-  const [appliedPromo, setAppliedPromo] = useState<{ code: string; discount: number } | null>(null);
+  const [appliedPromo, setAppliedPromo] = useState<{ code: string; type: string; value: number } | null>(null);
 
-  const handleApplyPromo = () => {
-    if (promoCode.toUpperCase() === "RURAL5") {
-      setAppliedPromo({ code: "RURAL5", discount: 5.0 });
-      showToast("Cupão de 5€ aplicado!");
-    } else if (promoCode.toUpperCase() === "TELE20") {
-      setAppliedPromo({ code: "TELE20", discount: total() * 0.2 });
-      showToast("Cupão de 20% aplicado!");
-    } else {
-      showToast("Cupão inválido.", "error");
+  const handleApplyPromo = async () => {
+    if (!promoCode.trim()) return;
+
+    setPromoLoading(true);
+    try {
+      const result = await validateCoupon(promoCode, total() * 100);
+      setAppliedPromo(result);
+      showToast("Cupão aplicado com sucesso!");
+    } catch (err: any) {
+      console.error(err);
+      showToast(err.response?.data?.message || "Cupão inválido.", "error");
+      setAppliedPromo(null);
+    } finally {
+      setPromoLoading(false);
     }
   };
 
-  const finalTotal = total() + 2 - loyaltyDiscount - (appliedPromo?.discount || 0);
+  const calculatePromoDiscount = () => {
+    if (!appliedPromo) return 0;
+    if (appliedPromo.type === "PERCENT") {
+        return (total() * appliedPromo.value) / 100;
+    }
+    return appliedPromo.value / 100; // FIXED value in cents
+  };
 
-  const handleOrder = () => {
+  const promoDiscount = calculatePromoDiscount();
+  const finalTotal = total() + 2 - loyaltyDiscount - promoDiscount;
+
+  const handleOrder = async () => {
     if (!formData.name || !formData.phone || !formData.address) {
       showToast("Por favor, preencha todos os campos.", "error");
       return;
@@ -51,13 +74,31 @@ export const CheckoutScreen = () => {
       showToast("O seu carrinho está vazio.", "error");
       return;
     }
+
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
+    try {
+      const orderPayload = {
+        name: formData.name,
+        phone: formData.phone,
+        address: formData.address,
+        delivery: true,
+        items: items.map(item => ({
+          pizzaId: item.id,
+          quantity: item.quantity
+        }))
+      };
+
+      const result = await createOrder(orderPayload);
+
       clear();
       showToast("Pedido realizado com sucesso!");
-      navigation.replace("Tracking", { orderId: "12345" });
-    }, 2000);
+      navigation.replace("Tracking", { orderId: result.id });
+    } catch (err: any) {
+      console.error(err);
+      showToast(err.response?.data?.message || "Erro ao realizar pedido.", "error");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -75,10 +116,25 @@ export const CheckoutScreen = () => {
         <Text style={{ ...typography.h3, color: colors.text, marginBottom: spacing.md }}>Cupão de Desconto</Text>
         <View style={styles.promoRow}>
           <View style={{ flex: 1, marginRight: spacing.sm }}>
-            <Input placeholder="Ex: RURAL5" value={promoCode} onChangeText={setPromoCode} autoCapitalize="characters" />
+            <Input
+                placeholder="Ex: RURAL10"
+                value={promoCode}
+                onChangeText={setPromoCode}
+                autoCapitalize="characters"
+                editable={!appliedPromo}
+            />
           </View>
-          <Button label="Aplicar" onPress={handleApplyPromo} style={{ height: 52, minHeight: 52 }} />
+          {appliedPromo ? (
+              <Button label="Remover" variant="outline" onPress={() => setAppliedPromo(null)} />
+          ) : (
+              <Button label="Aplicar" onPress={handleApplyPromo} loading={promoLoading} />
+          )}
         </View>
+        {appliedPromo && (
+            <Text style={[typography.caption, { color: colors.success, marginTop: 4 }]}>
+                Cupão {appliedPromo.code} aplicado (-{appliedPromo.type === 'PERCENT' ? `${appliedPromo.value}%` : `${(appliedPromo.value/100).toFixed(2)}€`})
+            </Text>
+        )}
       </Card>
 
       <Card style={{ ...styles.section, marginBottom: spacing.lg, padding: spacing.md }}>
@@ -103,6 +159,18 @@ export const CheckoutScreen = () => {
           <Text style={[typography.body, { color: colors.text }]}>Taxa de Entrega</Text>
           <Text style={[typography.body, { color: colors.text }]}>2,00 €</Text>
         </View>
+        {loyaltyDiscount > 0 && (
+            <View style={[styles.row, { marginBottom: spacing.sm }]}>
+                <Text style={[typography.body, { color: colors.success }]}>Desconto Fidelidade</Text>
+                <Text style={[typography.body, { color: colors.success }]}>- {loyaltyDiscount.toFixed(2)} €</Text>
+            </View>
+        )}
+        {promoDiscount > 0 && (
+            <View style={[styles.row, { marginBottom: spacing.sm }]}>
+                <Text style={[typography.body, { color: colors.success }]}>Desconto Cupão</Text>
+                <Text style={[typography.body, { color: colors.success }]}>- {promoDiscount.toFixed(2)} €</Text>
+            </View>
+        )}
         <View style={[styles.row, styles.totalRow, { borderTopColor: colors.border, paddingTop: spacing.sm, marginTop: spacing.sm }]}>
           <Text style={[styles.totalText, { ...typography.h3, color: colors.text }]}>Total</Text>
           <Text style={[styles.totalPrice, { ...typography.h3, color: colors.primary }]}>{Math.max(0, finalTotal).toFixed(2)} €</Text>
@@ -119,7 +187,7 @@ const styles = StyleSheet.create({
   content: {},
   title: {},
   section: {},
-  promoRow: { flexDirection: 'row', alignItems: 'flex-start' },
+  promoRow: { flexDirection: 'row', alignItems: 'center' },
   loyaltyRow: { flexDirection: "row", alignItems: "center", justifyContent: "space-between" },
   row: { flexDirection: "row", justifyContent: "space-between" },
   totalRow: { borderTopWidth: 1 },

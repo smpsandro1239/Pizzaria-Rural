@@ -2,6 +2,17 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
+  // Criar Tamanhos
+  const pequena = await prisma.size.upsert({ where: { name: 'Pequena' }, update: {}, create: { name: 'Pequena', multiplier: 0.8 } });
+  const media = await prisma.size.upsert({ where: { name: 'Média' }, update: {}, create: { name: 'Média', multiplier: 1.0 } });
+  const familiar = await prisma.size.upsert({ where: { name: 'Familiar' }, update: {}, create: { name: 'Familiar', multiplier: 1.5 } });
+
+  // Criar Massas
+  await prisma.crust.upsert({ where: { name: 'Tradicional' }, update: {}, create: { name: 'Tradicional', extraPrice: 0 } });
+  await prisma.crust.upsert({ where: { name: 'Fina' }, update: {}, create: { name: 'Fina', extraPrice: 0 } });
+  await prisma.crust.upsert({ where: { name: 'Pan' }, update: {}, create: { name: 'Pan', extraPrice: 150 } });
+  await prisma.crust.upsert({ where: { name: 'Recheada Queijo' }, update: {}, create: { name: 'Recheada Queijo', extraPrice: 250 } });
+
   // Criar Categorias
   const catPizzas = await prisma.category.upsert({
     where: { slug: 'pizzas' },
@@ -9,32 +20,7 @@ async function main() {
     create: { name: 'Pizzas Rural', slug: 'pizzas' },
   });
 
-  const catEntradas = await prisma.category.upsert({
-    where: { slug: 'entradas' },
-    update: {},
-    create: { name: 'Entradas Rural', slug: 'entradas' },
-  });
-
-  const catBebidas = await prisma.category.upsert({
-    where: { slug: 'bebidas' },
-    update: {},
-    create: { name: 'Bebidas Frescas', slug: 'bebidas' },
-  });
-
-  // Criar Ingredientes
-  const tomaterural = await prisma.ingredient.upsert({
-    where: { name: 'Tomate Rural' },
-    update: { stock: 100 },
-    create: { name: 'Tomate Rural', stock: 100 },
-  });
-
-  const queijofresco = await prisma.ingredient.upsert({
-    where: { name: 'Queijo Fresco' },
-    update: { stock: 50 },
-    create: { name: 'Queijo Fresco', stock: 50 },
-  });
-
-  // Criar/Atualizar Pizzas
+  // Criar Pizza Margherita com preços por tamanho
   const margherita = await prisma.pizza.upsert({
     where: { id: 'margherita' },
     update: { categoryId: catPizzas.id },
@@ -48,34 +34,22 @@ async function main() {
     },
   });
 
-  // Criar Banners
-  await prisma.banner.upsert({
-    where: { id: 'promo1' },
+  await prisma.pizzaSizePrice.upsert({
+    where: { pizzaId_sizeId: { pizzaId: margherita.id, sizeId: pequena.id } },
     update: {},
-    create: {
-      id: 'promo1',
-      title: 'Promoção de Inverno',
-      imageUrl: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1200&q=80',
-      link: '/category/pizzas',
-    },
+    create: { pizzaId: margherita.id, sizeId: pequena.id, price: 650 }
   });
 
-  await prisma.banner.upsert({
-    where: { id: 'promo2' },
+  await prisma.pizzaSizePrice.upsert({
+    where: { pizzaId_sizeId: { pizzaId: margherita.id, sizeId: media.id } },
     update: {},
-    create: {
-      id: 'promo2',
-      title: 'Menu Familiar Rural',
-      imageUrl: 'https://images.unsplash.com/photo-1590947132387-155cc02f3212?auto=format&fit=crop&w=1200&q=80',
-      link: '/coupons',
-    },
+    create: { pizzaId: margherita.id, sizeId: media.id, price: 850 }
   });
 
-  // Criar Cupão
-  await prisma.coupon.upsert({
-    where: { code: 'RURAL10' },
+  await prisma.pizzaSizePrice.upsert({
+    where: { pizzaId_sizeId: { pizzaId: margherita.id, sizeId: familiar.id } },
     update: {},
-    create: { code: 'RURAL10', type: 'PERCENT', value: 10, minOrderValue: 1000 },
+    create: { pizzaId: margherita.id, sizeId: familiar.id, price: 1250 }
   });
 
   console.log('Seed concluído com sucesso!');
@@ -87,5 +61,5 @@ main()
     process.exit(1);
   })
   .finally(async () => {
-    await prisma.$disconnect();
+    await prisma.();
   });

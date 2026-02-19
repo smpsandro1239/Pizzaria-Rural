@@ -7,7 +7,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -34,14 +34,41 @@ model Pizza {
   id          String   @id @default(cuid())
   name        String
   description String
-  price       Int      // em cêntimos (preço base)
+  price       Int      // Preço base/médio para exibição
   imageUrl    String
   featured    Boolean  @default(false)
   categoryId  String?
   category    Category? @relation(fields: [categoryId], references: [id])
   createdAt   DateTime @default(now())
+
   ingredients PizzaIngredient[]
   orderItems  OrderItem[]
+  sizePrices  PizzaSizePrice[]
+  reviews     Review[]
+}
+
+model Size {
+  id          String   @id @default(cuid())
+  name        String   @unique // Pequena, Média, Familiar
+  multiplier  Float    @default(1.0)
+  pizzas      PizzaSizePrice[]
+}
+
+model PizzaSizePrice {
+  id      String @id @default(cuid())
+  pizza   Pizza  @relation(fields: [pizzaId], references: [id])
+  pizzaId String
+  size    Size   @relation(fields: [sizeId], references: [id])
+  sizeId  String
+  price   Int    // Preço específico para este tamanho
+
+  @@unique([pizzaId, sizeId])
+}
+
+model Crust {
+  id         String @id @default(cuid())
+  name       String @unique // Fina, Pan, Recheada
+  extraPrice Int    @default(0)
 }
 
 model Banner {
@@ -101,6 +128,8 @@ model OrderItem {
   pizzaId   String
   quantity  Int
   unitPrice Int
+  size      String? // Nome do tamanho escolhido
+  crust     String? // Nome da massa escolhida
 }
 
 model Coupon {
@@ -111,4 +140,14 @@ model Coupon {
   minOrderValue Int      @default(0)
   active        Boolean  @default(true)
   createdAt     DateTime @default(now())
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  pizza     Pizza    @relation(fields: [pizzaId], references: [id])
+  pizzaId   String
+  rating    Int      // 1-5
+  comment   String?
+  userName  String
+  createdAt DateTime @default(now())
 }

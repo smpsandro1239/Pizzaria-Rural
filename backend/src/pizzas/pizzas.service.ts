@@ -16,6 +16,9 @@ export class PizzasService {
             ingredient: true,
           },
         },
+        sizePrices: {
+          include: { size: true }
+        },
       },
     });
   }
@@ -29,6 +32,9 @@ export class PizzasService {
           include: {
             ingredient: true,
           },
+        },
+        sizePrices: {
+          include: { size: true }
         },
       },
       take: 6,
@@ -45,10 +51,25 @@ export class PizzasService {
             ingredient: true,
           },
         },
+        sizePrices: {
+          include: { size: true }
+        },
+        reviews: {
+          orderBy: { createdAt: 'desc' },
+          take: 5
+        }
       },
     });
     if (!pizza) throw new NotFoundException('Pizza não encontrada');
     return pizza;
+  }
+
+  async getSizes() {
+    return this.prisma.size.findMany();
+  }
+
+  async getCrusts() {
+    return this.prisma.crust.findMany();
   }
 
   async create(createPizzaDto: CreatePizzaDto) {

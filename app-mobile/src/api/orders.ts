@@ -6,7 +6,7 @@ export type OrderPayload = {
   phone: string;
   address: string;
   delivery: boolean;
-  items: CartItem[];
+  items: { pizzaId: string; quantity: number }[];
 };
 
 export const createOrder = async (payload: OrderPayload) => {
